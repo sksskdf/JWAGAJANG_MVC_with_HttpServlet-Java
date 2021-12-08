@@ -22,14 +22,12 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+	color: #707070;
 	vertical-align: baseline;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+
 body {
 	line-height: 1;
 }

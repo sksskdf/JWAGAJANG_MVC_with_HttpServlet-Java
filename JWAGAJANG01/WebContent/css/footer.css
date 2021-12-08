@@ -1,0 +1,35 @@
+.footerwrap {
+    display:flex;  
+    width:1200px;
+    flex-flow:row wrap;
+    justify-content: left;
+    align-items: center;
+    margin:0 auto;
+  }
+  footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #F1F1F1;
+  }
+  footer img {
+    width: 105.22px;
+    height: 51.04px;
+    margin: 16px 53px;
+    opacity: 0.3;
+  }
+  footer p {
+    margin: 0;
+    font-size: 12px;
+    color: #393939;
+  }
+  .topbtn{
+    position: fixed;
+    bottom: 9.2592592%;
+    right: 5.052083%;
+    z-index: 100;
+  }
+  .topbtn>img {
+    width: 40px;
+    height: 40px;
+  }
