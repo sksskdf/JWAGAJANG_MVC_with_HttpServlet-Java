@@ -15,3 +15,5 @@ JSP파일마다 jsp:inclue 경로도 재설정해놓음.
 후에 서버작업을 위해 필요한 jar파일들은 WEB-INF/lib 에 넣어놓음.
 
 !! META-INF/Context.xml에 DB접속용 Resource작성해놓았으니 서버작업하기전에 꼭 확인. !!
+
+##123123
