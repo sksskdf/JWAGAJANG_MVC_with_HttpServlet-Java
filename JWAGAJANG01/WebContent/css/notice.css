@@ -1,63 +1,180 @@
 section {
-    width: 1200px;
-    margin: 0 auto;
+	width: 1200px;
+	margin: 0 auto;
 }
 
 .pagenav {
-    margin-top: 40px;
-    font-size: 14px;
+	margin-top: 40px;
+	font-size: 14px;
 }
 
 .navarrow {
-    margin: 0 7px 0 7px;
-    padding: 6px;
-    background: url(img/navarrow.svg) no-repeat;
-    background-position: 0px;
+	margin: 0 7px 0 7px;
+	padding: 6px;
+	background: url(../img/navarrow.svg) no-repeat;
+	background-position: 0px;
 }
 
 .notice {
-    text-align: center;
-    margin: 0 auto;
-    width: 953px;
+	text-align: center;
+	margin: 0 auto;
+	width: 953px;
 }
 
 h1 {
-    font-size: 25px;
-    font-weight: bold;
-    margin: 40px 0 50px 0;
+	font-size: 25px;
+	font-weight: bold;
+	margin: 40px 0 50px 0;
 }
 
 .brdbox {
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 40px;
-    border: #00000026 solid 0.5px;
-    border-width: 0.5px 0px;
-    /* 테두리 두깨 : 위아래, 양옆 */
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 40px;
+	border: #00000026 solid 0.5px;
+	border-width: 0.5px 0px;
+	/* 테두리 두깨 : 위아래, 양옆 */
+}
+
+.brdViewbox {
+	background : #00000007;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+.brdWritebox {
+	background : #00000007;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 40px;
 }
 
 .brdbox :nth-child(1) {
-    width: 105.83px;
+	width: 205.83px;
 }
 
 .brdbox :nth-child(2) {
-    width: 604px;
+	width: 604px;
 }
 
 .brdbox :nth-child(3) {
-    width: 137px;
+	width: 137px;
 }
 
 .brdbox :nth-child(4) {
-    width: 105.83px;
+	width: 105.83px;
+}
+
+.brdViewbox :nth-child(1) {
+	width: 105.83px;
+}
+
+.brdViewbox :nth-child(2) {
+	width: 604px;
+}
+
+.brdViewbox :nth-child(3) {
+	width: 137px;
+}
+
+.brdViewbox :nth-child(4) {
+	width: 105.83px;
+}
+
+.brdWritebox :nth-child(1) {
+width: 150px;
+height: 60px;
+}
+
+.brdWritebox :nth-child(2) {
+width: 150px;
+height: 60px;
+}
+
+.brdWritebox :nth-child(3) {
+	width: 150px;
+	height: 434px;
+}
+
+.input {
+	display: inline-block;
+	width: 100%;
 }
 
 .writebtn {
-    float: right;
-    width: 52px;
-    line-height: 23px;
-    color: white;
-    background: #195500;
-    border: 0;
-    margin: 10px 0;
+	float: right;
+	width: 52px;
+	line-height: 23px;
+	color: white;
+	background: #195500;
+	border: 0;
+	margin: 10px 0;
+}
+.upbtn {
+	float: left;
+	width: 52px;
+	line-height: 23px;
+	color: #195500;
+	background: white;
+	border: #195500 solid 0.5px; 
+	margin: 10px 5px 0 0;
+}
+.delbtn {
+	float: left;
+	width: 52px;
+	line-height: 23px;
+	color: #195500;
+	background: white;
+	border: #195500 solid 0.5px; 
+	margin: 10px 0;
+}
+.listbtn {
+	float: right;
+	width: 52px;
+	line-height: 23px;
+	color: #195500;
+	background: white;
+	border: #195500 solid 0.5px; 
+	margin: 10px 0;
+}
+
+.paging {
+	text-align : center;
+	margin: 0 auto;
+	margin-top : 68px;
+	width: 953px;
+}
+
+.prev {
+	margin : 94px;
+	padding: 6px;
+	background: url(../img/prev.svg) no-repeat;
+	background-position: 0px;
+}
+.next {
+	margin : 94px;
+	padding: 6px;
+	background: url(../img/next.svg) no-repeat;
+	background-position: 0px;
+}
+
+.search {
+	width : 100%;
+	text-align: center;
+	margin: 0 auto;
+	margin-top : 20px;
+}
+.searchtext {
+	width : 220;
+	line-height : 24px;
+	border: #00000026 solid 0.5px; 
+}
+.searchbtn {
+	width: 44px;
+	line-height: 23px;
+	color: white;
+	background: #195500;
+	border: 0;
+	margin: 10px 0;
 }
