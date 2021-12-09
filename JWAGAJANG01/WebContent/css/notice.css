@@ -27,29 +27,14 @@ h1 {
 	margin: 40px 0 50px 0;
 }
 
+/* notice 테이블 */
 .brdbox {
 	font-weight: bold;
 	font-size: 14px;
 	line-height: 40px;
 	border: #00000026 solid 0.5px;
-	border-width: 0.5px 0px;
-	/* 테두리 두깨 : 위아래, 양옆 */
+	border-width: 0.5px 0px; /* 테두리 두깨 : 위아래, 양옆 */
 }
-
-.brdViewbox {
-	background : #00000007;
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 40px;
-}
-
-.brdWritebox {
-	background : #00000007;
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 40px;
-}
-
 .brdbox :nth-child(1) {
 	width: 205.83px;
 }
@@ -66,38 +51,73 @@ h1 {
 	width: 105.83px;
 }
 
+/* brdView 테이블 */
+.brdViewbox {
+	background: #00000007;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 40px;
+}
 .brdViewbox :nth-child(1) {
 	width: 105.83px;
 }
-
 .brdViewbox :nth-child(2) {
 	width: 604px;
 }
-
 .brdViewbox :nth-child(3) {
 	width: 137px;
 }
-
 .brdViewbox :nth-child(4) {
 	width: 105.83px;
 }
 
-.brdWritebox :nth-child(1) {
-width: 150px;
-height: 60px;
+/* brdWrite 테이블 */
+.brdWritebox {
+	background-color : #F7F7F7;
+	width : 953px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 60px;
+}
+.brdWritebox th>*{
+	vertical-align : middle; /* 블럭 가운데 배치 */
+}
+#textarea {
+	height : 434px;
+	}
+.brdWritebox tr :nth-child(2) {
+	text-align : left;
+	background-color : white;
+	border-width: 0.5px 0px; /* 테두리 두깨 : 위아래, 양옆 */
+}
+.sortinput {
+	text-indent : 5px; /* 들여쓰기 */
+	width: 310px;
+	line-height : 34px; /* 인풋 */
+	border: #00000026 solid 0.5px;
+	margin-left : 15px;
+	border-width: 0.5px;
+}
+.titleinput {
+	text-indent : 5px;
+	width: 310px;
+	line-height: 34px;
+	border: #00000026 solid 0.5px;
+	margin-left : 15px;
+	border-width: 0.5px
+}
+textarea {
+	margin : 15px;
+	text-indent : 5px;
+	width: 770px;
+	height : 408px;
+	border: #00000026 solid 0.5px;
+	border-width: 0.5px
+
 }
 
-.brdWritebox :nth-child(2) {
-width: 150px;
-height: 60px;
-}
-
-.brdWritebox :nth-child(3) {
-	width: 150px;
-	height: 434px;
-}
-
-.input {
+/* 게시판 버튼 */
+.writebox {
 	display: inline-block;
 	width: 100%;
 }
@@ -111,65 +131,79 @@ height: 60px;
 	border: 0;
 	margin: 10px 0;
 }
+
 .upbtn {
+	font-size: 14px;
 	float: left;
 	width: 52px;
 	line-height: 23px;
 	color: #195500;
 	background: white;
-	border: #195500 solid 0.5px; 
+	border: #195500 solid 0.5px;
 	margin: 10px 5px 0 0;
 }
+
 .delbtn {
 	float: left;
 	width: 52px;
 	line-height: 23px;
 	color: #195500;
 	background: white;
-	border: #195500 solid 0.5px; 
+	border: #195500 solid 0.5px;
 	margin: 10px 0;
 }
+
 .listbtn {
 	float: right;
 	width: 52px;
 	line-height: 23px;
 	color: #195500;
 	background: white;
-	border: #195500 solid 0.5px; 
+	border: #195500 solid 0.5px;
 	margin: 10px 0;
 }
 
-.paging {
+.noticeWritebtn {
 	text-align : center;
+	margin : 30px;
+}
+
+/* 페이징 */
+.paging {
+	text-align: center;
 	margin: 0 auto;
-	margin-top : 68px;
+	margin-top: 68px;
 	width: 953px;
 }
 
 .prev {
-	margin : 94px;
+	margin: 94px;
 	padding: 6px;
 	background: url(../img/prev.svg) no-repeat;
 	background-position: 0px;
 }
+
 .next {
-	margin : 94px;
+	margin: 94px;
 	padding: 6px;
 	background: url(../img/next.svg) no-repeat;
 	background-position: 0px;
 }
 
-.search {
-	width : 100%;
+/* 게시글 찾기  */
+.noticeSrc {
+	width: 100%;
 	text-align: center;
 	margin: 0 auto;
-	margin-top : 20px;
+	margin-top: 20px;
 }
+
 .searchtext {
-	width : 220;
-	line-height : 24px;
-	border: #00000026 solid 0.5px; 
+	width: 220px;
+	line-height: 24px;
+	border: #00000026 solid 0.5px;
 }
+
 .searchbtn {
 	width: 44px;
 	line-height: 23px;

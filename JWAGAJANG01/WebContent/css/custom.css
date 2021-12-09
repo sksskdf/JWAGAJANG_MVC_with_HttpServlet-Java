@@ -1,14 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
+.container {
+  margin: auto;
+  padding: 0;
 }
 
-body {
-    font-family: 'Nanum Gothic', sans-serif;
+.lc {
+  color: #070707;
+  font-size: 14px;
 }
 
-h1 {
-    font-family: 'Nanum Gothic', sans-serif;
+.cfs {
+  font-size: 16px;
+  font-weight: 700;
 }
+
+.cfb {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.lfb {
+  font-size: 20px/23px;
+  font-weight: bold;
+  color: #707070;
+}
+
+.sb {
+  background: #e6e6e6 0% 0% no-repeat padding-box;
+  border-radius: 19px;
+  opacity: 1;
+}
+
+.container-fluid {
+  border-bottom: 1px solid rgb(211, 206, 206);
+}
+
+.sfc {
+  color: #ff4600;
+}
+
+.sf {
+  color: gray;
+  font-size: 13px;
+  text-decoration: line-through;
+}
+
+.fsf {
+  font-size: 12px;
+}
+
+.back-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}
+
+.iw {
+  width: 380px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.bg {
+  background-image: url("../img/loginbg.jpg");
+  background-size: 1900px;
+  width: 1900px;
+  height: 885px;
+  overflow: visible;
+}
+
+#bg-white {
+  background-color: rgb(255, 255, 255);
+  width: 367px;
+  height: 347px;
+  border: 0.25px solid #707070;
+  border-radius: 6px;
+  opacity: 1;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+#bg-white-join {
+  background-color: rgb(255, 255, 255);
+  width: 570px;
+  height: 670px;
+  border: 0.25px solid #707070;
+  border-radius: 6px;
+  opacity: 1;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+.lis {
+  border-style: none;
+  border-bottom: 0.5px solid #c2bfbf;
+}
+
+.lib {
+  width: 287px;
+  height: 50px;
+}
+
+.jbs {
+  color: #195500;
+  border: 0.5px solid #195500;
+}
+
+.btn-login {
+  background: #195500 0% 0% no-repeat padding-box;
+  color:white;
+}
+
+.join-label-font {
+  font: normal normal bold 14px/16px NanumGothic;
+  letter-spacing: 0px;
+  color: #1a1919;
+}
+
+.join-button-font {
+  font: normal normal bold 14px/16px NanumGothic;
+  letter-spacing: 0px;
+}
+
+
+
+
+

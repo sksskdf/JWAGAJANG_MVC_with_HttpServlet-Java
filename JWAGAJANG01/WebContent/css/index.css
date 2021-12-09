@@ -1,115 +1,7 @@
      /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~PC용 CSS~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-     #wrap {
-        display:flex;
-        flex-flow:row wrap;
-        width:100%;
-        margin:0 auto;
-        max-width:1200px;
-      }
-      /* ~~~~~~~헤더영역 CSS~~~~~~~*/
-      header {
-        display: flex;
-        padding-top: 52.24px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
-      .logo {
-        display: inline-flex;
-        height: fit-content;
-        align-items: center;
-        
-      }
-      .logo a img {
-        width: 150px;
-        height: 73px;
-      }
-      .search {
-        width: fit-content;
-        height: fit-content;
-        position: relative;
-      }
-      #schText{
-        width: 650px;
-        height: 37px;
-        border: none;
-        background-color: #E6E6E6;
-        border-radius:37px;
-        padding-left: 14.51px;
-      }
-      #schButton {
-        position: absolute;
-        right: 14.51px;
-        top: 6.76px;
-      }
-      .nav ul{
-        padding-left: 0;
-        margin: 0;
-      }
-      .nav>ul>li>a {
-        text-decoration: none;
-        color: #707070;
-        font-weight: bold;
-      }
-      .gnb {
-        display: flex;
-        flex-direction: row;
-        font-size:15px;
-      }
-      .gnb>li:nth-child(n+2) {
-        margin-left: 33px;
-      }
-      .mainmenu{
-        display: flex;
-        flex-direction: row;
-      }
-      .mainmenu>li {
-        margin-top: 18px ;
-        margin-bottom: 18px;
-        padding: 0 56px;
-      }
-      .mainmenu>li:first-of-type {
-        padding-left: 0;
-      }
-      .mainmenu>li:first-of-type:hover .bigclass {
-        display: block;
-      }
-      .bigclass{
-        display: none;
-        position: absolute;
-        z-index: 100;
-        background-color: #FFFFFF;
-        width: 186px;
-        border: 1px solid #707070;
-        font-size: 13px;
-        font-weight: bold;
-
-      }
-      .bigclass>li {
-        padding: 0px 8px;
-      }
-
-      .subclass>li {
-        padding: 9px 21px 8px 21px;
-        /*border-top:*/
-      }
-      .subclass>li>a {
-        font-size: 12px;
-        text-decoration: none;
-        font-weight: normal;
-        color: #707070;
-      }
-
-      
-      .mainmenu>li:nth-last-child(2) {
-        border-left: solid 2px #E6E6E6;
-      }
-      .cate a{
-        font-weight: normal !important;
-      }
-      
+     * {
+       font-size: 16px;
+     }
       /*~~~~~~~슬라이더 영역~~~~~~~*/
       .swiper {
         width: 100%;
@@ -122,40 +14,52 @@
         height: 100%;
         object-fit: cover;
       }
-      /*베스트 아이템 영역*/
-      .bestTitle {
+      /*아이템 영역*/
+      #contentwrap {
+        display:flex;
+        flex-flow:column wrap;
+        width:100%;
+        margin:0 auto;
+        max-width:1200px;
+      }
+      div[class $="Title"] {
         width: 100%;
         display: flex;
         flex-direction: row;
         margin-top: 15px;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 5px;
       }
-      .bestTitle h1 {
+      div[class $="Title"] h1 {
         font-size: 25px;
         color: #707070;
         font-weight: bold;
       }
-      .bestTitle>p>a {
+
+      div[class $="Title"]>p>a {
         text-decoration: none;
         color: #707070;
       }
-      .bestContents {
+
+      div[class $="Contents"] {
         width: 100%;
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        margin-bottom: 40px;
       }
-      .bestContents img{
+      div[class $="Contents"] img{
         width: 280px;
         height: 280px;
+        margin-bottom: 15px;
       }
-      .bestContents p {
+      div[class $="Contents"] p {
         width: fit-content;
+        line-height:1.5;
       }
       .title {
         font-weight: bold;
-        font-size: 16px;
         color: #707070;
       }
       .salerate {
@@ -171,28 +75,5 @@
         color: #B2B2B2;
         text-decoration: line-through;
       }
-      /*~~~~~~~푸터 영역~~~~~~~*/
-      footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        background-color: #F1F1F1;
-      }
-      footer img {
-        width: 105.22px;
-        height: 51.04px;
-        margin: 16px 53px;
-        opacity: 0.3;
-      }
-      footer p {
-        margin: 0;
-        font-size: 12px;
-        color: #393939;
-      }
-      .topbtn{
-        position: fixed;
-        bottom: 100px;
-        right: 289px;
-      }
+    
       

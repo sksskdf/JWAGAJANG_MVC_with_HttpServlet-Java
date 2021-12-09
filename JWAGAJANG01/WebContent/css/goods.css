@@ -1,0 +1,180 @@
+#wrap {
+    display:flex;
+    flex-flow:row wrap;
+    width:100%;
+    margin:0 auto;
+    max-width:1200px;
+    background-color: white;
+}
+
+.pagenav {
+    width: 100%;
+    float: left;
+    margin: 40px 0px 0px 0px;
+    color: #707070;
+    font: normal normal bold 15px/17px NanumGothic;
+}
+
+.navarrow {
+    margin: 0 7px 0 7px;
+    padding: 6px;
+    background: url(../img/navarrow.svg) no-repeat;
+    background-position: 0px;
+}
+
+.goods {
+    width: 100%;
+    margin: 40px;
+}
+
+.mdimg {
+    width: 552px;
+    height: 552px;
+    float: left;
+}
+
+.goods_info {
+    width: 520px;
+    margin-left: 40px;
+    display: inline-block;
+}
+
+.goods_title {
+    font: normal normal bold 24px/28px NanumGothic;
+    color: #707070;
+    margin-bottom: 40px;
+}
+
+.price {
+    text-decoration: line-through;
+    font: normal normal bold 16px/19px NanumGothic;
+    color: #B2B2B2;
+}
+
+.goods_dc {
+    display: block;
+}
+
+.cost {
+    font: normal normal bold 28px/32px NanumGothic;
+    color: #000000;
+}
+
+.dc {
+    font: normal normal bold 28px/32px NanumGothic;
+    color: #195500;
+}
+
+.goods_info hr {
+    border: 1px solid #707070;
+    opacity: 0.25;
+    margin: 40px 0px;
+}
+
+.goods_info dl {
+    font: normal normal normal 13px/15px NanumGothic;
+    color: #707070;
+}
+
+.goods_info dt {
+    width: 90px;
+    height: 40px;
+    float: left;
+}
+
+.shipping {
+    height: 50px;
+}
+
+.shipping dd {
+    width: 430px;
+    float: left;
+}
+
+.orderpay {
+    color: #195500;
+}
+
+.addshipping {
+    font: normal normal normal 10px/11px NanumGothic;
+    padding-top: 7px;
+}
+
+.shipping dt {
+    width: 90px;
+    height: max-content;
+    float: left;
+}
+
+.goods_qty {
+    width: 32px;
+    height: 20px;
+    background: none;
+    font: normal normal normal 13px/15px NanumGothic;
+    text-align: center;
+    padding: 0;
+    border: 0.25px solid #707070;
+}
+
+.countbtn button {
+    width: 20px;
+    height: 20px;
+    background: none;
+    outline: none;
+    padding: 0;
+    border: 0.25px solid #707070;
+}
+
+.total dt {
+    width: 520px;
+    height: 25px;
+    display: block;
+}
+
+.total_cost {
+    font: normal normal bold 32px/36px NanumGothic;
+    color: #000000;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.won {
+    font: normal normal bold 24px/28px NanumGothic;
+    text-align: right;
+    padding: 20px 0px 50px 0px;
+}
+
+.buynowbtn {
+    width: 161px;
+    height: 52px;
+    text-align: center;
+    font: normal normal bold 16px/19px NanumGothic;
+    color: #FFFFFF;
+    background-color: #195500;
+    border-radius: 3px;
+    border: 0;
+    margin-right: 13px;
+}
+
+.cartbtn {
+    width: 161px;
+    height: 52px;
+    text-align: center;
+    font: normal normal bold 16px/19px NanumGothic;
+    color: #195500;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    border: 0.5px solid #195500;
+    margin-right: 13px;
+}
+
+.favbtn {
+    width: 161px;
+    height: 52px;
+    text-align: center;
+    font: normal normal bold 16px/19px NanumGothic;
+    color: #195500;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    border: 0.5px solid #195500;
+}

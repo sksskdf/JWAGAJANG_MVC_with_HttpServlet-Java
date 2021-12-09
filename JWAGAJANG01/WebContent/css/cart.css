@@ -1,0 +1,98 @@
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+/*전체 네비게이션*/
+.pagenav {
+	width: 1200px;
+	margin: 0 auto;
+    margin-top: 40px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.navarrow {
+    margin: 0 7px 0 7px;
+    padding: 6px;
+    background: url(../img/navarrow.svg) no-repeat;
+    background-position: 0px;
+}
+#cartwrap {
+	margin: 0 auto;
+	margin-top: 49px;
+	display: flex;
+	flex-direction:row;
+	flex-wrap: wrap;
+	justify-content:space-between;
+	width: 953px;
+}
+h1 {
+	font-size: 23px;
+	font-weight: bold;
+}
+/*구매진행 네비게이션*/
+.cartnav {
+	font-size: 15px;
+}
+.nowpage {
+	color: #195500;
+	font-weight: bold;
+}
+/*장바구니 영역*/
+.cartform {
+	margin-top:40px;
+	width: 100%;
+}
+.cartconts {
+	width: 100%;
+	border: none;
+}
+.cartconts th {
+	background-color: #00000007;
+	font-size: 15px;
+	font-weight: bold;
+}
+.cartconts td {
+	text-align: center;
+	vertical-align: middle;
+}
+.cartconts td>* {
+	vertical-align: middle;
+}
+.cartconts img {
+	width: 110px;
+	height: 110px;
+}
+.mddesc {
+	margin-left:34px;
+}
+.mddesc>a {
+	text-decoration:none;
+	color: #707070;
+	font-weight: bold;
+}
+
+/*버튼*/
+input[class$=btn] {
+	min-width: 80px;
+	height: 25px;
+	font-size: 12px;
+}
+.colorbtn {
+	background-color: #195500;
+	color:#FFFFFF;
+	border:none;
+}
+.normalbtn {
+	background-color: #FFFFFF ;
+	color: #195500;
+	border:1px solid #195500;
+}
+/*가격표시영역*/
+.pricewrap {
+	display: flex;
+	flex-direction: row;
+	width:100%;
+	height: 100px;
+	background-color: #00000007;
+	margin-top: 42px;
+}
+
