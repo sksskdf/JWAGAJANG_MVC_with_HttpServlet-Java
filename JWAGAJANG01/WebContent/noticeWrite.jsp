@@ -18,7 +18,11 @@
   <jsp:include page="H&F/header.jsp"/>
 	<section>
 		<div class="pagenav">
-			홈<span class="navarrow"></span>게시판<span class="navarrow"></span>공지사항
+			<a href="index.jsp">홈</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">게시판</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">공지사항</a>
 		</div>
 		<div class="notice">
 			<h1>공지사항</h1>
@@ -47,7 +51,7 @@
 			<div class="noticeWritebtn">
 				<input type="reset" value="다시쓰기" name="reset" class="resetbtn">
 				<input type="submit" value="등록" name="send" class="sendbtn" onclick="return noticeCheck()">
-				<input type="submit" value="목록" name="noticelist" class="noticelistbtn">
+				<input type="submit" value="목록" name="noticelist" class="noticelistbtn" onclick="location.href='noticeList.do'">
 			</div>
 			</form>
 		</div>

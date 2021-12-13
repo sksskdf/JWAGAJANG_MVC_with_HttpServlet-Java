@@ -10,8 +10,6 @@ public class NoticeVO {
 	private Timestamp notice_editdate;
 	private String notice_content;
 	private int notice_count;
-	
-	
 	public int getNotice_code() {
 		return notice_code;
 	}
@@ -54,4 +52,5 @@ public class NoticeVO {
 	public void setNotice_count(int notice_count) {
 		this.notice_count = notice_count;
 	}
+
 }

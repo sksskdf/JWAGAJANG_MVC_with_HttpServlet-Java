@@ -20,7 +20,11 @@
 	<!-- 섹션 영역 -->
 	<section>
 		<div class="pagenav">
-			홈<span class="navarrow"></span>게시판<span class="navarrow"></span>공지사항
+			<a href="index.jsp">홈</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">게시판</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">공지사항</a>
 		</div>
 		<div class="notice">
 			<h1>공지사항</h1>
@@ -31,7 +35,9 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
-				<c:forEach var="board" items="${noticeList}"> <!-- 내용이 있는거만큼 반복 -->
+				
+				<!-- 넘겨받은 글 목록을 <c:forEach> 태그를 이용해 화면에 출력한다. -->
+				<c:forEach var="board" items="${noticeList}"> 
 					<tr class="record">
 						<td class="record_1">${board.notice_label }</td>
 						<td class="record_2"><a href="noticeView.do?notice_code=${board.notice_code}"> ${board.notice_title} </a></td>
@@ -45,6 +51,8 @@
 				<a href="noticeWrite.do"><input type="submit" value="글쓰기" name="write" class="writebtn"></a>
 			</div>
 		</div>
+		
+		
 		<div class="paging">
 			<span class="prev"></span> <span class="next"></span>
 		</div>
@@ -53,6 +61,8 @@
 			<input class="searchbtn" value="찾기" type="submit">
 		</div>
 	</section>
+	
+	
 	<!-- 푸터영역 -->
 	<jsp:include page="H&F/footer.html" />
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
