@@ -87,4 +87,32 @@ public class MemberDao {
 		}
 		return result;
 	}
+	public void update(Connection conn, Member member) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+			String query = "UPDATE `jwagajang`.`member` \r\n"
+					+ "SET \r\n"
+					+ "	`pwd` = ?, \r\n"
+					+ "	`mobile` = ?, \r\n"
+					+ "	`address` = ?, \r\n"
+					+ "	`address2` = ?, \r\n"
+					+ "	`address3` = ?, \r\n"
+					+ "	`email` = ?\r\n"
+					+ " WHERE (`id` = ?);";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getPwd());
+			pstmt.setString(2, member.getMobile());
+			pstmt.setString(3, member.getAddress());
+			pstmt.setString(4, member.getAddress2());
+			pstmt.setString(5, member.getAddress3());
+			pstmt.setString(6, member.getEmail());
+			pstmt.setString(7, member.getId());
+			System.out.println();
+			pstmt.executeUpdate();
+			System.out.println(member.toString());
+		} finally {
+			DBManager.close(pstmt);
+		}
+
+	}
 }

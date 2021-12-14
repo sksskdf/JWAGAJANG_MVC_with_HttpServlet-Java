@@ -35,6 +35,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public void update(Member member) {
+		MemberDao mDao = MemberDao.getInstance();
+		Connection conn = null;
+
+		try {
+			conn = DBManager.getConnection();
+			mDao.update(conn,member);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+		DBManager.close(conn);
+		}
+	}
+	
+	@Override
 	public String idCheck(String id) {
 		Connection conn = null;
 		Member member = null;

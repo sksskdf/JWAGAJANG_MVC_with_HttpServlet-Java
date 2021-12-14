@@ -19,20 +19,30 @@
   <!-- 헤더 -->
   <jsp:include page="../H&F/header.jsp"/>
   <!-- 본문 -->
-  <div class="container-fluid bg d-flex mt-3">
-  	<div class="container d-flex justify-content-center" id="bg-white-join">
-      
-      <form id="joinForm" method="post" action="/join.do">
-        <h5 class="lfb" style="text-align: center; margin-top: 38px; font-size: 20px/23px;">회원가입</h5>
+  <div class="container d-flex mt-5 mb-5 mypagesec">
+      <div class="row">
+      <div class="col-2 sidebar ms-5 d-flex justify-content-center">
+      	<ul class="nav d-flex flex-column align-content-center justify-content-center">
+      		<li class="nav-item">
+      			<a class="nav-link mpa nf" href="mypage.do">회원 정보 수정</a>
+      		</li>
+      		<li class="nav-item">
+      			<a class="nav-link nf" href="#">주문내역</a>
+      		</li>
+      		<li class="nav-item">
+      			<a class="nav-link nf" href="#">찜목록</a>
+      		</li>
+      	</ul>
+      </div>
+      <div class="col-7" style="margin-left:40px;">
+        <h5 class="mph" style="margin-top: 38px;">회원 정보 수정</h5>
+      <form id="joinForm" method="post" action="/mypage.do" style="margin-left:268px;">
         <div class="container row d-flex mt-5" style="margin-top: 13px;">
           <div class="col-md-3 d-flex align-items-center">
             <label class="join-label-font">아이디</label>
           </div>
           <div class="col-md-7 d-flex align-items-center">
-            <input class="join-label-font lib lis py-3 ps-3 cfs" name="id" id="id" type="text" placeholder="아이디를 입력해주세요." autocomplete="off">
-          </div>
-          <div class="col-md-2 d-flex align-items-center">
-            <input class="join-button-font btn jbs cfs" type="button" id="duplicateCheck" value="중복확인">
+            <input class="join-label-font lib lis py-3 ps-3 cfs" name="id" type="text" value="${sessionScope.id}" autocomplete="off" readonly >
           </div>
         </div>
         <div class="container row d-flex justify-content-center align-items-center">
@@ -106,9 +116,10 @@
         </div>
 
         <div class="row d-flex justify-content-center">
-          <input class="lib btn btn-login cfs" style="margin-top: 27px;" id="submit" type="submit" value="회원가입" >
+          <input class="lib btn btn-update cfs" style="margin-top: 27px;" id="submit" type="submit" value="회원 정보 수정" >
         </div>
       </form>
+      </div>
   	</div>
   </div>
 

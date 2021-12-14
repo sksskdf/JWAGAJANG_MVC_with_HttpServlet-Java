@@ -1,4 +1,5 @@
 
+
 .container {
   margin: auto;
   padding: 0;
@@ -78,7 +79,7 @@
   border: 0.25px solid #707070;
   border-radius: 6px;
   opacity: 1;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
 }
 
 #bg-white-join {
@@ -88,7 +89,15 @@
   border: 0.25px solid #707070;
   border-radius: 6px;
   opacity: 1;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+#bg-white-mypage {
+  background-color: rgb(255, 255, 255);
+  width: 570px;
+  height: 750px;
+  opacity: 1;
+  background: #ffffff 0% 0% no-repeat padding-box;
 }
 
 .lis {
@@ -108,13 +117,13 @@
 
 .btn-login {
   background: #195500 0% 0% no-repeat padding-box;
-  color:white;
+  color: white;
 }
 
 .join-label-font {
   font: normal normal bold 14px/16px NanumGothic;
   letter-spacing: 0px;
-  color: #1a1919;
+  color: #707070;
 }
 
 .join-button-font {
@@ -123,12 +132,47 @@
 }
 
 .idchk {
-	position:relative;
-	top:40px;
-	left:425px;
+  position: relative;
+  top: 40px;
+  left: 425px;
 }
 
+.sidebar {
+  width: 211px;
+  height: 168px;
+  background: #00000007 0% 0% no-repeat padding-box;
+}
 
+.nf {
+  position: relative;
+  list-style: none;
+  color: #707070;
+  margin-top: 7px;
+  left: -10px;
+  font: normal normal 14px/16px NanumGothic;
+}
 
+.nf:hover {
+  color: black;
+}
 
+.btn-update {
+  width: 287px;
+  height: 50px;
+  background: #195500 0% 0% no-repeat padding-box;
+  opacity: 1;
+  color: white;
+}
 
+.mpa {
+  font: normal normal bold 14px/16px NanumGothic;
+}
+
+.mypagesec {
+	height:800px;
+}
+
+.mph {
+	font: normal normal bold 23px/26px NanumGothic;
+	color: #707070;
+}

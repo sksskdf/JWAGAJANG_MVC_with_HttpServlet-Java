@@ -24,7 +24,7 @@
             <li><a href="/logout.do">로그아웃</a></li>
             </c:if>
             <c:if test="${sessionScope.id == null}">
-            <li><a href="./MemberLogin.me">장바구니</a></li>
+            <li><a href="/login.do">장바구니</a></li>
             </c:if>
             <c:if test="${sessionScope.id != null}">
             <li><a href="#">장바구니</a></li>
@@ -33,7 +33,9 @@
             <li><a href="/join.do">회원가입</a></li>
             </c:if>
             <c:if test="${sessionScope.id != null}">
-            <li><a href="#">마이페이지</a></li>
+            <li><a href="/mypage.do">마이페이지</a></li>
+            </c:if>
+            <c:if test="${sessionScope.id == null}">
             </c:if>
           </ul>
         </nav>

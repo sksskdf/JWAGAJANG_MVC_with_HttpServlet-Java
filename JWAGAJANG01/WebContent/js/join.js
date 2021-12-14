@@ -4,8 +4,6 @@ $(function() {
 	var idFlag = false;
 	var pw1Flag = false;
 	var pw2Flag = false;
-	var midFlag = false;
-	var hostFlag = false;
 	var passId = false;
 	
 
@@ -32,7 +30,7 @@ $(function() {
 		var pwVal = $("#pwd").val();
 		if(pwVal.length > 0 && !regEx.test(pwVal)) {
 			$("#pwd").css("color", "red");
-			$("#pwdcheck").text("올바른 비밀번호를 입력해주세요!")
+			$("#pwdcheck").text("8자 이상 20자 이하의 영문,특수문자,숫자의 조합")
 			pw1Flag = false;
 		} else {
 			$("#pwd").css("color", "blue");
@@ -48,9 +46,9 @@ $(function() {
 		var regEx = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
 		var pwVaal = $("#pwd").val();
 		var pwVal = $("#pwd2").val();
-		if(pwVal != pwVaal && !regEx.test(pwVal) && pwVal.length != pwVaal.length) {
+		if(pwVal != pwVaal || !regEx.test(pwVal) || pwVal.length != pwVaal.length) {
 			$("#pwd2").css("color", "red");
-			$("#pwd2check").text("비밀번호를 확인해주세요!")
+			$("#pwd2check").text("입력하신 비밀번호와 다르거나 비밀번호 작성조건에 맞지 않습니다!")
 			pw2Flag = false;
 		} else if(pwVaal == pwVal){
 			$("#pwd2").css("color", "blue");
@@ -97,63 +95,17 @@ $(function() {
 		});
 	});
 	
-	$("#styleShop + span").on("click", function(e) {
-		$("#tt1").css("display", "block");
-		setTimeout(function() {
-			$("#tt1").css("display", "none");
-		}, 1000);
-	});
-	
-	$("#openShop + span").on("click", function(e) {
-		$("#tt2").css("display", "block");
-		setTimeout(function() {
-			$("#tt2").css("display", "none");
-		}, 1000);
-	});
-	
-	$("#emailCom").on("change", function(e) {
-		var value = $("#emailCom option:selected").val();
-		$("#host").val(value);
-		/* $("#host").trigger("keyup"); */
-	});
-	
 	var joinForm = $("#joinForm");
-	$("#styleShop").on("click", function(e) {
+	$("#submit").on("click", function(e) {
 		if(checkInputValidity() == false) {
+			e.preventDefault();
 			return false;
 		}
-		e.preventDefault();
-		joinForm.append('<input type="hidden" name="grade" value="1">');
 		joinForm.submit();
 	});
-	
-	$("#openShop").on("click", function(e) {
-		if(checkInputValidity() == false) {
-			return false;
-		}
-		e.preventDefault();
-		joinForm.append('<input type="hidden" name="grade" value="2">');
-		joinForm.submit();
-	});
-	
-	$("#cancelBtn").on("click", function(e) {
-		e.preventDefault();
-		if(confirm("가입을 취소하시겠습니까?")) {
-			location.href = "/index.do";
-		}
-	});
+
 	
 	function checkInputValidity() {
-		if($("#name").val().length == 0) {
-			alert("이름을 입력해 주세요!");
-			$("#name").focus();
-			return false;
-		}
-		if(nameFlag == false) {
-			alert("이름을 작성 정책에 맞게 입력해 주세요!");
-			$("#name").focus();
-			return false;
-		}
 		if($("#id").val().length == 0) {
 			alert("아이디를 입력해 주세요!");
 			$("#id").focus();
@@ -168,55 +120,32 @@ $(function() {
 			alert("아이디 중복검사를 진행해 주세요!");
 			return false;
 		}
-		if($("#pwd1").val().length == 0) {
+		if($("#pwd").val().length == 0) {
 			alert("비밀번호를 입력해 주세요!");
 			$("#pwd1").focus();
 			return false;
 		}
 		if(pw1Flag == false) {
-			alert("비밀번호 생성규칙에 맞게 다시 입력해 주세요!");
+			alert("8자 이상 20자 이하의 영문,특수문자,숫자의 조합");
 			$("#pwd1").focus();
 			return false;
 		}
 		if($("#pwd2").val().length == 0) {
-			alert("비밀번호를 입력해 주세요!");
+			alert("비밀번호확인을 입력해 주세요!");
 			$("#pwd2").focus();
 			return false;
 		}
 		if(pw2Flag == false) {
-			alert("비밀번호 생성규칙에 맞게 다시 입력해 주세요!");
+			alert("비밀번호를 확인해주세요!");
 			$("#pwd2").focus();
 			return false;
 		}
-		if($("#pwd1").val() != $("#pwd2").val()) {
+		if($("#pwd").val() != $("#pwd2").val()) {
 			alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 입력해 주세요!");
 			$("#pwd2").focus();
 			return false;
 		}
-		if($("#mid").val().length == 0) {
-			alert("이메일을 입력해 주세요!");
-			$("#mid").focus();
-			return false;
-		}
-
-		if($("#host").val().length == 0) {
-			alert("이메일을 입력해 주세요!");
-			$("#host").focus();
-			return false;
-		}
-
-		var emailVal = $("#mid").val() + "@" + $("#host").val();
-		var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		if(!emailReg.test(emailVal)) {
-			alert("이메일 주소를 형식에 맞게 입력해 주세요!");
-			$("#mid").focus();
-			return false;
-		}
-		if($("#rcv").prop("checked") == false) {
-			alert("이메일 수신여부를 선택해 주세요!");
-			$("#rcv").focus();
-			return false;
-		}
+		
 		return true;
 	}
 });
