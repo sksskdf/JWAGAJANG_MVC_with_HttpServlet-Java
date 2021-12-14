@@ -51,7 +51,8 @@
 			<div class="noticeWritebtn">
 				<input type="reset" value="다시쓰기" name="reset" class="resetbtn">
 				<input type="submit" value="등록" name="send" class="sendbtn" onclick="return noticeCheck()">
-				<input type="submit" value="목록" name="noticelist" class="noticelistbtn" onclick="location.href='noticeList.do'">
+				<input type="button" value="목록" name="noticelist" class="noticelistbtn" onclick="location.href='noticeList.do'">
+				<!-- type을 submit으로하면 무조건 제출해버림. 목록누르면 등록되니까 타입을 버튼으로! -->
 			</div>
 			</form>
 		</div>

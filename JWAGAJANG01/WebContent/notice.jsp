@@ -35,9 +35,8 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
-				
-				<!-- 넘겨받은 글 목록을 <c:forEach> 태그를 이용해 화면에 출력한다. -->
-				<c:forEach var="board" items="${noticeList}"> 
+			
+				<c:forEach var="board" items="${listModel.noticeList}"> 
 					<tr class="record">
 						<td class="record_1">${board.notice_label }</td>
 						<td class="record_2"><a href="noticeView.do?notice_code=${board.notice_code}"> ${board.notice_title} </a></td>
@@ -54,10 +53,19 @@
 		
 		
 		<div class="paging">
-			<span class="prev"></span> <span class="next"></span>
+		<c:set var="paging" value="${listModel.paging}"></c:set> <!-- 변수 선언 -->
+			<c:if test="${paging.startPageNo > paging.sizeOfPage}">
+				<a href="<c:url value="/noticeList.do?&p=${paging.prevPageNo}"/>"><span class="prev"> </span></a>
+			</c:if>
+			<c:forEach var="pno" begin="${paging.startPageNo}" end="${paging.endPageNo}">
+				<a href="<c:url value="/noticeList.do?&p=${pno}" />">[${pno}]</a>
+			</c:forEach>
+			<c:if test="${paging.endPageNo < paging.finalPageNo}">
+				<a href="<c:url value="/noticeList.do?&p=${paging.nextPageNo}"/>"><span class="next"></span></a>
+				</c:if>  
 		</div>
 		<div class="noticeSrc">
-			<input class="searchtext" type="text" name="search">
+			<input class="searchtext" type="text" name="search" value="검색할 제목, 내용을 입력하세요.">
 			<input class="searchbtn" value="찾기" type="submit">
 		</div>
 	</section>
