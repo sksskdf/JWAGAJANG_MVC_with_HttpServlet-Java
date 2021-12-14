@@ -16,8 +16,9 @@
     <title>좌가장</title>
 </head>
 <body>
-
+<div id="pagewrap">
 <jsp:include page="H&F/header.jsp"/>
+	<section>
     <!--슬라이더 영역-->
     <div class="swiper">
       <div class="swiper-wrapper">
@@ -83,7 +84,9 @@
       </div>
     </div>
   </div>
-<jsp:include page="H&F/footer.html"/>
+</section>
+<jsp:include page="H&F/footer.jsp"/>
+</div>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="js/index.js"></script>
 </body>
