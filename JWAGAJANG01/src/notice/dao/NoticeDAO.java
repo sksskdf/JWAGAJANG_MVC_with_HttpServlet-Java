@@ -49,6 +49,7 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 		return bVo;
 	}
 
+	// 게시글 등록
 	public void insertBoard(NoticeVO bVo) {
 		String sql = "insert into notice(" + "notice_label, notice_title, notice_content) " + "values(?, ?, ?)";
 		try (Connection conn = DBManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
@@ -60,9 +61,10 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 			e.printStackTrace();
 		}
 	}
-
-	public void updateReadCount(int notice_count) { // 게시글 조회 횟수 갱신
-		String sql = "update notice set readcount=readcount+1 where num=?";
+	
+	// 게시글 조회 횟수 갱신
+	public void updateReadCount(int notice_count) { 
+		String sql = "update notice set notice_count=notice_count+1 where notice_code=?";
 		try (Connection conn = DBManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			pstmt.setInt(1, notice_count);
 			pstmt.executeUpdate();
@@ -90,8 +92,9 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 		return bVo;
 	}
 
+	// 게시글 수정
 	public void updateBoard(NoticeVO bVo) {
-		String sql = "update notice set notice_label=?, notice_title=?, notice_content=?, ";
+		String sql = "update notice set notice_label=?, notice_title=?, notice_content=?";
 		try (Connection conn = DBManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			pstmt.setString(1, bVo.getNotice_label());
 			pstmt.setString(2, bVo.getNotice_title());
@@ -102,6 +105,7 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 		}
 	}
 
+	// 게시글 삭제
 	public void deleteBoard(int notice_code) {
 		String sql = "delete from notice where notice_code=?";
 		try (Connection conn = DBManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {

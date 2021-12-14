@@ -6,19 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/goods.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/goods.js"></script>
     <title>좌가장</title>
 </head>
 <body>
     <!-- 헤더 -->
     <jsp:include page="H&F/header.html"/>
     <!--  본문 -->
-    <section id="wrap">
-        <div class="pagenav">
+    <div id="wrap">
+        <section class="pagenav">
             홈<span class="navarrow"></span>
-            게시판<span class="navarrow"></span>
-            공지사항
-        </div>
-        <div class="goods">
+            시금치 · 쌈채소 · 나물<span class="navarrow"></span>
+            청경채
+        </section>
+        <section class="goods">
             <img src="img/best1.jpg" class="goods_img">
             <div class="goods_info">
                 <p class="goods_title">[박민지] 외로운 청경채</p>
@@ -39,10 +41,12 @@
                 </dl>
                 <dl class="count">
                     <dt><p>주문수량</p></dt>
-                    <dd class="countbtn">
-                        <button type="button" class="minusbtn">-</button>
-                        <input type="text" class="goods_qty">
-                        <button type="button" class="plusbtn">+</button>
+                    <dd>
+                        <span class="countbtn">
+                            <button type="button" class="minusbtn">-</button>
+                            <input type="text" readonly="readonly" class="goods_qty" value="10">
+                            <button type="button" class="plusbtn">+</button>
+                        </span>
                     </dd>
                 </dl>
                 <hr>
@@ -64,15 +68,15 @@
             </div>
             <div id="goods_detail">
                 <ul class="goods_tab">
-                    <li><a href="#goods_detail" class="tab_on">상품 상세 정보</a></li>
-                    <li><a href="#goods_review" class="tab_off">상품평 (10건)</a></li>
+                    <li><a href="#goods_detail" class="tab_on detail_anchor">상품 상세 정보</a></li>
+                    <li><a href="#goods_review" class="tab_off review_anchor">상품평 (10건)</a></li>
                 </ul>
                 <img src="img/mddetailimg.png" class="goods_img_detail">
             </div>
             <div id="goods_review">
                 <ul class="goods_tab">
-                    <li><a href="#goods_detail" class="tab_off">상품 상세 정보</a></li>
-                    <li><a href="#goods_review" class="tab_on">상품평 (10건)</a></li>
+                    <li><a href="#goods_detail" class="tab_off detail_anchor">상품 상세 정보</a></li>
+                    <li><a href="#goods_review" class="tab_on review_anchor">상품평 (10건)</a></li>
                 </ul>
                 <div class="review_title">
                     <p class="review_tit">상품평</p>
@@ -95,22 +99,29 @@
                 <table class="review_write">
                     <tr>
                         <td class="write_name">
-                            <input type="text" id="" placeholder="작성자">
+                            <input type="text" id="writer" placeholder="작성자" 
+                                onfocus="this.placeholder=''" onblur="this.placeholder='작성자'">
                         </td>
                         <td class="write_rate">
-                            <input type="text" id="" placeholder="★★★★★">
+                            <input type="text" id="stars" placeholder="★★★★★"
+                                onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
                         </td>
                         <td class="write_content">
-                            <textarea type="text" id="" placeholder="상품평을 작성해주세요."></textarea>
+                            <textarea type="text" id="writervw" placeholder="상품평을 작성해주세요."
+                                onfocus="this.placeholder=''" onblur="this.placeholder='상품평을 작성해주세요.'"
+                                onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
                         </td>
                         <td class="write_submit">
-                            <button type="submit" class="submitbtn">등록</button>
+                            <input type="submit" id="submitbtn" value="등록"></button>
                         </td>
                     </tr>
                 </table>
             </div>
-        </div>
-    </section>
+        </section>
+        <section>
+
+        </section>
+    </div>
     <!-- 푸터 -->
     <jsp:include page="H&F/footer.html"/>
     <script src="js/jquery.min.js"></script>

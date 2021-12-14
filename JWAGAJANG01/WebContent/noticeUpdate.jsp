@@ -23,24 +23,30 @@
 		</div>
 		<div class="notice">
 			<h1>공지사항</h1>
+
 			<form name="frm" method="post" action="noticeUpdate.do">
+			
+			<!-- notice_code 값을 가져오기 위해 입력해줘야 하는 코드!!! -->
+			<input type="hidden" name="notice_code" value="${board.notice_code}"> 
+			
 			<table class="brdWritebox">
 				<tr>
 					<th width="150px">구분</th>
 					<th>
-						<select class="sortinput" name="sort">
-							<option>선택해주세요.</option>
+						<select class="sortinput" name="notice_label">
+							<option>${board.notice_label}</option>
 							<option>공지</option>
 							<option>이벤트</option>
 						</select>
+					</th>
 				</tr>
 				<tr>
 					<th width="150px">제목</th>
-					<th><input class="titleinput" type="text" name="sort" value="${board.notice_title}"></th>
+					<th><input class="titleinput" type="text" name="notice_title" value="${board.notice_title}"></th>
 				</tr>
 				<tr>
 					<th id="textarea">본문</th>
-					<th><textarea style="resize: none;" name="text">>${board.notice_content}</textarea></th>
+					<th><textarea style="resize: none;" name="notice_content">${board.notice_content}</textarea></th>
 				</tr>
 			</table>
 			

@@ -90,6 +90,13 @@ h1 {
 	border: #F7F7F7 solid 0.5px;
 	border-width: 0.5px 0px; /* 테두리 두깨 : 위아래, 양옆 */
 }
+
+.content { /* 공지사항 상세보기 내용 */
+	padding : 40px 0;
+	text-indent : 40px; /* 들여쓰기 */
+}
+
+
 .sortinput {
 	color : #707070;
 	text-indent : 5px; /* 들여쓰기 */
@@ -240,4 +247,18 @@ textarea {
 	background: #195500;
 	border: 0;
 	margin: 10px 0;
+}
+
+.record {
+	background: #00000005;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+.record_2 {
+	text-align : left;
+}
+
+.record_3 {
+	text-align : left;
 }

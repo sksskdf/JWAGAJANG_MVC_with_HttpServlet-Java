@@ -33,10 +33,10 @@
 				</tr>
 				<c:forEach var="board" items="${noticeList}"> <!-- 내용이 있는거만큼 반복 -->
 					<tr class="record">
-						<td>${board.notice_label }</td>
-						<td><a href="view.do?num=${board.notice_label}"> ${board.notice_title } </a></td>
-						<td><fmt:formatDate value="${board.notice_regdate}" /></td>
-						<td>${board.notice_count}</td>
+						<td class="record_1">${board.notice_label }</td>
+						<td class="record_2"><a href="noticeView.do?notice_code=${board.notice_code}"> ${board.notice_title} </a></td>
+						<td class="record_3"><fmt:formatDate value="${board.notice_regdate}" /></td>
+						<td class="record_4">${board.notice_count}</td>
 					</tr>
 				</c:forEach>
 
@@ -49,8 +49,8 @@
 			<span class="prev"></span> <span class="next"></span>
 		</div>
 		<div class="noticeSrc">
-			<input class="searchtext" type="text" name="search"> <input
-				class="searchbtn" value="찾기" type="submit">
+			<input class="searchtext" type="text" name="search">
+			<input class="searchbtn" value="찾기" type="submit">
 		</div>
 	</section>
 	<!-- 푸터영역 -->

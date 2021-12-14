@@ -28,19 +28,17 @@
 				<tr class="brdViewbox">
 					<th>${board.notice_label}</th>
 					<th>${board.notice_title}</th>
-					<th>${board.notice_regdate}</th>
+					<th><fmt:formatDate value="${board.notice_regdate}"/></th>
 					<th>${board.notice_count}</th>
 				</tr>
 				<tr>
-					<td><pre>${board.content}</pre></td>
+					<td class="content"><pre>${board.notice_content}</pre></td>
 				</tr>
 			</table>
 			<div class="list">
-				<input type="submit" value="수정" name="update" class="upbtn"
-					onclick="location.href='noticeWrite.do'"> <input
-					type="submit" value="삭제" name="delete" class="delbtn"> <input
-					type="submit" value="목록" name="list" class="listbtn"
-					onclick="location.href='noticeList.do'">
+				<input type="submit" value="수정" class="upbtn" onclick="location.href='noticeUpdate.do'">
+				<input type="submit" value="삭제" class="delbtn" onclick="location.href='noticeDelete.do'">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeList.do'">
 			</div>
 		</div>
 		<div class="paging">

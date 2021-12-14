@@ -21,9 +21,9 @@ public class NoticeDeleteHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		int num = Integer.parseInt(req.getParameter("num"));
+		int notice_code = Integer.parseInt(req.getParameter("notice_code"));
 		NoticeDAO bDao = NoticeDAO.getInstance();
-		bDao.deleteBoard(num);
+		bDao.deleteBoard(notice_code);
 		res.sendRedirect("noticeList.do");
 		return null;
 	}

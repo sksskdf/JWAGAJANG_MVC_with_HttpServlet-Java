@@ -22,7 +22,7 @@
         name="jdbc/model2DB"
         auth="Container"
         type="javax.sql.DataSource"
-        driverClassName="com.mysql.jdbc.Driver"
+        driverClassName="com.mysql.cj.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/jwagajang"
         username="jwagajang"
         password="1234"     

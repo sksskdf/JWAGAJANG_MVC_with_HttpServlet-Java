@@ -1,7 +1,9 @@
 package util;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,6 +20,8 @@ public class DBManager {
 			// ds가 생성되었으므로 Connection을 구합니다.
 			conn = ds.getConnection();
 		} catch (Exception e) { e.printStackTrace(); }
+		//META-INF의 context에 정보가 제대로 입력되지 않았거나, 계정권한이 없을시에 DB연결이 안된다.
+		System.out.println("DB접속 정보 : " + conn);
 		return conn;
 	}
 	// select을 수행한 후 리소스 해제를 위한 메소드
@@ -38,5 +42,32 @@ public class DBManager {
 	public static void close(ResultSet rs) {
 		try { rs.close();
 		} catch (Exception e) { e.printStackTrace(); }
+	}
+	
+	public static void rollback(Connection conn) {
+		if (conn != null) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+			}
+		}
+	}
+	
+	public static void close(Connection conn) {
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException ex) {
+			}
+		}
+	}
+	
+	public static void close(PreparedStatement pstmt) {
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException ex) {
+			}
+		}
 	}
 }

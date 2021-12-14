@@ -1,3 +1,12 @@
+/main/
+/controller/
+/common/
 /member/
+<<<<<<< HEAD
 /board/
 /util/
+=======
+/util/
+/filter/
+/notice/
+>>>>>>> b4225fb78f9a84418a9f120ae7f605964cee401c

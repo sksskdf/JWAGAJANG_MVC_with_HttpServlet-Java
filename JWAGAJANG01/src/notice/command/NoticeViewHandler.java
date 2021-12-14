@@ -21,10 +21,10 @@ public class NoticeViewHandler implements CommandHandler {
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		String url = "/noticeView.jsp";
-		int num = Integer.parseInt(req.getParameter("num"));
+		int notice_code = Integer.parseInt(req.getParameter("notice_code"));
 		NoticeDAO bDao = NoticeDAO.getInstance();
-		bDao.updateReadCount(num); // 게시글의 조회수를 증가
-		NoticeVO bVo = bDao.selectOneBoardByNum(num);
+		bDao.updateReadCount(notice_code); // 게시글의 조회수를 증가
+		NoticeVO bVo = bDao.selectOneBoardByNum(notice_code);
 		req.setAttribute("board", bVo);
 		return url;
 	}
