@@ -7,6 +7,10 @@
     background-color: white;
 }
 
+a {
+    text-decoration: none;
+}
+
 .pagenav {
     width: 100%;
     float: left;
@@ -140,25 +144,6 @@
     border-left: 0.25px solid #707070;
 }
 
-/*
-.goods_qty {
-    width: 32px;
-    height: 20px;
-    background: none;
-    font: normal normal normal 13px/15px NanumGothic;
-    text-align: center;
-    padding: 0;
-    border: 0.25px solid #707070;
-}
-.countbtn button {
-    width: 20px;
-    height: 20px;
-    background: none;
-    outline: none;
-    padding: 0;
-    border: 0.25px solid #707070;
-}
-*/
 .total dt {
     width: 520px;
     height: 25px;
@@ -223,7 +208,6 @@
 .goods_tab a {
     font: normal normal bold 16px/19px NanumGothic;
     border-radius: 6px 6px 0px 0px;
-    text-decoration: none;
     text-align: center;
     flex: 1;
     line-height: 3;
@@ -335,3 +319,42 @@
     background-color: #195500;
     text-align: center;
 }
+
+.footnav {
+    width: 1200px;
+    height: 75px;
+    background-color: #FFFFFF;
+    border: 2px solid #707070;
+    border-radius: 15px 15px 0px 0px;
+    /*position: fixed;
+    bottom: 0;*/
+    font: normal normal bold 20px/23px NanumGothic;
+    color: #707070;
+}
+
+.footnav_list {
+    width: 50%;
+    float: left;
+}
+
+.footnav_list li {
+    width: 120px;
+    text-align: center;
+    display: inline-block;
+    
+}
+
+.footnav_latest {
+    width: 50%;
+    float: right;
+}
+
+.footnav_latest p, ul, li, a {
+    display: inline-block;
+}
+
+.topbtn {
+    width: 45px;
+    height: 45px;
+}
+
