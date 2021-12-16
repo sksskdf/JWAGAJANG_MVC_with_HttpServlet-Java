@@ -46,7 +46,34 @@ function orderCheck() {
 	const nameReg = /^[가-힣]{2,5}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;      //한글 2~5자 혹은 영어이름.
 	const telReg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;  
 	
-	if(!pwReg.test(document.frm.name)) { 
-		
+	if(document.orderfrm.name.value.length == 0) { 
+		alert("수령인을 입력하세요.");
+		document.orderfrm.name.focus();
+		return;
 	}
+	if(!nameReg.test(document.orderfrm.name.value)) { 
+		alert("이름을 올바르게 입력하세요.");
+		document.orderfrm.name.focus();
+		return;
+	}
+	if(document.orderfrm.phone.value.length == 0) {
+		alert("전화번호를 입력하세요.");
+		document.orderfrm.phone.focus();
+		return;
+	}
+	if(!telReg.test(document.orderfrm.phone.value)) { 
+		alert("전화번호를 올바르게 입력하세요.");
+		document.orderfrm.phone.focus();
+		return;
+	}
+	if(document.orderfrm.postnum.value.length == 0 || document.orderfrm.address.value.length == 0) {
+		alert("'우편번호 찾기'를 통해 주소를 입력하세요.");
+		return;
+	}
+	if(document.orderfrm.addDetail.value.length == 0) {
+		alert("상세주소를 입력하세요.");
+		document.orderfrm.addDetail.focus();
+		return;
+	}
+	document.orderfrm.submit()
 }

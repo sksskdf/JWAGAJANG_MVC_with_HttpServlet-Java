@@ -88,9 +88,7 @@ public class ControllerUsingURI extends HttpServlet {
 	
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String command = req.getRequestURI();
-		System.out.println("요청된 URI: "+command);
-		System.out.println("컨텍스트패스: "+req.getContextPath());
-		System.out.println(command.indexOf(req.getContextPath()) == 0);
+
 		
 		// uri에서 프로젝트이름을 포함한 컨텍스트패스
 		/*

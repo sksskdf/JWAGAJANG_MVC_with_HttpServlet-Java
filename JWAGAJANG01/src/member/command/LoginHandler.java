@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -44,6 +45,7 @@ public class LoginHandler implements CommandHandler {
 			session.setAttribute("member", member);
 			session.setAttribute("id", id);
 			res.sendRedirect("/index.do");
+			
 			System.out.println("로그인 성공");
 		}//로그인실패시
 		else {

@@ -1,0 +1,120 @@
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+div.titleproductList>h1>input {
+    background: #195500;
+    font: normal normal bold 25px/29px NanumGothic;
+    font-size: 15px;
+    color: white;
+    outline: none;
+    border: 0;
+}
+
+div.sortlist{
+	float: right;
+    font-size: 14px;
+    line-height: 23px;
+}
+
+
+
+div.titleproductList>h1 {
+    font: normal normal bold 25px/29px NanumGothic;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+table.productListtable {
+    text-align: center;
+    width: 100%;
+    border: 0px solid #afafaf;
+    border-collapse: collapse;
+}
+
+table.sort2 tbody>tr>td {
+	padding: 0 10px 0 8px;
+	border-right: 1px solid #e6e6e6;
+}
+
+tr.tabletitle {
+    font: normal normal bold 25px/29px NanumGothic;
+    font-size: 14px;
+    background-color: #e6e6e6;
+    width: 497px;
+    height: 30px;
+}
+
+table.productListtable>tbody>tr {
+	border-bottom:1px solid #e6e6e6;
+}
+
+
+select {
+width: 200px;	
+height: 30px;
+border: #e6e6e6 solid 2px;
+font: normal 15px NanumGothic;
+text-align: center;
+
+}
+
+
+tbody>tr>td {
+    font: normal normal bold 25px/29px NanumGothic;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tbody>tr>td>img {
+	vertical-align:top;
+    padding: 10px;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+}
+
+tbody>tr>td>input.editbtn {
+    color: #195500;
+    background: white;
+    border: #195500 solid 0px;
+}
+
+tbody>tr>td>input.deletebtn {
+    color: #195500;
+    background: white;
+    border: #195500 solid 0.5px;
+}
+
+div.hover-slider ul {
+    text-align: center;
+}
+
+div.hover-slider ul li {
+    display: inline;
+    vertical-align: middle;
+    padding: 0 2px 0 2px;
+    border-right: 1px solid #afafaf;
+}
+
+div.hover-slider ul li a {
+    display: -moz-inline-stack;
+    display: inline-block;
+    padding: 4px;
+    margin-right: 3px;
+    width: 25px;
+    color: #000;
+    font: bold 15px NanumGothic;
+    border: 0px solid #eee;
+    text-align: center;
+    text-decoration: none;
+}
+
+div.hover-slider ul li a:hover,
+div.hover-slider ul li a:focus {
+    color: #fff;
+    border: 1px solid #195500;
+    background-color: #195500;
+}

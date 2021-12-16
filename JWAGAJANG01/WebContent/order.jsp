@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@
     		<td>[민선지] 맛있는 채소주스 외 2건 </td>
     	</tr>
    		</table>
-    	<form action="#" class="orderform" name="orderfrm" method="post">
+    	<form action="ppppay.do" class="orderform" name="orderfrm" method="post">
     	<table class="ordertable">
     		<tr>
     			<td>배송지 정보</td>
@@ -34,7 +34,7 @@
     		</tr>
     		<tr>
     			<td>수령인</td>
-    			<td><input type="text" name="name"/></td>
+    			<td><input type="text" name="name" id="name"/></td>
     		</tr>
     		<tr>
     			<td>휴대폰번호</td>
@@ -42,16 +42,16 @@
     		</tr>
     		<tr>
     			<td >주소</td>
-    			<td><input type="text" id="postnum" placeholder="우편번호" readonly="readonly"/><input type="button" value="우편번호 찾기" class="findpostnum" onclick="execDaumPostcode()"/> <br />
-    			<input type="text" id="address" placeholder="주소" readonly="readonly"/><br />
-    			<input type="text" id="addDetail" placeholder="상세주소"/></td>
+    			<td><input type="text" id="postnum" name="postnum" placeholder="우편번호" readonly="readonly"/><input type="button" value="우편번호 찾기" class="findpostnum" onclick="execDaumPostcode()"/> <br />
+    			<input type="text" id="address" name="address" placeholder="주소" readonly="readonly"/><br />
+    			<input type="text" id="addDetail" name="addDetail" placeholder="상세주소"/></td>
     		</tr>
     		<tr>
     			<td>배송요청사항</td>
     			<td><input type="text" /></td>
     		</tr>
     	</table>
-    	<input type="submit" value="결제하기" class="paybutton"/>
+    	<input type="button" value="결제하기" class="paybutton" onclick="orderCheck()"/>
     	</form>
     </div>
 	</section>

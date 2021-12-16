@@ -21,7 +21,6 @@ public class DBManager {
 			conn = ds.getConnection();
 		} catch (Exception e) { e.printStackTrace(); }
 		//META-INF의 context에 정보가 제대로 입력되지 않았거나, 계정권한이 없을시에 DB연결이 안된다.
-		System.out.println("DB접속 정보 : " + conn);
 		return conn;
 	}
 	// select을 수행한 후 리소스 해제를 위한 메소드

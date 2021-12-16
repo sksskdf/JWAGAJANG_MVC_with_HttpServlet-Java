@@ -19,24 +19,24 @@
   <!-- 헤더 -->
   <jsp:include page="../H&F/header.jsp"/>
   <!-- 본문 -->
-  <div class="container d-flex mt-5 mb-5 mypagesec">
-      <div class="row">
-      <div class="col-2 sidebar ms-5 d-flex justify-content-center">
+  <div class="container-fluid d-flex mt-5 mb-5 mypagesec justify-content-center">
+      <div class="row d-flex justify-content-center">
+      <div class="col-3 sidebar d-flex justify-content-center">
       	<ul class="nav d-flex flex-column align-content-center justify-content-center">
       		<li class="nav-item">
       			<a class="nav-link mpa nf" href="mypage.do">회원 정보 수정</a>
       		</li>
       		<li class="nav-item">
-      			<a class="nav-link nf" href="#">주문내역</a>
+      			<a class="nav-link nf" href="mypageorder.do?p=1&id='"+${sessionScope.id}+"'">주문내역</a>
       		</li>
       		<li class="nav-item">
       			<a class="nav-link nf" href="#">찜목록</a>
       		</li>
       	</ul>
       </div>
-      <div class="col-7" style="margin-left:40px;">
+      <div class="col-9" style="margin-left:40px; width:953px;">
         <h5 class="mph" style="margin-top: 38px;">회원 정보 수정</h5>
-      <form id="joinForm" method="post" action="/mypage.do" style="margin-left:268px;">
+      <form id="joinForm" method="post" action="/mypage.do" style="margin-top:40px; width:500px; margin-left:200px;">
         <div class="container row d-flex mt-5" style="margin-top: 13px;">
           <div class="col-md-3 d-flex align-items-center">
             <label class="join-label-font">아이디</label>
