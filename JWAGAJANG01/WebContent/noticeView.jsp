@@ -46,9 +46,6 @@
 				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeList.do'">
 			</div>
 		</div>
-		<div class="paging">
-			<span class="prev"></span> <span class="next"></span>
-		</div>
 		<div class="noticeSrc">
 			<input class="searchtext" type="text" name="search"> <input
 				class="searchbtn" value="찾기" type="button">

@@ -1,4 +1,4 @@
-section {
+﻿section {
 	width: 1200px;
 	margin: 0 auto;
 }
@@ -142,7 +142,6 @@ pre {
 textarea {
 	color: #707070;
 	margin: 15px;
-	text-indent: 5px;
 	width: 770px;
 	height: 408px;
 	border: #00000026 solid 0.5px;
@@ -201,27 +200,6 @@ textarea {
 	margin: 30px;
 }
 
-/* 페이징 */
-.paging {
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 68px;
-	width: 953px;
-}
-
-.prev {
-	margin: 94px;
-	padding: 6px;
-	background: url(../img/prev.svg) no-repeat;
-	background-position: 0px;
-}
-
-.next {
-	margin: 94px;
-	padding: 6px;
-	background: url(../img/next.svg) no-repeat;
-	background-position: 0px;
-}
 
 /* 게시글 찾기  */
 .noticeSrc {
@@ -285,4 +263,43 @@ textarea {
 
 .record_3 {
 	text-align: left;
+}
+
+/* Customized Paging */
+.pg_wrap {
+	font-size : 13px;
+	text-align : center;
+}
+
+.prev {
+	margin-right : 20px;
+	padding : 6px;
+	background: url(../img/prev.svg) no-repeat;
+	background-position: 0px;
+}
+
+.next {
+	margin-left : 20px;
+	padding : 6px;
+	background: url(../img/next.svg) no-repeat;
+	background-position: 0px;
+}
+.pg_currpno {
+	border : none;
+	text-align : center;
+	width : 28px;
+	height : 28px;
+	border-radius : 14px ;
+	background : none;
+}
+
+.pg_currpno:hover {
+	color : white;
+    background:#195500;
+}
+.pg_currpno[aria-pressed=true] {
+	color : white;
+	font-weight : bold;
+	border-radius : 12px;
+    background:#195500;
 }

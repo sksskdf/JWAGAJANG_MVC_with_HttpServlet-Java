@@ -51,23 +51,40 @@
 			</div>
 		</div>
 		
-		
-		<div class="paging">
+			<!--  -->
+
+		<div class="pg_wrap">
 		<c:set var="paging" value="${listModel.paging}"></c:set> <!-- 변수 선언 -->
+		
+			<%-- <c:if> 태그는 test 속성 내의 EL(${ }) 의 결과가 참이면 실행, else는 없음
+			 1. test : 필수 속성값으로 EL 비교식을 가집니다.
+			 2. var : 조건 결과를 저장할 변수를 지정합니다.
+			 3. scope : 조건 결과를 지정할 변수의 저장 scope 를 지정합니다. --%>
 			<c:if test="${paging.startPageNo > paging.sizeOfPage}">
-				<a href="<c:url value="/noticeList.do?&p=${paging.prevPageNo}"/>"><span class="prev"> </span></a>
+				<a class="pg_prev" href="<c:url value="/noticeList.do?&p=${paging.prevPageNo}"/>">
+				<span class="prev"></span></a>
 			</c:if>
+			
+			<%-- 페이지 번호 반복문 --%>
 			<c:forEach var="pno" begin="${paging.startPageNo}" end="${paging.endPageNo}">
-				<a href="<c:url value="/noticeList.do?&p=${pno}" />">[${pno}]</a>
+				<a href="<c:url value="/noticeList.do?&p=${pno}&f=${param.pno }"/>">
+				<input type="button" class="pg_currpno" value="${pno}"></a>
 			</c:forEach>
+			<%-- 조건문 --%>
 			<c:if test="${paging.endPageNo < paging.finalPageNo}">
-				<a href="<c:url value="/noticeList.do?&p=${paging.nextPageNo}"/>"><span class="next"></span></a>
-				</c:if>  
+				<a class="pg_next" href="<c:url value="/noticeList.do?&p=${paging.nextPageNo}"/>">
+				<span class="next"></span></a>
+				</c:if>
 		</div>
-		<div class="noticeSrc">
-			<input class="searchtext" type="text" name="search" value="검색할 제목, 내용을 입력하세요.">
+		
+	  <form class="noticeSrc" action="noticeSearch.do"> <!-- method="post"방식으로 할 때 파라미터를 암호화할 수 있음. 그러나 get방식으로해도 상관xx -->
+			<select name="searchoption">	
+			<option ${(param.searchoption == "notice_title")? "selected":""} value="notice_title">제목</option> <!-- 페이지가 바꼈을때 유지 -->
+			<option ${(param.searchoption == "notice_content")? "selected":""} value="notice_content">내용</option>
+			</select>
+			<input class="searchtext" value="${param.searchkeyword}" type="text" name="searchkeyword">
 			<input class="searchbtn" value="찾기" type="submit">
-		</div>
+		  </form>
 	</section>
 	
 	
