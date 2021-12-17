@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/goods.css">
+    <script src="js/jquery.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/goods.js"></script>
     <title>좌가장</title>
@@ -14,7 +15,7 @@
 <div id="pagewrap">
     <!-- 헤더 -->
     <jsp:include page="H&F/header.html"/>
-    <!--  본문 -->
+    <!-- 본문  -->
     <div id="wrap">
         <section class="pagenav">
             홈<span class="navarrow"></span>
@@ -45,7 +46,9 @@
                     <dd>
                         <span class="countbtn">
                             <button type="button" class="minusbtn">-</button>
-                            <input type="text" readonly="readonly" class="goods_qty" value="10">
+                            <input type="number" class="goods_qty" readonly="readonly" 
+                                min="1" max="10" value="1">
+                                <!-- max="${view.gdsStock}" -->
                             <button type="button" class="plusbtn">+</button>
                         </span>
                     </dd>
@@ -119,8 +122,23 @@
                 </table>
             </div>
         </section>
-        <section>
-
+        <section class="footnav">
+            <div class="footnav_list">
+                <ul>
+                    <a href="#"><li>홈</li></a>
+                    <div class="line"></div>
+                    <a href="#"><li>장바구니</li></a>
+                    <div class="line"></div>
+                    <a href="#"><li><a href="#">찜리스트</li></a>
+                </ul>
+            </div>
+            <div class="footnav_latest">
+                <p>최근 본 상품</p>
+                <ul>
+                    <li><a href=""><img src="img/best1.jpg"></a></li>
+                </ul>
+                <a href="#wrap" class="top_btn"><img src="img/up.png"></a>
+            </div>
         </section>
     </div>
     <!-- 푸터 -->
