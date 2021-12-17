@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
             <!DOCTYPE html>
@@ -24,115 +24,71 @@
 
                 <!-- 상품수정 -->
 
-                <section>
-                    <form>
-                        <div class="pagenav">
-                            홈<span class="navarrow"></span>마이페이지<span class="navarrow"></span>제품수정
-                        </div>
-
-                        <div class="titleproductWrite">
-                            <h1>제품 수정</h1>
-                            <!-- 테이블 -->
-
-                            <table>
-                                <tr class="box1">
-                                    <th>구분</th>
-                                    <td>
-                                        <select id="selBoxFirst" name="selBox" title="대분류" onChange="javascript:onFirstSelectChanged(this)">
-                <option value="0" name="" selected>전체</option>
-                <!-- 여기에 추가됨(아래와 같은 식으로) -->
-                <!--
-                <option value="0" name="optInFirstSelBox"></option>
-                 -->            
-            </select>
-                                    </td>
-                                    <td>
-                                        <select id="selBoxSecond" name="selBox" title="중분류" onChange="javascript:onSecondSelectChanged(this)">
-                <option value="0" selected>전체</option>
-                <!-- 여기에 추가됨(아래와 같은 식으로) -->
-                <!--
-                <option value="0" name="optInSecondSelBox"></option>
-                -->            
-            </select>
-                                    </td>
-                                    <td>
-                                        <select id="selBoxThird" name="selBox" title="소분류" onChange="javascript:onThirdSelectChanged(this)">
-                <option value="0" selected>전체</option>
-                <!-- 여기에 추가됨(아래와 같은 식으로) -->
-                <!--
-                <option value="0" name="optInThirdSelBox"></option>
-                -->            
-            </select>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr class="box2">
-                                    <th>상품</th>
-                                    <td>
-                                            <input type="text" name="productName" placeholder='기존 상품명'>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr class="box3">
-                                    <th>상품가격</th>
-                                    <td>
-                                        <input type="text" name='productPrice' placeholder='기존 가격'>
-                    </td>
-
-                    </tr>
-                    </table>
-                    <table>
-                        <tr class="box4">
-                            <th>할인율</th>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>%</td>
-
-                        </tr>
-                    </table>
-                    <table>
-                        <tr class="box5">
-                            <th>재고</th>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr class="box6">
-                            <th>배송비</th>
-                            <td>2,500원</td>
-
-                        </tr>
-                    </table>
-                    <table>
-                        <tr class="box7">
-                            <th>메인이미지 첨부</th>
-                            <td> <input type="file" name="file" id="imageFileOpenInput" accept="image/*"></td>
-
-                        </tr>
-                    </table>
-                    <table>
-                        <tr class="box8">
-                            <th>상세이미지 첨부</th>
-                            <td> <input type="file" name="file" id="imageFileOpenInput" accept="image/*"></td>
-                        </tr>
-                    </table>
-                    <br>
-
-                    <div class="productWrite_button">
-                        <input type="submit" value="수정">
-                        <input type="button" value="목록" onclick="location.href='productList.jsp'">
-
-                    </div>
-                    </div>
-                    </div>
-                    </form>
-                </section>
+ <section>
+		<div class="pagenav">
+			홈<span class="navarrow"></span>게시판<span class="navarrow"></span>제품수정
+		</div>
+		<div class="notice">
+			<h1>제품수정</h1>
+			<form name="frm" method="post" action="mdAdd.do">
+			<table class="prodWritebox">
+				<tr>
+					<th width="150px">구분</th>
+					<th>
+						<select class="sortinput" name="notice_label">
+							<option>대분류</option>
+							<option>채소·과일</option>
+							<option>쌀·견과류</option>
+							<option>수산·해산</option>
+							<option>정육·계란</option>
+						</select>
+						<select class="sortinput" name="notice_label">
+							<option>소분류</option>
+							<option>채소·과일</option>
+							<option>쌀·견과류</option>
+							<option>수산·해산</option>
+							<option>정육·계란</option>
+						</select>
+					</th>
+				</tr>
+				<tr>
+					<th width="150px">상품</th>
+					<th><input class="titleinput" type="text" name="title" placeholder="기존 상품명" style="border: 0px"></th>
+				</tr>
+				<tr>
+					<th width="150px">상품가격</th>
+					<th><input class="titleprice" type="text" name="price" placeholder="기존 가격" style="border: 0px"></th>
+				</tr>
+				<tr>
+					<th width="150px">할인율</th>
+					<th><input class="titledc" type="text" name="dc" style="width: 90px"> % </th>
+				</tr>
+				<tr>
+					<th width="150px">재고</th>
+					<th><input class="titlestock" type="text" name="stock" style="width: 90px"></th>
+				</tr>
+				<tr>
+					<th width="150px">배송비</th>
+					<th><input class="titledeliprice" type="hidden" name="deliprice">&nbsp;&nbsp;&nbsp;&nbsp;  2,500원</th>
+				</tr>
+				<tr>
+					<th width="150px">메인 이미지 첨부</th>
+					<th><input class="titleimg" type="file" name="img"></th>
+				</tr>
+				<tr>
+					<th width="150px">상세 이미지 첨부</th>
+					<th><input class="titleimg2" type="file" name="img2"></th>
+				</tr>
+			</table>
+			
+			<div class="productWritebtn">
+				<input type="reset" value="다시쓰기" name="reset" class="resetbtn">
+				<input type="submit" value="등록" name="send" class="sendbtn">
+				<input type="button" value="목록" name="writelist" class="writelistbtn" onclick="location.href='productList.jsp'">
+			</div>
+			</form>
+		</div>
+	</section>
 
                 <!-- 푸터영역 -->
                 <jsp:include page="H&F/footer.html" />

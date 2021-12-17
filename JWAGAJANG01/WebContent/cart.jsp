@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +36,12 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:if test="${empty cart}">
+							<tr>
+								<td colspan="5">장바구니가 비었습니다.</td>
+							</tr>
+						</c:if>
+							<c:if test="${!empty cart}">
 							<tr>
 								<td><input type="checkbox" /></td>
 								<td class="md" style="text-align: left"><img
@@ -51,6 +58,7 @@
 									<input type="button" class="normalbtn" value="삭제"
 									style="margin-top: 5px" /></td>
 							</tr>
+						</c:if>
 						</tbody>
 					</table>
 					<div class="pricewrap">

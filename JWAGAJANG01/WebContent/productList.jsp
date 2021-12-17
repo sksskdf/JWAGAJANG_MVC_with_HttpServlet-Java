@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
             <!DOCTYPE html>
@@ -26,40 +26,43 @@
                 <section>
                     <form>
                         <div class="pagenav">
-                            홈<span class="navarrow"></span>마이페이지<span class="navarrow">
-                     </span>제품관리
+                            홈<span class="navarrow"></span>마이페이지<span class="navarrow"></span>제품관리
                         </div>
                         <div class="titleproductList">
-                            <h1>제품관리&nbsp;
+                            <h1>제품관리        &nbsp;&nbsp;
                                 <input type="button" value="제품등록" onclick="location.href='productWrite.jsp'">
                             </h1>
                         </div>
                         <div class="sort">
                             <select id="selBoxFirst" name="selBox" title="대분류" onChange="javascript:onFirstSelectChanged(this)">
-                    <option value="0" name="" selected>전체</option>
-                </select>
-                                <select id="selBoxSecond" name="selBox" title="중분류" onChange="javascript:onSecondSelectChanged(this)">
-            <option value="0" selected>전체</option>
-             <!-- 여기에 추가됨(아래와 같은 식으로) -->
-             <!--
-            <option value="0" name="optInSecondSelBox"></option>
-            -->      
-            </select>
-            
-              <div class="sortlist">
-            	<table class="sort2">
-            	<tbody>
-            	<tr>
-            <td>판매량순</td>
-            <td>낮은가격</td>
-            <td>높은가격</td>
-            <td>최신상품</td>
-            <td>상품평</td>
-            </tr>
-            </tbody>
-            </table>
-            </div>
-                  </div>
+						<option value="0" name="" selected>대분류</option>
+							<option>채소·과일</option>
+							<option>쌀·견과류</option>
+							<option>수산·해산</option>
+							<option>정육·계란</option>
+						</select>
+                            <select id="selBoxSecond" name="selBox" title="소분류" onChange="javascript:onSecondSelectChanged(this)">
+						<option value="0" selected>소분류</option>
+							<option>채소·과일</option>
+							<option>쌀·견과류</option>
+							<option>수산·해산</option>
+							<option>정육·계란</option>
+							</select>
+
+                            <div class="sortlist">
+                                <table class="sort2">
+                                    <tbody>
+                                        <tr>
+                                            <td>판매량순</td>
+                                            <td>낮은가격</td>
+                                            <td>높은가격</td>
+                                            <td>최신상품</td>
+                                            <td>상품평</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <br>
 
                         <!-- th만 작성시 가로로 데이터 작성됨-->
@@ -87,8 +90,8 @@
                                     <td>78</td>
                                     <td>2021-12-03</td>
                                     <td>1,760원</td>
-                               		<td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                    <br><input type="button" value="삭제" class="deletebtn"></td>
+                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
+                                        <br><input type="button" value="삭제" class="deletebtn"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="img/best1.jpg"></td>
@@ -97,7 +100,7 @@
                                     <td>2021-12-03</td>
                                     <td>1,760원</td>
                                     <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                    <br><input type="button" value="삭제" class="deletebtn"></td>
+                                        <br><input type="button" value="삭제" class="deletebtn"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="img/best3.jpg"></td>
@@ -106,14 +109,15 @@
                                     <td>2021-12-03</td>
                                     <td>1,760원</td>
                                     <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                    <br><input type="button" value="삭제" class="deletebtn"></td>
+                                        <br><input type="button" value="삭제" class="deletebtn"></td>
                                 </tr>
                             </table>
                         </div>
-                        <br><br>
+
                         <!--css 호버 사용 pagination-->
                         <div class="hover-slider">
                             <ul>
+                                <li><a type="button" class="prev" onclick="plusSlides(-1)">❮</a></li>
                                 <li><a href="#">1</a></li>
                                 <li><a href="#">2</a></li>
                                 <li><a href="#">3</a></li>
@@ -124,9 +128,10 @@
                                 <li><a href="#">8</a></li>
                                 <li><a href="#">9</a></li>
                                 <li><a href="#">10</a></li>
-                           </ul>
+                                <li><a type="button" class="next" onclick="plusSlides(1)">❯</a></li>
+                            </ul>
                         </div>
-                       
+
                     </form>
                 </section>
 
@@ -136,6 +141,6 @@
                 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                 <script src="js/jquery.min.js"></script>
                 <script src="js/index.js"></script>
-</body>
+            </body>
 
-</html>
+            </html>

@@ -2,6 +2,12 @@
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
+div.titleproductList>h1 {
+    font: normal normal bold 25px/29px NanumGothic;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 div.titleproductList>h1>input {
     background: #195500;
     font: normal normal bold 25px/29px NanumGothic;
@@ -17,14 +23,6 @@ div.sortlist{
     line-height: 23px;
 }
 
-
-
-div.titleproductList>h1 {
-    font: normal normal bold 25px/29px NanumGothic;
-    font-size: 25px;
-    font-weight: bold;
-}
-
 table.productListtable {
     text-align: center;
     width: 100%;
@@ -33,8 +31,10 @@ table.productListtable {
 }
 
 table.sort2 tbody>tr>td {
-	padding: 0 10px 0 8px;
-	border-right: 1px solid #e6e6e6;
+	padding: 0px 15px 0 15px;
+    border-right: 1px solid #e6e6e6;
+    font: normal normal normal 12px/14px NanumGothic;
+    cursor: pointer;
 }
 
 tr.tabletitle {
@@ -52,10 +52,11 @@ table.productListtable>tbody>tr {
 
 select {
 width: 200px;	
-height: 30px;
+height: 25px;
 border: #e6e6e6 solid 2px;
 font: normal 15px NanumGothic;
 text-align: center;
+color: #707070;
 
 }
 
@@ -72,20 +73,32 @@ tbody>tr>td>img {
 	vertical-align:top;
     padding: 10px;
     margin: 0 auto;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 }
 
 tbody>tr>td>input.editbtn {
     color: #195500;
     background: white;
-    border: #195500 solid 0px;
+    border: #195500 solid 1px;
+    width: 80px;
+    height: 25px;
+    cursor: pointer;
 }
 
 tbody>tr>td>input.deletebtn {
     color: #195500;
     background: white;
-    border: #195500 solid 0.5px;
+    border: #195500 solid 1px;
+    width: 80px;
+    height: 25px;
+    cursor: pointer;
+}
+
+div.hover-slider {
+	padding: 0px;
+    margin: 80px;
+    resize: vertical;
 }
 
 div.hover-slider ul {
@@ -95,26 +108,25 @@ div.hover-slider ul {
 div.hover-slider ul li {
     display: inline;
     vertical-align: middle;
-    padding: 0 2px 0 2px;
-    border-right: 1px solid #afafaf;
+    padding: 0 13px 0 13px;  
 }
 
 div.hover-slider ul li a {
-    display: -moz-inline-stack;
-    display: inline-block;
+    display: contents;
     padding: 4px;
     margin-right: 3px;
     width: 25px;
-    color: #000;
-    font: bold 15px NanumGothic;
+    color: #afafaf;
+    font: bold 14px NanumGothic;
     border: 0px solid #eee;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
 }
 
-div.hover-slider ul li a:hover,
+/* div.hover-slider ul li a:hover,
 div.hover-slider ul li a:focus {
     color: #fff;
     border: 1px solid #195500;
     background-color: #195500;
-}
+} */
