@@ -69,4 +69,14 @@ public class DBManager {
 			}
 		}
 	}
+	
+	public static void close(Statement stmt) {
+		if (stmt != null) {
+			try {
+				stmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

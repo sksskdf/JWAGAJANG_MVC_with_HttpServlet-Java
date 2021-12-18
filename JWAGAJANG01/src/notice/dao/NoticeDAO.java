@@ -156,9 +156,9 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 				} while (rs.next());
 				result = boardList;
 			}
-			
 		} finally {
-			DBManager.close(pstmt, rs);
+			DBManager.close(rs);
+			DBManager.close(pstmt);
 		}
 		return result;
 	}
@@ -177,13 +177,13 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 	}
 	public List<NoticeVO> search(String searchoption, String searchkeyword) {
 		List<NoticeVO> list = new ArrayList<NoticeVO>();
-		Statement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select * from table_notice where "+searchoption+" like '%"+searchkeyword+"%' ";
 		try (Connection conn = DBManager.getConnection();){
-			pstmt = conn.createStatement();
+			stmt = conn.createStatement();
 			// pstmt.setString(1, "%"+searchkeyword+"%"); 물음표에 해당되는 코드, sql문에 물음표가 없으니까 주석처리
-			rs = pstmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				int notice_code = rs.getInt("notice_code");
 				String notice_label = rs.getString("notice_label");
@@ -191,11 +191,14 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 				Timestamp notice_regdate = rs.getTimestamp("notice_regdate");
 				NoticeVO nVo = new NoticeVO(notice_code, notice_label, notice_title, notice_regdate );
 				list.add(nVo);
+				DBManager.close(conn);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(pstmt, rs);
+			DBManager.close(rs);
+			DBManager.close(stmt);
+			
 		}
 		
 		return list;
