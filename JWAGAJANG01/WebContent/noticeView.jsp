@@ -20,29 +20,31 @@
 
 	<section>
 		<div class="pagenav">
-			홈<span class="navarrow"></span>게시판<span class="navarrow"></span>공지사항
+			<a href="index.jsp">홈</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">게시판</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">공지사항</a>
 		</div>
+		
 		<div class="notice">
 			<h1>공지사항</h1>
-			<table>
+			<table class="brdView">
 				<tr class="brdViewbox">
-					<th>${board.notice_label}</th>
+					<th class="brdView_label">${board.notice_label}</th>
 					<th>${board.notice_title}</th>
 					<th><fmt:formatDate value="${board.notice_regdate}"/></th>
 					<th>${board.notice_count}</th>
 				</tr>
 				<tr>
-					<td class="content"><pre>${board.notice_content}</pre></td>
+					<td class="content" colspan="4"><pre>${board.notice_content}</pre></td>
 				</tr>
 			</table>
 			<div class="list">
-				<input type="submit" value="수정" class="upbtn" onclick="location.href='noticeUpdate.do'">
-				<input type="submit" value="삭제" class="delbtn" onclick="location.href='noticeDelete.do'">
+				<input type="submit" value="수정" class="upbtn" onclick="location.href='noticeUpdate.do?notice_code=${param.notice_code}'">
+				<input type="submit" value="삭제" class="delbtn" onclick="location.href='noticeDelete.do?notice_code=${param.notice_code}'">
 				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeList.do'">
 			</div>
-		</div>
-		<div class="paging">
-			<span class="prev"></span> <span class="next"></span>
 		</div>
 		<div class="noticeSrc">
 			<input class="searchtext" type="text" name="search"> <input

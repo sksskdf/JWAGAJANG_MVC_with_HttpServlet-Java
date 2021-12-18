@@ -19,15 +19,19 @@
   <jsp:include page="H&F/header.jsp"/>
 	<section>
 		<div class="pagenav">
-			홈<span class="navarrow"></span>게시판<span class="navarrow"></span>공지사항
+			<a href="index.jsp">홈</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">게시판</a>
+			<span class="navarrow"></span>
+			<a href="noticeList.do">공지사항</a>
 		</div>
 		<div class="notice">
 			<h1>공지사항</h1>
 
 			<form name="frm" method="post" action="noticeUpdate.do">
 			
-			<!-- notice_code 값을 가져오기 위해 입력해줘야 하는 코드!!! -->
-			<input type="hidden" name="notice_code" value="${board.notice_code}"> 
+			<!-- notice_code 값을 가져오기 위해 입력해줘야 하는 코드!!!-->
+			<input type="hidden" name="notice_code" value="${board.notice_code}">
 			
 			<table class="brdWritebox">
 				<tr>
@@ -52,7 +56,7 @@
 			
 			<div class="noticeWritebtn">
 				<input type="submit" value="수정" name="send" class="sendbtn"  onclick="return noticeCheck()">
-				<input type="submit" value="목록" name="noticelist" class="noticelistbtn">
+				<input type="submit" value="목록" name="list" class="noticelistbtn" onclick="location.href='noticeList.do'">
 			</div>
 			</form>
 		</div>

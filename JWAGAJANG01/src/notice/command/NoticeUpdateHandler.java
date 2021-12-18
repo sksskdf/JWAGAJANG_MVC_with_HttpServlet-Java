@@ -36,6 +36,8 @@ public class NoticeUpdateHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		NoticeVO bVo = new NoticeVO();
 		String notice_label = req.getParameter("notice_label");
+		int notice_code = Integer.parseInt(req.getParameter("notice_code"));
+		bVo.setNotice_code(notice_code);
 		if(notice_label.equals("공지")) {
 			bVo.setNotice_label("공지");
 		}
@@ -45,7 +47,7 @@ public class NoticeUpdateHandler implements CommandHandler {
 		bVo.setNotice_title(req.getParameter("notice_title"));
 		bVo.setNotice_content(req.getParameter("notice_content"));
 		NoticeDAO bDao = NoticeDAO.getInstance();
-		bDao.insertBoard(bVo);
+		bDao.updateBoard(bVo);
 		res.sendRedirect("noticeList.do");
 		return null;
 	}
