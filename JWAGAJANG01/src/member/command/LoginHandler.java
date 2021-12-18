@@ -33,13 +33,14 @@ public class LoginHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException, NamingException {
+		HttpSession session = req.getSession();
 		String viewPage = null;
 		String id = req.getParameter("id");
 		String password = req.getParameter("pwd");
 		//싱글톤패턴의 객체를 사용하기 위해서 getInstance메서드를 사용.
 		LoginService loginService = LoginService.getInstance();
 		Member member = loginService.login(id, password);
-		HttpSession session = req.getSession();
+		
 
 		if(member != null) {
 			session.setAttribute("member", member);
@@ -58,6 +59,7 @@ public class LoginHandler implements CommandHandler {
 			writer.println("<script>location.href=\"/login.do\";</script>");
 			writer.close();
 		}
+		
 		return viewPage;
 	}
 }

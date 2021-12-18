@@ -8,6 +8,7 @@ public class Order {
 	private Date mdorderdate = null;
 	private String mdprice = null;
 	private String mdreview = null;
+	private String mdnum = null;
 	
 	
 	public Order() {
@@ -22,6 +23,17 @@ public class Order {
 		this.mdorderdate = mdorderdate;
 		this.mdprice = mdprice;
 	}
+	
+	
+	public Order(String mdpic, String mdname, Date mdorderdate, String mdprice,String mdnum) {
+		super();
+		this.mdpic = mdpic;
+		this.mdname = mdname;
+		this.mdorderdate = mdorderdate;
+		this.mdprice = mdprice;
+		this.mdnum = mdnum;
+	}
+
 
 	
 	public String getMdpic() {
@@ -80,6 +92,17 @@ public class Order {
 
 	public void setMdreview(String mdreview) {
 		this.mdreview = mdreview;
+	}
+	
+
+	public String getMdnum() {
+		return mdnum;
+	}
+
+
+
+	public void setMdnum(String mdnum) {
+		this.mdnum = mdnum;
 	}
 
 

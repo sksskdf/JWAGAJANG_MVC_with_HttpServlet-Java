@@ -30,7 +30,7 @@
       			<a class="nav-link nf" href="mypageorder.do?p=1&id='"+${sessionScope.id}+"'">주문내역</a>
       		</li>
       		<li class="nav-item">
-      			<a class="nav-link nf" href="#">찜목록</a>
+      			<a class="nav-link nf" href="favlist.do?p=1&id='"+${sessionScope.id}+"'">찜목록</a>
       		</li>
       	</ul>
       </div>

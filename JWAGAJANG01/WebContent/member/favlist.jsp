@@ -28,33 +28,31 @@
       			<a class="nav-link nf" href="mypage.do">회원 정보 수정</a>
       		</li>
       		<li class="nav-item">
-      			<a class="nav-link mpa nf" href="mypageorder.do?p=1&id='"+${sessionScope.id}+"'">주문내역</a>
+      			<a class="nav-link nf" href="mypageorder.do?p=1&id='"+${sessionScope.id}+"'">주문내역</a>
       		</li>
       		<li class="nav-item">
-      			<a class="nav-link nf" href="favlist.do?p=1&id='"+${sessionScope.id}+"'">찜목록</a>
+      			<a class="nav-link mpa nf" href="favlist.do?p=1&id='"+${sessionScope.id}+"'">찜목록</a>
       		</li>
       	</ul>
       </div>
       <div class="col-9" style="margin-left:40px; width:953px;">
-        <h5 class="mph" style="margin-top: 38px;">주문내역</h5>
+        <h5 class="mph" style="margin-top: 38px;">찜목록</h5>
       		<table class="table table-borderless" style="margin-top:40px;">
 			  <thead class="table-secondary  " style="height:40px;">
 			    <tr class="text-center">
 			      <th class="col-1 va"></th>
-			      <th class="col-5 va">상품명</th>
+			      <th class="col-7 va">상품명</th>
 			      <th class="col-2 va">주문날짜</th>
-			      <th class="col-2 va">구매금액</th>
-			      <th class="col-3 va">리뷰</th>
+			      <th class="col-2 va">찜</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <c:forEach var="o" items="${orderlist}" begin="0" end="4">
+			  <c:forEach var="f" items="${favlist}" begin="0" end="4">
 			    <tr class="text-center">
-			      <td><img class="orderPic"alt="" src="${o.mdpic}"> </td>
-			      <td class="thf va">${o.mdname}</td>
-			      <td class="va">${o.mdorderdate}</td>
-			      <td class="va">${o.mdprice}</td>
-			      <td class="va"><button class="btn btn-success">리뷰쓰기</button></td>
+			      <td><img class="orderPic"alt="" src="${f.mdpic}"> </td>
+			      <td class="thf va">${f.mdname}</td>
+			      <td class="va">${f.mdprice}</td>
+			      <td class="va"><a href="favlist.do?del=${f.mdname}&p=1"><img alt="찜" src="../img/fav.svg"></a></td>
 			    </tr>
 			    </c:forEach>
 			  </tbody>
