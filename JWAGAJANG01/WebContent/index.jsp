@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -36,53 +38,26 @@
       <h1>BEST</h1><p><a href="#"> 더보기 > </a></p>
     </div>
     <div class="bestContents">
-    <div class="bItem1"><img src="img/best1.jpg">
-    <p><span class="title">[박민지] 맛 좋은 청경채</span><br>
-      <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-      <span class="price">2,200원</span></p>
-    </div>
-    <div class="bItem2"><img src="img/best2.jpg">
-      <p><span class="title">[민선지] 빨간 세척 당근</span><br>
-        <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-          <span class="price">2,200원</span></p>
-    </div>
-    <div class="bItem3"><img src="img/best3.jpg">
-      <p><span class="title">[길기훈] 신선한 고등어</span><br>
-        <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-      <span class="price">2,200원</span></p>
-    </div>
-    <div class="bItem4"><img src="img/best4.jpg">
-      <p><span class="title">[남현우] 달고 맛있는 대추토마토</span><br>
-        <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-      <span class="price">2,200원</span></p>
+     <c:forEach var="best" items="${bestList }">
+      	<div class="bitem"><img src=${best.img_main }>
+      <p><span class="title">${best.md_name }</span><br>
+        <span class="salerate">${best.md_dc }%</span> <span class="saleprice"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(best.md_price-(best.md_price*best.md_dc/100), '.')}"/>원</span><br>
+        <span class="price"><fmt:formatNumber pattern="#,##0" value="${best.md_price }"/>원</span></p>
       </div>
+      </c:forEach>
     </div>
-    
       <div class="newTitle">
         <h1>NEW</h1><p><a href="#"> 더보기 > </a></p>
       </div>
       <div class="newContents">
-      <div class="nItem1"><img src="img/best1.jpg">
-      <p><span class="title">[박민지] 맛 좋은 청경채</span><br>
-        <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-        <span class="price">2,200원</span></p>
+      <c:forEach var="newList" items="${newList }">
+      	<div class="nitem"><img src=${newList.img_main }>
+      <p><span class="title">${newList.md_name }</span><br>
+        <span class="salerate">${newList.md_dc }%</span> <span class="saleprice"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(newList.md_price-(newList.md_price*newList.md_dc/100), '.')}"/>원</span><br>
+        <span class="price"><fmt:formatNumber pattern="#,##0" value="${newList.md_price }"/>원</span></p>
       </div>
-      <div class="nItem2"><img src="img/best2.jpg">
-        <p><span class="title">[민선지] 빨간 세척 당근</span><br>
-          <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-          <span class="price">2,200원</span></p>
-      </div>
-      <div class="nItem3"><img src="img/best3.jpg">
-        <p><span class="title">[길기훈] 신선한 고등어</span><br>
-          <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-        <span class="price">2,200원</span></p>
-      </div>
-      <div class="nItem4"><img src="img/best4.jpg">
-        <p><span class="title">[남현우] 달고 맛있는 대추토마토</span><br>
-          <span class="salerate">20%</span> <span class="saleprice">1,760원</span><br>
-        <span class="price">2,200원</span></p>
-      </div>
-    </div>
+      </c:forEach>
+    </div> 
   </div>
 </section>
 <jsp:include page="H&F/footer.jsp"/>
