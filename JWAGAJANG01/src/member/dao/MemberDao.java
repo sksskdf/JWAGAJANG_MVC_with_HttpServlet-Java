@@ -22,7 +22,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		Member member = null;
 		try {
-			String query = "select * from table_user where user_id=? and user_pw=?";
+			String query = "select * from member where id=? and pwd=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
@@ -41,7 +41,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from table_user where user_id = ?");
+			pstmt = conn.prepareStatement("select * from member where id = ?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (!rs.next()) {
@@ -50,6 +50,7 @@ public class MemberDao {
 			Member item = makeMemberFromResultSet(rs);
 			return item;
 		} finally {
+			System.out.println("rs : "+rs);
 			DBManager.close(rs);
 			DBManager.close(pstmt);
 		}
@@ -58,12 +59,12 @@ public class MemberDao {
 	//ResultSet에 저장된 DB정보를 membervo에 저장.
 	public Member makeMemberFromResultSet(ResultSet rs) throws SQLException {
 		Member member = new Member();
-		member.setId(rs.getString("user_id"));
-		member.setPwd(rs.getString("user_pw"));
-		member.setMobile(rs.getString("user_phone"));
-		member.setEmail(rs.getString("user_email"));
-		member.setCreatedAt(rs.getTimestamp("user_regdate"));
-		member.setModifiedAt(rs.getTimestamp("user_editdate"));
+		member.setId(rs.getString("id"));
+		member.setPwd(rs.getString("pwd"));
+		member.setMobile(rs.getString("mobile"));
+		member.setEmail(rs.getString("email"));
+		member.setCreatedAt(rs.getTimestamp("createdAt"));
+		member.setModifiedAt(rs.getTimestamp("modifiedAt"));
 		return member;
 	}
 	
@@ -72,7 +73,7 @@ public class MemberDao {
 		//기본값은 -1로 초기화
 		int result = -1;
 		try {
-			String query = "insert into table_user (user_id, user_pw, user_email, user_phone"
+			String query = "insert into member (id, pwd, email, mobile"
 					+ ") values(?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, member.getId());
@@ -80,7 +81,7 @@ public class MemberDao {
 			pstmt.setString(3, member.getEmail());
 			pstmt.setString(4, member.getMobile());
 			result = pstmt.executeUpdate();
-			
+			//System.out.println("result = " + result);
 		} finally {
 			DBManager.close(pstmt);
 		}
@@ -89,15 +90,15 @@ public class MemberDao {
 	public void update(Connection conn, Member member) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
-			String query = "UPDATE `jwagajang`.`table_user` \r\n"
+			String query = "UPDATE `jwagajang`.`member` \r\n"
 					+ "SET \r\n"
-					+ "	`user_pw` = ?, \r\n"
-					+ "	`user_phone` = ?, \r\n"
-					+ "	`user_address` = ?, \r\n"
-					+ "	`user_address2` = ?, \r\n"
-					+ "	`user_address3` = ?, \r\n"
-					+ "	`user_email` = ?\r\n"
-					+ " WHERE (`user_id` = ?);";
+					+ "	`pwd` = ?, \r\n"
+					+ "	`mobile` = ?, \r\n"
+					+ "	`address` = ?, \r\n"
+					+ "	`address2` = ?, \r\n"
+					+ "	`address3` = ?, \r\n"
+					+ "	`email` = ?\r\n"
+					+ " WHERE (`id` = ?);";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, member.getPwd());
 			pstmt.setString(2, member.getMobile());
@@ -106,9 +107,9 @@ public class MemberDao {
 			pstmt.setString(5, member.getAddress3());
 			pstmt.setString(6, member.getEmail());
 			pstmt.setString(7, member.getId());
-			
+			System.out.println();
 			pstmt.executeUpdate();
-			
+			System.out.println(member.toString());
 		} finally {
 			DBManager.close(pstmt);
 		}

@@ -118,15 +118,6 @@ pageEncoding="UTF-8"%>
                                     <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
                                         <br><input type="button" value="삭제" class="deletebtn"></td>
                                 </tr>
-                                 <tr>
-                                    <td><img src="img/best4.jpg"></td>
-                                    <td>[남현우] 달고 맛있는 대추토마토</td>
-                                    <td>23</td>
-                                    <td>2021-12-03</td>
-                                    <td>1,760원</td>
-                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                        <br><input type="button" value="삭제" class="deletebtn"></td>
-                                </tr>
                             </table>
                         </div>
 						<br>
