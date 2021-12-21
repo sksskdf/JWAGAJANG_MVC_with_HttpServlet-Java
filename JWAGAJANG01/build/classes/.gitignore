@@ -1,3 +1,5 @@
+/cart/
+/goods/
 /common/
 /controller/
 /filter/
@@ -5,4 +7,3 @@
 /notice/
 /product/
 /util/
-/goods/

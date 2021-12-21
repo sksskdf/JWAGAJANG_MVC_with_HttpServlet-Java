@@ -27,10 +27,47 @@
 	       <a href="/index.do">홈</a>
 	       <span class="navarrow"></span>
            <a href="#">수산 · 해산</a>
+     <!-- 
+			<c:if test="${category_main == '100'}">
+				<c:set var="mainCtgry" value="채소·과일"/>
+			</c:if> 
+			<c:if test="${category_main == '200'}">
+				<c:set var="mainCtgry" value="쌀·견과류"/>
+			</c:if> 
+			<c:if test="${category_main == '300'}">
+				<c:set var="mainCtgry" value="수산·해산"/>
+			</c:if> 
+			<c:if test="${category_main == '400'}">
+				<c:set var="mainCtgry" value="정육·계란"/>
+			</c:if> 
+			<c:if test="${category_main == 'All'}">
+				<c:set var="mainCtgry" value="전체보기"/>
+			</c:if> 
+			<c:if test="${category_main != 'All'}">
+				<c:set var="display" value="[${mainCtgry}]"/>
+			</c:if>
+           		
+     -->
 	       <span class="navarrow"></span>
            <a href="#">전체보기</a>
         </div>
         <div class="goodsCtgry">
+        
+        <!-- 
+	            <ul class="ctgry_list">
+	                <li><a href="#" class="on">전체보기</a></li>
+	                <li><a href="#">고구마·감자·당근</a></li>
+	                <li><a href="#">시금치·쌈채소·나물</a></li>
+	                <li><a href="#">브로콜리·파프리카·양배추</a></li>
+	                <li><a href="#">양파·마늘·대파·배추</a></li>
+	                <li><a href="#">오이·호박·고추</a></li>
+	                <li><a href="#">콩나물·버섯</a></li>
+	                <li><a href="#">과일</a></li>
+	            </ul>
+        
+         -->
+        
+        
         	<c:if test="${(category_main == 'All')}">
         		<ul class="ctgry_list">
 	                <li><a class="ctgry_on">전체보기</a></li>
@@ -91,6 +128,20 @@
             <div class="list_goods">
                 <div class="inner_listgoods">
                     <ul class="goods">
+<!--                        <li>
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="img" style="background-image: url(/img/best1.jpg);"></div>
+                                </div>
+                                <a class="goods_info">
+                                    <span class="goods_title">[박민지] 외로운 청경채</span><br>
+                                    <span class="goods_dc">20%</span>
+                                    <span class="cost">1,760원</span><br>
+                                    <span class="price">2,200원</span>
+                                </a>
+                            </div>
+                        </li> -->
+                        
                     <c:forEach var="md" items="${mdList}">
                         <li>
                             <div class="item">
@@ -111,23 +162,23 @@
                     </ul>
                 </div>
             </div>
-            <div class="paging">
-                <div class="pagediv">
-                    <a href="#">이전 페이지</a>
-                    <span><strong>1</strong></span>
-                    <span><strong>2</strong></span>
-                    <span><strong>3</strong></span>
-                    <span><strong>4</strong></span>
-                    <span><strong>5</strong></span>
-                    <span><strong>6</strong></span>
-                    <span><strong>7</strong></span>
-                    <span><strong>8</strong></span>
-                    <span><strong>9</strong></span>
-                    <span><strong>10</strong></span>
-                    <a href="#">다음 페이지</a>
-                </div>
-            </div>
         </div>
+		<div class="paging">
+		    <div class="pagediv">
+		        <a href="#">이전 페이지</a>
+		        <span><strong>1</strong></span>
+		        <span><strong>2</strong></span>
+		        <span><strong>3</strong></span>
+		        <span><strong>4</strong></span>
+		        <span><strong>5</strong></span>
+		        <span><strong>6</strong></span>
+		        <span><strong>7</strong></span>
+		        <span><strong>8</strong></span>
+		        <span><strong>9</strong></span>
+		        <span><strong>10</strong></span>
+		        <a href="#">다음 페이지</a>
+		    </div>
+		</div>
         
     </div>
     <!-- 푸터 -->

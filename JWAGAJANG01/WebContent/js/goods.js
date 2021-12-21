@@ -6,8 +6,15 @@ $(function() {
     });
 });
 
-// 주문수량 버튼
+$(function() {
+	$('.ctgry_list a').click(function(){
+		$('.ctgry_list a').removeClass()
+			$(this).addClass('on')
+	});
+});
 
+// 주문수량 버튼
+/*
 // 숫자 타입에서 쓸 수 있도록 format() 함수 추가
 Number.prototype.format = function(){
     if(this==0) return 0;
@@ -27,7 +34,7 @@ String.prototype.format = function(){
  
     return num.format();
 };
-
+*/
 function change_qty(btn) {
     var min_qty = 1;
     var this_qty = $("#goods_qty").val()*1;
