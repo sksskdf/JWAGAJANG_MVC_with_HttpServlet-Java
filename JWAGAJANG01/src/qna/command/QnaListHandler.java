@@ -1,7 +1,5 @@
-package notice.command;
+package qna.command;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import common.command.CommandHandler;
-import notice.dao.NoticeDAO;
-import notice.dto.NoticeListModel;
-import notice.dto.NoticeVO;
-import notice.dto.Paging;
+import qna.dao.QnaDAO;
+import qna.dto.Paging;
+import qna.dto.QnaListModel;
+import qna.dto.QnaVO;
 
-public class NoticeListHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/notice.jsp";
+public class QnaListHandler implements CommandHandler {
+	private static final String FORM_VIEW = "/qnaList.jsp";
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -29,17 +27,7 @@ public class NoticeListHandler implements CommandHandler {
 			return null;
 		}
 	}
-/*
-	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		String url = "/notice.jsp";
-		NoticeDAO bDao = NoticeDAO.getInstance();
-		List<NoticeVO> noticeList = bDao.selectAllBoards();
-		req.setAttribute("noticeList", noticeList);
-		return url;
-	}
-}
 
-*/
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException {
 		String pageNumberString = req.getParameter("p"); // 브라우저에서 목록을 보면 p=null; 페이징 링크를 누르면 p=n;
 		String searchkeyword = req.getParameter("searchkeyword");
@@ -50,12 +38,12 @@ public class NoticeListHandler implements CommandHandler {
 		Paging paging = new Paging(10, 10); // 나타낼 목록, 몇 페이지를 보여줄건지
 		paging.setCurrentPageNo(pageNumber); // 현재 페이지 설정
 
-		NoticeDAO bDao = NoticeDAO.getInstance();
-		int totalBoardCount = bDao.selectCount(); // 전체 게시글의 수를 얻는다 
-		List<NoticeVO> noticeList = null;
+		QnaDAO qDao = QnaDAO.getInstance();
+		int totalBoardCount = qDao.selectCount(); // 전체 게시글의 수를 얻는다 
+		List<QnaVO> qnaList = null;
 		if (totalBoardCount == 0) {
 			paging.setStartPageNo(1);
-			noticeList = new ArrayList<NoticeVO>();
+			qnaList = new ArrayList<QnaVO>();
 		}
 		paging.setNumberOfRecords(totalBoardCount);	// 전체 게시글의 수를 얻어와서
 		paging.makePaging();
@@ -65,9 +53,9 @@ public class NoticeListHandler implements CommandHandler {
 		if (endRow > totalBoardCount) {
 			endRow = totalBoardCount;
 		}
-		noticeList = bDao.select(firstRow, endRow); // 첫번째 열, 마지막 열
-		NoticeListModel listModel = new NoticeListModel();
-		listModel.setNoticeList(noticeList); // 가져온 목록
+		qnaList = qDao.select(firstRow, endRow); // 첫번째 열, 마지막 열
+		QnaListModel listModel = new QnaListModel();
+		listModel.setNoticeList(qnaList); // 가져온 목록
 		listModel.setPaging(paging);		 // 페이징 정보
 		req.setAttribute("listModel", listModel); // jsp로 전달
 		
