@@ -1,3 +1,6 @@
+// DAO : (Data Access Object) -> 
+// DAO는 DB의 data에 접근하기 위한 객체로 직접 DB에 접근하여 데이터를 삽입, 삭제, 조회 등 조작할 수 있는 기능을 수행
+
 package product.dao;
 
 import java.sql.Connection;
