@@ -77,7 +77,7 @@ pageEncoding="UTF-8"%>
 				</tr>
 				<tr>
 					<th width="150px">상세 이미지 첨부</th>
-					<th><input class="titleimg2" type="file" name="img2"></th>
+					<th><input class="subimg" type="file" name="img2"></th>
 				</tr>
 			</table>
 			
@@ -95,6 +95,7 @@ pageEncoding="UTF-8"%>
                 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                 <script src="js/jquery.min.js"></script>
                 <script src="js/index.js"></script>
+                <script src="js/product.js"></script>
             </body>
 
             </html>
