@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,6 +12,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/goods.css">
     <link rel="stylesheet" href="css/header_footer.css">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
     <script src="js/jquery.min.js"></script>
     <script src="js/goods.js"></script>
     <title>좌가장</title>
@@ -20,19 +24,21 @@
     <!-- 본문  -->
     <div id="wrap">
         <div class="pagenav">
-	            홈<span class="navarrow"></span>
-	            시금치 · 쌈채소 · 나물<span class="navarrow"></span>
-	            청경채
+	       <a href="/index.do">홈</a>
+	       <span class="navarrow"></span>
+           <a href="#">시금치 · 쌈채소 · 나물</a>
+	       <span class="navarrow"></span>
+           <a href="#">청경채</a>
         </div>
         <div class="goods">
-            <img src="img/best1.jpg" class="goods_img">
+            <img src="${md.img_main}" class="goods_img">
             <div class="goods_info">
-                <p class="goods_title">[박민지] 외로운 청경채</p>
+                <p class="goods_title">${md.md_name}</p>
                 <p class="goods_price">
-                    <span class="price">2,200원</span>
+                    <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/>원</span>
                     <span class="goods_dc">
-                        <span class="cost">1,760원</span>
-                        <span class="dc">20%</span>
+                        <span class="cost"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/>원</span>
+                        <span class="dc">${md.md_dc}%</span>
                     </span>
                 </p>
                 <hr>
@@ -47,9 +53,9 @@
                     <dt><p>주문수량</p></dt>
                     <dd>
                         <span class="countbtn">
-                            <button type="button" class="minusbtn">-</button>
-                            <input type="text" readonly="readonly" class="goods_qty" value="10">
-                            <button type="button" class="plusbtn">+</button>
+                            <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
+                            <input type="number" id="goods_qty" readonly="readonly" min="1" max="10" value="1">
+                            <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
                         </span>
                     </dd>
                 </dl>
@@ -57,12 +63,12 @@
                 <dl class="total">
                     <dt>구매금액</dt>
                     <dd>
-                        <em>1,760</em>원 &nbsp; x &nbsp;
-                        <em>10</em>개
+                        <em><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/></em>원 &nbsp; x &nbsp;
+                        <em class="total_qty">1</em>개
                     </dd>
                 </dl>
                 <div class="total_price">
-                    <p class="won"><span class="total_cost">17,600</span>원</p>
+                    <p class="won"><span class="total_cost"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/></span>원</p>
                 </div>
                 <div class="btn">
                     <button type="button" class="buynowbtn">바로구매</button>
@@ -125,7 +131,7 @@
         <div class="footnav">
             <div class="footnav_list">
                 <ul>
-                    <a href="#"><li>홈</li></a>
+                    <a href="/index.do"><li>홈</li></a>
                     <div class="line"></div>
                     <a href="#"><li>장바구니</li></a>
                     <div class="line"></div>
@@ -137,7 +143,7 @@
                 <ul>
                     <li><a href=""><img src="img/best1.jpg"></a></li>
                 </ul>
-                <a href="#top" class="top_btn"><img src="img/arrowUp.png"></a>
+                <a href="#top" class="top_btn"><img src="img/up.png"></a>
             </div>
         </div>
     </div>
