@@ -21,7 +21,7 @@ public class ProductListHandler implements CommandHandler {
 			ProductDAO pDao = ProductDAO.getInstance();
 			List<ProductVO> productList = pDao.selectAllProducts();
 			request.setAttribute("productList", productList);
-			return "productList.jsp";	// view 페이지를 반환
+			return "productList.jsp";	// 제품목록 페이지를 반환
 		}
 		else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);

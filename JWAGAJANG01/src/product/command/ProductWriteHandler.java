@@ -1,55 +1,62 @@
 package product.command;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import common.command.CommandHandler;
-import product.dao.ProductDAO;
-import product.dto.ProductVO;
+import member.service.MemberServiceImpl;
+import product.command.*;
+import product.dao.*;
+import product.dto.*;
+import product.service.ProductService;
+import product.service.ProductServiceImpl;
+
 
 public class ProductWriteHandler implements CommandHandler {
 
 	@Override
-	public String process(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			return "productWrite.jsp";	// view page를 반환
+	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		if(req.getMethod().equalsIgnoreCase("GET")) {
+			return processForm(req, res);
 		}
-		else if(request.getMethod().equalsIgnoreCase("POST")) {
-			request.setCharacterEncoding("UTF-8");
-			ServletContext context = request.getServletContext();
-			String path = context.getRealPath("upload");
-			String encType = "UTF-8";
-			int sizeLimit = 20 * 1024 * 1024;
-			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit,
-					encType, new DefaultFileRenamePolicy());
-			String name = multi.getParameter("name");
-			int price = Integer.parseInt(multi.getParameter("price"));
-			String description = multi.getParameter("description");
-			String pictureUrl = multi.getFilesystemName("pictureUrl");
-			ProductVO pVo = new ProductVO();
-			pVo.setName(name);
-			pVo.setPrice(price);
-			pVo.setDescription(description);
-			pVo.setPictureUrl(pictureUrl);
-			ProductDAO pDao = ProductDAO.getInstance();
-			pDao.insertProduct(pVo);
-			// forward하지 않고 목록 보기로 redirect
-			// forward 할 것인가? 리다이렉트 할 것인가? 판단을 해야 한다.
-			// forward 할 때는 .jsp로 포워드(화면에 응답을 출력)
-			// 리다이렉트 할 때는 *.do url을 사용한다.
-			response.sendRedirect("list.do");
-			return null;	// redirect를 할 경우 view page를 null로 반환
-		} else {
-			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+		else if(req.getMethod().equalsIgnoreCase("POST")) {
+			return processSubmit(req, res);
+		}
+		else {
+			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
 	}
+	
+	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		return "productWrite.jsp";
+	}
+
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		String md_code = req.getParameter("md_code");
+		String md_name = req.getParameter("md_name");
+		String md_price = req.getParameter("md_price");
+		String md_dc = req.getParameter("md_dc");
+		String img_main = req.getParameter("img_main");
+		String img_detail = req.getParameter("img_detail");
+		String md_regdate = req.getParameter("md_regdate");
+		String md_editdate = req.getParameter("md_editdate");
+		String category_main = req.getParameter("category_main");
+		String category_sub = req.getParameter("category_sub");
+		String md_ordercnt = req.getParameter("md_ordercnt");		
+		ProductVO product = new ProductVO(md_code, md_name, md_price, md_dc, img_main, img_detail, md_regdate, md_editdate, category_main, category_sub, md_ordercnt);
+		ProductService productService = ProductServiceImpl.getInstance();
+		ProductService.add(product);
+		res.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer;
+		writer = res.getWriter();
+		writer.println("<script>alert('등록되었습니다.');</script>"); 
+		writer.println("<script>location.href=\"productWrite.do?id="+md_code+"\";</script>");
+		writer.close();
+		return null;
+	}
+
 }

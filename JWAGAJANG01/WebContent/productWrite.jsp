@@ -1,7 +1,14 @@
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -15,19 +22,29 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/header_footer.css">
 <link rel="stylesheet" href="css/productWrite.css">
 <title>좌가장 : 상품등록</title>
-
 </head>
 
 <body>
+   
    <!-- 헤더영역    -->
                 <jsp:include page="H&F/header.jsp" />
+   <!-- 제품등록  -->
 <section>
+		
 		<div class="pagenav">
-			홈<span class="navarrow"></span>게시판<span class="navarrow"></span>제품등록
+			<a href="index.jsp">홈</a>
+			<span class="navarrow"></span>
+			<a href="productList.do">마이페이지</a>
+			<span class="navarrow"></span>
+			<a href="productList.do">제품관리</a>
+			<span class="navarrow"></span>
+			<a href="productWrite.do">제품등록</a>
 		</div>
-		<div class="notice">
+		
+		
+		<div class="productWrite">
 			<h1>제품등록</h1>
-			<form name="frm" method="post" action="mdAdd.do">
+			<form name="frm" method="post" action="productWrite.do">
 			<table class="prodWritebox">
 				<tr>
 					<th width="150px">구분</th>
