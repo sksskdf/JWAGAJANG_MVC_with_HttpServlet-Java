@@ -48,7 +48,7 @@ public class NoticeUpdateHandler implements CommandHandler {
 		bVo.setNotice_content(req.getParameter("notice_content"));
 		NoticeDAO bDao = NoticeDAO.getInstance();
 		bDao.updateBoard(bVo);
-		res.sendRedirect("noticeList.do");
+		res.sendRedirect("noticeView.do?notice_code="+notice_code);
 		return null;
 	}
 }

@@ -10,9 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="img/favicon/favicon.ico">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/notice.css">
+<link rel="stylesheet" href="css/board.css">
 <link rel="stylesheet" href="css/header_footer.css">
-<title>좌가장 : 공지사항</title>
+<title>좌가장 : 공지사항 작성하기</title>
 </head>
 <body>
   <jsp:include page="H&F/header.jsp"/>
@@ -62,6 +62,6 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/index.js"></script>
-	<script src="js/notice.js"></script>
+	<script src="js/board.js"></script>
 </body>
 </html>

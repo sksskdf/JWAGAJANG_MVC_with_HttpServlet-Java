@@ -28,7 +28,7 @@ public class NoticeSearchHandler implements CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException {
+	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException  {
 		/* String url = "/notice.jsp"; */
 		
 		// 옵션으로 들어온 인자를 사용하는 방법
@@ -54,11 +54,13 @@ public class NoticeSearchHandler implements CommandHandler {
 		if (pageNumberString != null && pageNumberString.length() > 0) { // p값이 들어왔는지 안들어왔는지
 			pageNumber = Integer.parseInt(pageNumberString); // 들어왔으면  String 타입의 변수를 int 타입의 변수로  바꿔서 넣는다.
 		}
+		
+		
 		Paging paging = new Paging(10, 10); // 나타낼 목록, 몇 페이지를 보여줄건지
 		paging.setCurrentPageNo(pageNumber); // 현재 페이지 설정
 
 		NoticeDAO bDao = NoticeDAO.getInstance();
-		int totalBoardCount = bDao.selectCount(); // 전체 게시글의 수를 얻는다 
+		int totalBoardCount = bDao.searchselectCount(searchoption, searchkeyword); // 전체 게시글의 수를 얻는다 
 		if (totalBoardCount == 0) {
 			paging.setStartPageNo(1);
 			list = new ArrayList<NoticeVO>();
@@ -76,11 +78,14 @@ public class NoticeSearchHandler implements CommandHandler {
 		if(searchoption_ == null) {
 			list = nDao.select(firstRow, endRow); // 첫번째 열, 마지막 열 
 		}else {
-			list = nDao.search(searchoption, searchkeyword);
+			list = nDao.search(searchoption, searchkeyword, firstRow, endRow);
 		}
+			
 		listModel.setNoticeList(list); //  noticeList는 원래 목록, list는 search목록
 		listModel.setPaging(paging);		 // 페이징 정보
 		req.setAttribute("listModel", listModel); // jsp로 전달
+		
+		
 		
 		res.setHeader("Pragma", "No-cache"); // 캐시 삭제하도록 설정 : 게시글을 추가했는데 캐시에 있는걸 보여주면 추가한게 안나오기떄문에
 		res.setHeader("Cache-Control", "no-cache");
