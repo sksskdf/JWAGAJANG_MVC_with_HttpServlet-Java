@@ -26,7 +26,7 @@
 			<th>가격</th>
 			<th>구매버튼</th>
 		</tr>
-<%
+<%-- <%
 	try (Connection conn = DBManager.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("select md_code, md_name, md_price, md_dc, img_main from table_md");
 		ResultSet rs = pstmt.executeQuery();){
@@ -38,8 +38,7 @@
 		int code = rs.getInt(1);
 		String name = rs.getString(2);
 		int price = rs.getInt(3);
-		
-%>
+%> --%>
 		<td>${code }</td>
 		<td>${name }</td>
 		<td>${price}</td>
