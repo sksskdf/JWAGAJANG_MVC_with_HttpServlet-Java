@@ -26,7 +26,7 @@ public class ProductUpdateHandler implements CommandHandler {
 			ProductDAO pDao = ProductDAO.getInstance();
 			ProductVO pVo = pDao.selectProductByCode(Integer.parseInt(code));
 			request.setAttribute("product", pVo);
-			return "productUpdate.jsp";	// view page
+			return "productUpdate.jsp";	// 제품수정 page
 		}
 		else if(request.getMethod().equalsIgnoreCase("POST")) {
 			// POST 메소드가 동작

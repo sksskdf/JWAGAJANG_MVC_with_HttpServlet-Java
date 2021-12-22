@@ -1,33 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-            <!DOCTYPE html>
-            <html lang="ko">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html lang="ko">
 
-            <head>
-                <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="shortcut icon" href="img/favicon/favicon.ico">
-                <link rel="stylesheet" href="css/reset.css">
-                <link rel="stylesheet" href="css/notice.css">
-                <link rel="stylesheet" href="css/header_footer.css">
-                <link rel="stylesheet" href="css/productList.css">
-                <title>좌가장 : 제품관리</title>
+<head>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/favicon/favicon.ico">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/notice.css">
+<link rel="stylesheet" href="css/header_footer.css">
+<link rel="stylesheet" href="css/productList.css">
+<title>좌가장 : 제품관리</title>
 
-            </head>
+</head>
 
-            <body>
-                <!-- 헤더영역    -->
+<body>
+   <!-- 헤더영역    -->
                 <jsp:include page="H&F/header.jsp" />
 
                 <!-- 제품 관리-->
                 <section>
-                    <form>
+                    <form name="frm" method="post" action="productList.do">
+                                             
                         <div class="pagenav">
-                            홈<span class="navarrow"></span>마이페이지<span class="navarrow"></span>제품관리
-                        </div>
+						<a href="index.jsp">홈</a>
+						<span class="navarrow"></span>
+						<a href="productList.do">마이페이지</a>
+						<span class="navarrow"></span>
+						<a href="productList.do">제품관리</a>
+						</div>
+						
                         <div class="titleproductList">
                             <h1>제품관리        &nbsp;&nbsp;
                                 <input type="button" value="제품등록" onclick="location.href='productWrite.jsp'">
@@ -113,25 +120,48 @@ pageEncoding="UTF-8"%>
                                 </tr>
                             </table>
                         </div>
+						<br>
+						<div class="pg_wrap">
+						 <!-- 변수 선언 -->
+				
+								<a class="pg_prev" href="/productList.do?&amp;p=0">
+								<span class="prev"></span></a>
+								
+								<a href="/productList.do?&amp;p=1&amp;f=">
+								<input type="button" class="pg_currpno" value="1"></a>
+							
+								<a href="/productList.do?&amp;p=2&amp;f=">
+								<input type="button" class="pg_currpno" value="2"></a>
+							
+								<a href="/productList.do?&amp;p=3&amp;f=">
+								<input type="button" class="pg_currpno" value="3"></a>
+							
+								<a href="/productList.do?&amp;p=4&amp;f=">
+								<input type="button" class="pg_currpno" value="4"></a>
+							
+								<a href="/productList.do?&amp;p=5&amp;f=">
+								<input type="button" class="pg_currpno" value="5"></a>
+							
+								<a href="/productList.do?&amp;p=6&amp;f=">
+								<input type="button" class="pg_currpno" value="6"></a>
+							
+								<a href="/productList.do?&amp;p=7&amp;f=">
+								<input type="button" class="pg_currpno" value="7"></a>
+							
+								<a href="/productList.do?&amp;p=8&amp;f=">
+								<input type="button" class="pg_currpno" value="8"></a>
+							
+								<a href="/productList.do?&amp;p=9&amp;f=">
+								<input type="button" class="pg_currpno" value="9"></a>
+							
+								<a href="/productList.do?&amp;p=10&amp;f=">
+								<input type="button" class="pg_currpno" value="10"></a>
+							
+								<a class="pg_next" href="/productList.do?&amp;p=11">
+								<span class="next"></span></a>
 
-                        <!--css 호버 사용 pagination-->
-                        <div class="hover-slider">
-                            <ul>
-                                <li><a type="button" class="prev" onclick="plusSlides(-1)">❮</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">6</a></li>
-                                <li><a href="#">7</a></li>
-                                <li><a href="#">8</a></li>
-                                <li><a href="#">9</a></li>
-                                <li><a href="#">10</a></li>
-                                <li><a type="button" class="next" onclick="plusSlides(1)">❯</a></li>
-                            </ul>
-                        </div>
-
+						</div>
+						
                     </form>
                 </section>
 

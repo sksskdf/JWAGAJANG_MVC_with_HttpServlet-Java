@@ -13,3 +13,19 @@ function noticeCheck() {
 	}
 	return true;
 }
+
+function searchCheck(){
+	if (document.searchfrm.searchkeyword.value.length == 0) {
+	alert("검색어를 입력하세요.");
+	return false;
+	}
+	return true;
+}
+
+function qnasearchCheck(){
+	if (document.qnasearchfrm.qnasearchkeyword.value.length == 0) {
+	alert("검색어를 입력하세요.");
+	return false;
+	}
+	return true;
+}

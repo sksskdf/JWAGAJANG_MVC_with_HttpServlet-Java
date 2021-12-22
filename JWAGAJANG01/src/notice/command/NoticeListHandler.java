@@ -1,5 +1,7 @@
 package notice.command;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class NoticeListHandler implements CommandHandler {
 */
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException {
 		String pageNumberString = req.getParameter("p"); // 브라우저에서 목록을 보면 p=null; 페이징 링크를 누르면 p=n;
-		
+		String searchkeyword = req.getParameter("searchkeyword");
 		int pageNumber = 1;
 		if (pageNumberString != null && pageNumberString.length() > 0) { // p값이 들어왔는지 안들어왔는지
 			pageNumber = Integer.parseInt(pageNumberString); // 들어왔으면  String 타입의 변수를 int 타입의 변수로  바꿔서 넣는다.
@@ -68,7 +70,11 @@ public class NoticeListHandler implements CommandHandler {
 		listModel.setNoticeList(noticeList); // 가져온 목록
 		listModel.setPaging(paging);		 // 페이징 정보
 		req.setAttribute("listModel", listModel); // jsp로 전달
-
+		
+		System.out.println(searchkeyword);
+		
+		
+		
 		res.setHeader("Pragma", "No-cache"); // 캐시 삭제하도록 설정 : 게시글을 추가했는데 캐시에 있는걸 보여주면 추가한게 안나오기떄문에
 		res.setHeader("Cache-Control", "no-cache");
 		res.addHeader("Cache-Control", "no-store");

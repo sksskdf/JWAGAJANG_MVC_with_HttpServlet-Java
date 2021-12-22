@@ -95,7 +95,46 @@ tbody>tr>td>input.deletebtn {
     cursor: pointer;
 }
 
-div.hover-slider {
+/* Customized Paging */
+.pg_wrap {
+	font-size : 13px;
+	text-align : center;
+}
+
+.prev {
+	margin-right : 20px;
+	padding : 6px;
+	background: url(../img/prev.svg) no-repeat;
+	background-position: 0px;
+}
+
+.next {
+	margin-left : 20px;
+	padding : 6px;
+	background: url(../img/next.svg) no-repeat;
+	background-position: 0px;
+}
+.pg_currpno {
+	border : none;
+	text-align : center;
+	width : 28px;
+	height : 28px;
+	border-radius : 14px ;
+	background : none;
+}
+
+.pg_currpno:hover {
+	color : white;
+    background:#195500;
+}
+.pg_currpno[aria-pressed=true] {
+	color : white;
+	font-weight : bold;
+	border-radius : 12px;
+    background:#195500;
+}
+
+/* div.hover-slider {
 	padding: 0px;
     margin: 80px;
     resize: vertical;
@@ -124,7 +163,7 @@ div.hover-slider ul li a {
     cursor: pointer;
 }
 
-/* div.hover-slider ul li a:hover,
+div.hover-slider ul li a:hover,
 div.hover-slider ul li a:focus {
     color: #fff;
     border: 1px solid #195500;
