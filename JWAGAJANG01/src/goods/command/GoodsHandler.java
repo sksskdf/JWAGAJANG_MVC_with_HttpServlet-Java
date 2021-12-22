@@ -20,17 +20,9 @@ public class GoodsHandler implements CommandHandler {
 		// 상품
 		GoodsDAO gDao = GoodsDAO.getInstance();
 		GoodsVO md = gDao.getMd(md_code);
-		
-		// 리뷰 수
-		GoodsDAO reviewProcess = GoodsDAO.getInstance();
-		int count = reviewProcess.getArticleCount(md_code);
-		
-		if (count > 0) {
-			mdDetail = reviewProcess.getArticles(count, md_code);
-			req.setAttribute("mdDetail", mdDetail);
-		}
-		
-		
+		/*
+		 * // 리뷰수 List<GoodsVO> review
+		 */
 		req.setAttribute("md", md);
 		req.setAttribute("md_code", md_code);
 		

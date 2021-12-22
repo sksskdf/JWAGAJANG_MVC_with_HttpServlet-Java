@@ -52,22 +52,6 @@
            <a href="#">전체보기</a>
         </div>
         <div class="goodsCtgry">
-        
-        <!-- 
-	            <ul class="ctgry_list">
-	                <li><a href="#" class="on">전체보기</a></li>
-	                <li><a href="#">고구마·감자·당근</a></li>
-	                <li><a href="#">시금치·쌈채소·나물</a></li>
-	                <li><a href="#">브로콜리·파프리카·양배추</a></li>
-	                <li><a href="#">양파·마늘·대파·배추</a></li>
-	                <li><a href="#">오이·호박·고추</a></li>
-	                <li><a href="#">콩나물·버섯</a></li>
-	                <li><a href="#">과일</a></li>
-	            </ul>
-        
-         -->
-        
-        
         	<c:if test="${(category_main == 'All')}">
         		<ul class="ctgry_list">
 	                <li><a class="ctgry_on">전체보기</a></li>
@@ -75,7 +59,7 @@
         	</c:if>
         	<c:if test="${(category_main == '100')}">
 	            <ul class="ctgry_list">
-	                <li><a href="/list.do?category_main=100" class="ctgry_on">전체보기</a></li>
+	                <li><a href="/list.do?category_main=100" class="on">전체보기</a></li>
 	                <li><a href="/list.do?category_main=100&category_sub=110">고구마·감자·당근</a></li>
 	                <li><a href="/list.do?category_main=100&category_sub=120">시금치·쌈채소·나물</a></li>
 	                <li><a href="/list.do?category_main=100&category_sub=130">브로콜리·파프리카·양배추</a></li>
@@ -87,14 +71,14 @@
             </c:if>
             <c:if test="${(category_main == '200')}">
 	            <ul class="ctgry_list">
-	                <li><<a href="/list.do?category_main=200" class="ctgry_on">전체보기</a></li>
+	                <li><a href="/list.do?category_main=200" class="on">전체보기</a></li>
 	                <li><a href="/list.do?category_main=200&category_sub=210">쌀·잡곡</a></li>
 	                <li><a href="/list.do?category_main=200&category_sub=220">견과류</a></li>
 	            </ul>
             </c:if>
             <c:if test="${(category_main == '300')}">
 	            <ul class="ctgry_list">
-	                <li><a href="/list.do?category_main=300" class="ctgry_on">전체보기</a></li>
+	                <li><a href="/list.do?category_main=300" class="on">전체보기</a></li>
 	                <li><a href="/list.do?category_main=300&category_sub=310">생선류</a></li>
 	                <li><a href="/list.do?category_main=300&category_sub=320">해산물·조개류</a></li>
 	                <li><a href="/list.do?category_main=300&category_sub=330">김·미역·해조류</a></li>
@@ -102,7 +86,7 @@
             </c:if>
             <c:if test="${(category_main == '400')}">
 	            <ul class="ctgry_list">
-	                <li><a href="/list.do?category_main=400" class="ctgry_on">전체보기</a></li>
+	                <li><a href="/list.do?category_main=400" class="on">전체보기</a></li>
 	                <li><a href="/list.do?category_main=400&category_sub=410">소고기·돼지고기</a></li>
 	                <li><a href="/list.do?category_main=400&category_sub=420">닭·오리고기</a></li>
 	                <li><a href="/list.do?category_main=400&category_sub=430">계란</a></li>
@@ -128,26 +112,12 @@
             <div class="list_goods">
                 <div class="inner_listgoods">
                     <ul class="goods">
-<!--                        <li>
-                            <div class="item">
-                                <div class="thumb">
-                                    <div class="img" style="background-image: url(/img/best1.jpg);"></div>
-                                </div>
-                                <a class="goods_info">
-                                    <span class="goods_title">[박민지] 외로운 청경채</span><br>
-                                    <span class="goods_dc">20%</span>
-                                    <span class="cost">1,760원</span><br>
-                                    <span class="price">2,200원</span>
-                                </a>
-                            </div>
-                        </li> -->
-                        
                     <c:forEach var="md" items="${mdList}">
                         <li>
                             <div class="item">
-                                <div class="thumb">
-                                    <a href="/goods.do?md_code=${md.md_code}" class="img" style="background-image: url();">
-                                        <img src="${md.img_main}">
+                            	<div class="thumb">
+                                    <a href="/goods.do?md_code=${md.md_code}">
+                                    	<img class="img" style="background-image: url(${md.img_main});">
                                     </a>
                                 </div>
                                 <a href="/goods.do?md_code=${md.md_code}" class="goods_info">
