@@ -11,8 +11,8 @@ public class QnaListModel {
 		return qnaList;
 	}
 	
-	public void setNoticeList(List<QnaVO> noticeList) {
-		this.qnaList = noticeList;
+	public void setNoticeList(List<QnaVO> qnaList) {
+		this.qnaList = qnaList;
 	}
 
 	public boolean isHasBoard() {

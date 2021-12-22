@@ -11,11 +11,19 @@ public class QnaVO {
 	private String qna_content;
 	private int qna_count;
 	private String qna_reply;
+	private String user_id;
 	
 	public QnaVO(int qna_code, String qna_label, String qna_title, Timestamp qna_regdate, int qna_count) {
 	}
 	public QnaVO() {
 		// TODO 자동 생성된 생성자 스텁
+	}
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public int getQna_code() {
 		return qna_code;

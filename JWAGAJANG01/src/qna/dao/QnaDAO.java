@@ -47,7 +47,7 @@ public class QnaDAO { // data access object. db랑 웹사이트에서 쓰는 내
 		qVo.setQna_code(rs.getInt("qna_code"));
 		qVo.setQna_label(rs.getString("qna_label"));
 		qVo.setQna_title(rs.getString("qna_title"));
-		member.setId(rs.getNString("id"));
+		member.setId(rs.getNString("user_id"));
 		qVo.setQna_regdate(rs.getTimestamp("qna_regdate"));
 		qVo.setQna_editdate(rs.getTimestamp("qna_editdate"));
 		qVo.setQna_content(rs.getString("qna_content"));
