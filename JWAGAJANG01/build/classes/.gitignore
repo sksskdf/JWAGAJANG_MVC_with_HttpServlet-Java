@@ -1,12 +1,2 @@
-<<<<<<< HEAD
-/cart/
-/member/
-/notice/
-/product/
-=======
-/board/
-/index/
-/main/
-/qna/
 /goods/
->>>>>>> c97136c79ebc7ade413f7cdebce68c85276f024f
+/product/
