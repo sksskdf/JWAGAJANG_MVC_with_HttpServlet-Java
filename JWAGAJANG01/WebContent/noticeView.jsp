@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="img/favicon/favicon.ico">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/notice.css">
+<link rel="stylesheet" href="css/board.css">
 <link rel="stylesheet" href="css/header_footer.css">
 <title>좌가장 : 공지사항</title>
 </head>
@@ -40,10 +40,11 @@
 					<td class="content" colspan="4"><pre>${board.notice_content}</pre></td>
 				</tr>
 			</table>
+				<c:set var="page" value="${param.p}" />
 			<div class="list">
 				<input type="submit" value="수정" class="upbtn" onclick="location.href='noticeUpdate.do?notice_code=${param.notice_code}'">
 				<input type="submit" value="삭제" class="delbtn" onclick="location.href='noticeDelete.do?notice_code=${param.notice_code}'">
-				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeList.do'">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeList.do?p=${page}&f=${param.f}&q=${param.q}'">
 			</div>
 		</div>
 		<div class="noticeSrc">

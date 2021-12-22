@@ -1,36 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-            <!DOCTYPE html>
-            <html lang="ko">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html lang="ko">
 
-            <head>
-                <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="shortcut icon" href="img/favicon/favicon.ico">
-                <link rel="stylesheet" href="css/reset.css">
-                <link rel="stylesheet" href="css/notice.css">
-                <link rel="stylesheet" href="css/header_footer.css">
-                <link rel="stylesheet" href="css/productWrite.css">
-                <title>좌가장 : 제품수정</title>
-            </head>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="img/favicon/favicon.ico">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/notice.css">
+<link rel="stylesheet" href="css/header_footer.css">
+<link rel="stylesheet" href="css/productWrite.css">
+<title>좌가장 : 제품수정</title>
+</head>
 
-            <body>
-                <!-- 헤더영역    -->
+<body>
+   <!-- 헤더영역    -->
                 <jsp:include page="H&F/header.jsp" />
-
-
-                <!-- 상품수정 -->
-
- <section>
+	<!-- 제품수정 -->
+<section>
+		
 		<div class="pagenav">
-			홈<span class="navarrow"></span>게시판<span class="navarrow"></span>제품수정
+			<a href="index.jsp">홈</a>
+			<span class="navarrow"></span>
+			<a href="productList.do">마이페이지</a>
+			<span class="navarrow"></span>
+			<a href="productList.do">제품관리</a>
+			<span class="navarrow"></span>
+			<a href="productUpdate.do">제품수정</a>
 		</div>
-		<div class="notice">
+		
+		
+		<div class="productUpdate">
 			<h1>제품수정</h1>
-			<form name="frm" method="post" action="mdAdd.do">
+			<form name="frm" method="post" action="productUpdate.do">
 			<table class="prodWritebox">
 				<tr>
 					<th width="150px">구분</th>

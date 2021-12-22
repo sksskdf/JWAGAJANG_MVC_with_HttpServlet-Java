@@ -10,9 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="img/favicon/favicon.ico">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/notice.css">
+<link rel="stylesheet" href="css/board.css">
 <link rel="stylesheet" href="css/header_footer.css">
-<title>좌가장 : 공지사항</title>
+<title>좌가장 : 공지사항 수정하기</title>
 </head>
 <body>
 <!-- 헤더영역   -->
@@ -53,10 +53,10 @@
 					<th><textarea style="resize: none;" name="notice_content">${board.notice_content}</textarea></th>
 				</tr>
 			</table>
-			
+			<c:set var="page" value="${param.p}" />
 			<div class="noticeWritebtn">
-				<input type="submit" value="수정" name="send" class="sendbtn"  onclick="return noticeCheck()">
-				<input type="submit" value="목록" name="list" class="noticelistbtn" onclick="location.href='noticeList.do'">
+				<input type="submit" value="수정" name="send" class="sendbtn">
+				<input type="submit" value="목록" name="list" class="noticelistbtn" onclick="location.href='noticeList.do?p=${page}'">
 			</div>
 			</form>
 		</div>
@@ -66,6 +66,6 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/index.js"></script>
-	<script src="js/notice.js"></script>
+	<script src="js/board.js"></script>
 </body>
 </html>

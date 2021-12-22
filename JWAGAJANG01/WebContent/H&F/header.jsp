@@ -5,7 +5,7 @@
 	<header>   
        <div class="headerwrap">
         <div class="logo">
-          <a href="/index.do"><img class="logo_img" src="../img/logo.svg" alt="로고"></a>
+          <a href="/main.do"><img class="logo_img" src="../img/logo.svg" alt="로고"></a>
         </div>
         <form class="search">
           <input type="text" id="schText" name="schText"><input type="image" src="../img/search.svg" id="schButton" name="schButton">
@@ -17,9 +17,6 @@
             </c:if>
             <c:if test="${sessionScope.id != null}">
             <li><a href="/logout.do">로그아웃</a></li>
-            </c:if>
-            <c:if test="${sessionScope.id == null}">
-            <li><a href="/login.do">장바구니</a></li>
             </c:if>
             <c:if test="${sessionScope.id != null}">
             <li><a href="#">장바구니</a></li>

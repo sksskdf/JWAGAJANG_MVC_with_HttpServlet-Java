@@ -1,9 +1,13 @@
+// DAO : (Data Access Object) -> 
+// DAO는 DB의 data에 접근하기 위한 객체로 직접 DB에 접근하여 데이터를 삽입, 삭제, 조회 등 조작할 수 있는 기능을 수행
+
 package product.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,5 +115,47 @@ public class ProductDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public List<ProductVO> selectBestProduct() {
+		String sql = "select md_code, md_name, md_price, md_dc, img_main from table_md order by md_ordercnt desc limit 4";
+		List<ProductVO> list = new ArrayList<ProductVO>();
+		try (Connection conn = DBManager.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql)){
+			while(rs.next()) {
+				ProductVO pVo = new ProductVO();
+				pVo.setMd_code(rs.getInt("md_code"));
+				pVo.setMd_name(rs.getString("md_name"));
+				pVo.setMd_price(rs.getInt("md_price"));
+				pVo.setMd_dc(rs.getInt("md_dc"));
+				pVo.setImg_main(rs.getString("img_main"));
+				list.add(pVo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<ProductVO> selectNewProduct() {
+		String sql = "select md_code, md_name, md_price, md_dc, img_main from table_md order by md_regdate desc limit 4;";
+		List<ProductVO> list = new ArrayList<ProductVO>();
+		try (Connection conn = DBManager.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql)){
+			while(rs.next()) {
+				ProductVO pVo = new ProductVO();
+				pVo.setMd_code(rs.getInt("md_code"));
+				pVo.setMd_name(rs.getString("md_name"));
+				pVo.setMd_price(rs.getInt("md_price"));
+				pVo.setMd_dc(rs.getInt("md_dc"));
+				pVo.setImg_main(rs.getString("img_main"));
+				list.add(pVo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
