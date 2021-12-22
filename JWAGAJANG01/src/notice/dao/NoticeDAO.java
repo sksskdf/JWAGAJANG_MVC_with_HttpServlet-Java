@@ -134,6 +134,22 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 		return count;
 	}
 	
+	public int searchselectCount(String searchoption, String searchkeyword) throws SQLException { // 게시글 개수 반환
+		ResultSet rs = null;
+		int count = 0;
+		try (Connection conn = DBManager.getConnection();
+				Statement stmt = conn.createStatement()) {
+			rs = stmt.executeQuery("select count(*) from table_notice where "+ searchoption + " like '%"+searchkeyword+"%'");
+			rs.next();
+			count = rs.getInt(1);
+			
+		} finally {
+			DBManager.close(rs);
+		}
+		return count;
+	}
+	
+	
 	public List<NoticeVO> select(int firstRow, int endRow)
 			throws SQLException, NamingException {
 		PreparedStatement pstmt = null;
@@ -142,7 +158,7 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 		try (Connection conn = DBManager.getConnection();){
 				pstmt = conn.prepareStatement("select * from table_notice "
 						+ "order by notice_code desc limit ?, ?");
-			pstmt.setInt(1, firstRow - 1);
+			pstmt.setInt(1, firstRow - 1); // 데이터베이스에서는 0부터 시작이라서 -1 입력
 			pstmt.setInt(2, endRow - firstRow + 1);
 			rs = pstmt.executeQuery();
 			if (!rs.next()) {
@@ -175,29 +191,34 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 		bVo.setNotice_content(rs.getString("notice_content"));
 		return bVo;
 	}
-	public List<NoticeVO> search(String searchoption, String searchkeyword) {
+	public List<NoticeVO> search(String searchoption, String searchkeyword, int firstRow, int endRow) {
 		List<NoticeVO> list = new ArrayList<NoticeVO>();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from table_notice where "+searchoption+" like '%"+searchkeyword+"%' ";
+		String sql = "select * from table_notice where "+searchoption+" like '%"+searchkeyword+"%' order by notice_code desc limit ?, ? ";
 		try (Connection conn = DBManager.getConnection();){
-			stmt = conn.createStatement();
-			// pstmt.setString(1, "%"+searchkeyword+"%"); 물음표에 해당되는 코드, sql문에 물음표가 없으니까 주석처리
-			rs = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, firstRow -1); //물음표에 해당되는 코드, 페이지의 시작열 순서
+			pstmt.setInt(2, endRow - firstRow +1); //물음표에 해당되는 코드, 게시글의 숫자 
+			rs = pstmt.executeQuery();
+
+			
 			while(rs.next()) {
 				int notice_code = rs.getInt("notice_code");
 				String notice_label = rs.getString("notice_label");
 				String notice_title = rs.getString("notice_title");
 				Timestamp notice_regdate = rs.getTimestamp("notice_regdate");
-				NoticeVO nVo = new NoticeVO(notice_code, notice_label, notice_title, notice_regdate );
+				int notice_count = rs.getInt("notice_count");
+				NoticeVO nVo = new NoticeVO(notice_code, notice_label, notice_title, notice_regdate, notice_count );
 				list.add(nVo);
-				DBManager.close(conn);
+
 			}
+			DBManager.close(conn);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(rs);
-			DBManager.close(stmt);
+			DBManager.close(pstmt);
 			
 		}
 		

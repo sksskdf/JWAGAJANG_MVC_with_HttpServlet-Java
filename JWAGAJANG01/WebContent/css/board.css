@@ -87,11 +87,13 @@ h1 {
 }
 
 pre {
+	width : 953px;
 	line-height: 30px;
 	text-align: left;
 }
 
 .content { /* 공지사항 상세보기 내용 */
+	width : 953px;
 	padding: 40px 0;
 }
 
@@ -118,7 +120,7 @@ pre {
 .sortinput {
 	color: #707070;
 	text-indent: 5px; /* 들여쓰기 */
-	width: 316px;
+	width: 310px;
 	height: 38px;
 	border: #00000026 solid 0.5px;
 	margin-left: 15px;
@@ -208,11 +210,14 @@ textarea {
 	margin: 0 auto;
 	margin-top: 20px;
 }
-
+.srcoption {
+	height : 25px;
+	border: #00000026 solid 0.5px;	
+}
 .searchtext {
 	width: 220px;
-	line-height: 24px;
-	border: #00000026 solid 0.5px;
+	line-height: 22px;
+	border: #00000026 solid 0.5px;	
 }
 
 .searchbtn {
@@ -285,6 +290,7 @@ textarea {
 	background-position: 0px;
 }
 .pg_currpno {
+	color : #707070;
 	border : none;
 	text-align : center;
 	width : 28px;
@@ -297,9 +303,8 @@ textarea {
 	color : white;
     background:#195500;
 }
-.pg_currpno[aria-pressed=true] {
-	color : white;
-	font-weight : bold;
-	border-radius : 12px;
-    background:#195500;
+
+.pg_currpnosel {
+	color :#195500;
+    font-weight: 700;
 }
