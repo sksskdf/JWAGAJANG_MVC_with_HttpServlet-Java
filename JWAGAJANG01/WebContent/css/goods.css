@@ -11,10 +11,19 @@ a {
     text-decoration: none;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .pagenav {
     width: 100%;
     float: left;
     margin: 40px 0px 0px 0px;
+}
+
+.pagenav a {
     color: #707070;
     font: normal normal bold 15px/17px NanumGothic;
 }
@@ -112,19 +121,20 @@ a {
 
 .countbtn {
     width: 74px;
-    height: 20px;
+    height: 21px;
     border: 0.25px solid #707070;
     display: inline-block;
     text-align: center;
 }
 
-.goods_qty {
+#goods_qty {
     width: 30px;
     height: 15px;
     border: 0;
     outline: none;
     float: left;
-    text-align: center;
+    padding-top: 6px;
+	text-align: center;
 }
 
 .minusbtn, .plusbtn {
@@ -133,7 +143,7 @@ a {
     border: 0;
     border-radius: 0;
     float: left;
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
 
 .minusbtn {
@@ -333,6 +343,7 @@ a {
     vertical-align: middle;
     z-index: 10;
     display: none;
+    box-sizing: content-box;
 }
 
 .footnav > div {
@@ -364,6 +375,7 @@ a {
 .footnav_latest p {
     margin-right: 20px;
 }
+
 .footnav_latest li {
     width: 48px;
     height: 48px;
@@ -371,17 +383,18 @@ a {
     margin-right: 10px;
 }
 
-.footnav_latest > li > a, img {
+.footnav_latest img {
     width: 100%;
     height: 100%;
 }
 
 .top_btn {
-    width: 45px;
-    height: 45px;
+    width: 43px;
+    height: 43px;
     float: right;
     padding: 15px 50px;
     opacity: 0.47;
+    box-sizing: content-box;
 }
 
 .topbtn {
