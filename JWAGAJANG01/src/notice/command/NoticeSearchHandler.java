@@ -29,7 +29,6 @@ public class NoticeSearchHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException  {
-		/* String url = "/notice.jsp"; */
 		
 		// 옵션으로 들어온 인자를 사용하는 방법
 		String searchoption_ = req.getParameter("searchoption"); // 입력도구인 req한테 searchoption을 이용해서  getParameter한다.
