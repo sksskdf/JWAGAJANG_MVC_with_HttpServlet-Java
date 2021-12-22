@@ -61,6 +61,7 @@ public class CartPutHandler implements CommandHandler {
 			cartList.add(cVo);
 		}
 		req.setAttribute("cartList", cartList);
+		
 		return "cart.jsp";
 	}
 

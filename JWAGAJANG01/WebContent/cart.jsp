@@ -30,7 +30,7 @@
 					<table class="cartconts">
 						<thead>
 							<tr>
-								<th width="8.3945435%"><input type="checkbox" id="allchk"/></th>
+								<th width="8.3945435%"><input type="checkbox" id="allchk" checked/></th>
 								<th width="49.162644%">상품명</th>
 								<th width="11.962224%">구매수량</th>
 								<th width="18.258132%">주문금액</th>
@@ -46,7 +46,7 @@
 							<c:if test="${!empty cartList}">
 							<c:forEach items="${cartList }" var="cart">
 							<tr>
-								<td><input type="checkbox" class="mdchk" value="   "/></td>
+								<td><input type="checkbox" class="mdchk" value="   " checked /></td>
 								<td class="md" style="text-align: left"><img
 									src="${cart.img_main }" /> <span class="mddesc"><a href="#">${cart.md_name }</a></span></td>
 								<td><span class="stepper">
