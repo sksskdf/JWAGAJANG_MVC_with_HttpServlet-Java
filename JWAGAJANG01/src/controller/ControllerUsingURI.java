@@ -37,7 +37,7 @@ public class ControllerUsingURI extends HttpServlet {
 		// 실제 WAS가 구동될때의 저장된 물리적 경로를 구한다.
 		// 실제 서버가 실행되는 물리적 경로는 workdirectory의 .metadata폴더 안에 위치한다.
 		String configFilePath = getServletContext().getRealPath(configFile);
-		System.out.println("properties 실제경로 :" + configFilePath);
+		
 		//매개변수가 참조하는 값을 바이트스트림으로 읽기 위해 FileInputStream객체를 사용한다.
 		try (FileInputStream fis = new FileInputStream(configFilePath)){
 			//properties객체를 이용하여 바이트스트림으로 읽은 properites의 물리적 경로를 불러온 것.
