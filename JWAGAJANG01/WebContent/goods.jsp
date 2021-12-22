@@ -93,7 +93,20 @@
                     <p class="review_desc">· 상품에 대한 후기를 남기는 공간입니다. 상품평 운영원칙 및 법령에 위반되는 경우에는 해당 상품평에 대한 필요한 조치가 취해질 수 있습니다.</p>
                 </div>
                 <table class="review_list">
-                    <tr>
+                <c:if test="${count == 0}">
+                	등록된 상품평이 없습니다.
+                </c:if>
+                <c:if test="${count > 0}">
+	                <c:forEach var="review" items="${reviewList}">
+	                	<tr>
+	                        <td class="review_name">"${review.user_id}"</td>
+	                        <td class="review_rate">"${review.review_rate}"</td>
+	                        <td class="review_content">"${review.review_content}"</td>
+	                        <td class="review_date">"${review.review_regdate}"</td>
+	                    </tr>
+	                </c:forEach>
+				</c:if>
+                   <!--  <tr>
                         <td class="review_name">박민지</td>
                         <td class="review_rate">★★★★★</td>
                         <td class="review_content">청경채 살살 녹는다.</td>
@@ -104,7 +117,7 @@
                         <td class="review_rate">★★★★</td>
                         <td class="review_content">흙이 그대로 있는데 맛은 있어요.</td>
                         <td class="review_date">2021.12.03</td>
-                    </tr>
+                    </tr> -->
                 </table>
                 <table class="review_write">
                     <tr>

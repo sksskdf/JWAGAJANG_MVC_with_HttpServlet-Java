@@ -106,43 +106,8 @@ public class GoodsDAO {
 	}
 	
 	
-	// 리뷰
-	public List<GoodsVO> getReview(int md_code) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<GoodsVO> reviewList = null;
-		
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement("select * from table_review where md_code="+md_code);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				reviewList = new ArrayList<GoodsVO>();
-				do {
-					GoodsVO gVo = new GoodsVO();
-					gVo.setMd_code(rs.getInt("md_code"));
-					gVo.setReview_code(rs.getInt("md_code"));
-					gVo.setUser_id(rs.getString("user_id"));
-					gVo.setReview_rate(rs.getInt("review_rate"));
-					gVo.setReview_content(rs.getString("review_content"));
-					gVo.setReview_regdate(rs.getTimestamp("review_regdate"));
-				} while (rs.next());
-			}
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
-            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
-            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
-		}
-		return reviewList;
-	}
-	
-	
-	// 리뷰 수
-	public int reviewCount(int md_code) {
+	// 전체 리뷰 수
+	public int reviewCount() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -150,7 +115,7 @@ public class GoodsDAO {
 		
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement("select count(*) from table_review where md_code = " + md_code);
+			pstmt = conn.prepareStatement("select count(*) from table_review");
 			rs = pstmt.executeQuery();
 			
 			if (rs.next())
@@ -163,6 +128,67 @@ public class GoodsDAO {
             if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
 		}
 		return x;
+	}
+	
+	// 리뷰 수
+	public int reviewCount(int md_code) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = 0;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement("select count(*) from table_review where md_code = ?");
+			pstmt.setInt(1, md_code);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next())
+				x = rs.getInt(1);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
+            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+		}
+		return x;
+	}
+	
+
+	// 리뷰
+	public List<GoodsVO> getReview(int count) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<GoodsVO> reviewList = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement("select * from table_review");
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				reviewList = new ArrayList<GoodsVO>(count);
+				do {
+					GoodsVO review = new GoodsVO();
+					review.setMd_code(rs.getInt("md_code"));
+					review.setReview_code(rs.getInt("md_code"));
+					review.setUser_id(rs.getString("user_id"));
+					review.setReview_rate(rs.getInt("review_rate"));
+					review.setReview_content(rs.getString("review_content"));
+					review.setReview_regdate(rs.getTimestamp("review_regdate"));
+					reviewList.add(review);
+				} while (rs.next());
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
+            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+		}
+		return reviewList;
 	}
 	
 	

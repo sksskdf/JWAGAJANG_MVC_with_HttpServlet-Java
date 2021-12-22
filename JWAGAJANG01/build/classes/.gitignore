@@ -1,9 +1,5 @@
-/cart/
-/common/
-/controller/
-/filter/
+/board/
+/index/
+/main/
+/qna/
 /goods/
-/member/
-/notice/
-/product/
-/util/
