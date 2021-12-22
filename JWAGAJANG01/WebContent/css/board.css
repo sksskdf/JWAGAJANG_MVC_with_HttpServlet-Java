@@ -4,8 +4,9 @@
 }
 
 a {
-	text-decoration : none;
+	text-decoration: none;
 }
+
 .pagenav {
 	margin-top: 40px;
 	font-size: 14px;
@@ -57,8 +58,9 @@ h1 {
 
 /* brdView 테이블 */
 .brdView {
-	width : 953px;
+	width: 953px;
 }
+
 .brdViewbox {
 	background: #00000007;
 	font-weight: bold;
@@ -66,8 +68,9 @@ h1 {
 	line-height: 40px;
 	border-spacing: 0;
 }
-.brdView_label{
-	width : 100px;
+
+.brdView_label {
+	width: 100px;
 }
 
 .brdViewbox :nth-child(1) {
@@ -87,13 +90,13 @@ h1 {
 }
 
 pre {
-	width : 953px;
+	width: 953px;
 	line-height: 30px;
 	text-align: left;
 }
 
 .content { /* 공지사항 상세보기 내용 */
-	width : 953px;
+	width: 953px;
 	padding: 40px 0;
 }
 
@@ -202,7 +205,6 @@ textarea {
 	margin: 30px;
 }
 
-
 /* 게시글 찾기  */
 .noticeSrc {
 	width: 100%;
@@ -210,14 +212,16 @@ textarea {
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .srcoption {
-	height : 25px;
-	border: #00000026 solid 0.5px;	
+	height: 25px;
+	border: #00000026 solid 0.5px;
 }
+
 .searchtext {
 	width: 220px;
 	line-height: 22px;
-	border: #00000026 solid 0.5px;	
+	border: #00000026 solid 0.5px;
 }
 
 .searchbtn {
@@ -272,39 +276,70 @@ textarea {
 
 /* Customized Paging */
 .pg_wrap {
-	font-size : 13px;
-	text-align : center;
+	font-size: 13px;
+	text-align: center;
 }
 
 .prev {
-	margin-right : 20px;
-	padding : 6px;
+	margin-right: 20px;
+	padding: 6px;
 	background: url(../img/prev.svg) no-repeat;
 	background-position: 0px;
 }
 
 .next {
-	margin-left : 20px;
-	padding : 6px;
+	margin-left: 20px;
+	padding: 6px;
 	background: url(../img/next.svg) no-repeat;
 	background-position: 0px;
 }
+
 .pg_currpno {
-	color : #707070;
-	border : none;
-	text-align : center;
-	width : 28px;
-	height : 28px;
-	border-radius : 14px ;
-	background : none;
+	color: #707070;
+	border: none;
+	text-align: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 14px;
+	background: none;
 }
 
 .pg_currpno:hover {
-	color : white;
-    background:#195500;
+	color: white;
+	background: #195500;
 }
 
 .pg_currpnosel {
-	color :#195500;
-    font-weight: 700;
+	color: #195500;
+	font-weight: 700;
+}
+
+/* ------------------QNA---------------- */
+
+/* qna list */
+.qnabrdbox {
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 40px;
+	border: #00000026 solid 0.5px;
+	border-width: 0.5px 0px; /* 테두리 두깨 : 위아래, 양옆 */
+}
+
+.qnabrdbox :nth-child(1) {
+	width: 106px;
+}
+
+.qnabrdbox :nth-child(2) {
+	width: 599px;
+}
+
+.qnabrdbox :nth-child(3) {
+	width: 106px;
+}
+
+.qnabrdbox :nth-child(4) {
+	width: 136px;
+}
+.qnabrdbox :nth-child(5) {
+	width: 106px;
 }

@@ -15,3 +15,5 @@ notice_editdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 notice_content TEXT NOT NULL,
 notice_count INT default 0
 );
+
+select * from table_qna;

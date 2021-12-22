@@ -27,29 +27,30 @@
 		<div class="notice">
 			<h1>Q&amp;A</h1>
 			<table>
-				<tr class="brdbox">
+				<tr class="qnabrdbox">
 					<th>처리상태</th>
 					<th>제목</th>
 					<th>작성자</th>
-					<th></th>
+					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
 				<c:set var="page" value="${param.p}" />
-				<c:forEach var="board" items="${listModel.noticeList}">
+				<c:forEach var="board" items="${qnalistModel.qnaList}">
 					<tr class="record">
-						<td class="record_1">${board.notice_label }</td>
+						<td class="record_1">${board.qna_label }</td>
 						<td class="record_2"><a
-							href="noticeView.do?notice_code=${board.notice_code}&p=${page}&f=${param.searchoption}&q=${param.searchkeyword}">
-								${board.notice_title} </a></td>
-						<td class="record_3"><fmt:formatDate
-								value="${board.notice_regdate}" /></td>
-						<td class="record_4">${board.notice_count}</td>
+							href="qnaView.do?qna_code=${board.qna_code}&p=${page}&f=${param.searchoption}&q=${param.searchkeyword}">
+								${board.qna_title} </a></td>
+								<td class="record_3">${board.user_id}</td>
+						<td class="record_4"><fmt:formatDate
+								value="${board.qna_regdate}" /></td>
+						<td class="record_5">${board.qna_count}</td>
 					</tr>
 				</c:forEach>
 
 			</table>
 			<div class="writebox">
-				<a href="noticeWrite.do"><input type="submit" value="글쓰기"
+				<a href="qnaWrite.do"><input type="submit" value="글쓰기"
 					name="write" class="writebtn"></a>
 			</div>
 		</div>
@@ -65,7 +66,7 @@
 			 3. scope : 조건 결과를 지정할 변수의 저장 scope 를 지정합니다. --%>
 			<c:if test="${paging.startPageNo > paging.sizeOfPage}">
 				<a class="pg_prev"
-					href="<c:url value="/noticeList.do?&p=${paging.prevPageNo}"/>">
+					href="<c:url value="/qnaList.do?&p=${paging.prevPageNo}"/>">
 					<span class="prev"></span>
 				</a>
 			</c:if>
@@ -73,7 +74,7 @@
 			<%-- 페이지 번호 반복문 --%>
 			<c:forEach var="pno" begin="${paging.startPageNo}"
 				end="${paging.endPageNo}">
-				<a href="<c:url value="/noticeList.do?&p=${pno}"/>"> <input
+				<a href="<c:url value="/qnaList.do?&p=${pno}"/>"> <input
 					type="button"
 					class="pg_currpno ${(param.p==(pno))?'pg_currpnosel':''}"
 					value="${pno}"></a>
@@ -81,7 +82,7 @@
 
 			<c:if test="${paging.endPageNo < paging.finalPageNo}">
 				<a class="pg_next"
-					href="<c:url value="/noticeList.do?&p=${paging.nextPageNo}"/>">
+					href="<c:url value="/qnaList.do?&p=${paging.nextPageNo}"/>">
 					<span class="next"></span>
 				</a>
 			</c:if>
@@ -91,11 +92,11 @@
 			onsubmit="searchCheck()">
 			<!-- method="post"방식으로 할 때 파라미터를 암호화할 수 있음. 그러나 get방식으로해도 상관xx -->
 			<select name="searchoption">
-				<option ${(param.f == "notice_title")? "selected":""}
-					value="notice_title">제목</option>
+				<option ${(param.f == "qna_title")? "selected":""}
+					value="qna_title">제목</option>
 				<!-- 페이지가 바꼈을때 유지 -->
-				<option ${(param.f == "notice_content")? "selected":""}
-					value="notice_content">내용</option>
+				<option ${(param.f == "qna_content")? "selected":""}
+					value="qna_content">내용</option>
 			</select> <input class="searchtext" value="${param.searchkeyword}" type="text"
 				name="searchkeyword"> <input class="searchbtn" value="찾기"
 				type="submit" onclick="return qnasearchCheck()">

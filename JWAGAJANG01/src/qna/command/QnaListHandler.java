@@ -54,13 +54,12 @@ public class QnaListHandler implements CommandHandler {
 			endRow = totalBoardCount;
 		}
 		qnaList = qDao.select(firstRow, endRow); // 첫번째 열, 마지막 열
-		QnaListModel listModel = new QnaListModel();
-		listModel.setNoticeList(qnaList); // 가져온 목록
-		listModel.setPaging(paging);		 // 페이징 정보
-		req.setAttribute("listModel", listModel); // jsp로 전달
+		QnaListModel qnalistModel = new QnaListModel();
+		qnalistModel.setNoticeList(qnaList); // 가져온 목록
+		qnalistModel.setPaging(paging);		 // 페이징 정보
+		req.setAttribute("qnalistModel", qnalistModel); // jsp로 전달
 		
 		System.out.println(searchkeyword);
-		
 		
 		
 		res.setHeader("Pragma", "No-cache"); // 캐시 삭제하도록 설정 : 게시글을 추가했는데 캐시에 있는걸 보여주면 추가한게 안나오기떄문에

@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import member.model.Member;
 import qna.dto.QnaVO;
 import util.DBManager;
 
@@ -26,30 +27,32 @@ public class QnaDAO { // data access object. db랑 웹사이트에서 쓰는 내
 	
 	public List<QnaVO> selectAllBoards() { // 게시글 목록 출력, List안에 qnaVO를 저장하겠다고 약속 . <>안에는 특정한 값 넣을 수 있음
 		String sql = "select * from table_qna order by qna_code desc";
-		List<QnaVO> list = new ArrayList<QnaVO>();
+		List<QnaVO> qnalist = new ArrayList<QnaVO>();
 		try (Connection conn = DBManager.getConnection();
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				QnaVO bVo = getBoardVOFromResultSet(rs);
-				list.add(bVo);
+				qnalist.add(bVo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return qnalist;
 	}
 
 	private QnaVO getBoardVOFromResultSet(ResultSet rs) throws SQLException { // 상세내용 출력
-		QnaVO bVo = new QnaVO();
-		bVo.setQna_code(rs.getInt("qna_code"));
-		bVo.setQna_label(rs.getString("qna_label"));
-		bVo.setQna_title(rs.getString("qna_title"));
-		bVo.setQna_regdate(rs.getTimestamp("qna_regdate"));
-		bVo.setQna_editdate(rs.getTimestamp("qna_editdate"));
-		bVo.setQna_content(rs.getString("qna_content"));
-		bVo.setQna_count(rs.getInt("qna_count"));
-		return bVo;
+		QnaVO qVo = new QnaVO();
+		Member member = new Member();
+		qVo.setQna_code(rs.getInt("qna_code"));
+		qVo.setQna_label(rs.getString("qna_label"));
+		qVo.setQna_title(rs.getString("qna_title"));
+		member.setId(rs.getNString("id"));
+		qVo.setQna_regdate(rs.getTimestamp("qna_regdate"));
+		qVo.setQna_editdate(rs.getTimestamp("qna_editdate"));
+		qVo.setQna_content(rs.getString("qna_content"));
+		qVo.setQna_count(rs.getInt("qna_count"));
+		return qVo;
 	}
 
 	// 게시글 등록
