@@ -22,9 +22,9 @@
 		<div class="pagenav">
 			<a href="index.jsp">홈</a>
 			<span class="navarrow"></span>
-			<a href="noticeList.do">게시판</a>
+			<a href="noticeList.do?&p=1">게시판</a>
 			<span class="navarrow"></span>
-			<a href="noticeList.do">공지사항</a>
+			<a href="noticeList.do?&p=1">공지사항</a>
 		</div>
 		<div class="notice">
 			<h1>공지사항</h1>
@@ -37,6 +37,7 @@
 				</tr>
 				<c:set var="page" value="${param.p}" />
 				<c:forEach var="board" items="${listModel.noticeList}"> 
+				
 					<tr class="record">
 						<td class="record_1">${board.notice_label }</td>
 						<td class="record_2"><a href="noticeView.do?notice_code=${board.notice_code}&p=${page}&f=${param.searchoption}&q=${param.searchkeyword}"> ${board.notice_title} </a></td>
@@ -47,11 +48,9 @@
 
 			</table>
 			<div class="writebox">
-				<a href="noticeWrite.do"><input type="submit" value="글쓰기" name="write" class="writebtn"></a>
+				<a href="noticeWrite.do?&p=${param.p}"><input type="submit" value="글쓰기" name="write" class="writebtn"></a>
 			</div>
 		</div>
-		
-			<!--  -->
 
 		<div class="pg_wrap">
 		<c:set var="paging" value="${listModel.paging}"/> <!-- 변수 선언 -->

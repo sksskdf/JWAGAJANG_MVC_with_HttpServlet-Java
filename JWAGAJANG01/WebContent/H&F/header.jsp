@@ -19,7 +19,7 @@
             <li><a href="/logout.do">로그아웃</a></li>
             </c:if>
             <c:if test="${sessionScope.id != null}">
-            <li><a href="#">장바구니</a></li>
+            <li><a href="/cartPut.do">장바구니</a></li>
             </c:if>
             <c:if test="${sessionScope.id == null}">
             <li><a href="/join.do">회원가입</a></li>
@@ -61,8 +61,8 @@
             <li class="cate gnb_li"><a class="ctgry" href="#">카테고리</a></li>
             <li class="cate gnb_li"><a class="ctgry" href="#">카테고리</a></li>
             <li class="cate gnb_li" ><a class="ctgry" href="#">카테고리</a></li>
-            <li class="gnb_li"><a class="ctgry" href="notice.jsp">공지사항</a></li>
-            <li class="gnb_li"><a class="ctgry" href="#">문의게시판</a></li>
+            <li class="gnb_li"><a class="ctgry" href="noticeList.do?&p=1">공지사항</a></li>
+            <li class="gnb_li"><a class="ctgry" href="qnaList.do?&p=1">문의게시판</a></li>
           </ul>
         </nav>
        </div>

@@ -46,3 +46,8 @@ $(function() {
 		else $("#allchk").prop("checked", true); 
 	});
 });
+
+const favbtn = document.querySelector('.favbtn');
+favbtn.addEventListener('click',function(){
+	alert("ㅎㅇ");
+})

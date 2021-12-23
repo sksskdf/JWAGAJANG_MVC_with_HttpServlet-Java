@@ -6,6 +6,7 @@ import java.util.List;
 
 import member.dao.FavDao;
 import member.dao.OrderDao;
+import member.model.Fav;
 import member.model.Order;
 import util.DBManager;
 
@@ -45,5 +46,15 @@ public class FavService {
 		conn = DBManager.getConnection();
 
 		fDao.delete(conn, id, mdname);
+	}
+	
+	public void insert(Fav fav) {
+		FavDao fDao = FavDao.getInstance();
+		
+		Connection conn = null;
+		
+		conn = DBManager.getConnection();
+
+		fDao.insert(conn,fav);
 	}
 }
