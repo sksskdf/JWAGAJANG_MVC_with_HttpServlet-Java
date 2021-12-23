@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="css/goods.css">
     <link rel="stylesheet" href="css/header_footer.css">
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/goods.js"></script>
+
     <title>좌가장</title>
 </head>
 <body>
@@ -70,8 +69,13 @@
                 </div>
                 <div class="btn">
                     <button type="button" class="buynowbtn">바로구매</button>
-                    <button type="button" class="cartbtn">장바구니</button>
-                    <button type="button" class="favbtn">찜하기</button>
+                    <c:if test="${not empty sessionScope.id}">
+                    <button type="button" class="cartbtn">>장바구니</button>
+                    </c:if>
+                    <c:if test="${empty sessionScope.id}">
+                    <button type="button" class="cartbtn" >장바구니</button>
+                    </c:if>
+                    <button type="button" class="favbtn" onclick="">찜하기</button>
                 </div>
             </div>
             <div id="goods_detail">
@@ -161,8 +165,7 @@
     <!-- 푸터 -->
     <jsp:include page="H&F/footer.html"/>
     <script src="js/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/goods.js"></script>
 </body>
 </html>

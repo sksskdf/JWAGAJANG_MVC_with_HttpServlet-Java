@@ -14,6 +14,8 @@ public class GoodsHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
+		
+		
 		List<GoodsVO> mdDetail;
 		Integer md_code = Integer.parseInt(req.getParameter("md_code"));
 		

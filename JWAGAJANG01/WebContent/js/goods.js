@@ -77,3 +77,14 @@ $(window).scroll(function() {
         $(".footnav").show();
     }
 }); 
+
+const login = document.querySelector(".login");
+login.addEventListener('click',function(){
+	alert("로그인을 해주세요.");
+})
+
+
+
+
+	
+
