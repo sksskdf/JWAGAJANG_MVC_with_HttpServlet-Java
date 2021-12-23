@@ -1,1 +1,3 @@
-select *from table_user;
+select *from table_md;
+
+desc table_md;

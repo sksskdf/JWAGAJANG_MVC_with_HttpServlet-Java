@@ -46,7 +46,7 @@
 							<c:if test="${!empty cartList}">
 							<c:forEach items="${cartList }" var="cart">
 							<tr>
-								<td><input type="checkbox" class="mdchk" value="   " checked /></td>
+								<td><input type="checkbox" name="mdchk" value="   " checked /></td>
 								<td class="md" style="text-align: left"><img
 									src="${cart.img_main }" /> <span class="mddesc"><a href="#">${cart.md_name }</a></span></td>
 								<td><span class="stepper">
