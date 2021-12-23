@@ -54,6 +54,7 @@
                         <span class="countbtn">
                             <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
                             <input type="number" id="goods_qty" readonly="readonly" min="1"  value="1">
+                            <input type="number" id="goods_qty" readonly="readonly" min="1" max="10" value="1">
                             <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
                         </span>
                     </dd>
@@ -81,6 +82,7 @@
                     <button type="button" class="cartbtn" >장바구니</button>
                     </c:if>
                     <button type="button" class="favbtn" >찜하기</button>
+
                 </div>
             </div>
             
@@ -118,17 +120,16 @@
 	                </c:forEach>
 				</c:if>
                 </table>
+                <input type="hidden" name="md_code" value="${md.md_code}">
                 <table class="review_write">
 				<c:if test="${empty sessionScope.id}">
 					<p class="reveiwLogin">상품평을 작성하시려면 <a href="/login.do">로그인</a> 하세요</p>	<%-- 로그인하고 다시 돌아올 수 있나? --%>
 				</c:if>
-				
-				
-				
-				<%-- <c:if test="${!empty sessionScope.id}"> --%>
+				<c:if test="${!empty sessionScope.id}">
 					<tr>
                         <td class="write_name">
-                            <input type="text" id="writer">
+                        	${sessionScope.id}
+                            <input type="hidden" id="writer" value="${sessionScope.id}">
                         </td>
                         <td class="write_rate">
                             <input type="text" id="stars" placeholder="★★★★★"
@@ -143,7 +144,7 @@
                             <input type="submit" id="submitbtn" value="등록"></button>
                         </td>
                     </tr>
-				<%-- </c:if> --%>
+				</c:if>
                
                 
                 
@@ -189,7 +190,10 @@
     </div>
     <!-- 푸터 -->
     <jsp:include page="H&F/footer.html"/>
-    
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
 </body>
 </html>

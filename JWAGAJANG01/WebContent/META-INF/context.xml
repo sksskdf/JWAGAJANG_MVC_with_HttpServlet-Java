@@ -17,18 +17,7 @@
         
     -->
    
-   <Context>
-     <Resource 
-        name="jdbc/model2DB"
-        auth="Container"
-        type="javax.sql.DataSource"
-        driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://192.168.1.15:3306/jwagajang"
-        username="jwagajang"
-        password="1234"     
-     />
-   </Context>
-<!--       <Context>
+<!--    <Context>
      <Resource 
         name="jdbc/model2DB"
         auth="Container"
@@ -39,3 +28,14 @@
         password="1234"     
      />
    </Context> -->
+      <Context>
+     <Resource 
+        name="jdbc/model2DB"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://192.168.1.15:3306/jwagajang"
+        username="jwagajang"
+        password="1234"     
+     />
+   </Context>

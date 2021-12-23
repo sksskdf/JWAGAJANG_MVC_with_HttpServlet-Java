@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="css/list.css">
     <link rel="stylesheet" href="css/header_footer.css">
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <title>좌가장</title>
     <script src="js/jquery.min.js"></script>
     <script src="js/goods.js"></script>
-    <title>좌가장</title>
 </head>
 <body>
 	<div id="top"></div>
@@ -98,23 +98,24 @@
         <div id="goodsList">
             <div class="sort">
                 <div class="sort_menu">
-                    <ul class="select_sort">
-                        <li><a>최신상품</a></li>
+                	
+                    <ul class="select_sort" data-c1="${category_main}" data-c2="${param.category_sub}">
+                        <li><a class="orderBy" data-oper="1">최신상품</a></li>
                         <div class="line"></div>
-                        <li><a>판매량순</a></li>
+                        <li><a class="orderBy" data-oper="2">판매량순</a></li>
                         <div class="line"></div>
-                        <li><a>상품평</a></li>
+                        <li><a class="orderBy" data-oper="3">상품평</a></li>
                         <div class="line"></div>
-                        <li><a>낮은가격</a></li>
+                        <li><a class="orderBy" data-oper="4">낮은가격</a></li>
                         <div class="line"></div>
-                        <li><a>높은가격</a></li>
+                        <li><a class="orderBy" data-oper="5">높은가격</a></li>
                     </ul>
                 </div>
             </div>
             <div class="list_goods">
                 <div class="inner_listgoods">
                     <ul class="goods">
-                    <c:forEach var="md" items="${mdList}">
+                    <c:forEach var="md" items="${mdList}"> <!-- 삭제 가능? -->
                         <li>
                             <div class="item">
                             	<div class="thumb">

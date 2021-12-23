@@ -40,6 +40,10 @@ public class GoodsHandler implements CommandHandler {
 		req.setAttribute("count", new Integer(count));
 		
 		return "/goods.jsp";
+		
+		// 리뷰 등록
+		
+		
 	}
 
 }
