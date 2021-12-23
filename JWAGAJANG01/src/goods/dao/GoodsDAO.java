@@ -21,7 +21,7 @@ public class GoodsDAO {
 	private GoodsDAO() { }
 	
 	// 상품 분류
-	public List<GoodsVO> sortMd(String category_main, String category_sub) throws Exception {
+	public List<GoodsVO> sortMd(String category_main, String category_sub, String order) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -34,8 +34,27 @@ public class GoodsDAO {
 			String sqlCate = "select * from table_md";
 			sqlCate += " where category_main = ?";
 			
-			if(category_sub != null) {
+			if(category_sub != null && !category_sub.isEmpty()) {
 				sqlCate += " and category_sub = ?";
+			}
+			
+			if(order.equals("1")) {
+				sqlAll += " order by md_regdate desc";
+				sqlCate += " order by md_regdate desc";
+			} else if(order.equals("2")) {
+				sqlAll += " order by md_ordercnt desc";
+				sqlCate += " order by md_ordercnt desc";
+			} else if(order.equals("3")) {
+				
+				
+				sqlAll += " order by md_price desc";
+				sqlCate += " order by md_price desc";
+			} else if(order.equals("4")) {
+				sqlAll += " order by md_price asc";
+				sqlCate += " order by md_price asc";
+			} else if(order.equals("5")) {
+				sqlAll += " order by md_price desc";
+				sqlCate += " order by md_price desc";
 			}
 			
 			if(category_main.equals("All") || category_main.equals("")) {
@@ -44,7 +63,7 @@ public class GoodsDAO {
 				pstmt = conn.prepareStatement(sqlCate);
 				pstmt.setString(1, category_main);
 				
-				if(category_sub != null) {
+				if(category_sub != null && !category_sub.isEmpty()) {
 				pstmt.setString(2, category_sub);
 				}
 			}
@@ -177,6 +196,7 @@ public class GoodsDAO {
 					review.setMd_code(rs.getInt("md_code"));
 					review.setReview_code(rs.getInt("md_code"));
 					review.setUser_id(rs.getString("user_id"));
+					review.setUser_name(rs.getString("user_name"));
 					review.setReview_rate(rs.getInt("review_rate"));
 					review.setReview_content(rs.getString("review_content"));
 					review.setReview_regdate(rs.getTimestamp("review_regdate"));
@@ -191,40 +211,6 @@ public class GoodsDAO {
             if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
 		}
 		return reviewList;
-	}
-	
-	
-	// 리뷰 등록
-	@SuppressWarnings("resource")
-	public void insertReview(GoodsVO review) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql="";
-		
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			sql = "insert into table_review(md_code, review_code, user_id, ";
-			sql += "review_rate, review_content, review_regdate) values(?,?,?,?,?,?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, review.getMd_code());
-			pstmt.setInt(2, review.getReview_code());
-			pstmt.setString(3, review.getUser_id());
-			pstmt.setInt(4, review.getReview_rate());
-			pstmt.setString(5, review.getReview_content());
-			pstmt.setTimestamp(6, review.getReview_regdate());
-			pstmt.executeUpdate();
-			
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
-            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
-            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
-		}
 	}
 	
 }

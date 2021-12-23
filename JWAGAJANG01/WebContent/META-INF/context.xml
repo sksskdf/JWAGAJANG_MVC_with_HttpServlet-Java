@@ -17,7 +17,7 @@
         
     -->
    
-   <Context>
+<!--    <Context>
      <Resource 
         name="jdbc/model2DB"
         auth="Container"
@@ -27,8 +27,8 @@
         username="jwagajang"
         password="1234"     
      />
-   </Context>
-<!--       <Context>
+   </Context> -->
+      <Context>
      <Resource 
         name="jdbc/model2DB"
         auth="Container"
@@ -38,4 +38,4 @@
         username="jwagajang"
         password="1234"     
      />
-   </Context> -->
+   </Context>

@@ -16,10 +16,30 @@ public class GoodsListHandler implements CommandHandler {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		}
+		else if(req.getMethod().equalsIgnoreCase("POST")) {
+			return processSubmit(req, res);
+		}
 		else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
+	}
+
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+		String category_main = req.getParameter("category_main");
+		String category_sub = req.getParameter("category_sub");
+		String order = req.getParameter("order");
+		String viewPage = "/data.jsp";
+		GoodsDAO gDao = GoodsDAO.getInstance();
+		List<GoodsVO> mdList;
+		req.setAttribute("category_main", category_main);
+		try {
+			mdList = gDao.sortMd(category_main, category_sub, order);
+			req.setAttribute("mdList", mdList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return viewPage;
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
@@ -30,7 +50,7 @@ public class GoodsListHandler implements CommandHandler {
 		List<GoodsVO> mdList;
 		req.setAttribute("category_main", category_main);
 		try {
-			mdList = gDao.sortMd(category_main, category_sub);
+			mdList = gDao.sortMd(category_main, category_sub, "1");
 			req.setAttribute("mdList", mdList);
 		} catch (Exception e) {
 			e.printStackTrace();
