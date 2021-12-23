@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/goods.css">
     <link rel="stylesheet" href="css/header_footer.css">
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/goods.js"></script>
 
     <title>좌가장</title>
 </head>
@@ -29,51 +31,6 @@
         </div>
         <div class="goods">
             <img src="${md.img_main}" class="goods_img">
-            <%-- <div class="goods_info"> 총 금액 반영되는거 바꾸고 삭제할 것
-                <p class="goods_title">${md.md_name}</p>
-                <p class="goods_price">
-                    <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/>원</span>
-                    <span class="goods_dc">
-                        <span class="cost"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/>원</span>
-                        <span class="dc">${md.md_dc}%</span>
-                    </span>
-                </p>
-                <hr>
-                <dl class="shipping">
-                    <dt><p>택배배송</p></dt>
-                    <dd>
-                        <p>2,500원 <span class="orderpay">(주문시 결제)</span></p>
-                        <p class="addshipping">제주, 도서지역 추가 5,000원</p>
-                    </dd>
-                </dl>
-                <dl class="count">
-                    <dt><p>주문수량</p></dt>
-                    <dd>
-                        <span class="countbtn">
-                            <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
-                            <input type="number" id="goods_qty" readonly="readonly" min="1" max="10" value="1">
-                            <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
-                        </span>
-                    </dd>
-                </dl>
-                <hr>
-                <dl class="total">
-                    <dt>구매금액</dt>
-                    <dd>
-                        <em><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/></em>원 &nbsp; x &nbsp;
-                        <em class="total_qty">1</em>개
-                    </dd>
-                </dl>
-                <div class="total_price">
-                    <p class="won"><span class="total_cost">
-                    <fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/></span>원</p>
-                </div>
-                <div class="btn">
-                    <button type="button" class="buynowbtn">바로구매</button>
-                    <button type="button" class="cartbtn">장바구니</button>
-                    <button type="button" class="favbtn">찜하기</button>
-                </div>
-            </div> --%>
             <div class="goods_info">
                 <p class="goods_title">${md.md_name}</p>
                 <p class="goods_price">
@@ -96,7 +53,7 @@
                     <dd>
                         <span class="countbtn">
                             <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
-                            <input type="number" id="goods_qty" readonly="readonly" min="1" max="${md.md_stock}" value="1">
+                            <input type="number" id="goods_qty" readonly="readonly" min="1"  value="1">
                             <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
                         </span>
                     </dd>
@@ -114,14 +71,16 @@
                     <fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/></span>원</p>
                 </div>
                 <div class="btn">
+                	<input type="hidden" name="mdcode" value="${md.md_code}">
+                	<input type="hidden" name="user_id" value="${sessionScope.id}">
                     <button type="button" class="buynowbtn">바로구매</button>
                     <c:if test="${not empty sessionScope.id}">
-                    <button type="button" class="cartbtn">>장바구니</button>
+                    <button type="button" class="cartbtn">장바구니</button>
                     </c:if>
                     <c:if test="${empty sessionScope.id}">
                     <button type="button" class="cartbtn" >장바구니</button>
                     </c:if>
-                    <button type="button" class="favbtn" onclick="">찜하기</button>
+                    <button type="button" class="favbtn" >찜하기</button>
                 </div>
             </div>
             
@@ -151,7 +110,7 @@
                 <c:if test="${count > 0}">
 	                <c:forEach var="review" items="${reviewList}">
 	                	<tr>
-	                        <td class="review_name">${review.user_name}</td>
+	                        <td class="review_name">${review.md_name}</td>
 	                        <td class="review_rate">${review.review_rate}</td>
 	                        <td class="review_content">${review.review_content}</td>
 	                        <td class="review_date"><fmt:formatDate value="${review.review_regdate}" pattern="yyyy-MM-dd"/></td>
@@ -230,8 +189,7 @@
     </div>
     <!-- 푸터 -->
     <jsp:include page="H&F/footer.html"/>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/goods.js"></script>
+    
+    
 </body>
 </html>

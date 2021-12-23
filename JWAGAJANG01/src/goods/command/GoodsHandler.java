@@ -18,7 +18,7 @@ public class GoodsHandler implements CommandHandler {
 		
 		
 		List<GoodsVO> mdDetail;
-		Integer md_code = Integer.parseInt(req.getParameter("md_code"));
+		int md_code = Integer.parseInt(req.getParameter("md_code"));
 		
 		// 상품
 		GoodsDAO gDao = GoodsDAO.getInstance();

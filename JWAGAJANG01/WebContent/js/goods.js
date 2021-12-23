@@ -4,6 +4,23 @@ $(function() {
         $('html, body').animate({
             scrollTop: $(this.hash).offset().top}, 400);
     });
+
+	
+	var form = $("form");
+	$(".favbtn").on("click",function(e){
+		e.preventDefault();
+		var mdcode = $("input[name='mdcode']").val();
+		var userid = $("input[name='user_id']").val();
+		var query = { mdcode:mdcode,userid:userid};
+		$.ajax({
+			type: "POST",
+			url: "/favadd.do",
+			data: query,
+			success: function(data) {
+				alert("해당상품이 찜목록에 추가되었습니다!");
+			}
+		});
+	});
 });
 
 /*
@@ -79,10 +96,8 @@ $(window).scroll(function() {
     }
 }); 
 
-const login = document.querySelector(".login");
-login.addEventListener('click',function(){
-	alert("로그인을 해주세요.");
-})
+
+
 
 
 

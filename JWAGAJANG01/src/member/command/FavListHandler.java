@@ -37,7 +37,7 @@ public class FavListHandler implements CommandHandler {
 			writer.close();
 		}
 		
-		
+		System.out.println(favlist.toString());
 		req.setAttribute("favlist", favlist);
 		req.setAttribute("count", count);
 		
