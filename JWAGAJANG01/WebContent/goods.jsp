@@ -26,9 +26,7 @@
         <div class="pagenav">
 	       <a href="/index.do">홈</a>
 	       <span class="navarrow"></span>
-           <a href="#">시금치 · 쌈채소 · 나물</a>
-	       <span class="navarrow"></span>
-           <a href="#">청경채</a>
+           <a href="list.do?category_main=${md.category_main}">${md.category_main_name}</a>
         </div>
         <div class="goods">
             <img src="${md.img_main}" class="goods_img">

@@ -26,7 +26,7 @@
         <div class="pagenav">
 	       <a href="/index.do">홈</a>
 	       <span class="navarrow"></span>
-           <a href="#">수산 · 해산</a>
+           <a href="list.do?category_main?category_main=${mdList[0].category_main}">${mdList[0].category_main_name}</a>
      <!-- 
 			<c:if test="${category_main == '100'}">
 				<c:set var="mainCtgry" value="채소·과일"/>
@@ -61,35 +61,35 @@
 	            <ul class="ctgry_list">
 	                <li><a class="${(empty param.category_sub)?'on':''}" href="/list.do?category_main=100" class="on">전체보기</a></li>
 	                <li><a class="${(param.category_sub==110)?'on':''}" href="/list.do?category_main=100&category_sub=110">고구마·감자·당근</a></li>
-	                <li><a href="/list.do?category_main=100&category_sub=120">시금치·쌈채소·나물</a></li>
-	                <li><a href="/list.do?category_main=100&category_sub=130">브로콜리·파프리카·양배추</a></li>
-	                <li><a href="/list.do?category_main=100&category_sub=140">양파·마늘·대파·배추</a></li>
-	                <li><a href="/list.do?category_main=100&category_sub=150">오이·호박·고추</a></li>
-	                <li><a href="/list.do?category_main=100&category_sub=160">콩나물·버섯</a></li>
-	                <li><a href="/list.do?category_main=100&category_sub=170">과일</a></li>
+	                <li><a class="${(param.category_sub==120)?'on':''}" href="/list.do?category_main=100&category_sub=120">시금치·쌈채소·나물</a></li>
+	                <li><a class="${(param.category_sub==130)?'on':''}" href="/list.do?category_main=100&category_sub=130">브로콜리·파프리카·양배추</a></li>
+	                <li><a class="${(param.category_sub==140)?'on':''}" href="/list.do?category_main=100&category_sub=140">양파·마늘·대파·배추</a></li>
+	                <li><a class="${(param.category_sub==150)?'on':''}" href="/list.do?category_main=100&category_sub=150">오이·호박·고추</a></li>
+	                <li><a class="${(param.category_sub==160)?'on':''}" href="/list.do?category_main=100&category_sub=160">콩나물·버섯</a></li>
+	                <li><a class="${(param.category_sub==170)?'on':''}" href="/list.do?category_main=100&category_sub=170">과일</a></li>
 	            </ul>
             </c:if>
             <c:if test="${(category_main == '200')}">
 	            <ul class="ctgry_list">
-	                <li><a href="/list.do?category_main=200" class="on">전체보기</a></li>
-	                <li><a href="/list.do?category_main=200&category_sub=210">쌀·잡곡</a></li>
-	                <li><a href="/list.do?category_main=200&category_sub=220">견과류</a></li>
+	                <li><a class="${(empty param.category_sub)?'on':''}" href="/list.do?category_main=200" class="on">전체보기</a></li>
+	                <li><a class="${(param.category_sub==210)?'on':''}" href="/list.do?category_main=200&category_sub=210">쌀·잡곡</a></li>
+	                <li><a class="${(param.category_sub==220)?'on':''}" href="/list.do?category_main=200&category_sub=220">견과류</a></li>
 	            </ul>
             </c:if>
             <c:if test="${(category_main == '300')}">
 	            <ul class="ctgry_list">
-	                <li><a href="/list.do?category_main=300" class="on">전체보기</a></li>
-	                <li><a href="/list.do?category_main=300&category_sub=310">생선류</a></li>
-	                <li><a href="/list.do?category_main=300&category_sub=320">해산물·조개류</a></li>
-	                <li><a href="/list.do?category_main=300&category_sub=330">김·미역·해조류</a></li>
+	                <li><a class="${(empty param.category_sub)?'on':''}" href="/list.do?category_main=300" class="on">전체보기</a></li>
+	                <li><a class="${(param.category_sub==310)?'on':''}" href="/list.do?category_main=300&category_sub=310">생선류</a></li>
+	                <li><a class="${(param.category_sub==320)?'on':''}" href="/list.do?category_main=300&category_sub=320">해산물·조개류</a></li>
+	                <li><a class="${(param.category_sub==330)?'on':''}" href="/list.do?category_main=300&category_sub=330">김·미역·해조류</a></li>
 	            </ul>
             </c:if>
             <c:if test="${(category_main == '400')}">
 	            <ul class="ctgry_list">
-	                <li><a href="/list.do?category_main=400" class="on">전체보기</a></li>
-	                <li><a href="/list.do?category_main=400&category_sub=410">소고기·돼지고기</a></li>
-	                <li><a href="/list.do?category_main=400&category_sub=420">닭·오리고기</a></li>
-	                <li><a href="/list.do?category_main=400&category_sub=430">계란</a></li>
+	                <li><a class="${(empty param.category_sub)?'on':''}" href="/list.do?category_main=400" class="on">전체보기</a></li>
+	                <li><a class="${(param.category_sub==410)?'on':''}" href="/list.do?category_main=400&category_sub=410">소고기·돼지고기</a></li>
+	                <li><a class="${(param.category_sub==420)?'on':''}" href="/list.do?category_main=400&category_sub=420">닭·오리고기</a></li>
+	                <li><a class="${(param.category_sub==430)?'on':''}" href="/list.do?category_main=400&category_sub=430">계란</a></li>
 	            </ul>
             </c:if>
         </div>
