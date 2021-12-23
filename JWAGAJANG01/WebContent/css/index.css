@@ -75,5 +75,9 @@
         color: #B2B2B2;
         text-decoration: line-through;
       }
+      
+      a {
+      text-decoration: none;
+      }
     
       
