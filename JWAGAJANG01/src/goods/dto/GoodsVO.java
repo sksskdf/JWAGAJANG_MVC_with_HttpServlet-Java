@@ -7,19 +7,25 @@ public class GoodsVO {
 	private String md_name;
 	private Integer md_price;
 	private Integer md_dc;
-	private Integer md_stock;
+	private Integer md_dcprice;
 	private String img_main;
 	private String img_detail;
 	private String category_main;
 	private String category_sub;
 	private Integer review_code;
 	private String user_id;
-	private String user_name;
 	private Integer review_rate;
 	private String review_content; 
 	private Timestamp review_regdate;
-	private String sort_name;
+	private String category_main_name;
 	
+	
+	public String getCategory_main_name() {
+		return category_main_name;
+	}
+	public void setCategory_main_name(String category_main_name) {
+		this.category_main_name = category_main_name;
+	}
 	public Integer getMd_code() {
 		return md_code;
 	}
@@ -44,11 +50,11 @@ public class GoodsVO {
 	public void setMd_dc(Integer md_dc) {
 		this.md_dc = md_dc;
 	}
-	public Integer getMd_stock() {
-		return md_stock;
+	public Integer getMd_dcprice() {
+		return md_dcprice;
 	}
-	public void setMd_stock(Integer md_stock) {
-		this.md_stock = md_stock;
+	public void setMd_dcprice(Integer md_dcprice) {
+		this.md_dcprice = md_dcprice;
 	}
 	public String getImg_main() {
 		return img_main;
@@ -86,12 +92,6 @@ public class GoodsVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
 	public Integer getReview_rate() {
 		return review_rate;
 	}
@@ -110,11 +110,13 @@ public class GoodsVO {
 	public void setReview_regdate(Timestamp review_regdate) {
 		this.review_regdate = review_regdate;
 	}
-	public String getSort_name() {
-		return sort_name;
-	}
-	public void setSort_name(String sort_name) {
-		this.sort_name = sort_name;
+	@Override
+	public String toString() {
+		return "GoodsVO [md_code=" + md_code + ", md_name=" + md_name + ", md_price=" + md_price + ", md_dc=" + md_dc
+				+ ", md_dcprice=" + md_dcprice + ", img_main=" + img_main + ", img_detail=" + img_detail
+				+ ", category_main=" + category_main + ", category_sub=" + category_sub + ", review_code=" + review_code
+				+ ", user_id=" + user_id + ", review_rate=" + review_rate + ", review_content=" + review_content
+				+ ", review_regdate=" + review_regdate + ", category_main_name=" + category_main_name + "]";
 	}
 	
 	

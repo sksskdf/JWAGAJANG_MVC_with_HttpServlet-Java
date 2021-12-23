@@ -59,8 +59,9 @@ public class GoodsDAO {
 					md.setMd_price(rs.getInt("md_price"));
 					md.setMd_dc(rs.getInt("md_dc"));
 					md.setImg_main(rs.getString("img_main"));
-					md.setCategory_main(rs.getString("category_main"));
-					md.setCategory_sub(rs.getString("category_sub"));
+					md.setCategory_main(rs.getNString("category_main"));
+					md.setCategory_sub(rs.getNString("category_sub"));
+					md.setCategory_main_name(rs.getString("category_main_name"));
 					mdCate.add(md);
 				} while (rs.next());
 			}
@@ -92,11 +93,11 @@ public class GoodsDAO {
 				md.setMd_name(rs.getString("md_name"));
 				md.setMd_price(rs.getInt("md_price"));
 				md.setMd_dc(rs.getInt("md_dc"));
-				md.setMd_stock(rs.getInt("md_stock"));
 				md.setImg_main(rs.getString("img_main"));
 				md.setImg_detail(rs.getString("img_detail"));
-				md.setCategory_main(rs.getString("category_main"));
-				md.setCategory_sub(rs.getString("category_sub"));
+				md.setCategory_main(rs.getNString("category_main"));
+				md.setCategory_sub(rs.getNString("category_sub"));
+				md.setCategory_main_name(rs.getString("category_main_name"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,7 +107,31 @@ public class GoodsDAO {
 		return md;
 	}
 	
-
+	
+	// 전체 리뷰 수
+	public int reviewCount() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = 0;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement("select count(*) from table_review");
+			rs = pstmt.executeQuery();
+			
+			if (rs.next())
+				x = rs.getInt(1);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
+            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+		}
+		return x;
+	}
+	
 	// 리뷰 수
 	public int reviewCount(int md_code) {
 		Connection conn = null;
@@ -152,7 +177,6 @@ public class GoodsDAO {
 					review.setMd_code(rs.getInt("md_code"));
 					review.setReview_code(rs.getInt("md_code"));
 					review.setUser_id(rs.getString("user_id"));
-					review.setUser_name(rs.getString("user_name"));
 					review.setReview_rate(rs.getInt("review_rate"));
 					review.setReview_content(rs.getString("review_content"));
 					review.setReview_regdate(rs.getTimestamp("review_regdate"));
@@ -172,11 +196,10 @@ public class GoodsDAO {
 	
 	// 리뷰 등록
 	@SuppressWarnings("resource")
-	public int insertReview(GoodsVO gVo) {
+	public void insertReview(GoodsVO review) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int x = 0;
 		String sql="";
 		
 		try {
@@ -187,15 +210,13 @@ public class GoodsDAO {
 			sql = "insert into table_review(md_code, review_code, user_id, ";
 			sql += "review_rate, review_content, review_regdate) values(?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, gVo.getMd_code());
-			pstmt.setInt(2, gVo.getReview_code());
-			pstmt.setString(3, gVo.getUser_id());
-			pstmt.setInt(4, gVo.getReview_rate());
-			pstmt.setString(5, gVo.getReview_content());
-			pstmt.setTimestamp(6, gVo.getReview_regdate());
+			pstmt.setInt(1, review.getMd_code());
+			pstmt.setInt(2, review.getReview_code());
+			pstmt.setString(3, review.getUser_id());
+			pstmt.setInt(4, review.getReview_rate());
+			pstmt.setString(5, review.getReview_content());
+			pstmt.setTimestamp(6, review.getReview_regdate());
 			pstmt.executeUpdate();
-			
-			x = 1;
 			
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -204,7 +225,6 @@ public class GoodsDAO {
             if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
             if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
 		}
-		return x;
 	}
 	
 }
