@@ -264,6 +264,12 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #707070;
 }
 
+.noReview {
+    font: normal normal bold 14px/16px NanumGothic;
+    color: #707070;
+	text-align: center;
+}
+
 .review_name, .review_date {
     width: 200px;
     text-align: center;
@@ -286,6 +292,18 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 50px;
     border: 0.5px solid #707070;
     text-align: center;
+}
+
+.reveiwLogin {
+    font: normal normal bold 14px/16px NanumGothic;
+    color: #707070;
+	text-align: center;
+	margin: 40px 0;
+}
+
+.reveiwLogin a {
+	font: normal normal bold 16px/18px NanumGothic;
+	color: #195500;
 }
 
 .write_name, .write_rate {
