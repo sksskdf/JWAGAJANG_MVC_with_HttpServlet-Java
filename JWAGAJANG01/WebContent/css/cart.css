@@ -111,7 +111,7 @@ h1 {
   border: none;
 }
 /*장바구니 가격 영역*/
-span[class$=price] {
+span[class$=price], span[id$=price]} {
 	font-weight:bold;	
 }
 .originprice {

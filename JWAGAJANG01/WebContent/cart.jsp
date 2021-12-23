@@ -44,9 +44,10 @@
 							</tr>
 						</c:if>
 							<c:if test="${!empty cartList}">
-							<c:forEach items="${cartList }" var="cart">
+							<c:forEach items="${cartList }" var="cart" varStatus="status">
 							<tr>
-								<td><input type="checkbox" name="mdchk" value="   " checked /></td>
+								<td><input type="checkbox" name="mdchk" value="${fn:substringBefore(cart.md_price-(cart.md_price*cart.md_dc/100), '.') * cart.md_count}" 
+								checked data-cartnum="${status.index }"/></td>
 								<td class="md" style="text-align: left"><img
 									src="${cart.img_main }" /> <span class="mddesc"><a href="#">${cart.md_name }</a></span></td>
 								<td><span class="stepper">
@@ -57,7 +58,7 @@
 								<td><span class="originprice"><fmt:formatNumber pattern="#,##0" value="${cart.md_price }"/>원</span><br />
 								<span class="saleprice"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(cart.md_price-(cart.md_price*cart.md_dc/100), '.')}"/>원</span></td>
 								<td><input type="button" class="colorbtn" value="바로구매" />
-									<input type="button" class="normalbtn" value="삭제"
+									<input type="button" class="normalbtn" id="delete" value="삭제"
 									style="margin-top: 5px" /></td>
 							</tr>
 							</c:forEach>
@@ -66,15 +67,15 @@
 					</table>
 					<div class="pricewrap">
 						<div class="pricelist">
-							<span class="pricedesc">주문 금액</span><br /> <span class="price">1,760원</span>
+							<span class="pricedesc">주문 금액</span><br /> <span class="price"><span id="odrPrice">1,760</span>원</span>
 						</div>
 						<div class="operator">+</div>
 						<div class="pricelist">
-							<span class="pricedesc">배송비</span><br /> <span class="price">1,760원</span>
+							<span class="pricedesc">배송비</span><br /> <span class="price"><span id="deliPrice">1,760</span>원</span>
 						</div>
 						<div class="operator">=</div>
 						<div class="pricelist">
-							<span class="pricedesc">총 주문금액</span><br /> <span class="price">1,760원</span>
+							<span class="pricedesc">총 주문금액</span><br /> <span class="price"><span id="totalOdrPrice">0</span>원</span>
 						</div>
 					</div>
 					<div class="buttonsec">
@@ -83,8 +84,8 @@
 								type="button" class="normalbtn" value="찜하기" />
 						</div>
 						<div class="btnsecR">
-							<input type="submit" class="colorbtn" value="선택 상품 주문하기" /> <input
-								type="button" class="normalbtn" value="계속 쇼핑하기" />
+							<input type="submit" class="colorbtn" id="selectDelete" value="선택 상품 주문하기" /> <input
+								type="button" class="normalbtn" value="계속 쇼핑하기" onclick="location.href='javascript:history.go(-2)'" />
 						</div>
 					</div>
 				</form>
