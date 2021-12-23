@@ -7,7 +7,6 @@ public class ProductVO {
 	private String md_name;
 	private int md_price;
 	private int md_dc;
-	private int dc_price;
 	private String img_main;
 	private String img_detail;
 	private Timestamp md_regdate;
@@ -18,14 +17,13 @@ public class ProductVO {
 	
 	public ProductVO() {}
 
-	public ProductVO(int md_code, String md_name, int md_price, int md_dc, int dc_price, String img_main, String img_detail,
+	public ProductVO(int md_code, String md_name, int md_price, int md_dc, String img_main, String img_detail,
 			Timestamp md_regdate, Timestamp md_editdate, String category_main, String category_sub, int md_ordercnt) {
 		super();
 		this.md_code = md_code;
 		this.md_name = md_name;
 		this.md_price = md_price;
 		this.md_dc = md_dc;
-		this.dc_price = dc_price;
 		this.img_main = img_main;
 		this.img_detail = img_detail;
 		this.md_regdate = md_regdate;
@@ -35,6 +33,8 @@ public class ProductVO {
 		this.md_ordercnt = md_ordercnt;
 	}
 
+	/*getter, setter*/
+	
 	public int getMd_code() {
 		return md_code;
 	}
@@ -65,14 +65,6 @@ public class ProductVO {
 
 	public void setMd_dc(int md_dc) {
 		this.md_dc = md_dc;
-	}
-
-	public int getDc_price() {
-		return dc_price;
-	}
-
-	public void setDc_price(int dc_price) {
-		this.dc_price = dc_price;
 	}
 
 	public String getImg_main() {

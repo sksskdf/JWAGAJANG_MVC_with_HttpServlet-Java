@@ -22,9 +22,9 @@ public class ProductUpdateHandler implements CommandHandler {
 			throws ServletException, IOException {
 		if(request.getMethod().equalsIgnoreCase("GET")) {
 			// GET 메소드가 동작
-			String code = request.getParameter("code");
+			String md_code = request.getParameter("md_code");
 			ProductDAO pDao = ProductDAO.getInstance();
-			ProductVO pVo = pDao.selectProductByCode(Integer.parseInt(code));
+			ProductVO pVo = pDao.selectProductByCode(Integer.parseInt(md_code));
 			request.setAttribute("product", pVo);
 			return "productUpdate.jsp";	// 제품수정 page
 		}
@@ -40,13 +40,18 @@ public class ProductUpdateHandler implements CommandHandler {
 			// 새로운 이미지 파일은 자동으로 저장이 됨
 			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit,
 					encType, new DefaultFileRenamePolicy());
-			String code = multi.getParameter("code");
-			String name = multi.getParameter("name");
-			int price = Integer.parseInt(multi.getParameter("price"));
-			String description = multi.getParameter("description");
-			String pictureUrl = multi.getFilesystemName("pictureUrl");
-			if (pictureUrl == null) {	// 새로운 이미지로 대체하지 않음
-				pictureUrl = multi.getParameter("nonmakeImg");	// 기존 이미지를 유지
+			String md_code = multi.getParameter("md_code");
+			String md_name = multi.getParameter("md_name");
+			String md_price = multi.getParameter("md_price");
+			String md_dc = multi.getParameter("md_dc");
+			String img_main = multi.getContentType("img_main");  
+			String img_detail = multi.getContentType("img_detail"); 
+			String category_main = multi.getParameter("category_main");
+			String category_sub = multi.getParameter("category_sub");
+			String md_ordercnt = multi.getParameter("md_ordercnt");
+			
+			if (img_main == null) {	// 새로운 이미지로 대체하지 않음
+				img_main = multi.getParameter("nonmakeImg");	// 기존 이미지를 유지
 			} else {	// 변경됨
 				String oldUrl = multi.getParameter("nonmakeImg");	// 이전 파일의 이름
 				// oldUrl 파일을 삭제
@@ -55,12 +60,18 @@ public class ProductUpdateHandler implements CommandHandler {
 					oldFile.delete();	// 파일을 삭제
 				}
 			}
+			
 			ProductVO pVo = new ProductVO();
-			pVo.setCode(Integer.parseInt(code));
-			pVo.setName(name);
-			pVo.setPrice(price);
-			pVo.setDescription(description);
-			pVo.setPictureUrl(pictureUrl);
+			pVo.setMd_code(Integer.parseInt(md_code));
+			pVo.setMd_name(md_name);
+			pVo.setMd_price(Integer.parseInt(md_price));
+			pVo.setMd_dc(Integer.parseInt(md_dc));
+			pVo.setImg_main(img_main);
+			pVo.setImg_detail(img_detail);
+			pVo.setCategory_main(category_main);
+			pVo.setCategory_sub(category_sub);
+			pVo.setMd_ordercnt(Integer.parseInt(md_ordercnt));
+			
 			ProductDAO pDao = ProductDAO.getInstance();
 			pDao.updateProduct(pVo);
 			response.sendRedirect("list.do"); // 브라우저

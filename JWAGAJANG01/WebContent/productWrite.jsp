@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="img/favicon/favicon.ico">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/notice.css">
+<link rel="stylesheet" href="css/board.css">
 <link rel="stylesheet" href="css/header_footer.css">
 <link rel="stylesheet" href="css/productWrite.css">
 <title>좌가장 : 상품등록</title>
@@ -87,15 +87,11 @@ pageEncoding="UTF-8"%>
 				</tr>
 				<tr>
 					<th width="150px">메인 이미지 첨부</th>
-					<th><input class="titleimg" value="" disabled="disabled" accept="image/*" style="width: 376px;">
-					<label for="input_file"> &nbsp;첨부 </label> 
-              		<input type="file" id="input_file" class="upload-hidden" style="visibility: hidden;"></th>
+					<th><input class="titleimg" type="file" name="img"></th>
 				</tr>
 				<tr>
 					<th width="150px">상세 이미지 첨부</th>
-					<th><input class="titleimg" value="" disabled="disabled" accept="image/*" style="width: 376px;">
-					<label for="input_file"> &nbsp;첨부 </label> 
-              		<input type="file" id="input_file" class="upload-hidden" style="visibility: hidden;"></th>
+					<th><input class="subimg" type="file" name="img2"></th>
 				</tr>
 			</table>
 			
@@ -113,6 +109,7 @@ pageEncoding="UTF-8"%>
                 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                 <script src="js/jquery.min.js"></script>
                 <script src="js/index.js"></script>
+                <script src="js/product.js"></script>
             </body>
 
             </html>
