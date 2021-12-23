@@ -17,6 +17,9 @@ $(function() {
 			data: query,
 			success: function(data) {
 				alert("해당상품이 찜목록에 추가되었습니다!");
+			}
+		});
+	});
 
 	// 정렬
 	$(".orderBy").on("click", function(e) {
@@ -41,7 +44,7 @@ $(function() {
 				alert(error);
 			}
 		});
-	});
+		});
 	
 	// 리뷰 등록
 	$("#submitbtn").on("click", function(e) {
@@ -65,6 +68,7 @@ $(function() {
 
 			}
 		});
+	});
 
 	$(".cartbtn").on("click",function(e){
 		e.preventDefault();
@@ -86,6 +90,7 @@ $(function() {
 			}
 		});
 	});
+});
 
 
 
@@ -154,7 +159,7 @@ function change_qty(btn) {
     $(".total_qty").html(this_qty.format());
     $(".total_cost").html(show_total_amount.format());
 	
-}
+};
 
 // 장바구니 추가-------------------------------------------
 /*$(document).ready(function(){
@@ -182,7 +187,7 @@ function change_qty(btn) {
 function resize(obj) {
     obj.style.height = '1px';
     obj.style.height = (obj.scrollHeight) + 'px';
-}
+};
 
 // 푸터 네비 바 나타나기
 $(window).scroll(function() {
@@ -191,4 +196,4 @@ $(window).scroll(function() {
     } else {
         $(".footnav").show();
     }
-}); 
+});
