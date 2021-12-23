@@ -45,7 +45,7 @@
 			<div class="list">
 				<input type="submit" value="수정" class="upbtn" onclick="location.href='qnaUpdate.do?qna_code=${param.qna_code}'">
 				<input type="submit" value="삭제" class="delbtn" onclick="location.href='qnaDelete.do?qna_code=${param.qna_code}'">
-				<input type="submit" value="목록" class="listbtn" onclick="location.href='qnaList.do?p=${page}&f=${param.f}&q=${param.q}'">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='qnaList.do?p=${page}'">
 			</div>
 		</div>
 	</section>

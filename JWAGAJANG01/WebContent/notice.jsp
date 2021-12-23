@@ -51,8 +51,6 @@
 				<a href="noticeWrite.do?&p=${param.p}"><input type="submit" value="글쓰기" name="write" class="writebtn"></a>
 			</div>
 		</div>
-		
-			<!--  -->
 
 		<div class="pg_wrap">
 		<c:set var="paging" value="${listModel.paging}"/> <!-- 변수 선언 -->
