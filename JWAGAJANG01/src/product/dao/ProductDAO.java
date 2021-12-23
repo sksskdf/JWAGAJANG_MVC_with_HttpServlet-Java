@@ -48,22 +48,29 @@ public class ProductDAO {
 	// 메소드로 만들어 준다.
 	private ProductVO makeProductVO(ResultSet rs) throws SQLException {
 		ProductVO pVo = new ProductVO();
-		pVo.setCode(rs.getInt("code"));
-		pVo.setName(rs.getString("name"));
-		pVo.setPrice(rs.getInt("price"));
-		pVo.setPictureUrl(rs.getString("pictureurl"));
-		pVo.setDescription(rs.getString("description"));
+		pVo.setMd_code(rs.getInt("md_code"));
+		pVo.setMd_name(rs.getString("md_name"));
+		pVo.setMd_price(rs.getInt("md_price"));
+		pVo.setMd_dc(rs.getInt("md_dc"));
+		pVo.setImg_main(rs.getString("img_main"));
+		pVo.setImg_detail(rs.getString("img_detail"));
+		pVo.setMd_regdate(rs.getTimestamp("md_regdate"));
+		pVo.setMd_editdate(rs.getTimestamp("md_editdate"));
+		pVo.setCategory_main(rs.getString("category_main"));
+		pVo.setCategory_sub(rs.getString("category_sub"));
+		pVo.setMd_ordercnt(rs.getInt("md_ordercnt"));
+		
 		return pVo;
 	}
 	
 	public void insertProduct(ProductVO pVo) {
-		String sql = "insert into product (name, price, pictureurl, description) values(?, ?, ?, ?)";
+		String sql = "insert into product (md_name, md_price, img_main, img_detail) values(?, ?, ?, ?)";
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
-			pstmt.setString(1, pVo.getName());
-			pstmt.setInt(2, pVo.getPrice());
-			pstmt.setString(3, pVo.getPictureUrl());
-			pstmt.setString(4, pVo.getDescription());
+			pstmt.setString(1, pVo.getMd_name());
+			pstmt.setInt(2, pVo.getMd_price());
+			pstmt.setString(3, pVo.getImg_main());
+			pstmt.setString(4, pVo.getImg_detail());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -71,13 +78,13 @@ public class ProductDAO {
 	}
 	
 	// 제품에 대한 상세보기를 할 때, 제품 수정/삭제할 때 제품에 대한 정보를 보여주기 위해서 사용됨
-	public ProductVO selectProductByCode(Integer code) {
+	public ProductVO selectProductByCode(Integer md_code) {
 		String sql = "select * from product where code = ?";
 		ProductVO pVo = null;
 		ResultSet rs = null;
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
-			pstmt.setInt(1, code);	// 중간에 실행문이 있으면 ResultSet을 ()안에 포함시킬수 없음
+			pstmt.setInt(1, md_code);	// 중간에 실행문이 있으면 ResultSet을 ()안에 포함시킬수 없음
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				pVo = makeProductVO(rs);
@@ -92,30 +99,30 @@ public class ProductDAO {
 	
 	// update시는 변경 가능한 것과 변경 불가능한 것을 구분해서 처리
 	public void updateProduct(ProductVO pVo) {
-		String sql = "update product set name=?, price=?, pictureurl=?, description=? where code = ?";
+		String sql = "update product set md_name=?, md_price=?, pictureurl=?, description=? where md_code = ?";
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
-			pstmt.setString(1, pVo.getName());
-			pstmt.setInt(2, pVo.getPrice());
-			pstmt.setString(3, pVo.getPictureUrl());
-			pstmt.setString(4, pVo.getDescription());
-			pstmt.setInt(5, pVo.getCode());
+			pstmt.setString(1, pVo.getMd_name());
+			pstmt.setInt(2, pVo.getMd_price());
+			pstmt.setString(3, pVo.getImg_main());
+			pstmt.setString(4, pVo.getImg_detail());
+			pstmt.setInt(5, pVo.getMd_code());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void deleteProduct(Integer code) {
-		String sql = "delete from product where code = ?";
-		try (Connection conn = DBManager.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);){
-			pstmt.setInt(1, code);
-			pstmt.executeUpdate();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
+	//public void deleteProduct(Integer code) {
+	//	String sql = "delete from product where code = ?";
+	//	try (Connection conn = DBManager.getConnection();
+	//		PreparedStatement pstmt = conn.prepareStatement(sql);){
+	//		pstmt.setInt(1, code);
+	//		pstmt.executeUpdate();
+	//	} catch(Exception e) {
+	//		e.printStackTrace();
+	//	}
+	//}
 	
 	public List<ProductVO> selectBestProduct() {
 		String sql = "select md_code, md_name, md_price, md_dc, img_main from table_md order by md_ordercnt desc limit 4";

@@ -31,6 +31,8 @@ public class CartPutHandler implements CommandHandler {
 		String md_price = req.getParameter("md_price");
 		String md_dc = req.getParameter("md_dc");
 		
+		System.out.println(cartList.toString());
+		
 		Object obj = req.getAttribute("cartList");	//세션 객체에서 cart 값을 가져온다.
 
 		if(obj == null) {	//세션 정보가 없으면 배열을 생성 : 최초 주문한 경우

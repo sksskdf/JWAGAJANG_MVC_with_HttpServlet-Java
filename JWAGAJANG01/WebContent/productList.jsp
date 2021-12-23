@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="img/favicon/favicon.ico">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/notice.css">
+<link rel="stylesheet" href="css/board.css">
 <link rel="stylesheet" href="css/header_footer.css">
 <link rel="stylesheet" href="css/productList.css">
 <title>좌가장 : 제품관리</title>
@@ -112,6 +112,15 @@ pageEncoding="UTF-8"%>
                                 <tr>
                                     <td><img src="img/best3.jpg"></td>
                                     <td>[길기훈] 신선한 고등어</td>
+                                    <td>23</td>
+                                    <td>2021-12-03</td>
+                                    <td>1,760원</td>
+                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
+                                        <br><input type="button" value="삭제" class="deletebtn"></td>
+                                </tr>
+                                 <tr>
+                                    <td><img src="img/best4.jpg"></td>
+                                    <td>[남현우] 달고 맛있는 대추토마토</td>
                                     <td>23</td>
                                     <td>2021-12-03</td>
                                     <td>1,760원</td>
