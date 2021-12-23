@@ -6,7 +6,6 @@ $(function() {
     });
 
 	
-	var form = $("form");
 	$(".favbtn").on("click",function(e){
 		e.preventDefault();
 		var mdcode = $("input[name='mdcode']").val();
@@ -18,6 +17,26 @@ $(function() {
 			data: query,
 			success: function(data) {
 				alert("해당상품이 찜목록에 추가되었습니다!");
+			}
+		});
+	});
+	$(".cartbtn").on("click",function(e){
+		e.preventDefault();
+		var md_code = $("input[name='mdcode']").val();
+		var user_id = $("input[name='user_id']").val();
+		var md_name = $(".goods_title").text();
+		var img_main = $(".goods_img").attr("src");
+		var md_price = $(".price").text();
+		var md_dc = $(".dc").text();
+		var query = { md_code:md_code,user_id:user_id, md_name:md_name, 
+				img_main:img_main, md_price:md_price, md_dc:md_dc};
+		$.ajax({
+			type: "POST",
+			url: "/cartPut.do",
+			data: query,
+			success: function(data) {
+				alert("장바구니에 추가되었습니다!");
+				location.href='cartPut.do'
 			}
 		});
 	});

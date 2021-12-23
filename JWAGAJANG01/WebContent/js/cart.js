@@ -101,8 +101,3 @@ $("#selectDelete").click(function () {
 	    }
     }
 });
-
-const favbtn = document.querySelector('.favbtn');
-favbtn.addEventListener('click',function(){
-	alert("ㅎㅇ");
-})

@@ -34,7 +34,7 @@
             <div class="goods_info">
                 <p class="goods_title">${md.md_name}</p>
                 <p class="goods_price">
-                    <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/>원</span>
+                    <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/></span>원
                     <span class="goods_dc">
                         <span class="cost"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/>원</span>
                         <span class="dc">${md.md_dc}%</span>
