@@ -7,6 +7,7 @@ public class ProductVO {
 	private String md_name;
 	private int md_price;
 	private int md_dc;
+	private int md_stock;
 	private String img_main;
 	private String img_detail;
 	private Timestamp md_regdate;
@@ -24,6 +25,7 @@ public class ProductVO {
 		this.md_name = md_name;
 		this.md_price = md_price;
 		this.md_dc = md_dc;
+		this.md_stock = md_stock;
 		this.img_main = img_main;
 		this.img_detail = img_detail;
 		this.md_regdate = md_regdate;
@@ -65,6 +67,14 @@ public class ProductVO {
 
 	public void setMd_dc(int md_dc) {
 		this.md_dc = md_dc;
+	}
+	
+	public int getMd_stock() {
+		return md_dc;
+	}
+
+	public void setMd_stock(int md_stock) {
+		this.md_stock = md_stock;
 	}
 
 	public String getImg_main() {

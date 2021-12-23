@@ -8,9 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import javax.naming.NamingException;
+
+import notice.dto.NoticeVO;
 import product.dto.ProductVO;
 import util.DBManager;
 
@@ -52,6 +57,7 @@ public class ProductDAO {
 		pVo.setMd_name(rs.getString("md_name"));
 		pVo.setMd_price(rs.getInt("md_price"));
 		pVo.setMd_dc(rs.getInt("md_dc"));
+		pVo.setMd_stock(rs.getInt("md_stock"));
 		pVo.setImg_main(rs.getString("img_main"));
 		pVo.setImg_detail(rs.getString("img_detail"));
 		pVo.setMd_regdate(rs.getTimestamp("md_regdate"));
@@ -62,9 +68,9 @@ public class ProductDAO {
 		
 		return pVo;
 	}
-	
+	// 제품 등록 : 8개 카테고리 필요
 	public void insertProduct(ProductVO pVo) {
-		String sql = "insert into product (md_name, md_price, img_main, img_detail) values(?, ?, ?, ?)";
+		String sql = "insert into product (md_name, md_price, img_main, img_detail) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
 			pstmt.setString(1, pVo.getMd_name());
@@ -165,4 +171,64 @@ public class ProductDAO {
 		}
 		return list;
 	}
-}
+	public int selectCount() throws SQLException {
+		ResultSet rs = null;
+		int count = 0;
+		try (Connection conn = DBManager.getConnection();
+				Statement stmt = conn.createStatement()) {
+			rs = stmt.executeQuery("select count(*) from table_md");
+			rs.next();
+			count = rs.getInt(1);
+		} finally {
+			DBManager.close(rs);
+		}
+		return count;
+	}
+	
+	public List<ProductVO> select(int firstRow, int endRow)
+			throws SQLException, NamingException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ProductVO> result = null;
+		try (Connection conn = DBManager.getConnection();){
+				pstmt = conn.prepareStatement("select * from table_md "
+						+ "order by md_code desc limit ?, ?");
+			pstmt.setInt(1, firstRow - 1); // 데이터베이스에서는 0부터 시작이라서 -1 입력
+			pstmt.setInt(2, endRow - firstRow + 1);
+			rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				result = Collections.emptyList();
+			}
+			else {
+				List<ProductVO> productList = new ArrayList<ProductVO>();
+				do {
+					ProductVO board = makeBoardFromResultSet(rs);	// false
+					productList.add(board);
+				} while (rs.next());
+				result = productList;
+			}
+		} finally {
+			DBManager.close(rs);
+			DBManager.close(pstmt);
+		}
+		return result;
+		}
+	private ProductVO makeBoardFromResultSet(ResultSet rs) 
+		throws SQLException, NamingException {
+			ProductVO bVo = new ProductVO();
+			bVo.setMd_code(rs.getInt("md_code"));
+			bVo.setMd_name(rs.getString("md_name"));
+			bVo.setMd_price(rs.getInt("md_price"));
+			bVo.setMd_dc(rs.getInt("md_dc"));
+			bVo.setMd_stock(rs.getInt("md_stock"));
+			bVo.setImg_main(rs.getString("img_main"));
+			bVo.setImg_detail(rs.getString("img_detail"));
+			bVo.setMd_regdate (rs.getTimestamp("md_regdate"));
+			bVo.setMd_editdate (rs.getTimestamp("md_editdate"));
+			bVo.setCategory_main(rs.getString("category_main"));
+			bVo.setCategory_sub(rs.getString("category_sub"));
+			bVo.setMd_ordercnt(rs.getInt("md_ordercnt"));
+			return bVo;
+		}
+	}	
+	

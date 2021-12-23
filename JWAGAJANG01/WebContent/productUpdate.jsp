@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
 		<div class="pagenav">
 			<a href="index.jsp">홈</a>
 			<span class="navarrow"></span>
-			<a href="productList.do">마이페이지</a>
+			<a href="mypage.do">마이페이지</a>
 			<span class="navarrow"></span>
 			<a href="productList.do">제품관리</a>
 			<span class="navarrow"></span>
@@ -41,14 +41,14 @@ pageEncoding="UTF-8"%>
 				<tr>
 					<th width="150px">구분</th>
 					<th>
-						<select class="sortinput" name="notice_label">
+						<select class="sortinput" name="category_main">
 							<option>대분류</option>
 							<option>채소·과일</option>
 							<option>쌀·견과류</option>
 							<option>수산·해산</option>
 							<option>정육·계란</option>
 						</select>
-						<select class="sortinput" name="notice_label">
+						<select class="sortinput" name="category_sub">
 							<option>소분류</option>
 							<option>채소·과일</option>
 							<option>쌀·견과류</option>
@@ -59,31 +59,31 @@ pageEncoding="UTF-8"%>
 				</tr>
 				<tr>
 					<th width="150px">상품</th>
-					<th><input class="titleinput" type="text" name="title" placeholder="기존 상품명" style="border: 0px"></th>
+					<th><input class="titleinput" type="text" name="md_name" placeholder="기존 상품명" style="border: 0px"></th>
 				</tr>
 				<tr>
 					<th width="150px">상품가격</th>
-					<th><input class="titleprice" type="text" name="price" placeholder="기존 가격" style="border: 0px"></th>
+					<th><input class="titleprice" type="text" name="md_price" placeholder="기존 가격" style="border: 0px"></th>
 				</tr>
 				<tr>
 					<th width="150px">할인율</th>
-					<th><input class="titledc" type="text" name="dc" style="width: 90px"> % </th>
+					<th><input class="titledc" type="text" name="md_dc" style="width: 90px"> % </th>
 				</tr>
 				<tr>
 					<th width="150px">재고</th>
-					<th><input class="titlestock" type="text" name="stock" style="width: 90px"></th>
+					<th><input class="titlestock" type="text" name="md_stock" style="width: 90px"></th>
 				</tr>
 				<tr>
 					<th width="150px">배송비</th>
-					<th><input class="titledeliprice" type="hidden" name="deliprice">&nbsp;&nbsp;&nbsp;&nbsp;  2,500원</th>
+					<th><input class="titledeliprice" type="hidden" name="">&nbsp;&nbsp;&nbsp;&nbsp;  2,500원</th>
 				</tr>
 				<tr>
 					<th width="150px">메인 이미지 첨부</th>
-					<th><input class="titleimg" type="file" name="img"></th>
+					<th><input class="titleimg" type="file" name="img_main"></th>
 				</tr>
 				<tr>
 					<th width="150px">상세 이미지 첨부</th>
-					<th><input class="subimg" type="file" name="img2"></th>
+					<th><input class="subimg" type="file" name="img_detail"></th>
 				</tr>
 			</table>
 			

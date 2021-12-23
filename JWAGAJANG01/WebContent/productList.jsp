@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
                         <div class="pagenav">
 						<a href="index.jsp">홈</a>
 						<span class="navarrow"></span>
-						<a href="productList.do">마이페이지</a>
+						<a href="mypage.do">마이페이지</a>
 						<span class="navarrow"></span>
 						<a href="productList.do">제품관리</a>
 						</div>
@@ -91,7 +91,8 @@ pageEncoding="UTF-8"%>
                                     <th>제품금액</th>
                                     <th>리뷰</th>
                                 </tr>
-                                <tr>
+                                
+                                <!-- <tr>
                                     <td><img src="img/best2.jpg"></td>
                                     <td>[민선지] 빨간 세척 당근</td>
                                     <td>78</td>
@@ -126,51 +127,35 @@ pageEncoding="UTF-8"%>
                                     <td>1,760원</td>
                                     <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
                                         <br><input type="button" value="삭제" class="deletebtn"></td>
-                                </tr>
+                                </tr> -->
+                                
                             </table>
                         </div>
 						<br>
-						<div class="pg_wrap">
-						 <!-- 변수 선언 -->
-				
-								<a class="pg_prev" href="/productList.do?&amp;p=0">
-								<span class="prev"></span></a>
-								
-								<a href="/productList.do?&amp;p=1&amp;f=">
-								<input type="button" class="pg_currpno" value="1"></a>
-							
-								<a href="/productList.do?&amp;p=2&amp;f=">
-								<input type="button" class="pg_currpno" value="2"></a>
-							
-								<a href="/productList.do?&amp;p=3&amp;f=">
-								<input type="button" class="pg_currpno" value="3"></a>
-							
-								<a href="/productList.do?&amp;p=4&amp;f=">
-								<input type="button" class="pg_currpno" value="4"></a>
-							
-								<a href="/productList.do?&amp;p=5&amp;f=">
-								<input type="button" class="pg_currpno" value="5"></a>
-							
-								<a href="/productList.do?&amp;p=6&amp;f=">
-								<input type="button" class="pg_currpno" value="6"></a>
-							
-								<a href="/productList.do?&amp;p=7&amp;f=">
-								<input type="button" class="pg_currpno" value="7"></a>
-							
-								<a href="/productList.do?&amp;p=8&amp;f=">
-								<input type="button" class="pg_currpno" value="8"></a>
-							
-								<a href="/productList.do?&amp;p=9&amp;f=">
-								<input type="button" class="pg_currpno" value="9"></a>
-							
-								<a href="/productList.do?&amp;p=10&amp;f=">
-								<input type="button" class="pg_currpno" value="10"></a>
-							
-								<a class="pg_next" href="/productList.do?&amp;p=11">
-								<span class="next"></span></a>
-
-						</div>
 						
+						<div class="pg_wrap">
+						<c:set var="paging" value="${listModel.paging}"/> <!-- 변수 선언 -->
+							<%-- <c:if> 태그는 test 속성 내의 EL(${ }) 의 결과가 참이면 실행, else는 없음
+							 1. test : 필수 속성값으로 EL 비교식을 가집니다.
+							 2. var : 조건 결과를 저장할 변수를 지정합니다.
+							 3. scope : 조건 결과를 지정할 변수의 저장 scope 를 지정합니다. --%>
+							<c:if test="${paging.startPageNo > paging.sizeOfPage}">
+								<a class="pg_prev" href="<c:url value="/productList.do?&p=${paging.prevPageNo}"/>">
+								<span class="prev"></span></a>
+							</c:if>
+							
+							<%-- 페이지 번호 반복문 --%>
+							<c:forEach var="pno" begin="${paging.startPageNo}" end="${paging.endPageNo}">
+								<a href="<c:url value="/productList.do?&p=${pno}"/>">
+								<input type="button" class="pg_currpno ${(param.p==(pno))?'pg_currpnosel':''}" value="${pno}"></a>
+							</c:forEach>
+							
+							<c:if test="${paging.endPageNo < paging.finalPageNo}">
+								<a class="pg_next" href="<c:url value="/productList.do?&p=${paging.nextPageNo}"/>">
+								<span class="next"></span></a>
+								</c:if>
+						</div>
+												
                     </form>
                 </section>
 

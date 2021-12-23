@@ -32,6 +32,10 @@
       		<li class="nav-item">
       			<a class="nav-link nf" href="favlist.do?p=1&id='"+${sessionScope.id}+"'">찜목록</a>
       		</li>
+      		<li class="nav-item">
+      			<a class="nav-link nf" href="productList.do?p=1&id='"+${sessionScope.id}+"'">상품등록/수정</a>
+      		</li>
+      		
       	</ul>
       </div>
       <div class="col-9" style="margin-left:40px; width:953px;">
