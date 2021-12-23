@@ -3,6 +3,7 @@ package cart.command;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cart.dto.CartVO;
 import common.command.CommandHandler;
@@ -19,8 +20,9 @@ public class CartPutHandler implements CommandHandler {
 			return null;
 		}
 	}
-
+	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		HttpSession session = req.getSession();
 		ArrayList<CartVO> cartList = null;
 		
 		String md_code = req.getParameter("md_code");
@@ -60,8 +62,7 @@ public class CartPutHandler implements CommandHandler {
 			cVo.setMd_count(1);
 			cartList.add(cVo);
 		}
-		req.setAttribute("cartList", cartList);
-		
+		session.setAttribute("cartList", cartList);
 		return "cart.jsp";
 	}
 
