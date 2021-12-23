@@ -41,7 +41,6 @@ public class NoticeListHandler implements CommandHandler {
 */
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException {
 		String pageNumberString = req.getParameter("p"); // 브라우저에서 목록을 보면 p=null; 페이징 링크를 누르면 p=n;
-		String searchkeyword = req.getParameter("searchkeyword");
 		int pageNumber = 1;
 		if (pageNumberString != null && pageNumberString.length() > 0) { // p값이 들어왔는지 안들어왔는지
 			pageNumber = Integer.parseInt(pageNumberString); // 들어왔으면  String 타입의 변수를 int 타입의 변수로  바꿔서 넣는다.

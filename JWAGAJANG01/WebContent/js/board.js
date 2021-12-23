@@ -22,8 +22,21 @@ function searchCheck(){
 	return true;
 }
 
+function qnaCheck() {
+	if (document.qnafrm.qna_title.value.length == 0) {
+	alert("제목을 입력하세요.");
+	return false;
+	}
+	if (document.qnafrm.qna_content.value.length == 0) {
+	alert("내용을 입력하세요.");
+	return false;
+	}
+	return true;
+}
+
+
 function qnasearchCheck(){
-	if (document.qnasearchfrm.qnasearchkeyword.value.length == 0) {
+	if (document.srcfrm.searchkeyword.value.length == 0) {
 	alert("검색어를 입력하세요.");
 	return false;
 	}

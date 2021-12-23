@@ -69,10 +69,6 @@ h1 {
 	border-spacing: 0;
 }
 
-.brdView_label {
-	width: 100px;
-}
-
 .brdViewbox :nth-child(1) {
 	width: 205.83px;
 }
@@ -90,6 +86,7 @@ h1 {
 }
 
 pre {
+	padding-left : 40px;
 	width: 953px;
 	line-height: 30px;
 	text-align: left;
@@ -271,7 +268,7 @@ textarea {
 }
 
 .record_3 {
-	text-align: left;
+	text-align: center;
 }
 
 /* Customized Paging */
@@ -326,11 +323,11 @@ textarea {
 }
 
 .qnabrdbox :nth-child(1) {
-	width: 106px;
+	width: 185px;
 }
 
 .qnabrdbox :nth-child(2) {
-	width: 599px;
+	width: 515px;
 }
 
 .qnabrdbox :nth-child(3) {
@@ -341,5 +338,35 @@ textarea {
 	width: 136px;
 }
 .qnabrdbox :nth-child(5) {
+	width: 106px;
+}
+
+/* qnaView 테이블 */
+
+.qnaViewbox {
+	width:953px;
+	background: #00000007;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 40px;
+	border-spacing: 0;
+}
+
+.qnaViewbox :nth-child(1) {
+	width: 185px;
+}
+
+.qnaViewbox :nth-child(2) {
+	width: 400px;
+}
+
+.qnaViewbox :nth-child(3) {
+	width: 106px;
+}
+
+.qnaViewbox :nth-child(4) {
+	width: 136px;
+}
+.qnaViewbox :nth-child(5) {
 	width: 106px;
 }

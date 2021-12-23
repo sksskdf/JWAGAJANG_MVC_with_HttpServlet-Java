@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/board.css">
 <link rel="stylesheet" href="css/header_footer.css">
-<title>좌가장 : 공지사항</title>
+<title>좌가장 : Q&amp;A</title>
 </head>
 <body>
 	<!-- 헤더영역    -->
@@ -22,32 +22,32 @@
 		<div class="pagenav">
 			<a href="index.jsp">홈</a>
 			<span class="navarrow"></span>
-			<a href="noticeList.do?&p=1">게시판</a>
+			<a href="qnaList.do?&p=1">게시판</a>
 			<span class="navarrow"></span>
-			<a href="noticeList.do?&p=1">공지사항</a>
+			<a href="qnaList.do?&p=1">Q&amp;A</a>
 		</div>
 		
 		<div class="notice">
-			<h1>공지사항</h1>
-			<table class="brdView">
-				<tr class="brdViewbox">
-					<th class="brdView_label">${board.notice_label}</th>
-					<th>${board.notice_title}</th>
-					<th><fmt:formatDate value="${board.notice_regdate}"/></th>
-					<th>${board.notice_count}</th>
+			<h1>Q&amp;A</h1>
+			<table class="brdView">	
+				<tr class="qnaViewbox">
+					<th class="qnaView_label">${board.qna_label}</th>
+					<th>${board.qna_title}</th>
+					<th>${board.user_id}</th>
+					<th><fmt:formatDate value="${board.qna_regdate}"/></th>
+					<th>${board.qna_count}</th>
 				</tr>
 				<tr>
-					<td class="content" colspan="4"><pre>${board.notice_content}</pre></td>
+					<td class="content" colspan="5"><pre>${board.qna_content}</pre></td>
 				</tr>
 			</table>
 				<c:set var="page" value="${param.p}" />
 			<div class="list">
-				<input type="submit" value="수정" class="upbtn" onclick="location.href='noticeUpdate.do?notice_code=${param.notice_code}'">
-				<input type="submit" value="삭제" class="delbtn" onclick="location.href='noticeDelete.do?notice_code=${param.notice_code}'">
-				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeList.do?p=${page}&f=${param.f}&q=${param.q}'">
+				<input type="submit" value="수정" class="upbtn" onclick="location.href='qnaUpdate.do?qna_code=${param.qna_code}'">
+				<input type="submit" value="삭제" class="delbtn" onclick="location.href='qnaDelete.do?qna_code=${param.qna_code}'">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='qnaList.do?p=${page}&f=${param.f}&q=${param.q}'">
 			</div>
 		</div>
-
 	</section>
 	<jsp:include page="H&F/footer.html" />
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

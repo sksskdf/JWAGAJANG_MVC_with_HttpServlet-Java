@@ -1,9 +1,13 @@
-<<<<<<< HEAD
-/qna/
-=======
-/goods/
-/product/
+/board/
+/cart/
+/common/
 /controller/
+/filter/
+/goods/
+/index/
+/main/
 /member/
 /notice/
->>>>>>> main2
+/product/
+/qna/
+/util/

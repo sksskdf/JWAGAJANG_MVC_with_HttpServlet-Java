@@ -7,11 +7,11 @@ public class QnaListModel {
 	private List<QnaVO> qnaList;
 	private Paging paging;
 
-	public List<QnaVO> getNoticeList() {
+	public List<QnaVO> getQnaList() {
 		return qnaList;
 	}
 	
-	public void setNoticeList(List<QnaVO> qnaList) {
+	public void setQnaList(List<QnaVO> qnaList) {
 		this.qnaList = qnaList;
 	}
 
@@ -25,5 +25,9 @@ public class QnaListModel {
 
 	public void setPaging(Paging paging) {
 		this.paging = paging;
+	}
+	
+	public int getSize() {
+		return qnaList.size();
 	}
 }
