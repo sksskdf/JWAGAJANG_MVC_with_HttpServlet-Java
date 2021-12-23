@@ -30,7 +30,7 @@
            <a href="list.do?category_main=${md.category_main}">${md.category_main_name}</a>
         </div>
         <div class="goods">
-            <img src="${md.img_main}" class="goods_img">
+        	<div class="goods_img" style="background-image: url(${md.img_main});"></div>
             <div class="goods_info">
                 <p class="goods_title">${md.md_name}</p>
                 <p class="goods_price">
@@ -105,7 +105,7 @@
                     <p class="review_desc">· 상품에 대한 후기를 남기는 공간입니다. 상품평 운영원칙 및 법령에 위반되는 경우에는 해당 상품평에 대한 필요한 조치가 취해질 수 있습니다.</p>
                 </div>
                 <table class="review_list">
-                <c:if test="${count == 0}">
+                <c:if test="${count == 0 || count == null}">
                 	<p class="noReview">등록된 상품평이 없습니다.</p>
                 </c:if>
                 <c:if test="${count > 0}">

@@ -29,7 +29,7 @@ public class GoodsListHandler implements CommandHandler {
 		String category_main = req.getParameter("category_main");
 		String category_sub = req.getParameter("category_sub");
 		String order = req.getParameter("order");
-		String viewPage = "/data.jsp";
+		String viewPage = "/listData.jsp";
 		GoodsDAO gDao = GoodsDAO.getInstance();
 		List<GoodsVO> mdList;
 		req.setAttribute("category_main", category_main);

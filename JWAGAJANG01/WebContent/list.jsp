@@ -29,27 +29,7 @@
 	       <span class="navarrow"></span>
            <a href="list.do?category_main?category_main=${mdList[0].category_main}">${mdList[0].category_main_name}</a>
            </c:if>
-     <!-- 
-			<c:if test="${category_main == '100'}">
-				<c:set var="mainCtgry" value="채소·과일"/>
-			</c:if> 
-			<c:if test="${category_main == '200'}">
-				<c:set var="mainCtgry" value="쌀·견과류"/>
-			</c:if> 
-			<c:if test="${category_main == '300'}">
-				<c:set var="mainCtgry" value="수산·해산"/>
-			</c:if> 
-			<c:if test="${category_main == '400'}">
-				<c:set var="mainCtgry" value="정육·계란"/>
-			</c:if> 
-			<c:if test="${category_main == 'All'}">
-				<c:set var="mainCtgry" value="전체보기"/>
-			</c:if> 
-			<c:if test="${category_main != 'All'}">
-				<c:set var="display" value="[${mainCtgry}]"/>
-			</c:if>
-           		
-     -->
+
 	       <span class="navarrow"></span>
            <a href="#">전체보기</a>
         </div>
@@ -115,12 +95,12 @@
             <div class="list_goods">
                 <div class="inner_listgoods">
                     <ul class="goods">
-                    <c:forEach var="md" items="${mdList}"> <!-- 삭제 가능? -->
+                    <c:forEach var="md" items="${mdList}">
                         <li>
                             <div class="item">
                             	<div class="thumb">
                                     <a href="/goods.do?md_code=${md.md_code}">
-                                    	<img class="img" style="background-image: url(${md.img_main});">
+                                    	<div class="thumbimg" style="background-image: url(${md.img_main});"></div>
                                     </a>
                                 </div>
                                 <a href="/goods.do?md_code=${md.md_code}" class="goods_info">

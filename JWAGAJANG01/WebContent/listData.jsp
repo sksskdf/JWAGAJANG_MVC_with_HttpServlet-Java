@@ -8,7 +8,7 @@
         <div class="item">
         	<div class="thumb">
                 <a href="/goods.do?md_code=${md.md_code}">
-                	<img class="img" style="background-image: url(${md.img_main});">
+                	<div class="thumbimg" style="background-image: url(${md.img_main});"/></div>
                 </a>
             </div>
             <a href="/goods.do?md_code=${md.md_code}" class="goods_info">

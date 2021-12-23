@@ -50,7 +50,7 @@ $(function() {
 				alert(error);
 			}
 		});
-		});
+	});
 	
 	// 리뷰 등록
 	$("#submitbtn").on("click", function(e) {
@@ -166,28 +166,6 @@ function change_qty(btn) {
     $(".total_cost").html(show_total_amount.format());
 	
 };
-
-// 장바구니 추가-------------------------------------------
-/*$(document).ready(function(){
-	$(".cartbtn").click(function() {
-		var buyer = $("#buyer").val();
-		var book_kind = $("#book_kind").val();
-		var query = {book_id:$("#book_id").val(),
-				     buy_count:$("#buy_count").val(),
-				     book_image:$("#book_image").val(),
-				     book_title:$("#book_title").val(),
-				     buy_price:$("#buy_price").val(),
-				     buyer:buyer};		
-		$.ajax({
- 		     type: "POST",
- 		     url: "/shoppingmall/insertCart.do",
- 		     data: query,
- 		     success: function(data){
- 		    	 alert("장바구니에 담겼습니다."); 
- 		     }
- 		});
-	});
-});*/
 
 // 댓글 창 크기 자동 조절
 function resize(obj) {
