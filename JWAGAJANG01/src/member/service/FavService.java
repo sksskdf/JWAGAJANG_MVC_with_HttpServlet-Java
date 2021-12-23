@@ -39,13 +39,13 @@ public class FavService {
 		return fDao.count(conn, id);
 	}
 	
-	public void del(String id,String mdname) {
+	public void del(String id,int mdcode) {
 		FavDao fDao = FavDao.getInstance();
 		Connection conn = null;
 		
 		conn = DBManager.getConnection();
 
-		fDao.delete(conn, id, mdname);
+		fDao.delete(conn, id, mdcode);
 	}
 	
 	public void insert(Fav fav) {
@@ -56,5 +56,14 @@ public class FavService {
 		conn = DBManager.getConnection();
 
 		fDao.insert(conn,fav);
+	}
+	
+	public Integer checkFavDup(String user_id , int md_code) {
+		FavDao fDao = FavDao.getInstance();
+		Connection conn = null;
+		
+		conn = DBManager.getConnection();
+		
+		return fDao.checkFavDup(conn, user_id, md_code);
 	}
 }

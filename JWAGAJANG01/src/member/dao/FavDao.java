@@ -49,9 +49,10 @@ public class FavDao {
 				String mdname = rs.getString("md_name");
 				Date mdorderdate = rs.getDate("md_regdate");
 				String mdprice = rs.getString("md_price");
+				int mdcode = rs.getInt("md_code");
 				
 				order = new Order(
-						mdpic,mdname,mdorderdate,mdprice
+						mdpic,mdname,mdorderdate,mdprice,mdcode
 						);
 				favlist.add(order);
 				}
@@ -106,13 +107,13 @@ public class FavDao {
 		return count;
 	}
 	
-	public void delete(Connection conn,String id,String mdname) {
+	public void delete(Connection conn,String id,int mdcode) {
 		PreparedStatement pstmt = null;
 		try {
-			String query = "DELETE FROM `jwagajang`.`table_fav` WHERE (`order_name` = ?  and `user_id` = ?)";
+			String query = "DELETE FROM `jwagajang`.`table_fav` WHERE (`md_code` = ?  and `user_id` = ?)";
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, mdname);
+			pstmt.setInt(1, mdcode);
 			pstmt.setString(2, id);
 			pstmt.executeUpdate();
 		}catch (SQLException e) {
@@ -140,5 +141,32 @@ public class FavDao {
 			DBManager.close(conn);
 			DBManager.close(pstmt);
 		}
+	}
+	
+	public Integer checkFavDup(Connection conn,String user_id,int md_code) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Order order = new Order();
+		int mdcode = 0;
+		try {
+			String query = "select * from table_fav where user_id = ? and md_code = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, user_id);
+			pstmt.setInt(2, md_code);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+			mdcode = rs.getInt("md_code");
+			order.setMdcode(mdcode);
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn);
+			DBManager.close(pstmt);
+			DBManager.close(rs);
+		}
+		return order.getMdcode();
 	}
 }

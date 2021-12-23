@@ -27,13 +27,13 @@ public class FavListHandler implements CommandHandler {
 		int count = fs.getCount(id);
 		
 		if(del != null) {
-			String mdname = del;
-			fs.del(id, mdname);
+			int mdcode = Integer.parseInt(del);
+			fs.del(id, mdcode);
 			PrintWriter writer;
 			res.setContentType("text/html; charset=UTF-8");
 			writer = res.getWriter();
 			writer.println("<script>alert('해당 상품이 찜목록에서 삭제되었습니다.');</script>"); 
-			writer.println("<script>location.href=\"/login.do\";</script>");
+			writer.println("<script>location.href=\"/favlist.do?p=1&id="+id+"\";</script>");
 			writer.close();
 		}
 		
@@ -41,7 +41,7 @@ public class FavListHandler implements CommandHandler {
 		req.setAttribute("favlist", favlist);
 		req.setAttribute("count", count);
 		
-		return "/member/favlist.jsp";
+		return "member/favlist.jsp";
 	}
 	
 }

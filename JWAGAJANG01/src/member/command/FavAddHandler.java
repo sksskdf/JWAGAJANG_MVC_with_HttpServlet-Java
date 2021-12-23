@@ -1,5 +1,7 @@
 package member.command;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,14 +14,20 @@ public class FavAddHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		int mdcode = Integer.parseInt(req.getParameter("mdcode"));
+		Integer mdcode = Integer.parseInt(req.getParameter("mdcode"));
 		String userid = req.getParameter("userid");
 		
 		
 		Fav fav = new Fav(mdcode,userid);
 		
 		FavService fs = FavService.getInstance();
-		fs.insert(fav);
+		
+		Integer md_code = fs.checkFavDup(userid, mdcode);
+		System.out.println(md_code);
+		
+		if(md_code == null) {
+			fs.insert(fav);	
+		}
 		
 		
 		return "goods.do?md_code="+mdcode;

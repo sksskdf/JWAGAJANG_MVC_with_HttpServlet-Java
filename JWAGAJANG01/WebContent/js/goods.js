@@ -9,6 +9,7 @@ $(function() {
 	$(".favbtn").on("click",function(e){
 		e.preventDefault();
 		var mdcode = $("input[name='mdcode']").val();
+		var favdupchk = $("input[name='favdupchk']").val();
 		var userid = $("input[name='user_id']").val();
 		var query = { mdcode:mdcode,userid:userid};
 		$.ajax({
@@ -16,7 +17,12 @@ $(function() {
 			url: "/favadd.do",
 			data: query,
 			success: function(data) {
-				alert("해당상품이 찜목록에 추가되었습니다!");
+				if(favdupchk === mdcode){
+					alert("이미 찜 한 상품입니다!");
+				}else{
+					alert("해당상품이 찜목록에 추가되었습니다!");
+					 location.href = "goods.do?md_code="+mdcode;
+				}
 			}
 		});
 	});

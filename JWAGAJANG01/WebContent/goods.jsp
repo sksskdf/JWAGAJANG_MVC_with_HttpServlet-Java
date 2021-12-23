@@ -53,7 +53,6 @@
                     <dd>
                         <span class="countbtn">
                             <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
-                            <input type="number" id="goods_qty" readonly="readonly" min="1"  value="1">
                             <input type="number" id="goods_qty" readonly="readonly" min="1" max="10" value="1">
                             <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
                         </span>
@@ -121,6 +120,7 @@
 				</c:if>
                 </table>
                 <input type="hidden" name="md_code" value="${md.md_code}">
+                <input type="hidden" name="favdupchk" value="${dupchk}">
                 <table class="review_write">
 				<c:if test="${empty sessionScope.id}">
 					<p class="reveiwLogin">상품평을 작성하시려면 <a href="/login.do">로그인</a> 하세요</p>	<%-- 로그인하고 다시 돌아올 수 있나? --%>

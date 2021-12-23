@@ -52,7 +52,7 @@
 			      <td><img class="orderPic"alt="" src="${f.mdpic}"> </td>
 			      <td class="thf va">${f.mdname}</td>
 			      <td class="va">${f.mdprice}</td>
-			      <td class="va"><a href="favlist.do?del=${f.mdname}&p=1"><img alt="찜" src="../img/fav.svg"></a></td>
+			      <td class="va"><a href="favlist.do?del=${f.mdcode}&p=1"><img alt="찜" src="../img/fav.svg"></a></td>
 			    </tr>
 			    </c:forEach>
 			  </tbody>

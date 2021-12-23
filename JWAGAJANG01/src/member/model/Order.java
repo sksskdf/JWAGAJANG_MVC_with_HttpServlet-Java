@@ -8,7 +8,7 @@ public class Order {
 	private Date mdorderdate = null;
 	private String mdprice = null;
 	private String mdreview = null;
-	private String mdnum = null;
+	private Integer mdcode = null;
 	
 	
 	public Order() {
@@ -25,13 +25,13 @@ public class Order {
 	}
 	
 	
-	public Order(String mdpic, String mdname, Date mdorderdate, String mdprice,String mdnum) {
+	public Order(String mdpic, String mdname, Date mdorderdate, String mdprice,int mdcode) {
 		super();
 		this.mdpic = mdpic;
 		this.mdname = mdname;
 		this.mdorderdate = mdorderdate;
 		this.mdprice = mdprice;
-		this.mdnum = mdnum;
+		this.mdcode = mdcode;
 	}
 
 
@@ -93,16 +93,13 @@ public class Order {
 	public void setMdreview(String mdreview) {
 		this.mdreview = mdreview;
 	}
-	
 
-	public String getMdnum() {
-		return mdnum;
+	public Integer getMdcode() {
+		return mdcode;
 	}
 
-
-
-	public void setMdnum(String mdnum) {
-		this.mdnum = mdnum;
+	public void setMdcode(Integer mdcode) {
+		this.mdcode = mdcode;
 	}
 
 
