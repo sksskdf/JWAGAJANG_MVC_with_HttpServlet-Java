@@ -1,0 +1,42 @@
+pVo.setMd_code(rs.getInt("md_code"));
+pVo.setMd_name(rs.getString("md_name"));
+pVo.setMd_price(rs.getInt("md_price"));
+pVo.setMd_dc(rs.getInt("md_dc"));
+pVo.setImg_main(rs.getString("img_main"));
+pVo.setImg_detail(rs.geString("img_detail"));
+pVo.setMd_regdate(rs.getTimestamp("md_regdate"));
+pVo.setMd_editdate(rs.getTimestamp("md_editdate"));
+pVo.setCategory_main(rs.getString("category_main"));
+pVo.setCategory_sub(rs.getString("category_sub"));
+pVo.setMd_ordercnt(rs.getInt("md_ordercnt"));
+
+
+private int md_code;
+	private String md_name;
+	private int md_price;
+	private int md_dc;
+	private String img_main;
+	private String img_detail;
+	private Timestamp md_regdate;
+	private Timestamp md_editdate;
+	private String category_main;
+	private String category_sub;
+	private int md_ordercnt;
+
+
+pVo.setMd_code(Integer.parseInt(md_code));
+pVo.setMd_name(md_name);
+pVo.setMd_price(Integer.parseInt(md_price));
+pVo.setMd_dc(Integer.parseInt(md_dc));
+pVo.setImg_main(img_main);
+pVo.setImg_detail(img_detail);
+pVo.setCategory_main(category_main);
+pVo.setCategory_sub(category_sub);
+pVo.setMd_ordercnt(Integer.parseInt(md_ordercnt));
+
+
+String img_main = multi.gerContentType("img_main");  
+String img_detail = multi.gerContentType("img_detail"); 
+String category_main = multi.gerParameter("category_main");
+String category_sub = multi.gerParameter("category_sub");
+String md_ordercnt = multi.gerParameter("md_ordercnt");
