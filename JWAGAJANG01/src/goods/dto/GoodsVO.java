@@ -17,7 +17,15 @@ public class GoodsVO {
 	private Integer review_rate;
 	private String review_content; 
 	private Timestamp review_regdate;
+	private String category_main_name;
 	
+	
+	public String getCategory_main_name() {
+		return category_main_name;
+	}
+	public void setCategory_main_name(String category_main_name) {
+		this.category_main_name = category_main_name;
+	}
 	public Integer getMd_code() {
 		return md_code;
 	}
@@ -101,6 +109,14 @@ public class GoodsVO {
 	}
 	public void setReview_regdate(Timestamp review_regdate) {
 		this.review_regdate = review_regdate;
+	}
+	@Override
+	public String toString() {
+		return "GoodsVO [md_code=" + md_code + ", md_name=" + md_name + ", md_price=" + md_price + ", md_dc=" + md_dc
+				+ ", md_dcprice=" + md_dcprice + ", img_main=" + img_main + ", img_detail=" + img_detail
+				+ ", category_main=" + category_main + ", category_sub=" + category_sub + ", review_code=" + review_code
+				+ ", user_id=" + user_id + ", review_rate=" + review_rate + ", review_content=" + review_content
+				+ ", review_regdate=" + review_regdate + ", category_main_name=" + category_main_name + "]";
 	}
 	
 	

@@ -2,6 +2,7 @@ package goods.command;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,8 +15,10 @@ public class GoodsHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
+		
+		
 		List<GoodsVO> mdDetail;
-		Integer md_code = Integer.parseInt(req.getParameter("md_code"));
+		int md_code = Integer.parseInt(req.getParameter("md_code"));
 		
 		// 상품
 		GoodsDAO gDao = GoodsDAO.getInstance();
@@ -35,7 +38,6 @@ public class GoodsHandler implements CommandHandler {
 		}
 		
 		req.setAttribute("count", new Integer(count));
-
 		
 		return "/goods.jsp";
 	}

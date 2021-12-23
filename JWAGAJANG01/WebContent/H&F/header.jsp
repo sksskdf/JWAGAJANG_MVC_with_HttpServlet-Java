@@ -19,7 +19,7 @@
             <li><a href="/logout.do">로그아웃</a></li>
             </c:if>
             <c:if test="${sessionScope.id != null}">
-            <li><a href="#">장바구니</a></li>
+            <li><a href="/cartPut.do">장바구니</a></li>
             </c:if>
             <c:if test="${sessionScope.id == null}">
             <li><a href="/join.do">회원가입</a></li>

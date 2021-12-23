@@ -67,4 +67,12 @@ public class CartVO {
 	public void setMd_count(int md_count) {
 		this.md_count = md_count;
 	}
+
+	@Override
+	public String toString() {
+		return "CartVO [md_code=" + md_code + ", md_name=" + md_name + ", img_main=" + img_main + ", md_price="
+				+ md_price + ", md_dc=" + md_dc + ", md_count=" + md_count + "]";
+	}
+	
+	
 }

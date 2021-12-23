@@ -61,6 +61,7 @@ public class GoodsDAO {
 					md.setImg_main(rs.getString("img_main"));
 					md.setCategory_main(rs.getNString("category_main"));
 					md.setCategory_sub(rs.getNString("category_sub"));
+					md.setCategory_main_name(rs.getString("category_main_name"));
 					mdCate.add(md);
 				} while (rs.next());
 			}
@@ -96,6 +97,7 @@ public class GoodsDAO {
 				md.setImg_detail(rs.getString("img_detail"));
 				md.setCategory_main(rs.getNString("category_main"));
 				md.setCategory_sub(rs.getNString("category_sub"));
+				md.setCategory_main_name(rs.getString("category_main_name"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

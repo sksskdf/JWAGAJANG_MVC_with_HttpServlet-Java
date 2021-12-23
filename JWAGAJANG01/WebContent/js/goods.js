@@ -4,41 +4,37 @@ $(function() {
         $('html, body').animate({
             scrollTop: $(this.hash).offset().top}, 400);
     });
+
+	
+	var form = $("form");
+	$(".favbtn").on("click",function(e){
+		e.preventDefault();
+		var mdcode = $("input[name='mdcode']").val();
+		var userid = $("input[name='user_id']").val();
+		var query = { mdcode:mdcode,userid:userid};
+		$.ajax({
+			type: "POST",
+			url: "/favadd.do",
+			data: query,
+			success: function(data) {
+				alert("해당상품이 찜목록에 추가되었습니다!");
+			}
+		});
+	});
 });
 
+/*
 $(function() {
 	$('.ctgry_list a').click(function(){
 		$('.ctgry_list a').removeClass()
 			$(this).addClass('on')
 	});
-});
+});*/
 
-// 주문수량 버튼
-/*
-// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
-Number.prototype.format = function(){
-    if(this==0) return 0;
- 
-    var reg = /(^[+-]?\d+)(\d{3})/;
-    var n = (this + '');
- 
-    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
- 
-    return n;
-};
- 
-// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
-String.prototype.format = function(){
-    var num = parseFloat(this);
-    if( isNaN(num) ) return "0";
- 
-    return num.format();
-};
-*/
 function change_qty(btn) {
     var min_qty = 1;
     var this_qty = $("#goods_qty").val()*1;
-    var max_qty = '10'
+    var max_qty = $("goods_qty").attr("min");
 
     if(btn=="minus") {
         this_qty -= 1;
@@ -63,6 +59,28 @@ function change_qty(btn) {
 	
 }
 
+// 장바구니 추가-------------------------------------------
+/*$(document).ready(function(){
+	$(".cartbtn").click(function() {
+		var buyer = $("#buyer").val();
+		var book_kind = $("#book_kind").val();
+		var query = {book_id:$("#book_id").val(),
+				     buy_count:$("#buy_count").val(),
+				     book_image:$("#book_image").val(),
+				     book_title:$("#book_title").val(),
+				     buy_price:$("#buy_price").val(),
+				     buyer:buyer};		
+		$.ajax({
+ 		     type: "POST",
+ 		     url: "/shoppingmall/insertCart.do",
+ 		     data: query,
+ 		     success: function(data){
+ 		    	 alert("장바구니에 담겼습니다."); 
+ 		     }
+ 		});
+	});
+});*/
+
 // 댓글 창 크기 자동 조절
 function resize(obj) {
     obj.style.height = '1px';
@@ -77,3 +95,12 @@ $(window).scroll(function() {
         $(".footnav").show();
     }
 }); 
+
+
+
+
+
+
+
+	
+

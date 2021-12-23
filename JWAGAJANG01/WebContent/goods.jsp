@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
     <script src="js/jquery.min.js"></script>
     <script src="js/goods.js"></script>
+
     <title>좌가장</title>
 </head>
 <body>
@@ -26,9 +27,7 @@
         <div class="pagenav">
 	       <a href="/index.do">홈</a>
 	       <span class="navarrow"></span>
-           <a href="#">시금치 · 쌈채소 · 나물</a>
-	       <span class="navarrow"></span>
-           <a href="#">청경채</a>
+           <a href="list.do?category_main=${md.category_main}">${md.category_main_name}</a>
         </div>
         <div class="goods">
             <img src="${md.img_main}" class="goods_img">
@@ -54,7 +53,7 @@
                     <dd>
                         <span class="countbtn">
                             <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
-                            <input type="number" id="goods_qty" readonly="readonly" min="1" max="10" value="1">
+                            <input type="number" id="goods_qty" readonly="readonly" min="1"  value="1">
                             <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
                         </span>
                     </dd>
@@ -68,25 +67,37 @@
                     </dd>
                 </dl>
                 <div class="total_price">
-                    <p class="won"><span class="total_cost"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/></span>원</p>
+                    <p class="won"><span class="total_cost">
+                    <fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/></span>원</p>
                 </div>
                 <div class="btn">
+                	<input type="hidden" name="mdcode" value="${md.md_code}">
+                	<input type="hidden" name="user_id" value="${sessionScope.id}">
                     <button type="button" class="buynowbtn">바로구매</button>
+                    <c:if test="${not empty sessionScope.id}">
                     <button type="button" class="cartbtn">장바구니</button>
-                    <button type="button" class="favbtn">찜하기</button>
+                    </c:if>
+                    <c:if test="${empty sessionScope.id}">
+                    <button type="button" class="cartbtn" >장바구니</button>
+                    </c:if>
+                    <button type="button" class="favbtn" >찜하기</button>
                 </div>
             </div>
+            
+            
+            
+            
             <div id="goods_detail">
                 <ul class="goods_tab">
                     <li><a href="#goods_detail" class="tab_on detail_anchor">상품 상세 정보</a></li>
-                    <li><a href="#goods_review" class="tab_off review_anchor">상품평 (10건)</a></li>
+                    <li><a href="#goods_review" class="tab_off review_anchor">상품평 (${count}건)</a></li>
                 </ul>
                 <img src="img/mddetailimg.png" class="goods_img_detail">
             </div>
             <div id="goods_review">
                 <ul class="goods_tab">
                     <li><a href="#goods_detail" class="tab_off detail_anchor">상품 상세 정보</a></li>
-                    <li><a href="#goods_review" class="tab_on review_anchor">상품평 (10건)</a></li>
+                    <li><a href="#goods_review" class="tab_on review_anchor">상품평 (${count}건)</a></li>
                 </ul>
                 <div class="review_title">
                     <p class="review_tit">상품평</p>
@@ -94,33 +105,49 @@
                 </div>
                 <table class="review_list">
                 <c:if test="${count == 0}">
-                	등록된 상품평이 없습니다.
+                	<p class="noReview">등록된 상품평이 없습니다.</p>
                 </c:if>
                 <c:if test="${count > 0}">
 	                <c:forEach var="review" items="${reviewList}">
 	                	<tr>
-	                        <td class="review_name">"${review.user_id}"</td>
-	                        <td class="review_rate">"${review.review_rate}"</td>
-	                        <td class="review_content">"${review.review_content}"</td>
-	                        <td class="review_date">"${review.review_regdate}"</td>
+	                        <td class="review_name">${review.md_name}</td>
+	                        <td class="review_rate">${review.review_rate}</td>
+	                        <td class="review_content">${review.review_content}</td>
+	                        <td class="review_date"><fmt:formatDate value="${review.review_regdate}" pattern="yyyy-MM-dd"/></td>
 	                    </tr>
 	                </c:forEach>
 				</c:if>
-                   <!--  <tr>
-                        <td class="review_name">박민지</td>
-                        <td class="review_rate">★★★★★</td>
-                        <td class="review_content">청경채 살살 녹는다.</td>
-                        <td class="review_date">2021.12.03</td>
-                    </tr>
-                    <tr>
-                        <td class="review_name">길기훈</td>
-                        <td class="review_rate">★★★★</td>
-                        <td class="review_content">흙이 그대로 있는데 맛은 있어요.</td>
-                        <td class="review_date">2021.12.03</td>
-                    </tr> -->
                 </table>
                 <table class="review_write">
-                    <tr>
+				<c:if test="${empty sessionScope.id}">
+					<p class="reveiwLogin">상품평을 작성하시려면 <a href="/login.do">로그인</a> 하세요</p>	<%-- 로그인하고 다시 돌아올 수 있나? --%>
+				</c:if>
+				
+				
+				
+				<%-- <c:if test="${!empty sessionScope.id}"> --%>
+					<tr>
+                        <td class="write_name">
+                            <input type="text" id="writer">
+                        </td>
+                        <td class="write_rate">
+                            <input type="text" id="stars" placeholder="★★★★★"
+                                onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
+                        </td>
+                        <td class="write_content">
+                            <textarea type="text" id="writervw" placeholder="상품평을 작성해주세요."
+                                onfocus="this.placeholder=''" onblur="this.placeholder='상품평을 작성해주세요.'"
+                                onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+                        </td>
+                        <td class="write_submit">
+                            <input type="submit" id="submitbtn" value="등록"></button>
+                        </td>
+                    </tr>
+				<%-- </c:if> --%>
+               
+                
+                
+                    <!-- <tr> 로그인 후 리뷰 등록되는지 확인하고 지우면 됨 
                         <td class="write_name">
                             <input type="text" id="writer" placeholder="작성자" 
                                 onfocus="this.placeholder=''" onblur="this.placeholder='작성자'">
@@ -137,7 +164,7 @@
                         <td class="write_submit">
                             <input type="submit" id="submitbtn" value="등록"></button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
         </div>
@@ -162,9 +189,7 @@
     </div>
     <!-- 푸터 -->
     <jsp:include page="H&F/footer.html"/>
-    <script src="js/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="js/index.js"></script>
+    
+    
 </body>
 </html>
