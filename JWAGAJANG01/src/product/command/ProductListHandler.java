@@ -71,6 +71,7 @@ public class ProductListHandler implements CommandHandler {
 		ProductListModel listModel = new ProductListModel();
 		listModel.setNoticeList(productList); // 가져온 목록
 		listModel.setPaging(paging);		 // 페이징 정보
+		req.setAttribute("productList", productList);
 		req.setAttribute("listModel", listModel); // jsp로 전달
 		
 		System.out.println(searchkeyword);

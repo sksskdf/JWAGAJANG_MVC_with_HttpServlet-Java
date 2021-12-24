@@ -83,7 +83,6 @@ pageEncoding="UTF-8"%>
                                     <col style="width: 400px; height:300px;">
                                     <col style="width: 179px; height:300px;">
                                 </colgroup>
-
                                 <tr class="tabletitle">
                                     <th colspan="2">상품명</th>
                                     <th>재고</th>
@@ -92,15 +91,19 @@ pageEncoding="UTF-8"%>
                                     <th>리뷰</th>
                                 </tr>
                                 
-                                <!-- <tr>
-                                    <td><img src="img/best2.jpg"></td>
-                                    <td>[민선지] 빨간 세척 당근</td>
-                                    <td>78</td>
-                                    <td>2021-12-03</td>
-                                    <td>1,760원</td>
+                                
+                                <c:forEach var="f" items="${productList}">
+                                <tr>
+                                    <td><img src="${f.img_main}"></td>
+                                    <td>${f.md_name}</td>
+                                    <td>${f.md_ordercnt }</td>
+                                    <td>${f.md_regdate}</td>
+                                    <td>${f.md_price }</td>
                                     <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
                                         <br><input type="button" value="삭제" class="deletebtn"></td>
                                 </tr>
+                                </c:forEach>
+                                <!--  
                                 <tr>
                                     <td><img src="img/best1.jpg"></td>
                                     <td>[박민지] 맛좋은 청경채</td>
