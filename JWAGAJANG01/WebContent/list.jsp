@@ -27,7 +27,7 @@
 	       <a href="/index.do">홈</a>
 	       <c:if test="${(param.category_main != 'All')}">
 	       <span class="navarrow"></span>
-           <a href="list.do?category_main?category_main=${mdList[0].category_main}">${mdList[0].category_main_name}</a>
+           <a href="list.do?category_main?=${mdList[0].category_main}">${mdList[0].category_main_name}</a>
            </c:if>
 
 	       <span class="navarrow"></span>
