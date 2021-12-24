@@ -1,4 +1,4 @@
-select *from table_md;
+select *from table_qna;
 
 desc table_md;
 

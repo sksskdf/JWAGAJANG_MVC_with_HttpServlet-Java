@@ -70,7 +70,7 @@ public class QnaSearchHandler implements CommandHandler {
 		qnalistModel.setQnaList(list); //  qnaList는 원래 목록, list는 search목록
 		qnalistModel.setPaging(paging);		 // 페이징 정보
 		req.setAttribute("qnalistModel", qnalistModel); // jsp로 전달
-		
+		req.setAttribute("tbc", totalBoardCount);
 		
 		res.setHeader("Pragma", "No-cache"); // 캐시 삭제하도록 설정 : 게시글을 추가했는데 캐시에 있는걸 보여주면 추가한게 안나오기떄문에
 		res.setHeader("Cache-Control", "no-cache");
