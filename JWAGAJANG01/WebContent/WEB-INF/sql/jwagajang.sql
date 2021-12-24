@@ -8,4 +8,8 @@ desc table_md;
 
 desc table_mdstock;
 
-select * from table_mdsort; 
+select * from table_mdsort;
+
+select *;
+
+desc table_mdsort;
