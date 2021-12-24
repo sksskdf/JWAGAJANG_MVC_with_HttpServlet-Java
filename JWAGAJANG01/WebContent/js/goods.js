@@ -68,6 +68,7 @@ $(function() {
 			contentType:"application/x-www-form-urlencoded; charset=UTF-8",
 			success: function(data) {
 				$('.review_list').append(data);
+				$('.noReview').hide();
 			},
 			error: function(request, status, error) {
 				alert(error);
@@ -76,6 +77,7 @@ $(function() {
 		});
 	});
 
+	// 장바구니
 	$(".cartbtn").on("click",function(e){
 		e.preventDefault();
 		var md_code = $("input[name='mdcode']").val();
@@ -96,48 +98,37 @@ $(function() {
 			}
 		});
 	});
+	
+	// 푸터 네비 바 나타나기
+	$(window).scroll(function() {
+	    if($(this).scrollTop() < 300) {
+	        $(".footnav").hide();
+	    } else {
+	        $(".footnav").show();
+	    }
+	});
 });
 
+// 천 단위로 점 찍기
+Number.prototype.format = function(){
 
+    if(this==0) return 0;
 
-/*
-// 리뷰 등록
-$(document).ready(function() {
-    $("#submitbtn").click(function() {
-    	  var book_id = $("#book_id").val();
+    var reg = /(^[+-]?\d+)(\d)/;
 
-  		  var query = {qna_content:$("#qnaCont").val(),
-  				       qna_writer:$("#qna_writer").val(),
-  				       book_title:$("#book_title").val(),
-  				       book_id:book_id,
-  				       qora:$("#qora").val()};
-  		  
-  		  $.ajax({
-  		     type: "POST",
-  		     url: "/shoppingmall/qnaPro.do",
-  		     data: query,
-  		     success: function(data){
-  		    	var str1 = '<p id="ck">';
-	    		var loc = data.indexOf(str1);
-	    		var len = str1.length;
-	    		var check = data.substr(loc+len,1);
-	    		if(check == "1"){//
-	    			alert("QnA가 등록되었습니다.");
- 		    		var query = "/shoppingmall/bookContent.do?book_id="+book_id;
- 		    		query += "&book_kind="+book_kind;
- 		    		window.location.href=query;
-	    	     }else
-	    	    	 alert("QnA 등록 실패");
-  		     }
-  		  });
-	});*/
-/*
-$(function() {
-	$('.ctgry_list a').click(function(){
-		$('.ctgry_list a').removeClass()
-			$(this).addClass('on')
-	});
-});*/
+    var n = (this + '');
+
+    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+    return n;
+};
+
+String.prototype.format = function() {
+	var num = parseFloat(this);
+	if( isNam(num) ) return "0";
+	
+	return num.format();
+};
 
 function change_qty(btn) {
     var min_qty = 1;
@@ -158,12 +149,13 @@ function change_qty(btn) {
         }
     }
     
-    var basic_amount = parseInt('1760');
+	var dccost = $("#cost").data("oper");
+    var basic_amount = parseInt(dccost);
     var show_total_amount = basic_amount * this_qty;
 
     $("#goods_qty").val(this_qty);
-    $(".total_qty").html(this_qty.format());
-    $(".total_cost").html(show_total_amount.format());
+    $(".total_qty").html(this_qty);
+    $(".total_cost").html(show_total_amount);
 	
 };
 
@@ -173,11 +165,3 @@ function resize(obj) {
     obj.style.height = (obj.scrollHeight) + 'px';
 };
 
-// 푸터 네비 바 나타나기
-$(window).scroll(function() {
-    if($(this).scrollTop() < 300) {
-        $(".footnav").hide();
-    } else {
-        $(".footnav").show();
-    }
-});

@@ -7,11 +7,12 @@ public class GoodsVO {
 	private String md_name;
 	private Integer md_price;
 	private Integer md_dc;
-	private Integer md_dcprice;
 	private String img_main;
 	private String img_detail;
 	private String category_main;
 	private String category_sub;
+	private Integer md_ordercnt;
+	
 	private Integer review_code;
 	private String user_id;
 	private String user_name;
@@ -51,11 +52,11 @@ public class GoodsVO {
 	public void setMd_dc(Integer md_dc) {
 		this.md_dc = md_dc;
 	}
-	public Integer getMd_dcprice() {
-		return md_dcprice;
+	public Integer getMd_ordercnt() {
+		return md_ordercnt;
 	}
-	public void setMd_dcprice(Integer md_dcprice) {
-		this.md_dcprice = md_dcprice;
+	public void setMd_ordercnt(Integer md_ordercnt) {
+		this.md_ordercnt = md_ordercnt;
 	}
 	public String getImg_main() {
 		return img_main;
@@ -120,7 +121,7 @@ public class GoodsVO {
 	@Override
 	public String toString() {
 		return "GoodsVO [md_code=" + md_code + ", md_name=" + md_name + ", md_price=" + md_price + ", md_dc=" + md_dc
-				+ ", md_dcprice=" + md_dcprice + ", img_main=" + img_main + ", img_detail=" + img_detail
+				+ ", img_main=" + img_main + ", img_detail=" + img_detail
 				+ ", category_main=" + category_main + ", category_sub=" + category_sub + ", review_code=" + review_code
 				+ ", user_id=" + user_id + ", review_rate=" + review_rate + ", review_content=" + review_content
 				+ ", review_regdate=" + review_regdate + ", category_main_name=" + category_main_name + "]";

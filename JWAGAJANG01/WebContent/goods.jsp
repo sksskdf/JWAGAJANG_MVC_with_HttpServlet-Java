@@ -36,7 +36,9 @@
                 <p class="goods_price">
                     <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/></span>원
                     <span class="goods_dc">
-                        <span class="cost"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/>원</span>
+                    <c:set var="dccost" value="${md.md_price-(md.md_price*md.md_dc/100)}"/>
+                        <span id="cost" data-oper="${dccost}"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/>원</span>
+                        <!-- cost class에서 id로 바꿨음 css 확인 -->
                         <span class="dc">${md.md_dc}%</span>
                     </span>
                 </p>
@@ -85,9 +87,6 @@
                 </div>
             </div>
             
-            
-            
-            
             <div id="goods_detail">
                 <ul class="goods_tab">
                     <li><a href="#goods_detail" class="tab_on detail_anchor">상품 상세 정보</a></li>
@@ -111,7 +110,7 @@
                 <c:if test="${count > 0}">
 	                <c:forEach var="review" items="${reviewList}">
 	                	<tr>
-	                        <td class="review_name">${review.md_name}</td>
+	                        <td class="review_name">${review.user_id}</td>
 	                        <td class="review_rate">${review.review_rate}</td>
 	                        <td class="review_content">${review.review_content}</td>
 	                        <td class="review_date"><fmt:formatDate value="${review.review_regdate}" pattern="yyyy-MM-dd"/></td>
@@ -132,7 +131,7 @@
                             <input type="hidden" id="writer" value="${sessionScope.id}">
                         </td>
                         <td class="write_rate">
-                            <input type="text" id="stars" placeholder="★★★★★"
+                            <input type="number" id="stars" placeholder="★★★★★"
                                 onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
                         </td>
                         <td class="write_content">
@@ -145,27 +144,6 @@
                         </td>
                     </tr>
 				</c:if>
-               
-                
-                
-                    <!-- <tr> 로그인 후 리뷰 등록되는지 확인하고 지우면 됨 
-                        <td class="write_name">
-                            <input type="text" id="writer" placeholder="작성자" 
-                                onfocus="this.placeholder=''" onblur="this.placeholder='작성자'">
-                        </td>
-                        <td class="write_rate">
-                            <input type="text" id="stars" placeholder="★★★★★"
-                                onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
-                        </td>
-                        <td class="write_content">
-                            <textarea type="text" id="writervw" placeholder="상품평을 작성해주세요."
-                                onfocus="this.placeholder=''" onblur="this.placeholder='상품평을 작성해주세요.'"
-                                onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
-                        </td>
-                        <td class="write_submit">
-                            <input type="submit" id="submitbtn" value="등록"></button>
-                        </td>
-                    </tr> -->
                 </table>
             </div>
         </div>
