@@ -45,6 +45,7 @@ public class LoginHandler implements CommandHandler {
 		if(member != null) {
 			session.setAttribute("member", member);
 			session.setAttribute("id", id);
+			session.setAttribute("grade", 1);
 			res.sendRedirect("/index.do");
 			
 			System.out.println("로그인 성공");

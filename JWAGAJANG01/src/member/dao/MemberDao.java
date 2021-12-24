@@ -64,6 +64,7 @@ public class MemberDao {
 		member.setEmail(rs.getString("user_email"));
 		member.setCreatedAt(rs.getTimestamp("user_regdate"));
 		member.setModifiedAt(rs.getTimestamp("user_editdate"));
+		member.setGrade(rs.getInt("user_grade"));
 		return member;
 	}
 	
