@@ -96,11 +96,11 @@ pageEncoding="UTF-8"%>
                                 <tr>
                                     <td><img src="${f.img_main}"></td>
                                     <td>${f.md_name}</td>
-                                    <td>${f.md_ordercnt }</td>
+                                    <td>${f.md_stock }</td>
                                     <td>${f.md_regdate}</td>
                                     <td>${f.md_price }</td>
                                     <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                        <br><input type="button" value="삭제" class="deletebtn"></td>
+                                        <br><input type="button" value="삭제" class="deletebtn" onclick="location.href='productList.do?del=${f.md_code}&p=1&id=${sessionScope.id}'"></td>
                                 </tr>
                                 </c:forEach>
                                 <!--  

@@ -64,7 +64,7 @@ public class ProductDAO {
 		pVo.setMd_editdate(rs.getTimestamp("md_editdate"));
 		pVo.setCategory_main(rs.getString("category_main"));
 		pVo.setCategory_sub(rs.getString("category_sub"));
-		pVo.setMd_ordercnt(rs.getInt("md_ordercnt"));
+		pVo.setMd_ordercnt(rs.getInt("md_stock"));
 		
 		return pVo;
 	}
@@ -230,5 +230,15 @@ public class ProductDAO {
 			bVo.setMd_ordercnt(rs.getInt("md_ordercnt"));
 			return bVo;
 		}
+	public void delete(int del) {
+		String sql = "delete from table_md where md_code=?;";
+		try (Connection conn = DBManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setInt(1, del);
+			pstmt.execute();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	}	
 	

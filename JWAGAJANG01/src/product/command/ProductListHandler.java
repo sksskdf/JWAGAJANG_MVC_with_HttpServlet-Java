@@ -1,5 +1,7 @@
 package product.command;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.command.CommandHandler;
 import product.dao.ProductDAO;
@@ -45,6 +48,10 @@ public class ProductListHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException {
 		String pageNumberString = req.getParameter("p"); // 브라우저에서 목록을 보면 p=null; 페이징 링크를 누르면 p=n;
 		String searchkeyword = req.getParameter("searchkeyword");
+		String del = req.getParameter("del");
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("id");
+		
 		int pageNumber = 1;
 		if (pageNumberString != null && pageNumberString.length() > 0) { // p값이 들어왔는지 안들어왔는지
 			pageNumber = Integer.parseInt(pageNumberString); // 들어왔으면  String 타입의 변수를 int 타입의 변수로  바꿔서 넣는다.
@@ -67,6 +74,23 @@ public class ProductListHandler implements CommandHandler {
 		if (endRow > totalBoardCount) {
 			endRow = totalBoardCount;
 		}
+		//삭제
+		if(del != null) {
+			try {
+				int delint = Integer.parseInt(del);
+				bDao.delete(delint);
+				res.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer;
+				writer = res.getWriter();
+				writer.println("<script>alert('해당 상품이 삭제되었습니다.');</script>"); 
+				writer.println("<script>location.href=\"productList.do?p=1&id='"+id+"'\";</script>"); 
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 		productList = bDao.select(firstRow, endRow); // 첫번째 열, 마지막 열
 		ProductListModel listModel = new ProductListModel();
 		listModel.setNoticeList(productList); // 가져온 목록
