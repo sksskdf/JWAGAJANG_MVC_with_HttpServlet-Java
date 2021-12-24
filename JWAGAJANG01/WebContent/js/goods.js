@@ -78,6 +78,7 @@ $(function() {
 
 	$(".cartbtn").on("click",function(e){
 		e.preventDefault();
+		var userid = $("input[name='user_id']").val();
 		var md_code = $("input[name='mdcode']").val();
 		var user_id = $("input[name='user_id']").val();
 		var md_name = $(".goods_title").text();
@@ -91,8 +92,16 @@ $(function() {
 			url: "/cartPut.do",
 			data: query,
 			success: function(data) {
-				alert("장바구니에 추가되었습니다!");
-				location.href='cartPut.do'
+				if(userid === null || userid === ''){
+					alert("로그인 후 이용하실 수 있습니다!");
+					location.href='login.do';
+				}else{
+					alert(userid);
+					alert("장바구니에 추가되었습니다!");
+					location.href='cartPut.do';
+				}
+				
+				
 			}
 		});
 	});

@@ -29,8 +29,6 @@ public class GoodsHandler implements CommandHandler {
 		
 		FavService fs = FavService.getInstance();
 		Integer dupchk = fs.checkFavDup(userid, md_code);
-		System.out.println(dupchk);
-		System.out.println(userid);
 		if(dupchk != null) {
 			req.setAttribute("dupchk", dupchk);
 		}

@@ -23,7 +23,6 @@ public class FavAddHandler implements CommandHandler {
 		FavService fs = FavService.getInstance();
 		
 		Integer md_code = fs.checkFavDup(userid, mdcode);
-		System.out.println(md_code);
 		
 		if(md_code == null) {
 			fs.insert(fav);	

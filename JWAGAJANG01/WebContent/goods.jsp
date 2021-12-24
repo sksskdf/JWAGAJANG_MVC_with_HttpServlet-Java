@@ -30,7 +30,7 @@
            <a href="list.do?category_main=${md.category_main}">${md.category_main_name}</a>
         </div>
         <div class="goods">
-        	<div class="goods_img" style="background-image: url(${md.img_main});"></div>
+        	<div><img class="goods_img" alt="" src="${md.img_main}"></div>
             <div class="goods_info">
                 <p class="goods_title">${md.md_name}</p>
                 <p class="goods_price">
