@@ -95,6 +95,7 @@ pageEncoding="UTF-8"%>
                                 <c:forEach var="f" items="${productList}">
                                 <tr>
                                     <td><img src="upload/${f.img_main}"></td>
+                                    <td><img src="img/${f.img_main}"></td>
                                     <td>${f.md_name}</td>
                                     <td>${f.md_stock }</td>
                                     <td>${f.md_regdate}</td>
