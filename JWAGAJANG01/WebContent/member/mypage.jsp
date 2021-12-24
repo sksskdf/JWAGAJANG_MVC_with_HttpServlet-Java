@@ -26,12 +26,14 @@
       		<li class="nav-item">
       			<a class="nav-link mpa nf" href="mypage.do">회원 정보 수정</a>
       		</li>
+      		<c:if test="${sessionScope.member.grade == 0}">
       		<li class="nav-item">
       			<a class="nav-link nf" href="mypageorder.do?p=1&id='"+${sessionScope.id}+"'">주문내역</a>
       		</li>
       		<li class="nav-item">
       			<a class="nav-link nf" href="favlist.do?p=1&id='"+${sessionScope.id}+"'">찜목록</a>
       		</li>
+      		</c:if>
       		<c:if test="${sessionScope.member.grade == 1}">
       		<li class="nav-item">
       			<a class="nav-link nf" href="productList.do?p=1&id='"+${sessionScope.id}+"'">상품등록/수정</a>

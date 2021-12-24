@@ -11,6 +11,7 @@ $(function() {
 		var mdcode = $("input[name='mdcode']").val();
 		var favdupchk = $("input[name='favdupchk']").val();
 		var userid = $("input[name='user_id']").val();
+		var grade = $("input[name='grade']").val();
 		var query = { mdcode:mdcode,userid:userid};
 		$.ajax({
 			type: "POST",
@@ -19,6 +20,9 @@ $(function() {
 			success: function(data) {
 				if(favdupchk === mdcode){
 					alert("이미 찜 한 상품입니다!");
+				}else if(grade == 1){
+					alert('관리자계정은 이용하실 수 없습니다!');
+					location.href='goods.do?md_code='+md_code;
 				}else{
 					alert("해당상품이 찜목록에 추가되었습니다!");
 					 location.href = "goods.do?md_code="+mdcode;
@@ -79,6 +83,7 @@ $(function() {
 	$(".cartbtn").on("click",function(e){
 		e.preventDefault();
 		var userid = $("input[name='user_id']").val();
+		var grade = $("input[name='grade']").val();
 		var md_code = $("input[name='mdcode']").val();
 		var user_id = $("input[name='user_id']").val();
 		var md_name = $(".goods_title").text();
@@ -95,8 +100,11 @@ $(function() {
 				if(userid === null || userid === ''){
 					alert("로그인 후 이용하실 수 있습니다!");
 					location.href='login.do';
+				}else if(grade == 1){
+					alert('관리자계정은 이용하실 수 없습니다!');
+					location.href='goods.do?md_code='+md_code;
 				}else{
-					alert(userid);
+					
 					alert("장바구니에 추가되었습니다!");
 					location.href='cartPut.do';
 				}
