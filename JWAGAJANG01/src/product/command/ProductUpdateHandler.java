@@ -25,7 +25,7 @@ public class ProductUpdateHandler implements CommandHandler {
 			String md_code = request.getParameter("md_code");
 			ProductDAO pDao = ProductDAO.getInstance();
 			ProductVO pVo = pDao.selectProductByCode(Integer.parseInt(md_code));
-			request.setAttribute("product", pVo);
+			request.setAttribute("table_md", pVo);
 			return "productUpdate.jsp";	// 제품수정 page
 		}
 		else if(request.getMethod().equalsIgnoreCase("POST")) {
@@ -74,7 +74,7 @@ public class ProductUpdateHandler implements CommandHandler {
 			
 			ProductDAO pDao = ProductDAO.getInstance();
 			pDao.updateProduct(pVo);
-			response.sendRedirect("list.do"); // 브라우저
+			response.sendRedirect("productlist.do"); // 브라우저
 			return null;
 		} else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
