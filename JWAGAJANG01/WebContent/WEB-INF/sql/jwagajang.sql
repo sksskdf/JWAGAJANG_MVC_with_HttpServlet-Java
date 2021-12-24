@@ -13,3 +13,8 @@ select * from table_mdsort;
 select *;
 
 desc table_mdsort;
+
+
+alter table table_md alter column category_main varchar null;
+
+select * from table_md;
