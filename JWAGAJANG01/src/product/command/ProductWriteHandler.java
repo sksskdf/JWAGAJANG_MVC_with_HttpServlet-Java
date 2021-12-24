@@ -3,16 +3,11 @@ package product.command;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 import common.command.CommandHandler;
-import member.model.Member;
-import member.service.MemberService;
-import member.service.MemberServiceImpl;
-import notice.dao.NoticeDAO;
 import product.dao.ProductDAO;
 import product.dto.ProductVO;
 import product.service.ProductService;
@@ -50,6 +45,7 @@ public class ProductWriteHandler implements CommandHandler {
 		bVo.setMd_name(md_name);
 		bVo.setMd_price(Integer.parseInt(md_price));
 		bVo.setMd_dc(Integer.parseInt(md_dc));
+		bVo.setMd_dc(Integer.parseInt(md_stock));
 		bVo.setImg_main(img_main);
 		bVo.setImg_detail(img_detail);
 		bVo.setCategory_main(category_main);

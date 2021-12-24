@@ -8,14 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.naming.NamingException;
 
-import notice.dto.NoticeVO;
 import product.dto.ProductVO;
 import util.DBManager;
 
@@ -33,7 +31,7 @@ public class ProductDAO {
 	public List<ProductVO> selectAllProducts() {
 		// code : auto_increment (1부터 시작 -> 내림차순) -> 최근 등록된 상품부터 보여주겠다.
 		// 회원목록 : 정렬순서 (이름 가나다순, 최근 가입한 순서대로 -> 어떻게 정렬할 것인가? 정한다.)
-		String sql = "select * from product order by code desc";	// 최근 등록 순
+		String sql = "select * from table_md order by md_code desc";	// 최근 등록 순
 		List<ProductVO> list = new ArrayList<ProductVO>();	// 빈 목록을 생성
 		// try-with-resource : 주의사항
 		// 참조변수를 선언하고 그 주소를 얻을 수 있으면 ()안에 포함을 시킨다.
@@ -70,13 +68,17 @@ public class ProductDAO {
 	}
 	// 제품 등록 : 8개 카테고리 필요
 	public void insertProduct(ProductVO pVo) {
-		String sql = "insert into product (md_name, md_price, img_main, img_detail) values(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into table_md (md_name, md_price, md_dc, md_stock, img_main, img_detail, category_main, category_sub) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
 			pstmt.setString(1, pVo.getMd_name());
 			pstmt.setInt(2, pVo.getMd_price());
-			pstmt.setString(3, pVo.getImg_main());
-			pstmt.setString(4, pVo.getImg_detail());
+			pstmt.setInt(3, pVo.getMd_dc());
+			pstmt.setInt(4, pVo.getMd_stock());
+			pstmt.setString(5, pVo.getImg_main());
+			pstmt.setString(6, pVo.getImg_detail());
+			pstmt.setString(7, pVo.getCategory_main());
+			pstmt.setString(8, pVo.getCategory_sub());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -85,7 +87,7 @@ public class ProductDAO {
 	
 	// 제품에 대한 상세보기를 할 때, 제품 수정/삭제할 때 제품에 대한 정보를 보여주기 위해서 사용됨
 	public ProductVO selectProductByCode(Integer md_code) {
-		String sql = "select * from product where code = ?";
+		String sql = "select * from table_md where md_code = ?";
 		ProductVO pVo = null;
 		ResultSet rs = null;
 		try (Connection conn = DBManager.getConnection();
@@ -105,14 +107,20 @@ public class ProductDAO {
 	
 	// update시는 변경 가능한 것과 변경 불가능한 것을 구분해서 처리
 	public void updateProduct(ProductVO pVo) {
-		String sql = "update product set md_name=?, md_price=?, pictureurl=?, description=? where md_code = ?";
+		String sql = "update table_md set md_name=?, md_price=?, "
+				+ "md_dc=?, md_stock=?, "
+				+ "img_main=?, img_detail=? category_main=?, "
+				+ "category_sub=? where md_code = ?";
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
 			pstmt.setString(1, pVo.getMd_name());
 			pstmt.setInt(2, pVo.getMd_price());
-			pstmt.setString(3, pVo.getImg_main());
-			pstmt.setString(4, pVo.getImg_detail());
-			pstmt.setInt(5, pVo.getMd_code());
+			pstmt.setInt(3, pVo.getMd_dc());
+			pstmt.setInt(4, pVo.getMd_stock());
+			pstmt.setString(5, pVo.getImg_main());
+			pstmt.setString(6, pVo.getImg_detail());
+			pstmt.setString(7, pVo.getCategory_main());
+			pstmt.setString(8, pVo.getCategory_sub());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
