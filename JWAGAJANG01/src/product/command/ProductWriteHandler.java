@@ -1,72 +1,68 @@
 package product.command;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import javax.servlet.http.Cookie;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.sun.org.glassfish.gmbal.Description;
 
 import common.command.CommandHandler;
-import member.model.Member;
-import member.service.MemberService;
-import member.service.MemberServiceImpl;
-import notice.dao.NoticeDAO;
 import product.dao.ProductDAO;
 import product.dto.ProductVO;
 import product.service.ProductService;
 import product.service.ProductServiceImpl;
 
 public class ProductWriteHandler implements CommandHandler {
+	
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		if(req.getMethod().equalsIgnoreCase("GET")) {
-			return processForm(req, res);
+	public String process(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if(request.getMethod().equalsIgnoreCase("GET")) {
+			return "productWrite.jsp";	// view page를 반환
 		}
-		else if(req.getMethod().equalsIgnoreCase("POST")) {
-			return processSubmit(req, res);
+		else if(request.getMethod().equalsIgnoreCase("POST")) {
+//			request.setCharacterEncoding("UTF-8");
+			ServletContext context = request.getServletContext();
+			String path = context.getRealPath("upload");
+			String encType = "UTF-8";
+			int sizeLimit = 20 * 1024 * 1024;
+			
+			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit,	encType, 
+					new DefaultFileRenamePolicy());
+		
+			String md_name = multi.getParameter("md_name");
+			int md_price = Integer.parseInt(multi.getParameter("md_price"));
+			int md_dc = Integer.parseInt(multi.getParameter("md_dc"));
+			int md_stock = Integer.parseInt(multi.getParameter("md_stock"));
+			String img_main = multi.getFilesystemName("img_main");
+			String img_detail = multi.getFilesystemName("img_detail");
+			String category_main = multi.getParameter("category_main");
+			String category_sub = multi.getParameter("category_sub");
+			
+			ProductVO pVo = new ProductVO();
+			pVo.setMd_name(md_name);
+			pVo.setMd_price(md_price);
+			pVo.setMd_dc(md_dc);
+			pVo.setMd_stock(md_stock);
+			pVo.setImg_main(img_main);
+			pVo.setImg_detail(img_detail);
+			pVo.setCategory_main(category_main);
+			pVo.setCategory_sub(category_sub);
+			
+			ProductDAO pDao = ProductDAO.getInstance();
+			pDao.insertProduct(pVo);
+			
+			
+			response.sendRedirect("list.do");
+			return null;	// redirect를 할 경우 view page를 null로 반환
 		} else {
-			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
 	}
-	
-	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		return "productWrite.jsp";
-	}
-
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		String md_name = req.getParameter("md_name");
-		String md_price = req.getParameter("md_price");
-		String md_dc = req.getParameter("md_dc");
-		String md_stock = req.getParameter("md_stock");
-		String img_main = req.getParameter("img_main");
-		String img_detail = req.getParameter("img_detail");
-		String category_main = req.getParameter("category_main"); 
-		String category_sub = req.getParameter("category_sub");
-		
-		ProductVO bVo = new ProductVO();
-		bVo.setMd_name(md_name);
-		bVo.setMd_price(Integer.parseInt(md_price));
-		bVo.setMd_dc(Integer.parseInt(md_dc));
-		bVo.setImg_main(img_main);
-		bVo.setImg_detail(img_detail);
-		bVo.setCategory_main(category_main);
-		bVo.setCategory_sub(category_sub);
-		
-		ProductDAO bDao = ProductDAO.getInstance();
-		bDao.insertProduct(bVo);
-		res.sendRedirect("productList.do");
-		
-		ProductService productService = ProductServiceImpl.getInstance();
-		productService.add(bVo);
-		res.setContentType("text/html; charset=UTF-8");
-		PrintWriter writer;
-		writer = res.getWriter();
-		writer.println("<script>alert('등록되었습니다.');</script>"); 
-		writer.close();
-		return null;
-	}
-
 }

@@ -36,7 +36,7 @@ pageEncoding="UTF-8"%>
 		
 		<div class="productUpdate">
 			<h1>제품수정</h1>
-			<form name="frm" method="post" action="productUpdate.do">
+			<form name="frm" method="post" action="productUpdate.do" enctype="multipart/form-data">
 			<table class="prodWritebox">
 				<tr>
 					<th width="150px">구분</th>
