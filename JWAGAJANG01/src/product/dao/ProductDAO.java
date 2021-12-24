@@ -31,7 +31,7 @@ public class ProductDAO {
 	public List<ProductVO> selectAllProducts() {
 		// code : auto_increment (1부터 시작 -> 내림차순) -> 최근 등록된 상품부터 보여주겠다.
 		// 회원목록 : 정렬순서 (이름 가나다순, 최근 가입한 순서대로 -> 어떻게 정렬할 것인가? 정한다.)
-		String sql = "select * from table_md;";	// 최근 등록 순
+		
 		String sql = "select * from table_md order by md_code desc";	// 최근 등록 순
 		List<ProductVO> list = new ArrayList<ProductVO>();	// 빈 목록을 생성
 		// try-with-resource : 주의사항

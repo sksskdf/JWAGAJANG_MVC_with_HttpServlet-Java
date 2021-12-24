@@ -1,11 +1,16 @@
 package product.command;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServlet;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -28,8 +33,10 @@ public class ProductWriteHandler implements CommandHandler {
 		else if(request.getMethod().equalsIgnoreCase("POST")) {
 //			request.setCharacterEncoding("UTF-8");
 			ServletContext context = request.getServletContext();
-			String path = context.getRealPath("upload");
+			String path = context.getRealPath("img");
 			String encType = "UTF-8";
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("id");
 			int sizeLimit = 20 * 1024 * 1024;
 			
 			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit,	encType, 
@@ -58,7 +65,7 @@ public class ProductWriteHandler implements CommandHandler {
 			pDao.insertProduct(pVo);
 			
 			
-			response.sendRedirect("list.do");
+			response.sendRedirect("productList.do?p=1&id="+id);
 			return null;	// redirect를 할 경우 view page를 null로 반환
 		} else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
