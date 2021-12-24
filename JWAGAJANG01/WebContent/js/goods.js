@@ -90,8 +90,9 @@ $(function() {
 		var img_main = $(".goods_img").attr("src");
 		var md_price = $(".price").text();
 		var md_dc = $(".dc").text();
+		var md_count = $("#goods_qty").val();
 		var query = { md_code:md_code,user_id:user_id, md_name:md_name, 
-				img_main:img_main, md_price:md_price, md_dc:md_dc};
+				img_main:img_main, md_price:md_price, md_dc:md_dc, md_count:md_count};
 		$.ajax({
 			type: "POST",
 			url: "/cartPut.do",
