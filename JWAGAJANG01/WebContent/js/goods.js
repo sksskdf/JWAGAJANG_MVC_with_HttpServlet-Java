@@ -21,7 +21,7 @@ $(function() {
 				if(favdupchk === mdcode){
 					alert("이미 찜 한 상품입니다!");
 				}else if(grade == 1){
-					alert('관리자계정은 이용하실 수 없습니다!');
+					alert('일반회원만 가능합니다!');
 					location.href='goods.do?md_code='+md_code;
 				}else{
 					alert("해당상품이 찜목록에 추가되었습니다!");

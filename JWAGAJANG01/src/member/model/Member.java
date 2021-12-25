@@ -8,8 +8,7 @@ public class Member {
 	private String mobile;
 	private String email;
 	private String address;
-	private String address2;
-	private String address3;
+	private String adddetail;
 	private int grade;
 	private Timestamp createdAt;
 	private Timestamp modifiedAt;
@@ -31,15 +30,14 @@ public class Member {
 		this.grade = grade;
 	}
 
-	public Member(String id, String pwd, String mobile, String email, String address, String address2,
-			String address3) {
+	public Member(String id, String pwd, String mobile, String email, String address, String adddetail
+			) {
 		this.id = id;
 		this.pwd = pwd;
 		this.mobile = mobile;
 		this.email = email;
 		this.address = address;
-		this.address2 = address2;
-		this.address3 = address3;
+		this.adddetail = adddetail;
 	}
 
 	public String getId() {
@@ -106,33 +104,15 @@ public class Member {
 		this.address = address;
 	}
 
-	public String getAddress2() {
-		return address2;
+	public String getAdddetail() {
+		return adddetail;
 	}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
+	public void setAdddetail(String adddetail) {
+		this.adddetail = adddetail;
 	}
 
-	public String getAddress3() {
-		return address3;
-	}
 
-	public void setAddress3(String address3) {
-		this.address3 = address3;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", pwd=" + pwd + ", mobile=" + mobile + ", email=" + email + ", address=" + address
-				+ ", address2=" + address2 + ", address3=" + address3 + ", grade=" + grade + ", createdAt=" + createdAt
-				+ ", modifiedAt=" + modifiedAt + "]";
-	}
-
-	
-
-	
-	
 	
 	
 }

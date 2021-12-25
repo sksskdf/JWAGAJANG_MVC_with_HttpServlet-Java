@@ -40,11 +40,10 @@
     <div class="bestContents">
      <c:forEach var="best" items="${bestList }">
      <a href="goods.do?md_code=${best.md_code}">
-      	<div class="bitem"><img src=${best.img_main }>
       	<div class="bitem"><img src="img/${best.img_main }">
       <p><span class="title">${best.md_name }</span><br>
         <span class="salerate">${best.md_dc }%</span> <span class="saleprice"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(best.md_price-(best.md_price*best.md_dc/100), '.')}"/>원</span><br>
-        <span class="price"><fmt:formatNumber pattern="#,##0" value="${best.md_price }"/>원</span></p>
+        <span class="price"><fmt:formatNumber pattern="#,##0" value="${best.md_price}"/>원</span></p>
       </div>
       </a>
       </c:forEach>

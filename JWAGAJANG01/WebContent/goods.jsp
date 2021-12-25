@@ -30,14 +30,14 @@
            <a href="list.do?category_main=${md.category_main}">${md.category_main_name}</a>
         </div>
         <div class="goods">
-        	<div><img class="goods_img" alt="" src="${md.img_main}"></div>
+        	<div><img class="goods_img" alt="" src="img/${md.img_main}"></div>
             <div class="goods_info">
                 <p class="goods_title">${md.md_name}</p>
                 <p class="goods_price">
                     <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/></span>원
                     <span class="goods_dc">
-                    <c:set var="dccost" value="${md.md_price-(md.md_price*md.md_dc/100)}"/>
-                        <span id="cost" data-oper="${dccost}"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/>원</span>
+                    <c:set var="dccost" value="${(md.md_price-(md.md_price*(md.md_dc/100)))}"/>
+                        <span id="cost" data-oper="${dccost}"><fmt:formatNumber pattern="#,##0" value="${(md.md_price-(md.md_price*(md.md_dc/100)))}"/>원</span>
                         <!-- cost class에서 id로 바꿨음 css 확인 -->
                         <span class="dc">${md.md_dc}%</span>
                     </span>

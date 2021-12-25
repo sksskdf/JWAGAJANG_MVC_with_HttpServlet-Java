@@ -109,9 +109,6 @@
 <jsp:include page="../H&F/footer.jsp"/>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="../js/jquery.js"></script>
-  <script src="../js/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="../js/join.js"></script>
   
 </body>

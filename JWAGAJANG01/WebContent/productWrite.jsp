@@ -67,19 +67,19 @@ pageEncoding="UTF-8"%>
 				</tr>
 				<tr>
 					<th width="150px">상품</th>
-					<th><input class="titleinput" type="text" name="md_name" placeholder="제목을 입력해주세요." style="border: 0px"></th>
+					<th><input class="titleinput" type="text" name="md_name" placeholder="제목을 입력해주세요." style="border: 0px" autocomplete="off"></th>
 				</tr>
 				<tr>
 					<th width="150px">상품가격</th>
-					<th><input class="titleprice" type="text" name="md_price" placeholder="가격을 입력해주세요." style="border: 0px; width:145px"> 원 </th>
+					<th><input class="titleprice" type="text" name="md_price" placeholder="가격을 입력해주세요." style="border: 0px; width:145px" autocomplete="off"> 원 </th>
 				</tr>
 				<tr>
 					<th width="150px">할인율</th>
-					<th><input class="titledc" type="text" name="md_dc" style="width: 90px"> % </th>
+					<th><input class="titledc" type="text" name="md_dc" style="width: 90px" autocomplete="off"> % </th>
 				</tr>
 				<tr>
 					<th width="150px">재고</th>
-					<th><input class="titlestock" type="text" name="md_stock" style="width: 90px"></th>
+					<th><input class="titlestock" type="text" name="md_stock" style="width: 90px" autocomplete="off"></th>
 				</tr>
 				<tr>
 					<th width="150px">배송비</th>

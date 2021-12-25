@@ -36,9 +36,8 @@ public class MyPageHandler implements CommandHandler{
 		String mobile = req.getParameter("mobile");
 		String email = req.getParameter("email");
 		String address = req.getParameter("address");
-		String address2 = req.getParameter("address2");
-		String address3 = req.getParameter("address3");
-		Member member = new Member(id,pwd,mobile,email,address,address2,address3);
+		String addDetail = req.getParameter("addDetail");
+		Member member = new Member(id,pwd,mobile,email,address,addDetail);
 		MemberService memberservice = MemberServiceImpl.getInstance();
 		memberservice.update(member);
 		res.setContentType("text/html; charset=UTF-8");

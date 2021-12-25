@@ -2,6 +2,7 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -37,12 +38,12 @@ pageEncoding="UTF-8"%>
 						
                         <div class="titleproductList">
                             <h1>제품관리        &nbsp;&nbsp;
-                                <input type="button" value="제품등록" onclick="location.href='productWrite.jsp'">
+                                <input type="button" value="제품등록" onclick="location.href='productWrite.do'">
                             </h1>
                         </div>
                         <div class="sort">
                             <select id="selBoxFirst" name="selBox" title="대분류" onChange="javascript:onFirstSelectChanged(this)">
-						<option value="0" name="" selected>대분류</option>
+						<option value="0" name="main_category" selected>대분류</option>
 							<option>채소·과일</option>
 							<option>쌀·견과류</option>
 							<option>수산·해산</option>
@@ -55,21 +56,10 @@ pageEncoding="UTF-8"%>
 							<option>수산·해산</option>
 							<option>정육·계란</option>
 							</select>
+						</div>
 
-                            <div class="sortlist">
-                                <table class="sort2">
-                                    <tbody>
-                                        <tr>
-                                            <td>판매량순</td>
-                                            <td>낮은가격</td>
-                                            <td>높은가격</td>
-                                            <td>최신상품</td>
-                                            <td>상품평</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                           
+                        <br>
                         <br>
 
                         <!-- th만 작성시 가로로 데이터 작성됨-->
@@ -91,11 +81,11 @@ pageEncoding="UTF-8"%>
                                     <th>리뷰</th>
                                 </tr>
                                 
-                                
                                 <c:forEach var="f" items="${productList}">
                                 <tr>
-                                    <td><img src="img/${f.img_main}"></td>
-                                    <td>${f.md_name}</td>
+                                	<td><a href="/goods.do?md_code=${f.md_code}">
+                                	<img class="thumbimg" src="img/${f.img_main}"></a></td>
+                                    <td><a href="/goods.do?md_code=${f.md_code}">${f.md_name}</a></td>
                                     <td>${f.md_stock }</td>
                                     <td>${f.md_regdate}</td>
                                     <td>${f.md_price }</td>
@@ -103,35 +93,6 @@ pageEncoding="UTF-8"%>
                                         <br><input type="button" value="삭제" class="deletebtn" onclick="location.href='productList.do?del=${f.md_code}&p=1&id=${sessionScope.id}'"></td>
                                 </tr>
                                 </c:forEach>
-                                <!--  
-                                <tr>
-                                    <td><img src="img/best1.jpg"></td>
-                                    <td>[박민지] 맛좋은 청경채</td>
-                                    <td>203</td>
-                                    <td>2021-12-03</td>
-                                    <td>1,760원</td>
-                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                        <br><input type="button" value="삭제" class="deletebtn"></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/best3.jpg"></td>
-                                    <td>[길기훈] 신선한 고등어</td>
-                                    <td>23</td>
-                                    <td>2021-12-03</td>
-                                    <td>1,760원</td>
-                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                        <br><input type="button" value="삭제" class="deletebtn"></td>
-                                </tr>
-                                 <tr>
-                                    <td><img src="img/best4.jpg"></td>
-                                    <td>[남현우] 달고 맛있는 대추토마토</td>
-                                    <td>23</td>
-                                    <td>2021-12-03</td>
-                                    <td>1,760원</td>
-                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
-                                        <br><input type="button" value="삭제" class="deletebtn"></td>
-                                </tr> -->
-                                
                             </table>
                         </div>
 						<br>

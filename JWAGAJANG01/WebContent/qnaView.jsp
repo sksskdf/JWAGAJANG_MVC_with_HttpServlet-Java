@@ -30,8 +30,8 @@
 		<div class="notice">
 			<h1>Q&amp;A</h1>
 						<div class="list">
-				<input type="submit" value="수정" class="upbtn" onclick="location.href='qnaUpdate.do?qna_code=${param.qna_code}'">
-				<input type="submit" value="삭제" class="delbtn" onclick="location.href='qnaDelete.do?qna_code=${param.qna_code}'">
+				<input type="submit" value="수정" class="upbtn" onclick="location.href='qnaUpdate.do?p=${param.p}&qna_code=${param.qna_code}'">
+				<input type="submit" value="삭제" class="delbtn" onclick="location.href='qnaDelete.do?p=${param.p}&qna_code=${param.qna_code}'">
 				<input type="submit" value="목록" class="listbtn" onclick="location.href='qnaSearch.do?p=${param.p}&searchkeyword=${param.q}'">
 			</div>
 			<table class="brdView">	

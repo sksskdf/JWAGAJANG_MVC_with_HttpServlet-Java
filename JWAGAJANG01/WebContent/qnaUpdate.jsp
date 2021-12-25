@@ -32,6 +32,7 @@
 			
 			<!-- notice_code 값을 가져오기 위해 입력해줘야 하는 코드!!!-->
 			<input type="hidden" name="qna_code" value="${board.qna_code}">
+			<input type="hidden" name="p" value="${param.p}">
 			
 			<table class="brdWritebox">
 				<tr>
@@ -43,10 +44,9 @@
 					<th><textarea style="resize: none;" name="qna_content">${board.qna_content}</textarea></th>
 				</tr>
 			</table>
-			<c:set var="page" value="${param.p}" />
 			<div class="noticeWritebtn">
 				<input type="submit" value="수정" name="send" class="sendbtn">
-				<input type="submit" value="목록" name="list" class="noticelistbtn" onclick="location.href='qnaList.do?p=${page}'">
+				<input type="submit" value="목록" name="list" class="noticelistbtn" onclick="location.href='qnaList.do?p=${param.p}'">
 			</div>
 			</form>
 		</div>

@@ -134,3 +134,7 @@ a {
     color: #B2B2B2;
 }
 
+.orderBy {
+	cursor: pointer;
+}
+

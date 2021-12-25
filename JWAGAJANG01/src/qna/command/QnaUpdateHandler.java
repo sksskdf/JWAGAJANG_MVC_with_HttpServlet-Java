@@ -35,13 +35,14 @@ public class QnaUpdateHandler implements CommandHandler {
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		QnaVO qVo = new QnaVO();
+		int p = Integer.parseInt(req.getParameter("p"));
 		int qna_code = Integer.parseInt(req.getParameter("qna_code"));
 		qVo.setQna_code(qna_code);
 		qVo.setQna_title(req.getParameter("qna_title"));
 		qVo.setQna_content(req.getParameter("qna_content"));
 		QnaDAO bDao = QnaDAO.getInstance();
 		bDao.updateBoard(qVo);
-		res.sendRedirect("qnaView.do?qna_code="+qna_code);
+		res.sendRedirect("qnaView.do?qna_code="+qna_code+"&p="+p);
 		return null;
 	}
 }
