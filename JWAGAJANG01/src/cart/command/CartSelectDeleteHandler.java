@@ -15,6 +15,8 @@ public class CartSelectDeleteHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("POST")) {
 				return processForm(req, res);
+			} else if (req.getMethod().equalsIgnoreCase("GET")){
+				return "cart.jsp";
 			} else {
 				res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 				return null;
@@ -23,7 +25,7 @@ public class CartSelectDeleteHandler implements CommandHandler {
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
-		String[] chkarr = req.getParameterValues("chbox");
+		String[] chkarr = req.getParameterValues("checkArr");
 		int[] newchkarr = null;
 		
 		ArrayList<CartVO> cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
@@ -36,7 +38,7 @@ public class CartSelectDeleteHandler implements CommandHandler {
 			cartList.remove(newchkarr[i]);
 		}
 		
-		return null;
+		return "cart.jsp";
 	}
 	
 }

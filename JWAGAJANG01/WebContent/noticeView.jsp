@@ -44,7 +44,7 @@
 			<div class="list">
 				<input type="submit" value="수정" class="upbtn" onclick="location.href='noticeUpdate.do?notice_code=${param.notice_code}'">
 				<input type="submit" value="삭제" class="delbtn" onclick="location.href='noticeDelete.do?notice_code=${param.notice_code}'">
-				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeList.do?p=${param.p}'">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeSearch.do?p=${param.p}&searchoption=${param.f}&searchkeyword=${param.q}'">
 			</div>
 		</div>
 

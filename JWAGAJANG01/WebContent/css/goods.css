@@ -26,7 +26,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .pagenav a {
     color: #707070;
-    font: normal normal bold 15px/17px NanumGothic;
+    font: normal normal normal 12px/14px NanumGothic;
 }
 
 .navarrow {
