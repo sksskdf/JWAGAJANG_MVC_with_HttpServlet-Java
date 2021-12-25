@@ -87,6 +87,31 @@ public class ReviewDAO {
 		}
 		return review;
 	}
+
+	// 
+	public List<Integer> getMdcodes() {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		List<Integer> review = new ArrayList<Integer>();
+		
+		try {
+			conn = DBManager.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select md_code, count(review_code) as reviews from table_review group by md_code order by reviews desc");
+			
+			while (rs.next()) {
+					review.add(rs.getInt("md_code"));
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+            if (stmt != null) try{ stmt.close(); }catch(SQLException ex) {}
+            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+		}
+		return review;
+	}
 }
 
 

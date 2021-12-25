@@ -1,5 +1,6 @@
 package goods.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.command.CommandHandler;
 import goods.dao.GoodsDAO;
 import goods.dto.GoodsVO;
+import review.dao.ReviewDAO;
 
 public class GoodsListHandler implements CommandHandler {
 
@@ -31,10 +33,20 @@ public class GoodsListHandler implements CommandHandler {
 		String order = req.getParameter("order");
 		String viewPage = "/listData.jsp";
 		GoodsDAO gDao = GoodsDAO.getInstance();
-		List<GoodsVO> mdList;
+		List<GoodsVO> mdList = null;
 		req.setAttribute("category_main", category_main);
 		try {
-			mdList = gDao.sortMd(category_main, category_sub, order);
+			if (order.equals("3")) {
+				ReviewDAO rDao = ReviewDAO.getInstance();
+				List<Integer> md_codes = rDao.getMdcodes();
+				mdList = new ArrayList<GoodsVO>();
+				for (int md_code:md_codes) {
+					GoodsVO goods = gDao.getMd(md_code);
+					mdList.add(goods);
+				}
+			} else {
+				mdList = gDao.sortMd(category_main, category_sub, order);
+			}
 			req.setAttribute("mdList", mdList);
 		} catch (Exception e) {
 			e.printStackTrace();

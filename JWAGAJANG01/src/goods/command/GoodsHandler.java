@@ -36,21 +36,19 @@ public class GoodsHandler implements CommandHandler {
 		req.setAttribute("md", md);
 		req.setAttribute("md_code", md_code);
 		
-		// 리뷰수 
+		// 리뷰 수에 따른 리뷰 리스트 
 		List<GoodsVO> reviewList;
 	
 		int count = gDao.reviewCount(md_code);
 		
 		if (count > 0) {
-			reviewList = gDao.getReview(count);
+			reviewList = gDao.getReviewList(count, md_code);
 			req.setAttribute("reviewList", reviewList);
 		}
 		
 		req.setAttribute("count", new Integer(count));
 		
 		return "/goods.jsp";
-		
-		// 리뷰 등록
 		
 		
 	}
