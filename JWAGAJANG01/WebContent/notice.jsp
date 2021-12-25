@@ -37,7 +37,6 @@
 				</tr>
 				<c:set var="page" value="${param.p}" />
 				<c:forEach var="board" items="${listModel.noticeList}"> 
-				
 					<tr class="record">
 						<td class="record_1">${board.notice_label }</td>
 						<td class="record_2"><a href="noticeView.do?notice_code=${board.notice_code}&p=${page}&f=${param.searchoption}&q=${param.searchkeyword}"> ${board.notice_title} </a></td>
@@ -45,11 +44,15 @@
 						<td class="record_4">${board.notice_count}</td>
 					</tr>
 				</c:forEach>
-
 			</table>
+			<c:if test="${tbc == 0}">
+				<h4>검색된 글이 없습니다.</h4>
+			</c:if>
+			<c:if test="${(grade == 1) sessionScope.id}">
 			<div class="writebox">
 				<a href="noticeWrite.do?&p=${param.p}"><input type="submit" value="글쓰기" name="write" class="writebtn"></a>
 			</div>
+			</c:if>
 		</div>
 
 		<div class="pg_wrap">

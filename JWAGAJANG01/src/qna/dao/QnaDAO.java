@@ -221,4 +221,6 @@ public class QnaDAO { // data access object. db랑 웹사이트에서 쓰는 내
 		return list;
 	}
 	
+	
+	
 }
