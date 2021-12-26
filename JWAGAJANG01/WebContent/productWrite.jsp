@@ -49,19 +49,30 @@ pageEncoding="UTF-8"%>
 				<tr>
 					<th width="150px">구분</th>
 					<th>
-						<select class="sortinput" name="category_main">
-							<option>대분류</option>
-							<option value="veg">채소·과일</option>
-							<option value="rice">쌀·견과류</option>
-							<option value="sea">수산·해산</option>
-							<option value="meat">정육·계란</option>
+						<select class="sortinput" id="catemain" name="category_main" onchange="sortChange()">
+							<option value="0">대분류를 선택해주세요.</option>
+							<option value="100">채소·과일</option>
+							<option value="200">쌀·견과류</option>
+							<option value="300">수산·해산</option>
+							<option value="400">정육·계란</option>
 						</select>
-						<select class="sortinput" name="category_sub">
-							<option>소분류</option>
-							<option value="veg">채소·과일</option>
-							<option value="rice">쌀·견과류</option>
-							<option value="sea">수산·해산</option>
-							<option value="meat">정육·계란</option>
+						<select class="sortinput" id="catesub1" name="category_sub">
+							<option value="110">고구마·감자·당근</option>
+							<option value="120">시금치·쌈채소·나물</option>
+							<option value="130">브로콜리·파프리카·양배추</option>
+							<option value="140">양파·마늘·대파·배추</option>
+							<option value="150">오이·호박·고추</option>
+							<option value="160">콩나물·버섯</option>
+							<option value="170">과일</option>
+							<option value="210">쌀·잡곡</option>
+							<option value="220">견과류</option>
+							<option value="310">생선류</option>
+							<option value="320">해산물·조개류</option>
+							<option value="330">김·미역·해조류</option>
+							<option value="410">소고기·돼지고기</option>
+							<option value="420">닭·오리고기</option>
+							<option value="430">수산·해산</option>
+							<option value="440">계란</option>
 						</select>
 					</th>
 				</tr>
@@ -108,8 +119,6 @@ pageEncoding="UTF-8"%>
                 <jsp:include page="H&F/footer.html" />
                 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                 <script src="js/jquery.min.js"></script>
-                <script src="js/index.js"></script>
-                <script src="js/product.js"></script>
             </body>
 
             </html>

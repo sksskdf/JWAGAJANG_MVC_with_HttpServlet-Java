@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import goods.dto.GoodsVO;
 import product.dto.ProductVO;
 import util.DBManager;
 
@@ -26,6 +27,8 @@ public class ProductDAO {
 		return instance;
 	}
 	private ProductDAO() { }
+	
+	
 	
 	// 제품 목록 출력
 	public List<ProductVO> selectAllProducts() {
@@ -69,7 +72,7 @@ public class ProductDAO {
 	}
 	// 제품 등록 : 8개 카테고리 필요
 	public void insertProduct(ProductVO pVo) {
-		String sql = "insert into table_md (md_name, md_price, md_dc, md_stock, img_main, img_detail, category_main, category_sub) values(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into table_md (md_name, md_price, md_dc, md_stock, img_main, img_detail, category_main, category_sub, category_main_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
 			pstmt.setString(1, pVo.getMd_name());
@@ -80,6 +83,7 @@ public class ProductDAO {
 			pstmt.setString(6, pVo.getImg_detail());
 			pstmt.setString(7, pVo.getCategory_main());
 			pstmt.setString(8, pVo.getCategory_sub());
+			pstmt.setString(9, pVo.getCategory_main_name());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -194,6 +198,32 @@ public class ProductDAO {
 		return count;
 	}
 	
+	public int selectCount(String order) throws SQLException {
+		ResultSet rs = null;
+		String sql = "select count(*) from table_md ";
+		int order_ = Integer.parseInt(order);
+		if(order_ == 100) {
+			sql += "where category_main = '100' ";
+		}else if(order_ == 200) {
+			sql += "where category_main = '200' ";
+		}else if(order_ == 300) {
+			sql += "where category_main = '300' ";
+		}else if(order_ == 400) {
+			sql += "where category_main = '400' ";
+		}
+		int count = 0;
+		try(Connection conn = DBManager.getConnection();
+				Statement stmt = conn.createStatement()) {
+			
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			count = rs.getInt(1);
+		} finally {
+			DBManager.close(rs);
+		}
+		return count;
+	}
+	
 	public List<ProductVO> select(int firstRow, int endRow)
 			throws SQLException, NamingException {
 		PreparedStatement pstmt = null;
@@ -202,6 +232,47 @@ public class ProductDAO {
 		try (Connection conn = DBManager.getConnection();){
 				pstmt = conn.prepareStatement("select * from table_md "
 						+ "order by md_code desc limit ?, ?");
+			pstmt.setInt(1, firstRow - 1); // 데이터베이스에서는 0부터 시작이라서 -1 입력
+			pstmt.setInt(2, endRow - firstRow + 1);
+			rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				result = Collections.emptyList();
+			}
+			else {
+				List<ProductVO> productList = new ArrayList<ProductVO>();
+				do {
+					ProductVO board = makeBoardFromResultSet(rs);	// false
+					productList.add(board);
+				} while (rs.next());
+				result = productList;
+			}
+		} finally {
+			DBManager.close(rs);
+			DBManager.close(pstmt);
+		}
+		return result;
+		}
+	
+	public List<ProductVO> sort(int firstRow, int endRow, String order)
+			throws SQLException, NamingException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ProductVO> result = null;
+		try (Connection conn = DBManager.getConnection();){
+			String sql = "select * from table_md ";
+			int order_ = Integer.parseInt(order);
+			if(order_ == 100) {
+				sql += "where category_main = '100' ";
+			}else if(order_ == 200) {
+				sql += "where category_main = '200' ";
+			}else if(order_ == 300) {
+				sql += "where category_main = '300' ";
+			}else if(order_ == 400) {
+				sql += "where category_main = '400' ";
+			}
+			
+			sql += "order by md_code desc limit ?, ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, firstRow - 1); // 데이터베이스에서는 0부터 시작이라서 -1 입력
 			pstmt.setInt(2, endRow - firstRow + 1);
 			rs = pstmt.executeQuery();

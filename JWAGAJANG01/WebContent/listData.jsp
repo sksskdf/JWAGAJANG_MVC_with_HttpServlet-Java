@@ -14,7 +14,7 @@
             <a href="/goods.do?md_code=${md.md_code}" class="goods_info">
                 <span class="goods_title">${md.md_name}</span><br>
                 <span class="goods_dc">${md.md_dc}%</span>
-                <span class="cost"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(md.md_price-(md.md_price*md.md_dc/100), '.')}"/>원</span><br>
+                <span class="cost"><fmt:formatNumber pattern="#,##0" value="${(md.md_price-(md.md_price*(md.md_dc/100)))}"/>원</span><br>
                 <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/>원</span>
             </a>
         </div>
