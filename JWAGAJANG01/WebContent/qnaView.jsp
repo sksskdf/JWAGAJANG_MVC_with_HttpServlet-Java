@@ -47,20 +47,22 @@
 				</tr>
 			</table>
 			<table class="replelist">
+			<c:if test="${param.qna_reply != NULL }">
 			<tr>
 			<td id="hang1">답변</td>
-			<td id="hang2"></td>
+			<td id="hang2">${param.qna_reply}</td>
 			<td id="hang3">관리자</td>
 			<td id="hang4">작성일</td>
 			</tr>
+			</c:if>
 			</table>
 			<%-- <c:if test="${sessionScope.member.grade == 1}">  --%>
-			<form class="reply" action="reply.do">
+			<form class="reply" action="repleWrite.do?qna_code=${param.qna_code}">
 				<textarea class="replybox" style="resize: none;"></textarea>
 				<div class="replybtn">
-				<button id="regist">등록</button>
-						<button id="replyup">수정</button>
-						<button id="replydle">삭제</button>
+				<input type="submit" id="regist" value="등록"></button>
+						<input type="button" value="수정" id="replyup"></button>
+						<input type="button" value="삭제" id="replydle"></button>
 				</div>
 			</form>
 			<%-- </c:if> --%> 

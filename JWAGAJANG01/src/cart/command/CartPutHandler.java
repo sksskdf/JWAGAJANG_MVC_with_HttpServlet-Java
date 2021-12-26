@@ -32,6 +32,7 @@ public class CartPutHandler implements CommandHandler {
 		String img_main = req.getParameter("img_main");
 		String md_price = req.getParameter("md_price");
 		String md_dc = req.getParameter("md_dc");
+		String md_count = req.getParameter("md_count");
 		
 		
 		Object obj = session.getAttribute("cartList");	//세션 객체에서 cart 값을 가져온다.
@@ -49,7 +50,7 @@ public class CartPutHandler implements CommandHandler {
 			CartVO cVo = cartList.get(i);
 			if(cVo.getMd_code().equals(md_code)) {
 				pos = 1;
-				cVo.setMd_count(cVo.getMd_count()+1);
+				cVo.setMd_count(cVo.getMd_count() + Integer.parseInt(md_count));
 				break;
 			}
 		}
@@ -61,7 +62,7 @@ public class CartPutHandler implements CommandHandler {
 			cVo.setImg_main(img_main);
 			cVo.setMd_price(Integer.parseInt(md_price.replace(",", "")));
 			cVo.setMd_dc(Integer.parseInt(md_dc.replace("%", "")));
-			cVo.setMd_count(1);
+			cVo.setMd_count(Integer.parseInt(md_count));
 			cartList.add(cVo);
 		}
 		session.setAttribute("cartList", cartList);

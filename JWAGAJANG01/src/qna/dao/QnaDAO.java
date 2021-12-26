@@ -221,6 +221,15 @@ public class QnaDAO { // data access object. db랑 웹사이트에서 쓰는 내
 		return list;
 	}
 	
-	
+	// 리플 등록
+		public void insertReply(QnaVO qVo, String sessionid) {
+			String sql = "insert into table_qna(qna_reply) " + "values(?)";
+			try (Connection conn = DBManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+				pstmt.setString(1, qVo.getQna_reply());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	
 }

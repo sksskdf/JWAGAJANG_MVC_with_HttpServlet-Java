@@ -18,7 +18,7 @@ public class ProductVO {
 	
 	public ProductVO() {}
 
-	public ProductVO(int md_code, String md_name, int md_price, int md_dc, String img_main, String img_detail,
+	public ProductVO(int md_code, String md_name, int md_price, int md_dc, int md_stock, String img_main, String img_detail,
 			Timestamp md_regdate, Timestamp md_editdate, String category_main, String category_sub, int md_ordercnt) {
 		super();
 		this.md_code = md_code;
@@ -70,7 +70,7 @@ public class ProductVO {
 	}
 	
 	public int getMd_stock() {
-		return md_dc;
+		return md_stock;
 	}
 
 	public void setMd_stock(int md_stock) {

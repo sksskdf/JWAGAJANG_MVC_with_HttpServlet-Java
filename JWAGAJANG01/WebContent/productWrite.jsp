@@ -44,24 +44,24 @@ pageEncoding="UTF-8"%>
 		
 		<div class="productWrite">
 			<h1>제품등록</h1>
-			<form name="frm" method="post" action="productWrite.do">
+			<form name="frm" method="post" action="productWrite.do" enctype="multipart/form-data">
 			<table class="prodWritebox">
 				<tr>
 					<th width="150px">구분</th>
 					<th>
 						<select class="sortinput" name="category_main">
 							<option>대분류</option>
-							<option>채소·과일</option>
-							<option>쌀·견과류</option>
-							<option>수산·해산</option>
-							<option>정육·계란</option>
+							<option value="veg">채소·과일</option>
+							<option value="rice">쌀·견과류</option>
+							<option value="sea">수산·해산</option>
+							<option value="meat">정육·계란</option>
 						</select>
 						<select class="sortinput" name="category_sub">
 							<option>소분류</option>
-							<option>채소·과일</option>
-							<option>쌀·견과류</option>
-							<option>수산·해산</option>
-							<option>정육·계란</option>
+							<option value="veg">채소·과일</option>
+							<option value="rice">쌀·견과류</option>
+							<option value="sea">수산·해산</option>
+							<option value="meat">정육·계란</option>
 						</select>
 					</th>
 				</tr>
