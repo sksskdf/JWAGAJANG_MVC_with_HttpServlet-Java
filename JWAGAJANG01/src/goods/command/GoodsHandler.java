@@ -2,7 +2,6 @@ package goods.command;
 
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,8 +17,7 @@ public class GoodsHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		HttpSession session = req.getSession();
 		
-		
-		List<GoodsVO> mdDetail;
+		/* List<GoodsVO> mdDetail; */
 		int md_code = Integer.parseInt(req.getParameter("md_code"));
 		String userid = (String)session.getAttribute("id");
 		
@@ -49,8 +47,6 @@ public class GoodsHandler implements CommandHandler {
 		req.setAttribute("count", new Integer(count));
 		
 		return "/goods.jsp";
-		
-		
+		 
 	}
-
 }

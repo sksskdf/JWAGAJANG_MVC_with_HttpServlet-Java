@@ -15,7 +15,6 @@
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
     <script src="js/jquery.min.js"></script>
     <script src="js/goods.js"></script>
-
     <title>좌가장</title>
 </head>
 <body>
@@ -36,10 +35,8 @@
                 <p class="goods_price">
                     <span class="price"><fmt:formatNumber pattern="#,##0" value="${md.md_price}"/></span>원
                     <span class="goods_dc">
-                   <%--  <c:set var="md_stock" value="${md.md_stock}"></c:set> --%>
                     <c:set var="dccost" value="${(md.md_price-(md.md_price*(md.md_dc/100)))}"/>
                         <span id="cost" data-oper="${dccost}"><fmt:formatNumber pattern="#,##0" value="${(md.md_price-(md.md_price*(md.md_dc/100)))}"/>원</span>
-                        <!-- cost class에서 id로 바꿨음 css 확인 -->
                         <span class="dc">${md.md_dc}%</span>
                     </span>
                 </p>
@@ -54,11 +51,16 @@
                 <dl class="count">
                     <dt><p>주문수량</p></dt>
                     <dd>
+                	<c:if test="${md.md_stock == 0 || md.md_stock == null}">
+                		<p>재고없음</p>
+                	</c:if>
+                	<c:if test="${md.md_stock > 0}">
                         <span class="countbtn">
                             <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
                             <input type="number" id="goods_qty" readonly="readonly" min="1" max="${md.md_stock}" value="1">
                             <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
                         </span>
+                    </c:if>
                     </dd>
                 </dl>
                 <hr>

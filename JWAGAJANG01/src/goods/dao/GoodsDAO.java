@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import goods.dto.GoodsVO;
 import util.DBManager;
 
@@ -44,9 +46,6 @@ public class GoodsDAO {
 			} else if(order.equals("2")) {
 				sqlAll += " order by md_ordercnt desc";
 				sqlCate += " order by md_ordercnt desc";
-			} else if(order.equals("3")) {
-				sqlAll = "select count(*) reviewcount,md_code from table_review group by md_code order by reviewcount desc";
-				sqlCate = "select count(*) reviewcount,md_code from table_review group by md_code order by reviewcount desc";
 			} else if(order.equals("4")) {
 				sqlAll += " order by md_price asc";
 				sqlCate += " order by md_price asc";
@@ -110,6 +109,7 @@ public class GoodsDAO {
 				md.setMd_name(rs.getString("md_name"));
 				md.setMd_price(rs.getInt("md_price"));
 				md.setMd_dc(rs.getInt("md_dc"));
+				md.setMd_stock(rs.getInt("md_stock"));
 				md.setImg_main(rs.getString("img_main"));
 				md.setImg_detail(rs.getString("img_detail"));
 				md.setCategory_main(rs.getNString("category_main"));
@@ -210,6 +210,50 @@ public class GoodsDAO {
             if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
 		}
 		return reviewList;
+	}
+	
+	// 검색
+	public List<GoodsVO> searchResult(String md_name) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement("select * from table_md where " + md_name + " like ?");
+			pstmt.setString(1, "%"+md_name+"%");
+			rs = pstmt.executeQuery();
+			
+			return result(rs);
+		}
+	}
+	
+	// 최근 본 상품
+	@SuppressWarnings("unchecked")
+	public void addGoodsInQuick(int md_code, GoodsVO goodsVO, HttpSession session) {
+		boolean already_existed = false;
+		List<GoodsVO> quickGoodsList;
+		quickGoodsList = (ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");	// 세션에 저장된 최근 본 상품 목록 가져옴
+		
+		if (quickGoodsList != null)	{	// 최근 본 상품이 있는 경우
+			if(quickGoodsList.size() < 4) {	// 상품 목록이 네 개 이하인 경우
+				for (int i=0; i<quickGoodsList.size(); i++) {
+					GoodsVO gVo = (GoodsVO)quickGoodsList.get(i);
+					if (md_code == gVo.getMd_code()) {
+						already_existed = true;
+						break;
+					}
+				}	// 상품 목록을 가져와 이미 존재하는 상품인지 비교, 이미 존재할 경우 already_existed를 true로 설정
+				if (already_existed == false) {
+					quickGoodsList.add(goodsVO);					// false면 상품 정보를 목록에 저장
+				}
+			}
+		} else {
+			quickGoodsList = new ArrayList<GoodsVO>();	// 최근 본 상품 목록이 없으면 생성하여 정보 저장
+			quickGoodsList.add(goodsVO);
+		}
+		session.setAttribute("quickGoodsList", quickGoodsList);	// 최근 본 상품 목록을 세션에 저장
+		session.setAttribute("quickGoodsListNum", quickGoodsList.size());	// 최근 본 상품 목록에 저장된 상품 개수를 세션에 저장
 	}
 	
 }

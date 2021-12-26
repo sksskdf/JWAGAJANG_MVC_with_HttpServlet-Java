@@ -75,7 +75,7 @@ $(function() {
 				$('.noReview').hide();
 			},
 			error: function(request, status, error) {
-				alert(error);
+				alert("리뷰 등록에 실패하였습니다.");
 
 			}
 		});
@@ -127,27 +127,7 @@ $(function() {
 	});
 });
 
-/*// 천 단위로 점 찍기
-Number.prototype.format = function(){
-
-    if(this==0) return 0;
-
-    var reg = /(^[+-]?\d+)(\d)/;
-
-    var n = (this + '');
-
-    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
-
-    return n;
-};
-
-String.prototype.format = function() {
-	var num = parseFloat(this);
-	if( isNam(num) ) return "0";
-	
-	return num.format();
-};
-*/
+// 수량변경 및 총금백
 function change_qty(btn) {
     var min_qty = 1;
     var this_qty = $("#goods_qty").val()*1;
@@ -173,7 +153,7 @@ function change_qty(btn) {
 
     $("#goods_qty").val(this_qty);
     $(".total_qty").html(this_qty);
-    $(".total_cost").html(show_total_amount.format());
+    $(".total_cost").html(show_total_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	
 };
 
