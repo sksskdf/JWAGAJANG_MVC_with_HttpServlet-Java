@@ -197,6 +197,32 @@ public class ProductDAO {
 		return count;
 	}
 	
+	public int selectCount(String order) throws SQLException {
+		ResultSet rs = null;
+		String sql = "select count(*) from table_md ";
+		int order_ = Integer.parseInt(order);
+		if(order_ == 100) {
+			sql += "where category_main = '100' ";
+		}else if(order_ == 200) {
+			sql += "where category_main = '200' ";
+		}else if(order_ == 300) {
+			sql += "where category_main = '300' ";
+		}else if(order_ == 400) {
+			sql += "where category_main = '400' ";
+		}
+		int count = 0;
+		try(Connection conn = DBManager.getConnection();
+				Statement stmt = conn.createStatement()) {
+			
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			count = rs.getInt(1);
+		} finally {
+			DBManager.close(rs);
+		}
+		return count;
+	}
+	
 	public List<ProductVO> select(int firstRow, int endRow)
 			throws SQLException, NamingException {
 		PreparedStatement pstmt = null;
@@ -205,6 +231,47 @@ public class ProductDAO {
 		try (Connection conn = DBManager.getConnection();){
 				pstmt = conn.prepareStatement("select * from table_md "
 						+ "order by md_code desc limit ?, ?");
+			pstmt.setInt(1, firstRow - 1); // 데이터베이스에서는 0부터 시작이라서 -1 입력
+			pstmt.setInt(2, endRow - firstRow + 1);
+			rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				result = Collections.emptyList();
+			}
+			else {
+				List<ProductVO> productList = new ArrayList<ProductVO>();
+				do {
+					ProductVO board = makeBoardFromResultSet(rs);	// false
+					productList.add(board);
+				} while (rs.next());
+				result = productList;
+			}
+		} finally {
+			DBManager.close(rs);
+			DBManager.close(pstmt);
+		}
+		return result;
+		}
+	
+	public List<ProductVO> sort(int firstRow, int endRow, String order)
+			throws SQLException, NamingException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ProductVO> result = null;
+		try (Connection conn = DBManager.getConnection();){
+			String sql = "select * from table_md ";
+			int order_ = Integer.parseInt(order);
+			if(order_ == 100) {
+				sql += "where category_main = '100' ";
+			}else if(order_ == 200) {
+				sql += "where category_main = '200' ";
+			}else if(order_ == 300) {
+				sql += "where category_main = '300' ";
+			}else if(order_ == 400) {
+				sql += "where category_main = '400' ";
+			}
+			
+			sql += "order by md_code desc limit ?, ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, firstRow - 1); // 데이터베이스에서는 0부터 시작이라서 -1 입력
 			pstmt.setInt(2, endRow - firstRow + 1);
 			rs = pstmt.executeQuery();

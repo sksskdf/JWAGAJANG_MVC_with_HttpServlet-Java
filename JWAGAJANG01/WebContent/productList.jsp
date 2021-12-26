@@ -41,13 +41,30 @@ pageEncoding="UTF-8"%>
                                 <input type="button" value="제품등록" onclick="location.href='productWrite.do'">
                             </h1>
                         </div>
-                        
+
+                        <div class="sort">
+	                        <select id="selBoxFirst" name="selBox" title="대분류" onChange="mainCategoryFilter()">
+								<option value="0"  selected>전체보기</option>
+								<option value="100">채소·과일</option>
+								<option value="200">쌀·견과류</option>
+								<option value="300">수산·해산</option>
+								<option value="400">정육·계란</option>
+							</select>
+                            <!-- <select id="selBoxSecond" name="selBox" title="소분류" onChange="">
+							<option value="0" selected>소분류</option>
+							<option>채소·과일</option>
+							<option>쌀·견과류</option>
+							<option>수산·해산</option>
+							<option>정육·계란</option>
+							</select> -->
+						</div>
 
                            
                         <br>
                         <br>
-						<div class="alal">
+
                         <!-- th만 작성시 가로로 데이터 작성됨-->
+                        <div class="filter">
                         <div class="productList">
                             <table class="productListtable">
                                 <colgroup>
@@ -105,6 +122,7 @@ pageEncoding="UTF-8"%>
 								</c:if>
 						</div>
 	             </div>				
+
                     </form>
                 </section>
 
@@ -113,7 +131,6 @@ pageEncoding="UTF-8"%>
                 <jsp:include page="H&F/footer.html" />
                 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                 <script src="js/jquery.min.js"></script>
-                <script src="js/index.js"></script>
                 <script src="js/productList.js"></script>
             </body>
 
