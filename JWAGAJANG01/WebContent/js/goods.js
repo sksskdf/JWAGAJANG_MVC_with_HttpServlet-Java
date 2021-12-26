@@ -39,7 +39,7 @@ $(function() {
 		var c2=$ultag.attr("data-c2");
 		var order=$(this).data("oper");
 		
-		var query={category_main:c1, category_sub:c2, order:order};
+		var query={category_main:c1, category_sub:c2,order:order};
 			// order는 정렬순서 1.최신순 2.판매량순 3.상품평순 4.낮은가격 5.높은가격
 		
 		$.ajax({

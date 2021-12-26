@@ -28,9 +28,9 @@
 	       <c:if test="${(param.category_main != 'All')}">
 	       <span class="navarrow"></span>
            <a href="list.do?category_main?=${mdList[0].category_main}">${mdList[0].category_main_name}</a>
-           </c:if>
 
 	       <span class="navarrow"></span>
+           </c:if>
            <a href="#">전체보기</a>
         </div>
         <div class="goodsCtgry">

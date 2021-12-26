@@ -13,9 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import common.command.CommandHandler;
 import product.dao.ProductDAO;
+import product.dto.Paging;
 import product.dto.ProductListModel;
 import product.dto.ProductVO;
-import product.dto.Paging;
+
 
 public class ProductListHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/productList.jsp";
@@ -24,12 +25,14 @@ public class ProductListHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
-		} else {
+		}
+		else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
 	}
 	
+
 	/*public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if(request.getMethod().equalsIgnoreCase("GET") || 
@@ -47,11 +50,10 @@ public class ProductListHandler implements CommandHandler {
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException {
 		String pageNumberString = req.getParameter("p"); // 브라우저에서 목록을 보면 p=null; 페이징 링크를 누르면 p=n;
-		String searchkeyword = req.getParameter("searchkeyword");
 		String del = req.getParameter("del");
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		
+
 		int pageNumber = 1;
 		if (pageNumberString != null && pageNumberString.length() > 0) { // p값이 들어왔는지 안들어왔는지
 			pageNumber = Integer.parseInt(pageNumberString); // 들어왔으면  String 타입의 변수를 int 타입의 변수로  바꿔서 넣는다.
@@ -98,7 +100,6 @@ public class ProductListHandler implements CommandHandler {
 		req.setAttribute("productList", productList);
 		req.setAttribute("listModel", listModel); // jsp로 전달
 		
-		System.out.println(searchkeyword);
 				
 		res.setHeader("Pragma", "No-cache"); // 캐시 삭제하도록 설정 : 게시글을 추가했는데 캐시에 있는걸 보여주면 추가한게 안나오기떄문에
 		res.setHeader("Cache-Control", "no-cache");

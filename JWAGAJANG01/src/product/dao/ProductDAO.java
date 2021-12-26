@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import goods.dto.GoodsVO;
 import product.dto.ProductVO;
 import util.DBManager;
 
@@ -26,6 +27,8 @@ public class ProductDAO {
 		return instance;
 	}
 	private ProductDAO() { }
+	
+	
 	
 	// 제품 목록 출력
 	public List<ProductVO> selectAllProducts() {
