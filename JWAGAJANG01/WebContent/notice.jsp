@@ -48,7 +48,7 @@
 			<c:if test="${tbc == 0}">
 				<h4>검색된 글이 없습니다.</h4>
 			</c:if>
-			<c:if test="${(grade == 1) sessionScope.id}">
+			<c:if test="${sessionScope.member.grade == 1}">
 			<div class="writebox">
 				<a href="noticeWrite.do?&p=${param.p}"><input type="submit" value="글쓰기" name="write" class="writebtn"></a>
 			</div>

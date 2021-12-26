@@ -16,7 +16,23 @@
                  ( 1 / 1000 초  사용)      
         
     -->
+<<<<<<< .merge_file_a09924
 
+=======
+   
+ <!--  <Context>
+     <Resource 
+        name="jdbc/model2DB"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://192.168.1.15:3306/jwagajang"
+        username="jwagajang"
+        password="1234"     
+     /> 
+ 	</Context>-->
+ 
+>>>>>>> .merge_file_a10116
   <Context>
      <Resource 
      	name="jdbc/jwagajang"
@@ -28,4 +44,8 @@
         password="1234"
         maxTotal="20" maxIdle="10" maxWaitMillis="-1"     
      />
+<<<<<<< .merge_file_a09924
    </Context> 
+=======
+   </Context>
+>>>>>>> .merge_file_a10116

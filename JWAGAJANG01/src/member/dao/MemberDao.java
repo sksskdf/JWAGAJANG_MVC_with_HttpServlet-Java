@@ -73,13 +73,15 @@ public class MemberDao {
 		//기본값은 -1로 초기화
 		int result = -1;
 		try {
-			String query = "insert into table_user (user_id, user_pw, user_email, user_phone"
-					+ ") values(?, ?, ?, ?)";
+			String query = "insert into table_user (user_id, user_pw, user_email, user_phone, user_address, user_adddetail"
+					+ ") values(?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPwd());
 			pstmt.setString(3, member.getEmail());
 			pstmt.setString(4, member.getMobile());
+			pstmt.setString(5, member.getAddress());
+			pstmt.setString(6, member.getAdddetail());
 			result = pstmt.executeUpdate();
 			
 		} finally {
@@ -95,18 +97,16 @@ public class MemberDao {
 					+ "	`user_pw` = ?, \r\n"
 					+ "	`user_phone` = ?, \r\n"
 					+ "	`user_address` = ?, \r\n"
-					+ "	`user_address2` = ?, \r\n"
-					+ "	`user_address3` = ?, \r\n"
+					+ "	`user_adddetail` = ?, \r\n"
 					+ "	`user_email` = ?\r\n"
 					+ " WHERE (`user_id` = ?);";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, member.getPwd());
 			pstmt.setString(2, member.getMobile());
 			pstmt.setString(3, member.getAddress());
-			pstmt.setString(4, member.getAddress2());
-			pstmt.setString(5, member.getAddress3());
-			pstmt.setString(6, member.getEmail());
-			pstmt.setString(7, member.getId());
+			pstmt.setString(4, member.getAdddetail());
+			pstmt.setString(5, member.getEmail());
+			pstmt.setString(6, member.getId());
 			
 			pstmt.executeUpdate();
 			

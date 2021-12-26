@@ -38,7 +38,9 @@ public class JoinMemberHandler implements CommandHandler {
 		String pwd = req.getParameter("pwd");
 		String mobile = req.getParameter("mobile");
 		String email = req.getParameter("email");
-		Member member = new Member(id, pwd, mobile , email);
+		String address = req.getParameter("address");
+		String addDetail = req.getParameter("addDetail");
+		Member member = new Member(id, pwd, mobile , email,address,addDetail);
 		MemberService memberService = MemberServiceImpl.getInstance();
 		memberService.add(member);
 		res.setContentType("text/html; charset=UTF-8");
