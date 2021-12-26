@@ -127,7 +127,7 @@ $(function() {
 	});
 });
 
-// 천 단위로 점 찍기
+/*// 천 단위로 점 찍기
 Number.prototype.format = function(){
 
     if(this==0) return 0;
@@ -147,11 +147,11 @@ String.prototype.format = function() {
 	
 	return num.format();
 };
-
+*/
 function change_qty(btn) {
     var min_qty = 1;
     var this_qty = $("#goods_qty").val()*1;
-    var max_qty = $("goods_qty").attr("min");
+    var max_qty = $("#goods_qty").attr("max");
 
     if(btn=="minus") {
         this_qty -= 1;
@@ -173,7 +173,7 @@ function change_qty(btn) {
 
     $("#goods_qty").val(this_qty);
     $(".total_qty").html(this_qty);
-    $(".total_cost").html(show_total_amount);
+    $(".total_cost").html(show_total_amount.format());
 	
 };
 

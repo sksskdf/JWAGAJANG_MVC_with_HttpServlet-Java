@@ -77,7 +77,7 @@ select_sort > a {
     display: block;
 }
 
-.cost {
+#cost {
     font: normal normal bold 28px/32px NanumGothic;
     color: #000000;
 }
