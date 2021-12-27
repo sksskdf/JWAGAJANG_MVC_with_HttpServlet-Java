@@ -9,6 +9,12 @@ public class Order {
 	private String mdprice = null;
 	private String mdreview = null;
 	private Integer mdcode = null;
+	private String order_name = null;
+	private String mobile = null;
+	private String address = null;
+	private String address2 = null;
+	private String orderrequest = null;
+	
 	
 	
 	public Order() {
@@ -34,8 +40,68 @@ public class Order {
 		this.mdcode = mdcode;
 	}
 
-
 	
+	
+	public String getOrder_name() {
+		return order_name;
+	}
+
+
+
+	public void setOrder_name(String order_name) {
+		this.order_name = order_name;
+	}
+
+
+
+	public String getMobile() {
+		return mobile;
+	}
+
+
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
+	public String getAddress2() {
+		return address2;
+	}
+
+
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+
+
+	public String getOrderrequest() {
+		return orderrequest;
+	}
+
+
+
+	public void setOrderrequest(String orderrequest) {
+		this.orderrequest = orderrequest;
+	}
+
+
+
 	public String getMdpic() {
 		return mdpic;
 	}

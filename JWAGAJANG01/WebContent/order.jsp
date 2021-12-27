@@ -49,7 +49,7 @@
     		</tr>
     		<tr>
     			<td>배송요청사항</td>
-    			<td><input type="text" /></td>
+    			<td><input type="text" name="request" /></td>
     		</tr>
     	</table>
     	<input type="submit" value="결제하기" class="paybutton" />

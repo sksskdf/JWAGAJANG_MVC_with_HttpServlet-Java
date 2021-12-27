@@ -14,12 +14,12 @@ public class BuyService {
 	}
 	private BuyService() {}
 	
-	public void buy(int md_code,String md_id) {
+	public void buy(int md_code,String md_id,Order order) {
 		cartDao cDao = cartDao.getInstance();
 		Connection conn = null;
 		
 		conn = DBManager.getConnection();
-		cDao.buy(conn,md_code,md_id);
+		cDao.buy(conn,md_code,md_id,order);
 
 	}
 	

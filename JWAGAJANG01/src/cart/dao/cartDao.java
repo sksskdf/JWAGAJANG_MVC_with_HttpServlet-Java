@@ -16,18 +16,23 @@ public class cartDao {
 		return instance;
 	}
 	
-	public void buy(Connection conn,int md_code,String mdid) {
+	public void buy(Connection conn,int md_code,String mdid,Order order) {
 		PreparedStatement pstmt = null;
 		try {
-			String query = "INSERT INTO table_order(mdpic, mdname, mdprice, mdcode,mdid ) VALUES\r\n" + 
+			String query = "INSERT INTO table_order(mdpic, mdname, mdprice, mdcode, mdid,order_name,mobile,address,address2,orderrequest ) VALUES\r\n" + 
 					"((SELECT img_main FROM table_md WHERE md_code = ?),(SELECT md_name FROM table_md WHERE md_code = ?),\r\n" + 
-					"(SELECT md_price FROM table_md WHERE md_code = ?),(SELECT md_code FROM table_md WHERE md_code = ?), ?);";
+					"(SELECT md_price FROM table_md WHERE md_code = ?),(SELECT md_code FROM table_md WHERE md_code = ?), ?,?,?,?,?,?);";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, md_code);
 			pstmt.setInt(2, md_code);
 			pstmt.setInt(3, md_code);
 			pstmt.setInt(4, md_code);
 			pstmt.setString(5, mdid);
+			pstmt.setString(6, order.getOrder_name());
+			pstmt.setString(7, order.getMobile());
+			pstmt.setString(8, order.getAddress());
+			pstmt.setString(9, order.getAddress2());
+			pstmt.setString(10, order.getOrderrequest());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
