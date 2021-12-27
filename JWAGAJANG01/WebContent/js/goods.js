@@ -30,6 +30,7 @@ $(function() {
 			}
 		});
 	});
+	
 
 	// 정렬
 	$(".orderBy").on("click", function(e) {
