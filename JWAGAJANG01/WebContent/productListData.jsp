@@ -28,7 +28,7 @@
                                     <td>${f.md_stock }</td>
                                     <td>${f.md_regdate}</td>
                                     <td>${f.md_price }</td>
-                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.jsp'">
+                                    <td><input type="button" value="수정" class="editbtn" onclick="location.href='productUpdate.do?mdcode=${f.md_code}'">
                                         <br><input type="button" value="삭제" class="deletebtn" onclick="location.href='productList.do?del=${f.md_code}&p=1&id=${sessionScope.id}'"></td>
                                 </tr>
                                 </c:forEach>

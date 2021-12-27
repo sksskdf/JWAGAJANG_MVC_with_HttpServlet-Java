@@ -113,8 +113,8 @@ public class ProductDAO {
 	public void updateProduct(ProductVO pVo) {
 		String sql = "update table_md set md_name=?, md_price=?, "
 				+ "md_dc=?, md_stock=?, "
-				+ "img_main=?, img_detail=? category_main=?, "
-				+ "category_sub=? where md_code = ?";
+				+ "img_main=?, img_detail=?, category_main=?, "
+				+ "category_sub=?, category_main_name=? where (md_code = ?)";
 		try (Connection conn = DBManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
 			pstmt.setString(1, pVo.getMd_name());
@@ -125,6 +125,9 @@ public class ProductDAO {
 			pstmt.setString(6, pVo.getImg_detail());
 			pstmt.setString(7, pVo.getCategory_main());
 			pstmt.setString(8, pVo.getCategory_sub());
+			pstmt.setString(9, pVo.getCategory_main_name());
+			pstmt.setInt(10, pVo.getMd_code());
+			System.out.println(pVo.toString());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
