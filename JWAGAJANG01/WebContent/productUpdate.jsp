@@ -41,37 +41,49 @@ pageEncoding="UTF-8"%>
 				<tr>
 					<th width="150px">구분</th>
 					<th>
-						<select class="sortinput" name="category_main">
-							<option>대분류</option>
-							<option>채소·과일</option>
-							<option>쌀·견과류</option>
-							<option>수산·해산</option>
-							<option>정육·계란</option>
+						<select class="sortinput" id="catemain" name="category_main" onchange="sortChange()">
+							<option value="0">대분류를 선택해주세요.</option>
+							<option value="100">채소·과일</option>
+							<option value="200">쌀·견과류</option>
+							<option value="300">수산·해산</option>
+							<option value="400">정육·계란</option>
 						</select>
-						<select class="sortinput" name="category_sub">
-							<option>소분류</option>
-							<option>채소·과일</option>
-							<option>쌀·견과류</option>
-							<option>수산·해산</option>
-							<option>정육·계란</option>
+						<select class="sortinput" id="catesub1" name="category_sub">
+							<option value="110">고구마·감자·당근</option>
+							<option value="120">시금치·쌈채소·나물</option>
+							<option value="130">브로콜리·파프리카·양배추</option>
+							<option value="140">양파·마늘·대파·배추</option>
+							<option value="150">오이·호박·고추</option>
+							<option value="160">콩나물·버섯</option>
+							<option value="170">과일</option>
+							<option value="210">쌀·잡곡</option>
+							<option value="220">견과류</option>
+							<option value="310">생선류</option>
+							<option value="320">해산물·조개류</option>
+							<option value="330">김·미역·해조류</option>
+							<option value="410">소고기·돼지고기</option>
+							<option value="420">닭·오리고기</option>
+							<option value="430">수산·해산</option>
+							<option value="440">계란</option>
 						</select>
 					</th>
 				</tr>
+					<input type="hidden" value="${param.mdcode}" name="md_code"/>
 				<tr>
 					<th width="150px">상품</th>
-					<th><input class="titleinput" type="text" name="md_name" placeholder="기존 상품명" style="border: 0px"></th>
+					<th><input class="titleinput" type="text" name="md_name" placeholder="기존 상품명" style="border: 0px" value="${product.md_name}"></th>
 				</tr>
 				<tr>
 					<th width="150px">상품가격</th>
-					<th><input class="titleprice" type="text" name="md_price" placeholder="기존 가격" style="border: 0px"></th>
+					<th><input class="titleprice" type="text" name="md_price" placeholder="기존 가격" style="border: 0px" value="${product.md_price}"></th>
 				</tr>
 				<tr>
 					<th width="150px">할인율</th>
-					<th><input class="titledc" type="text" name="md_dc" style="width: 90px"> % </th>
+					<th><input class="titledc" type="text" name="md_dc" style="width: 90px" value="${product.md_dc}"> % </th>
 				</tr>
 				<tr>
 					<th width="150px">재고</th>
-					<th><input class="titlestock" type="text" name="md_stock" style="width: 90px"></th>
+					<th><input class="titlestock" type="text" name="md_stock" style="width: 90px" value="${product.md_stock}"></th>
 				</tr>
 				<tr>
 					<th width="150px">배송비</th>

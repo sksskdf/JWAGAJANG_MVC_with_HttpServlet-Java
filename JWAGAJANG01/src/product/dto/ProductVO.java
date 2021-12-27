@@ -143,5 +143,15 @@ public class ProductVO {
 	public void setMd_ordercnt(int md_ordercnt) {
 		this.md_ordercnt = md_ordercnt;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductVO [md_code=" + md_code + ", md_name=" + md_name + ", md_price=" + md_price + ", md_dc=" + md_dc
+				+ ", md_stock=" + md_stock + ", img_main=" + img_main + ", img_detail=" + img_detail + ", md_regdate="
+				+ md_regdate + ", md_editdate=" + md_editdate + ", category_main=" + category_main + ", category_sub="
+				+ category_sub + ", md_ordercnt=" + md_ordercnt + ", category_main_name=" + category_main_name + "]";
+	}
+	
+	
 	
 }

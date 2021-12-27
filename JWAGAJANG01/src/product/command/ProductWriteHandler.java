@@ -72,7 +72,7 @@ public class ProductWriteHandler implements CommandHandler {
 			pVo.setCategory_main(category_main);
 			pVo.setCategory_sub(category_sub);
 			pVo.setCategory_main_name(category_main_name);
-			System.out.println(category_main_name);
+			
 			
 			ProductDAO pDao = ProductDAO.getInstance();
 			pDao.insertProduct(pVo);
