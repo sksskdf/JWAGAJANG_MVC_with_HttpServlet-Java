@@ -16,9 +16,6 @@
                  ( 1 / 1000 초  사용)      
         
     -->
-<<<<<<< .merge_file_a09924
-
-=======
    
  <!--  <Context>
      <Resource 
@@ -32,8 +29,7 @@
      /> 
  	</Context>-->
  
->>>>>>> .merge_file_a10116
-  <Context>
+<Context>
      <Resource 
      	name="jdbc/jwagajang"
         auth="Container"
@@ -44,8 +40,5 @@
         password="1234"
         maxTotal="20" maxIdle="10" maxWaitMillis="-1"     
      />
-<<<<<<< .merge_file_a09924
    </Context> 
-=======
-   </Context>
->>>>>>> .merge_file_a10116
+
