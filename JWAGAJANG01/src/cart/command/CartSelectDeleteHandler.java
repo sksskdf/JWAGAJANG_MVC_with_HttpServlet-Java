@@ -1,6 +1,8 @@
 package cart.command;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,24 +27,26 @@ public class CartSelectDeleteHandler implements CommandHandler {
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
-		String[] chkarr = req.getParameterValues("checkArr");
-		int[] newchkarr = null;
-		
-		System.out.println(req.getParameter("checkArr[0]"));
-		
+		String[] chkarr=null;
 		ArrayList<CartVO> cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
 		
-		for (int i = 0; i < chkarr.length; i++) {
-			newchkarr[i] = Integer.parseInt(chkarr[i]);
-		}
-		
-		for (int i = 0; i < newchkarr.length; i++) {
-			cartList.remove(newchkarr[i]);
+		Enumeration<String> paramNames = req.getParameterNames();
+		   while(paramNames.hasMoreElements()) {
+		       String name = paramNames.nextElement().toString();
+		       String[] strList = req.getParameterValues(name);
+		       chkarr = strList;
+		   }
+
+		for(Iterator<CartVO> itr = cartList.iterator(); itr.hasNext();) {
+			CartVO value = itr.next();
+			for (int i = 0; i < chkarr.length; i++) {
+			if(value.getMd_code().equals(chkarr[i])) itr.remove();
+			}
 		}
 		
 		return "cart.jsp";
 	}
-	
+		    
 }
 
 

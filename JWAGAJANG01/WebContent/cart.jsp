@@ -45,11 +45,11 @@
 							</tr>
 						</c:if>
 							<c:if test="${!empty cartList}">
-							<c:forEach items="${cartList }" var="cart" varStatus="status">
+							<c:forEach items="${cartList }" var="cart">
 							<tr>
 								<fmt:parseNumber var="saleP" integerOnly="true" value="${cart.md_price-(cart.md_price*cart.md_dc/100) }"/>
 								<td><input type="checkbox" name="mdchk" class="mdchk" value="${saleP * cart.md_count}" 
-								checked data-cartnum="${status.index }"/></td>
+								checked data-cartcode="${cart.md_code }"/></td>
 								<td class="md" style="text-align: left"><a href="goods.do?md_code=${cart.md_code }" target='_blank'>
 								<img src="${cart.img_main }" /></a> <span class="mddesc"><a href="goods.do?md_code=${cart.md_code }" target='_blank'>${cart.md_name }</a></span></td>
 								<td>

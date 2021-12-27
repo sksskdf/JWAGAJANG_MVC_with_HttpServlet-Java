@@ -47,8 +47,8 @@ function totalSum() {
 $("#selectDelete").click(function () {
 	 var checkArr = new Array();
 
-     $("input[class='mdchk']:checked").each(function () {
-         checkArr.push($(this).attr("data-cartnum"));
+     $("input[name='mdchk']:checked").each(function () {
+         checkArr.push($(this).attr("data-cartcode"));
      });
 
     if(checkArr.length==0) alert("선택된 상품이 없습니다.");
@@ -57,13 +57,15 @@ $("#selectDelete").click(function () {
 	    if (confirm_val) {
 	        $.ajax({
 	            url: "cartSelectDelete.do",
-	            type: "post",
-	            contentType: "application/x-www-form-urlencoded",
-	            data: { checkArr: checkArr },
+	            type: "POST",
+	            data: { "checkArr": checkArr },
 	            success: function (data) {
 	            	alert('삭제하였습니다.');
-	                //location.replace("cart.do");
-	            }
+	                location.replace("cartPut.do");
+	            },
+	            error: function(request,status,error) {
+	        		alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+	        	}
 	        });
 	    }
     }
