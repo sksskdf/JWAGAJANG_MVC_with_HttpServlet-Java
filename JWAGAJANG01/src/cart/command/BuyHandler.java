@@ -29,6 +29,7 @@ public class BuyHandler implements CommandHandler {
 		BuyService buyservice = BuyService.getInstance();
 		String mdname = buyservice.get_mdname(md_code_);
 		req.setAttribute("md_name", mdname);
+		System.out.println("handler console md_name"+mdname);
 		return "order.jsp";
 	}
 

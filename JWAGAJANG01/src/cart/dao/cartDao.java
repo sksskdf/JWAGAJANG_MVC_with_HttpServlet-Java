@@ -46,14 +46,18 @@ public class cartDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, md_code);
 			
+			
+			
 			rs = pstmt.executeQuery();
+			
 			mdname = rs.getString("md_name");
+			System.out.println(md_code);
+			System.out.println(mdname);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(pstmt);
-			DBManager.close(conn);
 		}
 		return mdname;
 	}

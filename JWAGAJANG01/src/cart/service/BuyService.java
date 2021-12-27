@@ -20,9 +20,7 @@ public class BuyService {
 		
 		conn = DBManager.getConnection();
 		cDao.buy(conn,md_code,md_id);
-		
-		DBManager.close(conn);
-	
+
 	}
 	
 	public String get_mdname(int md_code) {
@@ -30,7 +28,8 @@ public class BuyService {
 		Connection conn = null;
 		
 		conn = DBManager.getConnection();
+		String mdname = cDao.get_mdname(conn,md_code);
 		
-		return cDao.get_mdname(conn,md_code);
+		return mdname;
 	}
 }
