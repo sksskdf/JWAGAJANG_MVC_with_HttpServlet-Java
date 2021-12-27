@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,8 @@ public class GoodsDAO {
 	private GoodsDAO() { }
 	
 	// 상품 분류
-	public List<GoodsVO> sortMd(String category_main, String category_sub, String order) throws Exception {
+	public List<GoodsVO> sortMd(String category_main, String category_sub, String order,
+			int firstRow, int endRow, boolean readContnent) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -54,14 +56,24 @@ public class GoodsDAO {
 				sqlCate += " order by md_price desc";
 			}
 			
+			sqlAll += " limit ?, ?";
+			sqlCate += " limit ?, ?";
+			
 			if(category_main.equals("All") || category_main.equals("")) {
 				pstmt = conn.prepareStatement(sqlAll);
+				pstmt.setInt(1, firstRow-1);
+				pstmt.setInt(2, endRow-firstRow+1);
 			} else {
 				pstmt = conn.prepareStatement(sqlCate);
 				pstmt.setString(1, category_main);
 				
 				if(category_sub != null && !category_sub.isEmpty()) {
-				pstmt.setString(2, category_sub);
+					pstmt.setString(2, category_sub);
+					pstmt.setInt(3, firstRow-1);
+					pstmt.setInt(4, endRow-firstRow+1);
+				} else {
+					pstmt.setInt(2, firstRow-1);
+					pstmt.setInt(3, endRow-firstRow+1);
 				}
 			}
 			rs = pstmt.executeQuery();
@@ -75,8 +87,8 @@ public class GoodsDAO {
 					md.setMd_price(rs.getInt("md_price"));
 					md.setMd_dc(rs.getInt("md_dc"));
 					md.setImg_main(rs.getString("img_main"));
-					md.setCategory_main(rs.getNString("category_main"));
-					md.setCategory_sub(rs.getNString("category_sub"));
+					md.setCategory_main(rs.getString("category_main"));
+					md.setCategory_sub(rs.getString("category_sub"));
 					md.setCategory_main_name(rs.getString("category_main_name"));
 					mdCate.add(md);
 				} while (rs.next());
@@ -212,21 +224,19 @@ public class GoodsDAO {
 		return reviewList;
 	}
 	
+	
+	
 	// 검색
-	public List<GoodsVO> searchResult(String md_name) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement("select * from table_md where " + md_name + " like ?");
-			pstmt.setString(1, "%"+md_name+"%");
-			rs = pstmt.executeQuery();
-			
-			return result(rs);
-		}
-	}
+	/*
+	 * public List<GoodsVO> searchResult(String md_name) { Connection conn = null;
+	 * PreparedStatement pstmt = null; ResultSet rs = null;
+	 * 
+	 * try { conn = DBManager.getConnection(); pstmt =
+	 * conn.prepareStatement("select * from table_md where " + md_name + " like ?");
+	 * pstmt.setString(1, "%"+md_name+"%"); rs = pstmt.executeQuery();
+	 * 
+	 * return result(rs); } }
+	 
 	
 	// 최근 본 상품
 	@SuppressWarnings("unchecked")
@@ -254,6 +264,30 @@ public class GoodsDAO {
 		}
 		session.setAttribute("quickGoodsList", quickGoodsList);	// 최근 본 상품 목록을 세션에 저장
 		session.setAttribute("quickGoodsListNum", quickGoodsList.size());	// 최근 본 상품 목록에 저장된 상품 개수를 세션에 저장
+	}*/
+
+	public int selectCount(String category_main, String category_sub) throws SQLException {
+		ResultSet rs = null;
+	    int count = 0;
+	      
+	    String sql = "select count(*) from table_md";
+	    if (!category_main.equals("All") && !category_main.equals("")) {
+	    	  sql += " where category_main='" + category_main + "'";
+	    } 
+		if(category_sub != null && !category_sub.isEmpty()) {
+			sql += " and category_sub='" + category_sub + "'";
+		}
+
+	      try (Connection conn = DBManager.getConnection();
+	    		  Statement stmt = conn.createStatement();) {
+	         rs = stmt.executeQuery(sql);
+	         if (rs.next()) {
+	        	 count = rs.getInt(1); 
+	         }
+	      } finally {
+	         DBManager.close(rs);
+	      }
+	      return count;
 	}
 	
 }

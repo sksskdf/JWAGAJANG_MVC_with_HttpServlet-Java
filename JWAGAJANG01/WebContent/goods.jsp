@@ -115,7 +115,7 @@
 	                <c:forEach var="review" items="${reviewList}">
 	                	<tr>
 	                        <td class="review_name">${review.user_id}</td>
-	                        <td class="review_rate">${review.review_rate}</td>
+	                        <td class="review_rate">${review.review_rate} / 5</td>
 	                        <td class="review_content">${review.review_content}</td>
 	                        <td class="review_date"><fmt:formatDate value="${review.review_regdate}" pattern="yyyy-MM-dd"/></td>
 	                    </tr>
@@ -164,7 +164,10 @@
             <div class="footnav_latest">
                 <p>최근 본 상품</p>
                 <ul>
-                    <li><a href=""><img src="img/best1.jpg"></a></li>
+                <c:forEach var="cookie" items="${pageScope.request.cookies}">
+                	<li><a href="goods.do?md_code=${cookie.getName}"><img src="img/${cookie.getValue}" alt="${cookie.name}"></a></li>
+                </c:forEach>
+                    
                 </ul>
                 <a href="#top" class="top_btn"><img src="img/up.png"></a>
             </div>

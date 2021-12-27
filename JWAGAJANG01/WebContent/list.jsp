@@ -94,6 +94,7 @@
             </div>
             <div class="list_goods">
                 <div class="inner_listgoods">
+                <c:set var="mdList" value="${listModel.mdList}" />
                     <ul class="goods">
                     <c:forEach var="md" items="${mdList}">
                         <li>
@@ -118,18 +119,16 @@
         </div>
 		<div class="paging">
 		    <div class="pagediv">
-		        <a href="#">이전 페이지</a>
-		        <span><strong>1</strong></span>
-		        <span><strong>2</strong></span>
-		        <span><strong>3</strong></span>
-		        <span><strong>4</strong></span>
-		        <span><strong>5</strong></span>
-		        <span><strong>6</strong></span>
-		        <span><strong>7</strong></span>
-		        <span><strong>8</strong></span>
-		        <span><strong>9</strong></span>
-		        <span><strong>10</strong></span>
-		        <a href="#">다음 페이지</a>
+		    <c:set var="paging" value="${listModel.paging}"/>
+		        <c:if test="${paging.startPageNo > paging.sizeOfPage}">
+					<a href="<c:url value="/list.do?category_main=${param.category_main}&p=${paging.prevPageNo}"/>">이전</a>
+				</c:if>
+		        <c:forEach var="pno" begin="${paging.startPageNo}" end="${paging.endPageNo}">
+					<a href="<c:url value="/list.do?category_main=${param.category_main}&p=${pno}" />">[${pno}]</a>
+				</c:forEach>
+		        <c:if test="${paging.endPageNo < paging.finalPageNo}">
+					<a href="<c:url value="/list.do?category_main=${param.category_main}&p=${paging.nextPageNo}"/>">다음</a>
+				</c:if>
 		    </div>
 		</div>
         
