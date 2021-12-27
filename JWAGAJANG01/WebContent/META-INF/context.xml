@@ -29,7 +29,7 @@
      /> 
  	</Context>-->
  
-  <Context>
+<Context>
      <Resource 
      	name="jdbc/jwagajang"
         auth="Container"
@@ -40,4 +40,5 @@
         password="1234"
         maxTotal="20" maxIdle="10" maxWaitMillis="-1"     
      />
-   </Context>
+   </Context> 
+

@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.command.CommandHandler;
-
 import qna.dao.QnaDAO;
 import qna.dto.QnaVO;
 
@@ -27,6 +26,7 @@ public class QnaViewHandler implements CommandHandler {
 		qDao.updateReadCount(qna_code); // 게시글의 조회수를 증가
 		QnaVO qVo = qDao.selectOneBoardByNum(qna_code);
 		req.setAttribute("board", qVo);
+
 		return url;
 	}
 }

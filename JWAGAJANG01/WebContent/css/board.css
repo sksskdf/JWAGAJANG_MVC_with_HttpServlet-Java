@@ -258,7 +258,7 @@ textarea {
 }
 
 .record {
-	background: #00000005;
+	background: #fafafa;
 	font-size: 14px;
 	line-height: 40px;
 }
@@ -383,20 +383,27 @@ h4 {
 
 /* qna 리플 */
 .replelist {
+	height :120px;
 	width : 953px;
-	height : 80px;
 	text-align: center;
-	line-height: 80px;
 	margin-bottom : 50px;
 }
-#hang1, #hang3, #hang4{
+#hang1, #hang3{
+	vertical-align : middle;
 	font-weight : bold;
 	font-size : 14px;
 	background: #FAFAFA;
 	width : 120px;
 }
+#pre {
+		width : 704px;
+}
 #hang2{
-	font-size : 12px;
+	vertical-align : middle;
+	font-size : 14px;
+
+	text-align : left;
+	text-indent: 10px;
 	border : #fafafa solid 1px ;
 }
 
@@ -417,12 +424,13 @@ h4 {
 	text-align: right;
 }
 
-#replyup, #replydle {
+#replydle {
 	margin-top: 5px;
-	width: 52px;
+	width: 109px;
 	height: 30px;
 	border: 0.5px solid #195500;
 	background: none;
+	border-radius: 3px;
 	color: #195500;
 }
 
