@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import goods.dto.GoodsVO;
 import member.model.Order;
 import util.DBManager;
 
@@ -33,6 +34,7 @@ public class cartDao {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(pstmt);
+			DBManager.close(conn);
 			
 		}	
 	}
@@ -45,19 +47,20 @@ public class cartDao {
 			String query = "select md_name from table_md where md_code = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, md_code);
-			
-			
-			
+
 			rs = pstmt.executeQuery();
+			if(rs.next()) { //요놈
+			GoodsVO gVo = new GoodsVO();
+			gVo.setMd_name(rs.getString("md_name"));
+			mdname = gVo.getMd_name();
+			}
 			
-			mdname = rs.getString("md_name");
-			System.out.println(md_code);
-			System.out.println(mdname);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(pstmt);
+			DBManager.close(conn);
 		}
 		return mdname;
 	}

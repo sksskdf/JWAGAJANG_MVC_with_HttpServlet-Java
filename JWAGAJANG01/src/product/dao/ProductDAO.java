@@ -149,9 +149,10 @@ public class ProductDAO {
 	public List<ProductVO> selectBestProduct() {
 		String sql = "select md_code, md_name, md_price, md_dc, img_main from table_md order by md_ordercnt desc limit 4";
 		List<ProductVO> list = new ArrayList<ProductVO>();
-		try (Connection conn = DBManager.getConnection();
+		try {
+			Connection conn = DBManager.getConnection();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql)){
+			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				ProductVO pVo = new ProductVO();
 				pVo.setMd_code(rs.getInt("md_code"));
