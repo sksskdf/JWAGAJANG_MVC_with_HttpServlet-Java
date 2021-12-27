@@ -42,6 +42,34 @@ function execDaumPostcode() {
 	}).open();
 }
 
+
+$('#checkbox').click(function(){
+	var checked = $('#checkbox').is(':checked');
+	
+	if(checked){
+		$('input:checkbox').prop('checked',true);
+		var ordername = $("input[name='ordername']").val();
+		var mobile = $("input[name='mobile']").val();
+		var address = $("input[name='address']").val();
+		var address2 = $("input[name='address2']").val();
+		var mdname = $("input[name='mdname']").val();
+		var mdcode = $("input[name='md_code']").val();
+		var query = { ordername:ordername,mobile:mobile,address:address,address2:address2,mdname:mdname,md_code:mdcode};
+		$.ajax({
+			type: "POST",
+			url: "/orderdata.jsp",
+			data: query,
+			contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+			success: function(data) {
+				$('.section').html(data);
+			},
+			error: function(request, status, error) {
+				alert(error);
+			}
+		});
+	}
+});
+
 function orderCheck() {
 	const nameReg = /^[가-힣]{2,5}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;      //한글 2~5자 혹은 영어이름.
 	const telReg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;  

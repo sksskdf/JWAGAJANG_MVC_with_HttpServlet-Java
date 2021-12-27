@@ -21,8 +21,9 @@
     	2. 주문서 작성 / 결제<span class="navarrow"></span>
     	<span class="nowpage">3. 주문완료</span></div>
 		<div class="completesec">
-			<h1>주문이 완료되었습니다.</h1>
-			<input type="button" class="chkmyorder" value="내 주문내역 확인" />
+			<h1>주문이 완료되었습니다.</h1><br><br>
+			<h2>마이페이지 - 주문내역에서 주문하신 내역을 확인 하실 수 있습니다.</h2>
+			<input type="button" class="chkmyorder" value="홈으로" onclick="location.href='main.do'"/>
 		</div>
 	</div>
 	</section>

@@ -44,7 +44,10 @@ public class BuyHandler implements CommandHandler {
 		int md_code_ = Integer.parseInt(md_code);
 		BuyService buyservice = BuyService.getInstance();
 		String mdname = buyservice.get_mdname(md_code_);
+		Order orderinfo = buyservice.get_orderInfo(id);
+		
 		req.setAttribute("md_name", mdname);
+		req.setAttribute("orderinfo", orderinfo);
 		System.out.println("handler console md_name"+mdname);
 		return "order.jsp";
 	}
@@ -69,7 +72,7 @@ public class BuyHandler implements CommandHandler {
 		
 		
 		
-		return "main.do";
+		return "complete.do";
 	}
 
 }

@@ -32,4 +32,12 @@ public class BuyService {
 		
 		return mdname;
 	}
+	public Order get_orderInfo(String id) {
+		cartDao cDao = cartDao.getInstance();
+		Connection conn = null;
+		
+		conn = DBManager.getConnection();
+		Order orderinfo = cDao.get_orderInfo(conn,id);
+		return orderinfo;
+	}
 }

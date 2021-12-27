@@ -13,7 +13,7 @@
 <body>
 	<div id="pagewrap">
 	<jsp:include page="H&F/header.jsp"/>
-	<section>
+	<section class="section">
 	<div class="pagenav">홈<span class="navarrow"></span>장바구니<span class="navarrow"></span>주문서 작성</div>
 	<div id="orderwrap">
 	<h1>주문서 작성 / 결제</h1>
@@ -28,10 +28,15 @@
    		</table>
     	<form action="buynow.do" class="orderform" name="orderfrm" method="post">
     	<input type="hidden" value="${param.md_code}" name="md_code">
+    	<input type="hidden" value="${orderinfo.order_name}" name="ordername" />
+  		<input type="hidden" value="${orderinfo.mobile}" name="mobile" />
+  		<input type="hidden" value="${orderinfo.address}" name="address" />
+  		<input type="hidden" value="${orderinfo.address2}" name="address2" />
+  		<input type="hidden" value="${md_name}" name="mdname" />
     	<table class="ordertable">
     		<tr>
     			<td>배송지 정보</td>
-    			<td style="text-align: right;"><input type="checkbox" />주문자 정보와 동일</td>
+    			<td style="text-align: right;"><input type="checkbox" id="checkbox" name="checkbox"/>주문자 정보와 동일</td>
     		</tr>
     		<tr>
     			<td>수령인</td>

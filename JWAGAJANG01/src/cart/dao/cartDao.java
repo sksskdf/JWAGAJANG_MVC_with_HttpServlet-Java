@@ -69,4 +69,33 @@ public class cartDao {
 		}
 		return mdname;
 	}
+	public Order get_orderInfo(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String mdname = null;
+		Order orderinfo = null;
+		try {
+			String query = "select user_name,user_phone,user_address,user_adddetail from table_user where user_id = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+			if(rs.next()) { //요놈
+				orderinfo = new Order();
+				orderinfo.setOrder_name(rs.getString("user_name"));
+				orderinfo.setMobile(rs.getString("user_phone"));
+				orderinfo.setAddress(rs.getString("user_address"));
+				orderinfo.setAddress2(rs.getString("user_adddetail"));
+			}
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(pstmt);
+			DBManager.close(conn);
+		}
+		return orderinfo;
+	}
 }
+
