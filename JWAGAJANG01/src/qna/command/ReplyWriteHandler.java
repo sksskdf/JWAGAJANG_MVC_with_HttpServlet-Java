@@ -37,10 +37,16 @@ public class ReplyWriteHandler implements CommandHandler {
 		QnaVO qVo = new QnaVO();
 		int p = Integer.parseInt(req.getParameter("p"));
 		int qna_code = Integer.parseInt(req.getParameter("qna_code"));
+		String type = req.getParameter("type");
 		qVo.setQna_code(qna_code);
-		qVo.setQna_title(req.getParameter("qna_reply"));
-		QnaDAO bDao = QnaDAO.getInstance();
-		bDao.updateBoard(qVo);
+		qVo.setQna_reply(req.getParameter("qna_reply"));
+		if(type.equals("register")) {
+			qVo.setQna_label("답변완료");
+		} else {
+			qVo.setQna_label("미완료");
+		}
+		QnaDAO qDao = QnaDAO.getInstance();
+		qDao.updateReply(qVo);
 		res.sendRedirect("qnaView.do?qna_code="+qna_code+"&p="+p);
 		return null;
 	}

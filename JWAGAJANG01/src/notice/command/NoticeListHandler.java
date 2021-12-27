@@ -40,6 +40,7 @@ public class NoticeListHandler implements CommandHandler {
 
 */
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException {
+
 		String pageNumberString = req.getParameter("p"); // 브라우저에서 목록을 보면 p=null; 페이징 링크를 누르면 p=n;
 		int pageNumber = 1;
 		if (pageNumberString != null && pageNumberString.length() > 0) { // p값이 들어왔는지 안들어왔는지

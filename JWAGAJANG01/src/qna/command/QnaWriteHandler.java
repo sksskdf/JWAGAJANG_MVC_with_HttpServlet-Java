@@ -31,7 +31,6 @@ public class QnaWriteHandler implements CommandHandler {
 		qVo.setQna_content(req.getParameter("qna_content"));
 		HttpSession session = req.getSession();
 		String sessionid = (String)session.getAttribute("id");
-		System.out.println(sessionid);
 		QnaDAO qDao = QnaDAO.getInstance();
 		qDao.insertBoard(qVo,sessionid);
 		res.sendRedirect("qnaList.do");

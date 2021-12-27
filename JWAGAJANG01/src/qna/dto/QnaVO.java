@@ -80,6 +80,12 @@ public class QnaVO {
 	public void setQna_reply(String qna_reply) {
 		this.qna_reply = qna_reply;
 	}
+	@Override
+	public String toString() {
+		return "QnaVO [qna_code=" + qna_code + ", qna_label=" + qna_label + ", qna_title=" + qna_title
+				+ ", qna_regdate=" + qna_regdate + ", qna_editdate=" + qna_editdate + ", qna_content=" + qna_content
+				+ ", qna_count=" + qna_count + ", qna_reply=" + qna_reply + ", user_id=" + user_id + "]";
+	}
 	
 	
 }

@@ -48,6 +48,8 @@ public class QnaDAO { // data access object. db랑 웹사이트에서 쓰는 내
 		qVo.setQna_editdate(rs.getTimestamp("qna_editdate"));
 		qVo.setQna_content(rs.getString("qna_content"));
 		qVo.setQna_count(rs.getInt("qna_count"));
+		qVo.setQna_reply(rs.getString("qna_reply"));
+
 		return qVo;
 	}
 
@@ -225,11 +227,12 @@ public class QnaDAO { // data access object. db랑 웹사이트에서 쓰는 내
 
 	// 리플 등록
 	public void updateReply(QnaVO qVo) {
-		String sql = "update table_qna set qna_reply=? where qna_code=?";
+		String sql = "update table_qna set qna_label=?, qna_reply=? where qna_code=?";
 		try (Connection conn = DBManager.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);) {
-			pstmt.setString(1, qVo.getQna_reply());
-			pstmt.setInt(2, qVo.getQna_code());
+			pstmt.setString(1,qVo.getQna_label());
+			pstmt.setString(2, qVo.getQna_reply());
+			pstmt.setInt(3, qVo.getQna_code());
 			pstmt.executeUpdate(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
