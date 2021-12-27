@@ -76,7 +76,7 @@ $(function() {
 				$('.noReview').hide();
 			},
 			error: function(request, status, error) {
-				alert("리뷰 등록에 실패하였습니다.");
+				alert("상품평 등록에 실패하였습니다.");
 
 			}
 		});
@@ -164,3 +164,28 @@ function resize(obj) {
     obj.style.height = (obj.scrollHeight) + 'px';
 };
 
+// 리뷰 삭제
+function del(delBtn) {
+	var rStr = delBtn.name;
+	var arr = rStr.split(",");
+	
+	var query = {review_code: arr[0]};
+	$.ajax({
+		type: "POST",
+		url: "reviewDelete.do",
+		data: query,
+		success: function(data) {
+			var str1 = '<p id="ck">';
+			var loc = data.indexOf(str1);
+			var len = str1.length;
+			var check = data.substr(loc+len,1);
+			if(check == "1") {
+				alert("상품평이 삭제 되었습니다.");
+				var query = "goods.do?md_code="+arr[1];
+				window.location.href(query);
+			} else {
+				alert("상품평 삭제 실패")
+			}
+		}
+	});
+};

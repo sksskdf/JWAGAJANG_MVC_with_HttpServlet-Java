@@ -1,5 +1,6 @@
 package goods.command;
 
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -26,18 +27,21 @@ public class GoodsHandler implements CommandHandler {
 		GoodsVO md = gDao.getMd(md_code);
 		
 		// 최근 본 상품 쿠키 정보 생성
-		Cookie[] cookies = req.getCookies();
-		if (cookies != null && cookies.length > 0) {
-			for(int i=0; i<cookies.length; i++) {
-				if(cookies[i].getName().equals("name")) {
-					Cookie cookie = new Cookie(""+ md_code, md.getImg_main());
-					res.addCookie(cookie);
-					res.addCookie(new Cookie("md_code", "md_code"));
-					res.addCookie(new Cookie("Img_main", "Img_main"));
-					System.out.println(cookie.getName()+":"+cookie.getValue()+"<br>");
-				}
-			}
-		}
+		
+		/*
+		 * Cookie cookie = new Cookie("md_code", "md.md_code"); Cookie cookie2 = new
+		 * Cookie("Img_main", "md.Img_main"); res.addCookie(cookie);
+		 * res.addCookie(cookie2);
+		 * 
+		 * Cookie[] cookies = req.getCookies(); if (cookies != null && cookies.length >
+		 * 0) { for(int i=0; i<cookies.length; i++) { if
+		 * (cookies[i].getName().equals("name")) { Cookie cookie = new Cookie(""+
+		 * md_code, md.getImg_main()); res.addCookie(cookie); res.addCookie(new
+		 * Cookie("md_code", "md_code")); res.addCookie(new Cookie("Img_main",
+		 * "Img_main"));
+		 * 
+		 * System.out.println(cookie.getName()+":"+cookie.getValue()+"<br>"); } } }
+		 */
 		
 		// 찜 목록
 		FavService fs = FavService.getInstance();

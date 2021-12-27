@@ -1,14 +1,20 @@
 package goods.dao;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import goods.dto.GoodsVO;
 import util.DBManager;
@@ -224,6 +230,28 @@ public class GoodsDAO {
 		return reviewList;
 	}
 	
+	// 리뷰 삭제
+	public int deleteReview(int review_code) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = -1;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement("delete from table_review where review_code=?");
+			pstmt.setInt(1, review_code);
+			pstmt.executeUpdate();
+			x = 1; 	// 글 삭제 성공
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
+            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+		}
+		return x;
+	}
+	
 	
 	
 	// 검색
@@ -236,58 +264,108 @@ public class GoodsDAO {
 	 * pstmt.setString(1, "%"+md_name+"%"); rs = pstmt.executeQuery();
 	 * 
 	 * return result(rs); } }
-	 
+	 */
 	
-	// 최근 본 상품
-	@SuppressWarnings("unchecked")
-	public void addGoodsInQuick(int md_code, GoodsVO goodsVO, HttpSession session) {
-		boolean already_existed = false;
-		List<GoodsVO> quickGoodsList;
-		quickGoodsList = (ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");	// 세션에 저장된 최근 본 상품 목록 가져옴
-		
-		if (quickGoodsList != null)	{	// 최근 본 상품이 있는 경우
-			if(quickGoodsList.size() < 4) {	// 상품 목록이 네 개 이하인 경우
-				for (int i=0; i<quickGoodsList.size(); i++) {
-					GoodsVO gVo = (GoodsVO)quickGoodsList.get(i);
-					if (md_code == gVo.getMd_code()) {
-						already_existed = true;
-						break;
-					}
-				}	// 상품 목록을 가져와 이미 존재하는 상품인지 비교, 이미 존재할 경우 already_existed를 true로 설정
-				if (already_existed == false) {
-					quickGoodsList.add(goodsVO);					// false면 상품 정보를 목록에 저장
-				}
-			}
-		} else {
-			quickGoodsList = new ArrayList<GoodsVO>();	// 최근 본 상품 목록이 없으면 생성하여 정보 저장
-			quickGoodsList.add(goodsVO);
-		}
-		session.setAttribute("quickGoodsList", quickGoodsList);	// 최근 본 상품 목록을 세션에 저장
-		session.setAttribute("quickGoodsListNum", quickGoodsList.size());	// 최근 본 상품 목록에 저장된 상품 개수를 세션에 저장
-	}*/
 
+	// 상품 갯수 (페이징에 필요)
 	public int selectCount(String category_main, String category_sub) throws SQLException {
 		ResultSet rs = null;
 	    int count = 0;
 	      
 	    String sql = "select count(*) from table_md";
 	    if (!category_main.equals("All") && !category_main.equals("")) {
-	    	  sql += " where category_main='" + category_main + "'";
+	    	sql += " where category_main='" + category_main + "'";
 	    } 
 		if(category_sub != null && !category_sub.isEmpty()) {
 			sql += " and category_sub='" + category_sub + "'";
 		}
 
-	      try (Connection conn = DBManager.getConnection();
-	    		  Statement stmt = conn.createStatement();) {
-	         rs = stmt.executeQuery(sql);
-	         if (rs.next()) {
-	        	 count = rs.getInt(1); 
-	         }
-	      } finally {
-	         DBManager.close(rs);
-	      }
-	      return count;
+		try (Connection conn = DBManager.getConnection();
+			Statement stmt = conn.createStatement();) {
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					count = rs.getInt(1); 
+				}
+			} finally {
+				DBManager.close(rs);
+			}
+		return count;
 	}
 	
+	
+	// 최근 본 상품
+	private static final String encoding = "UTF-8";
+	private static final String path = "/";
+
+	/**
+	  * @description 특정 key의 쿠키값을 List로 반환한다.
+	  * @params key: 쿠키 이름
+	  */
+	public List<String> getValueList(String key, HttpServletRequest req) throws UnsupportedEncodingException {
+		Cookie[] cookies = req.getCookies();
+		String[] cookieValues = null;
+		String value = "";
+		List<String> ckList = null;
+		
+		// 특정 key의 쿠키값을 ","로 구분하여 String 배열에 담아준다.
+		// ex) 쿠키의 key/value ---> key = "clickItems", value = "211, 223, 303"(상품 번호)
+		if (cookies != null) {
+			for (int i=0; i<cookies.length; i++) {
+				if (cookies[i].getName().equals(key)) {
+					value = cookies[i].getValue();
+					cookieValues = (URLDecoder.decode(value, encoding)).split(",");
+					break;
+				}
+			}
+		}
+		// String 배열에 담겼던 값들을 List로 다시 담는다.
+		if (cookieValues != null) {
+			ckList = new ArrayList<String>(Arrays.asList(cookieValues));
+			
+			if(ckList.size() > 3) {	// 값이 3개를 초과하면, 최근 것 3개만 담는다.
+				int start = ckList.size() -3;
+				List<String> copyList = new ArrayList<String>();
+				for (int i=start; i<ckList.size(); i++) {
+					copyList.add(ckList.get(i));
+				}
+				ckList = copyList;
+			}
+		}
+		return ckList;
+	}
+	
+	 /**
+	  * @description 쿠키를 생성 혹은 업데이트한다.
+	  * @params key: 쿠키 이름, value: 쿠키 이름과 짝을 이루는 값, day: 쿠키의 수명
+	  */
+	public void setCookie(String key, String value, int day, HttpServletRequest req, HttpServletResponse res) 
+			throws UnsupportedEncodingException{
+		List<String> ckList = getValueList(key, req);
+		String sumValue = "";
+		int equalsValueCnt = 0;
+		
+		if (ckList != null) {
+			for (int i=0; i<ckList.size(); i++) {
+				sumValue += ckList.get(i) + ",";
+				if (ckList.get(i).equals(value)) {
+					equalsValueCnt++;
+				}
+			}
+			if (equalsValueCnt != 0) {	// 같은 값을 넣으려고 할 때의 처리
+				if (sumValue.substring(sumValue.length()-1).equals(",")) {
+					sumValue = sumValue.substring(0, sumValue.length()-1);
+				}
+			} else {
+				sumValue += value;
+			}
+		} else {
+			sumValue = value;
+		}
+		if (!sumValue.equals("")) {
+			Cookie cookie = new Cookie(key, URLEncoder.encode(sumValue, encoding));
+			cookie.setMaxAge(60*60*24*day);
+			cookie.setPath(path);
+			res.addCookie(cookie);
+		}
+	}
 }
