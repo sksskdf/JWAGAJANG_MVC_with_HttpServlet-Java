@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
 						
                         <div class="titleproductList">
                             <h1>제품관리        &nbsp;&nbsp;
-                                <input type="button" value="제품등록" onclick="location.href='productWrite.do'">
+                                <input type="button" value="제품등록" onclick="location.href='productWrite.do'" style="cursor:pointer;">
                             </h1>
                         </div>
 

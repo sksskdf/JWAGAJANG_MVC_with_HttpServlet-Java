@@ -76,7 +76,7 @@
                 	<input type="hidden" name="mdcode" value="${md.md_code}">
                 	<input type="hidden" name="user_id" value="${sessionScope.id}">
                 	<input type="hidden" name="grade" value="${sessionScope.member.grade}">
-                    <button type="button" class="buynowbtn">바로구매</button>
+                    <button type="button" class="buynowbtn" onclick="location.href='buynow.do?md_code=${md.md_code}'">바로구매</button>
                     <c:if test="${not empty sessionScope.id}">
                     <button type="button" class="cartbtn">장바구니</button>
                     </c:if>
@@ -93,7 +93,7 @@
                     <li><a href="#goods_detail" class="tab_on detail_anchor">상품 상세 정보</a></li>
                     <li><a href="#goods_review" class="tab_off review_anchor">상품평 (${count}건)</a></li>
                 </ul>
-                <img src="img/mddetailimg.png" class="goods_img_detail">
+                <img src="img/${md.img_detail}" class="goods_img_detail">
             </div>
             <div id="goods_review">
                 <ul class="goods_tab">

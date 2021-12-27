@@ -23,10 +23,11 @@
     	<table class="orderlist">
     	<tr>
     		<td>주문상품</td>
-    		<td>[민선지] 맛있는 채소주스 외 2건 </td>
+    		<td>${md_name}</td>
     	</tr>
    		</table>
-    	<form action="ppppay.do" class="orderform" name="orderfrm" method="post">
+    	<form action="buynow.do" class="orderform" name="orderfrm" method="post">
+    	<input type="hidden" value="${param.md_code}" name="md_code">
     	<table class="ordertable">
     		<tr>
     			<td>배송지 정보</td>
@@ -51,7 +52,7 @@
     			<td><input type="text" /></td>
     		</tr>
     	</table>
-    	<input type="button" value="결제하기" class="paybutton" onclick="orderCheck()"/>
+    	<input type="submit" value="결제하기" class="paybutton" />
     	</form>
     </div>
 	</section>
