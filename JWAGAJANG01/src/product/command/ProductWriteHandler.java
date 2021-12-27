@@ -50,6 +50,17 @@ public class ProductWriteHandler implements CommandHandler {
 			String img_detail = multi.getFilesystemName("img_detail");
 			String category_main = multi.getParameter("category_main");
 			String category_sub = multi.getParameter("category_sub");
+			String category_main_name = null;
+			int category_main_ = Integer.parseInt(category_main);
+			if(category_main_ == 100) {
+				category_main_name = "채소,과일";
+			}else if(category_main_ == 200) {
+				category_main_name = "쌀,견과류";
+			}else if(category_main_ == 300) {
+				category_main_name = "수산,해산";
+			}else if(category_main_ == 400) {
+				category_main_name = "정육,계란";
+			}
 			
 			ProductVO pVo = new ProductVO();
 			pVo.setMd_name(md_name);
@@ -60,6 +71,8 @@ public class ProductWriteHandler implements CommandHandler {
 			pVo.setImg_detail(img_detail);
 			pVo.setCategory_main(category_main);
 			pVo.setCategory_sub(category_sub);
+			pVo.setCategory_main_name(category_main_name);
+			System.out.println(category_main_name);
 			
 			ProductDAO pDao = ProductDAO.getInstance();
 			pDao.insertProduct(pVo);

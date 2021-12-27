@@ -48,8 +48,9 @@ public class NoticeListHandler implements CommandHandler {
 		Paging paging = new Paging(10, 10); // 나타낼 목록, 몇 페이지를 보여줄건지
 		paging.setCurrentPageNo(pageNumber); // 현재 페이지 설정
 
-		NoticeDAO bDao = NoticeDAO.getInstance();
-		int totalBoardCount = bDao.selectCount(); // 전체 게시글의 수를 얻는다 
+		NoticeDAO nDao = NoticeDAO.getInstance();
+		int totalBoardCount = nDao.selectCount(); // 전체 게시글의 수를 얻는다 
+		
 		List<NoticeVO> noticeList = null;
 		if (totalBoardCount == 0) {
 			paging.setStartPageNo(1);
@@ -63,11 +64,12 @@ public class NoticeListHandler implements CommandHandler {
 		if (endRow > totalBoardCount) {
 			endRow = totalBoardCount;
 		}
-		noticeList = bDao.select(firstRow, endRow); // 첫번째 열, 마지막 열
+		noticeList = nDao.select(firstRow, endRow); // 첫번째 열, 마지막 열
 		NoticeListModel listModel = new NoticeListModel();
 		listModel.setNoticeList(noticeList); // 가져온 목록
 		listModel.setPaging(paging);		 // 페이징 정보
 		req.setAttribute("listModel", listModel); // jsp로 전달
+
 
 		res.setHeader("Pragma", "No-cache"); // 캐시 삭제하도록 설정 : 게시글을 추가했는데 캐시에 있는걸 보여주면 추가한게 안나오기떄문에
 		res.setHeader("Cache-Control", "no-cache");

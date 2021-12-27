@@ -19,7 +19,7 @@ a {
 
 .pagenav a {
     color: #707070;
-    font: normal normal bold 15px/17px NanumGothic;
+    font: normal normal normal 12px/14px NanumGothic;
 }
 
 .navarrow {
@@ -60,7 +60,7 @@ a {
 
 .select_sort li {
     float: left;
-    font: normal normal normal 12px/14px NanumGothic;
+    font: normal normal normal 14px/16px NanumGothic;
     color: #707070;
 }
 
@@ -132,5 +132,9 @@ a {
     text-align: center;
     font: normal normal normal 12px/14px NanumGothic;
     color: #B2B2B2;
+}
+
+.orderBy {
+	cursor: pointer;
 }
 

@@ -29,7 +29,7 @@ public class ReviewWriteHandler implements CommandHandler {
 		ReviewVO added = rDao.getReview(review_code);
 		req.setAttribute("review", added);
 		
-		return "reviewView.jsp";
+		return "goodsReview.jsp";
 	}
 
 }

@@ -15,6 +15,7 @@ public class ProductVO {
 	private String category_main;
 	private String category_sub;
 	private int md_ordercnt;
+	private String category_main_name;
 	
 	public ProductVO() {}
 
@@ -37,8 +38,18 @@ public class ProductVO {
 
 	/*getter, setter*/
 	
+	
+	
 	public int getMd_code() {
 		return md_code;
+	}
+
+	public String getCategory_main_name() {
+		return category_main_name;
+	}
+
+	public void setCategory_main_name(String category_main_name) {
+		this.category_main_name = category_main_name;
 	}
 
 	public void setMd_code(int md_code) {

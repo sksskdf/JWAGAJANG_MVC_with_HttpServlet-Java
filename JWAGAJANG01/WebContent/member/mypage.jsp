@@ -90,41 +90,34 @@
             <input class="join-label-font lib lis py-3 ps-3 cfs" name="mobile" id="mobile" type="text" placeholder="연락처를 입력하세요."autocomplete="off">
           </div>
         </div>
-        <div class="container row d-flex">
+         <div class="container row d-flex">
           <div class="col-md-3 d-flex align-items-center">
             <label class="join-label-font">주소</label>
           </div>
           <div class="col-md-7 d-flex align-items-center">
-            <input class="join-label-font lib lis py-3 ps-3 cfs" id="sample4_postcode" type="text" placeholder="우편번호" autocomplete="off">
+            <input class="join-label-font lib lis py-3 ps-3 cfs" type="text" id="postnum" name="postnum" placeholder="우편번호" readonly="readonly" autocomplete="off" />
           </div>
           <div class="col-md-2 d-flex align-items-center">
-            <input class="join-button-font btn jbs cfs" type="button" value="주소찾기" onclick="sample4_execDaumPostcode()">
+            <input class="join-button-font btn jbs cfs findpostnum" type="button" value="우편번호 찾기" onclick="execDaumPostcode()">
           </div>
         </div>
         <div class="container row d-flex">
           <div class="col-md-3 d-flex align-items-center">
           </div>
           <div class="col-md-7 d-flex align-items-center">
-            <input class="join-label-font lib lis py-3 ps-3 cfs" type="text" id="sample4_roadAddress" placeholder="도로명 주소" autocomplete="off">
+            <input class="join-label-font lib lis py-3 ps-3 cfs" type="text" id="address" name="address" placeholder="주소" readonly="readonly" autocomplete="off" />
           </div>
         </div>
         <div class="container row d-flex">
           <div class="col-md-3 d-flex align-items-center">
           </div>
           <div class="col-md-7 d-flex align-items-center">
-            <input class="join-label-font lib lis py-3 ps-3 cfs" type="text" id="sample4_extraAddress" placeholder="참고 항목" autocomplete="off">
-          </div>
-        </div>
-        <div class="container row d-flex">
-          <div class="col-md-3 d-flex align-items-center">
-          </div>
-          <div class="col-md-7 d-flex align-items-center">
-            <input class="join-label-font lib lis py-3 ps-3 cfs" type="text" id="sample4_jibunAddress" placeholder="상세주소" autocomplete="off">
+            <input class="join-label-font lib lis py-3 ps-3 cfs" type="text" type="text" id="addDetail" name="addDetail" placeholder="상세주소" autocomplete="off" />
           </div>
         </div>
 
         <div class="row d-flex justify-content-center">
-          <input class="lib btn btn-update cfs" style="margin-top: 27px;" id="submit" type="submit" value="회원 정보 수정" >
+          <input class="lib btn btn-login cfs" style="margin-top: 27px;" id="submit" type="submit" value="화원 정보 수정" >
         </div>
       </form>
       </div>
@@ -135,9 +128,6 @@
 <jsp:include page="../H&F/footer.jsp"/>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="../js/jquery.js"></script>
-  <script src="../js/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="../js/join.js"></script>
   
 </body>

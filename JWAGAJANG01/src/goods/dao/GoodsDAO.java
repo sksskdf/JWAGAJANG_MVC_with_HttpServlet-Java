@@ -45,10 +45,8 @@ public class GoodsDAO {
 				sqlAll += " order by md_ordercnt desc";
 				sqlCate += " order by md_ordercnt desc";
 			} else if(order.equals("3")) {
-				
-				
-				sqlAll += " order by md_price desc";
-				sqlCate += " order by md_price desc";
+				sqlAll = "select count(*) reviewcount,md_code from table_review group by md_code order by reviewcount desc";
+				sqlCate = "select count(*) reviewcount,md_code from table_review group by md_code order by reviewcount desc";
 			} else if(order.equals("4")) {
 				sqlAll += " order by md_price asc";
 				sqlCate += " order by md_price asc";
@@ -178,7 +176,7 @@ public class GoodsDAO {
 	
 
 	// 리뷰
-	public List<GoodsVO> getReview(int count) {
+	public List<GoodsVO> getReviewList(int count, int md_code) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -186,7 +184,8 @@ public class GoodsDAO {
 		
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement("select * from table_review");
+			pstmt = conn.prepareStatement("select * from table_review where md_code = ?");
+			pstmt.setInt(1, md_code);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -194,7 +193,7 @@ public class GoodsDAO {
 				do {
 					GoodsVO review = new GoodsVO();
 					review.setMd_code(rs.getInt("md_code"));
-					review.setReview_code(rs.getInt("md_code"));
+					review.setReview_code(rs.getInt("review_code"));
 					review.setUser_id(rs.getString("user_id"));
 					review.setUser_name(rs.getString("user_name"));
 					review.setReview_rate(rs.getInt("review_rate"));

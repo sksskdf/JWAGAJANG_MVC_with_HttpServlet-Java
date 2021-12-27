@@ -29,6 +29,11 @@
 		
 		<div class="notice">
 			<h1>Q&amp;A</h1>
+						<div class="list">
+				<input type="submit" value="수정" class="upbtn" onclick="location.href='qnaUpdate.do?p=${param.p}&qna_code=${param.qna_code}'">
+				<input type="submit" value="삭제" class="delbtn" onclick="location.href='qnaDelete.do?p=${param.p}&qna_code=${param.qna_code}'">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='qnaSearch.do?p=${param.p}&searchkeyword=${param.q}'">
+			</div>
 			<table class="brdView">	
 				<tr class="qnaViewbox">
 					<th class="qnaView_label">${board.qna_label}</th>
@@ -41,12 +46,24 @@
 					<td class="content" colspan="5"><pre>${board.qna_content}</pre></td>
 				</tr>
 			</table>
-				<c:set var="page" value="${param.p}" />
-			<div class="list">
-				<input type="submit" value="수정" class="upbtn" onclick="location.href='qnaUpdate.do?qna_code=${param.qna_code}'">
-				<input type="submit" value="삭제" class="delbtn" onclick="location.href='qnaDelete.do?qna_code=${param.qna_code}'">
-				<input type="submit" value="목록" class="listbtn" onclick="location.href='qnaList.do?p=${page}'">
-			</div>
+			<table class="replelist">
+			<tr>
+			<td id="hang1">답변</td>
+			<td id="hang2"></td>
+			<td id="hang3">관리자</td>
+			<td id="hang4">작성일</td>
+			</tr>
+			</table>
+			<%-- <c:if test="${sessionScope.member.grade == 1}">  --%>
+			<form class="reply" action="reply.do">
+				<textarea class="replybox" style="resize: none;"></textarea>
+				<div class="replybtn">
+				<button id="regist">등록</button>
+						<button id="replyup">수정</button>
+						<button id="replydle">삭제</button>
+				</div>
+			</form>
+			<%-- </c:if> --%> 
 		</div>
 	</section>
 	<jsp:include page="H&F/footer.html" />

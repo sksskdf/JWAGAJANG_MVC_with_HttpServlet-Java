@@ -9,7 +9,7 @@ a {
 
 .pagenav {
 	margin-top: 40px;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .navarrow {
@@ -86,7 +86,7 @@ h1 {
 }
 
 pre {
-	padding-left : 40px;
+	padding-left: 40px;
 	width: 953px;
 	line-height: 30px;
 	text-align: left;
@@ -311,6 +311,11 @@ textarea {
 	font-weight: 700;
 }
 
+.on {
+	color: #195500;
+	font-weight: 700;
+}
+
 /* ------------------QNA---------------- */
 
 /* qna list */
@@ -337,14 +342,14 @@ textarea {
 .qnabrdbox :nth-child(4) {
 	width: 136px;
 }
+
 .qnabrdbox :nth-child(5) {
 	width: 106px;
 }
 
 /* qnaView 테이블 */
-
 .qnaViewbox {
-	width:953px;
+	width: 953px;
 	background: #00000007;
 	font-weight: bold;
 	font-size: 14px;
@@ -367,6 +372,65 @@ textarea {
 .qnaViewbox :nth-child(4) {
 	width: 136px;
 }
+
 .qnaViewbox :nth-child(5) {
 	width: 106px;
+}
+
+h4 {
+	padding: 40px;
+}
+
+/* qna 리플 */
+.replelist {
+	width : 953px;
+	height : 80px;
+	text-align: center;
+	line-height: 80px;
+	margin-bottom : 50px;
+}
+#hang1, #hang3, #hang4{
+	font-weight : bold;
+	font-size : 14px;
+	background: #FAFAFA;
+	width : 120px;
+}
+#hang2{
+	font-size : 12px;
+	border : #fafafa solid 1px ;
+}
+
+
+.reply {
+	width: 953px;
+	display: flex;
+}
+
+.replybox {
+	margin: 0;
+	width: 834px;
+	height: 80px;
+}
+
+.replybtn {
+	width: 115px;
+	text-align: right;
+}
+
+#replyup, #replydle {
+	margin-top: 5px;
+	width: 52px;
+	height: 30px;
+	border: 0.5px solid #195500;
+	background: none;
+	color: #195500;
+}
+
+#regist {
+	color: white;
+	width: 109px;
+	height: 45px;
+	background: #195500;
+	border-radius: 3px;
+	border: none;
 }
