@@ -18,15 +18,28 @@ public class GoodsHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		HttpSession session = req.getSession();
 		
-		
-		List<GoodsVO> mdDetail;
 		int md_code = Integer.parseInt(req.getParameter("md_code"));
 		String userid = (String)session.getAttribute("id");
-		
+
 		// 상품
 		GoodsDAO gDao = GoodsDAO.getInstance();
 		GoodsVO md = gDao.getMd(md_code);
 		
+		// 최근 본 상품 쿠키 정보 생성
+		Cookie[] cookies = req.getCookies();
+		if (cookies != null && cookies.length > 0) {
+			for(int i=0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("name")) {
+					Cookie cookie = new Cookie(""+ md_code, md.getImg_main());
+					res.addCookie(cookie);
+					res.addCookie(new Cookie("md_code", "md_code"));
+					res.addCookie(new Cookie("Img_main", "Img_main"));
+					System.out.println(cookie.getName()+":"+cookie.getValue()+"<br>");
+				}
+			}
+		}
+		
+		// 찜 목록
 		FavService fs = FavService.getInstance();
 		Integer dupchk = fs.checkFavDup(userid, md_code);
 		if(dupchk != null) {
@@ -49,8 +62,6 @@ public class GoodsHandler implements CommandHandler {
 		req.setAttribute("count", new Integer(count));
 		
 		return "/goods.jsp";
-		
-		
+		 
 	}
-
 }

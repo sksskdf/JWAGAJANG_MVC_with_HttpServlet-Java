@@ -15,7 +15,6 @@
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
     <script src="js/jquery.min.js"></script>
     <script src="js/goods.js"></script>
-
     <title>좌가장</title>
 </head>
 <body>
@@ -38,7 +37,6 @@
                     <span class="goods_dc">
                     <c:set var="dccost" value="${(md.md_price-(md.md_price*(md.md_dc/100)))}"/>
                         <span id="cost" data-oper="${dccost}"><fmt:formatNumber pattern="#,##0" value="${(md.md_price-(md.md_price*(md.md_dc/100)))}"/>원</span>
-                        <!-- cost class에서 id로 바꿨음 css 확인 -->
                         <span class="dc">${md.md_dc}%</span>
                     </span>
                 </p>
@@ -53,11 +51,16 @@
                 <dl class="count">
                     <dt><p>주문수량</p></dt>
                     <dd>
+                	<c:if test="${md.md_stock == 0 || md.md_stock == null}">
+                		<p>재고없음</p>
+                	</c:if>
+                	<c:if test="${md.md_stock > 0}">
                         <span class="countbtn">
                             <button type="button" class="minusbtn"><a href="javascript:change_qty('minus')">-</a></button>
-                            <input type="number" id="goods_qty" readonly="readonly" min="1" max="10" value="1">
+                            <input type="number" id="goods_qty" readonly="readonly" min="1" max="${md.md_stock}" value="1">
                             <button type="button" class="plusbtn"><a href="javascript:change_qty('plus')">+</a></button>
                         </span>
+                    </c:if>
                     </dd>
                 </dl>
                 <hr>
@@ -112,7 +115,7 @@
 	                <c:forEach var="review" items="${reviewList}">
 	                	<tr>
 	                        <td class="review_name">${review.user_id}</td>
-	                        <td class="review_rate">${review.review_rate}</td>
+	                        <td class="review_rate">${review.review_rate} / 5</td>
 	                        <td class="review_content">${review.review_content}</td>
 	                        <td class="review_date"><fmt:formatDate value="${review.review_regdate}" pattern="yyyy-MM-dd"/></td>
 	                    </tr>
@@ -161,7 +164,10 @@
             <div class="footnav_latest">
                 <p>최근 본 상품</p>
                 <ul>
-                    <li><a href=""><img src="img/best1.jpg"></a></li>
+                <c:forEach var="cookie" items="${pageScope.request.cookies}">
+                	<li><a href="goods.do?md_code=${cookie.getName}"><img src="img/${cookie.getValue}" alt="${cookie.name}"></a></li>
+                </c:forEach>
+                    
                 </ul>
                 <a href="#top" class="top_btn"><img src="img/up.png"></a>
             </div>

@@ -7,6 +7,7 @@ public class GoodsVO {
 	private String md_name;
 	private Integer md_price;
 	private Integer md_dc;
+	private Integer md_stock;
 	private String img_main;
 	private String img_detail;
 	private String category_main;
@@ -51,6 +52,12 @@ public class GoodsVO {
 	}
 	public void setMd_dc(Integer md_dc) {
 		this.md_dc = md_dc;
+	}
+	public Integer getMd_stock() {
+		return md_stock;
+	}
+	public void setMd_stock(Integer md_stock) {
+		this.md_stock = md_stock;
 	}
 	public Integer getMd_ordercnt() {
 		return md_ordercnt;
