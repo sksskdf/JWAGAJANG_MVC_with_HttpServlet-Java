@@ -28,6 +28,8 @@ public class CartSelectDeleteHandler implements CommandHandler {
 		String[] chkarr = req.getParameterValues("checkArr");
 		int[] newchkarr = null;
 		
+		System.out.println(req.getParameter("checkArr[0]"));
+		
 		ArrayList<CartVO> cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
 		
 		for (int i = 0; i < chkarr.length; i++) {

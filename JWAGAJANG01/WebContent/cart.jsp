@@ -38,6 +38,7 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:set var = "orderP" value = "${0}"/>
 						<c:if test="${empty cartList}">
 							<tr>
 								<td colspan="5">장바구니가 비었습니다.</td>
@@ -46,34 +47,44 @@
 							<c:if test="${!empty cartList}">
 							<c:forEach items="${cartList }" var="cart" varStatus="status">
 							<tr>
-								<td><input type="checkbox" name="mdchk" class="mdchk" value="${fn:substringBefore(cart.md_price-(cart.md_price*cart.md_dc/100), '.') * cart.md_count}" 
+								<fmt:parseNumber var="saleP" integerOnly="true" value="${cart.md_price-(cart.md_price*cart.md_dc/100) }"/>
+								<td><input type="checkbox" name="mdchk" class="mdchk" value="${saleP * cart.md_count}" 
 								checked data-cartnum="${status.index }"/></td>
-								<td class="md" style="text-align: left"><img
-									src="${cart.img_main }" /> <span class="mddesc"><a href="#">${cart.md_name }</a></span></td>
+								<td class="md" style="text-align: left"><a href="goods.do?md_code=${cart.md_code }" target='_blank'>
+								<img src="${cart.img_main }" /></a> <span class="mddesc"><a href="goods.do?md_code=${cart.md_code }" target='_blank'>${cart.md_name }</a></span></td>
 								<td>
 									<input type="number" min="1" max="99" value="${cart.md_count }" />
 								</td>
-								<td><span class="originprice"><fmt:formatNumber pattern="#,##0" value="${cart.md_price }"/>원</span><br />
-								<span class="saleprice"><fmt:formatNumber pattern="#,##0" value="${fn:substringBefore(cart.md_price-(cart.md_price*cart.md_dc/100), '.')}"/>원</span></td>
+								<td><span class="originprice"><fmt:formatNumber pattern="#,##0" value="${cart.md_price * cart.md_count}"/>원</span><br />
+								<span class="saleprice"><fmt:formatNumber pattern="#,##0" value="${saleP * cart.md_count}"/>원</span></td>
 								<td><input type="button" class="colorbtn" value="바로구매" />
 									<input type="button" class="normalbtn" id="delete" value="삭제"
 									style="margin-top: 5px" /></td>
 							</tr>
+							<c:set var = "orderP" value="${orderP + (saleP * cart.md_count) }"/>
 							</c:forEach>
 						</c:if>
 						</tbody>
 					</table>
 					<div class="pricewrap">
 						<div class="pricelist">
-							<span class="pricedesc">주문 금액</span><br /> <span class="price"><span id="odrPrice">1,760</span>원</span>
+							<span class="pricedesc">주문 금액</span><br /> <span class="price"><span id="odrPrice">
+							<fmt:formatNumber pattern="#,##0" value="${orderP}"/></span>원</span>
 						</div>
 						<div class="operator">+</div>
 						<div class="pricelist">
-							<span class="pricedesc">배송비</span><br /> <span class="price"><span id="deliPrice">1,760</span>원</span>
+							<span class="pricedesc">배송비</span><br/><span class="price"><span id="deliPrice">
+							<c:if test="${empty cartList}">
+							<c:set var="deliP" value="0"/><c:out value="${deliP}"/>
+							</c:if>
+							<c:if test="${!empty cartList}">
+							<c:set var="deliP" value="2500"/><fmt:formatNumber pattern="#,##0" value="${deliP}"/>
+							</c:if></span>원</span>
 						</div>
 						<div class="operator">=</div>
 						<div class="pricelist">
-							<span class="pricedesc">총 주문금액</span><br /> <span class="price"><span id="totalOdrPrice">0</span>원</span>
+							<span class="pricedesc">총 주문금액</span><br /> <span class="price"><span id="totalOdrPrice">
+							<fmt:formatNumber pattern="#,##0" value="${orderP + deliP}"/></span>원</span>
 						</div>
 					</div>
 					<div class="buttonsec">

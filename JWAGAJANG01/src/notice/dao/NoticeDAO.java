@@ -139,7 +139,7 @@ public class NoticeDAO { // data access object. db랑 웹사이트에서 쓰는 
 		int count = 0;
 		try (Connection conn = DBManager.getConnection();
 				Statement stmt = conn.createStatement()) {
-			rs = stmt.executeQuery("select count(*) from table_notice where "+ searchoption + " like '%"+searchkeyword+"%'");
+			rs = stmt.executeQuery("select count(*) from table_notice where "+searchoption+" like '%"+searchkeyword+"%'");
 			rs.next();
 			count = rs.getInt(1);
 			

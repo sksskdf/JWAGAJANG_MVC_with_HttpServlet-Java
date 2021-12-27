@@ -138,3 +138,11 @@ a {
 	cursor: pointer;
 }
 
+
+.result_tit {
+	width: 100%;
+	display: block;
+	font: normal normal bold 25px/29px NanumGothic;
+	color: #707070;
+	margin: 40px 0;
+}

@@ -23,7 +23,6 @@ public class ReviewDAO {
 	private ReviewDAO() {}
 	
 	// 리뷰 등록
-	@SuppressWarnings("resource")
 	public int insertReview(ReviewVO review) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

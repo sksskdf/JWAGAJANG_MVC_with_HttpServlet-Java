@@ -1,3 +1,16 @@
+$(function() {
+	var form = $("form");
+	$("input[name='register']").on("click", function(e) {
+		form.appen("<input type='hidden' name='type' value='register'>");
+		form.submit();
+	});
+	
+	$("input[name='remove']").on("click", function(e) {
+		form.appen("<input type='hidden' name='type' value='remove'>");
+		form.submit();
+	});
+});
+
 function noticeCheck() {
 	if (document.frm.notice_label.value.length == 0) {
 	alert("분류를 선택하세요.");
@@ -41,4 +54,9 @@ function qnasearchCheck(){
 	return false;
 	}
 	return true;
+}
+
+
+function replyDelete() {
+			alert("답변이 삭제되었습니다.");
 }

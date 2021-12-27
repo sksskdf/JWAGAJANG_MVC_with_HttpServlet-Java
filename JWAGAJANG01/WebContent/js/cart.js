@@ -58,9 +58,11 @@ $("#selectDelete").click(function () {
 	        $.ajax({
 	            url: "cartSelectDelete.do",
 	            type: "post",
+	            contentType: "application/x-www-form-urlencoded",
 	            data: { checkArr: checkArr },
-	            success: function () {
-	                location.replace("cart.do");
+	            success: function (data) {
+	            	alert('삭제하였습니다.');
+	                //location.replace("cart.do");
 	            }
 	        });
 	    }
