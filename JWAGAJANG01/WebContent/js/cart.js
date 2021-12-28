@@ -44,29 +44,95 @@ function totalSum() {
 }
 
 //선택한 항목 삭제
-$("#selectDelete").click(function () {
+$("#delete_select").click(function () {
 	 var checkArr = new Array();
 
      $("input[name='mdchk']:checked").each(function () {
          checkArr.push($(this).attr("data-cartcode"));
      });
+     
+     if(checkArr.length==0) alert("선택된 상품이 없습니다.");
+	    else {
+		    var confirm_val = confirm("선택한 상품을 삭제하시겠습니까?");
+		    if (confirm_val) {
+		        $.ajax({
+		            url: "cartSelectDelete.do",
+		            type: "POST",
+		            data: { "checkArr": checkArr },
+		            success: function (data) {
+		            	alert('삭제하였습니다.');
+		                location.replace("cartPut.do");
+		            },
+		            error: function(request,status,error) {
+		        		alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+		        	}
+		        });
+		    }
+	    }
+});
+//선택한 항목 주문
+$("#order_select").click(function (e) {
+	e.preventdefault;
+	
+	 var checkArr = new Array();
+	 var orderUrl;
+	 
+	  $("input[name='mdchk']:checked").each(function () {
+	         checkArr.push($(this).attr("data-cartcode"));
+	     });
+	 
+	  for(i=0; i<chkarr.length; i++) {
+		  orderUrl += chkarr[i] + "&"
+	  }
+	  
+	  if(checkArr.length==0) alert("선택된 상품이 없습니다.");
+	  else {
+		  alert(orderUrl);
+	  }
+});
 
-    if(checkArr.length==0) alert("선택된 상품이 없습니다.");
-    else {
-	    var confirm_val = confirm("선택한 상품을 삭제하시겠습니까?");
-	    if (confirm_val) {
+//상품 개별 삭제
+$(".delete_one").click(function () {
+	 var checkArr = new Array();
+
+	 checkArr.push($(this).attr("data-cartcode"));
+   
+	 if(checkArr.length==0) alert("선택된 상품이 없습니다.");
+	    else {
+		    var confirm_val = confirm("선택한 상품을 삭제하시겠습니까?");
+		    if (confirm_val) {
+		        $.ajax({
+		            url: "cartSelectDelete.do",
+		            type: "POST",
+		            data: { "checkArr": checkArr },
+		            success: function (data) {
+		            	alert('삭제하였습니다.');
+		                location.replace("cartPut.do");
+		            },
+		            error: function(request,status,error) {
+		        		alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+		        	}
+		        });
+		    }
+	    }
+});
+//상품 개별 주문
+$(".order_one").click(function () {
+	 var ordercode = $(this).attr("data-cartcode");
+  
+	 if(ordercode!=null && ordercode!="") {
 	        $.ajax({
-	            url: "cartSelectDelete.do",
-	            type: "POST",
-	            data: { "checkArr": checkArr },
+	            url: "buynow.do?md_code=" + ordercode,
+	            type: "GET",
+	            data: { "md_code": ordercode },
 	            success: function (data) {
-	            	alert('삭제하였습니다.');
-	                location.replace("cartPut.do");
+	                //location.replace("cartPut.do");
+	            	location.href="buynow.do?md_code=" + ordercode;
 	            },
 	            error: function(request,status,error) {
 	        		alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
 	        	}
 	        });
-	    }
-    }
+	 }
+	        
 });
