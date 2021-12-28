@@ -49,7 +49,7 @@
 			  <tbody>
 			  <c:forEach var="f" items="${favlist}" begin="0" end="4">
 			    <tr class="text-center">
-			      <td><img class="orderPic"alt="" src="${f.mdpic}"> </td>
+			      <td><img class="orderPic"alt="" src="img/mdimg/${f.mdpic}"> </td>
 			      <td class="thf va">${f.mdname}</td>
 			      <td class="va">${f.mdprice}</td>
 			      <td class="va"><a href="favlist.do?del=${f.mdcode}&p=1"><img alt="찜" src="../img/fav.svg"></a></td>
