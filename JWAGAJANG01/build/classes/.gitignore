@@ -1,4 +1,10 @@
 /product/
 /cart/
 /member/
+<<<<<<< HEAD
 /goods/
+=======
+/qna/
+/goods/
+/review/
+>>>>>>> a7b06f29c9db840b42edd9983e844a0f7d8a7de6

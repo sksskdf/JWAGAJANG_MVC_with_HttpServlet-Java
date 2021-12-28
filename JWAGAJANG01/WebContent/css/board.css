@@ -401,9 +401,8 @@ h4 {
 #hang2{
 	vertical-align : middle;
 	font-size : 14px;
-
 	text-align : left;
-	text-indent: 10px;
+
 	border : #fafafa solid 1px ;
 }
 
@@ -424,6 +423,14 @@ h4 {
 	text-align: right;
 }
 
+#register {
+	color: white;
+	width: 109px;
+	height: 45px;
+	background: #195500;
+	border-radius: 3px;
+	border: none;
+}
 #replydle {
 	margin-top: 5px;
 	width: 109px;
@@ -432,13 +439,4 @@ h4 {
 	background: none;
 	border-radius: 3px;
 	color: #195500;
-}
-
-#regist {
-	color: white;
-	width: 109px;
-	height: 45px;
-	background: #195500;
-	border-radius: 3px;
-	border: none;
 }
