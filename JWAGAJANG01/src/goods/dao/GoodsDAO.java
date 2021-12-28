@@ -1,22 +1,17 @@
 package goods.dao;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import goods.dto.GoodsVO;
+import qna.dto.QnaVO;
 import util.DBManager;
 
 public class GoodsDAO {
@@ -255,16 +250,38 @@ public class GoodsDAO {
 	
 	
 	// 검색
-	/*
-	 * public List<GoodsVO> searchResult(String md_name) { Connection conn = null;
-	 * PreparedStatement pstmt = null; ResultSet rs = null;
-	 * 
-	 * try { conn = DBManager.getConnection(); pstmt =
-	 * conn.prepareStatement("select * from table_md where " + md_name + " like ?");
-	 * pstmt.setString(1, "%"+md_name+"%"); rs = pstmt.executeQuery();
-	 * 
-	 * return result(rs); } }
-	 */
+	public List<GoodsVO> search(String searchkeyword, int firstRow, int endRow) {
+		List<GoodsVO> list = new ArrayList<GoodsVO>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from table_md where md_name like '%"+searchkeyword+"%' order by md_code desc limit ?, ? ";
+		try (Connection conn = DBManager.getConnection();){
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, firstRow -1); //물음표에 해당되는 코드, 페이지의 시작열 순서
+			pstmt.setInt(2, endRow - firstRow +1); //물음표에 해당되는 코드, 게시글의 숫자 
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				int md_code = rs.getInt("md_code");
+				String md_name = rs.getString("md_name");
+				int md_price = rs.getInt("md_price");
+				int md_dc = rs.getInt("md_dc");
+				String img_main = rs.getString("img_main");
+				String category_main = rs.getString("category_main");
+				String category_sub = rs.getString("category_sub");
+				String category_main_name = rs.getString("category_main_name");
+				GoodsVO gVo = new GoodsVO(md_code, md_name, md_price, md_dc, img_main, category_main, category_sub, category_main_name);
+				list.add(gVo);
+			}
+			DBManager.close(conn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(rs);
+			DBManager.close(pstmt);			
+		}		
+		return list;
+	}
 	
 
 	// 상품 갯수 (페이징에 필요)

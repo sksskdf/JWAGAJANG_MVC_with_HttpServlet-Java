@@ -7,8 +7,9 @@
         <div class="logo">
           <a href="/main.do"><img class="logo_img" src="../img/logo.svg" alt="로고"></a>
         </div>
-        <form class="search">
-          <input type="text" id="schText" name="schText" action="search.do"><input type="image" src="../img/search.svg" id="schButton" name="schButton">
+        <form class="search" action="search.do">
+        	<input type="hidden" name="category_main" value="All">
+			<input type="text" id="schText" name="schText"><input type="submit" src="../img/search.svg" id="schButton" value="">
         </form>
         <nav>
           <ul class="gnbmy">
