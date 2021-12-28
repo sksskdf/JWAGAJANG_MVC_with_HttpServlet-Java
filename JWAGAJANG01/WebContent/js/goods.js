@@ -182,7 +182,7 @@ function del(delBtn) {
 			var check = data.substr(loc+len,1);
 			if(check != "1") {
 				alert("상품평이 삭제 되었습니다.");
-				location.href='goods.do?md_code='+md_code;
+				location.href='goods.do?md_code='+md_code; // 이건 새로고침!
 
 			} else {
 				alert("상품평 삭제 실패")
