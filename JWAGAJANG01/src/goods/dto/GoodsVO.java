@@ -23,6 +23,22 @@ public class GoodsVO {
 	private String category_main_name;
 	
 	
+	public GoodsVO(){
+		
+	}
+	public GoodsVO(Integer md_code, String md_name, Integer md_price, Integer md_dc, String img_main,
+			String category_main, String category_sub, String category_main_name) {
+		super();
+		this.md_code = md_code;
+		this.md_name = md_name;
+		this.md_price = md_price;
+		this.md_dc = md_dc;
+		this.img_main = img_main;
+		this.category_main = category_main;
+		this.category_sub = category_sub;
+		this.category_main_name = category_main_name;
+	}
+	
 	public String getCategory_main_name() {
 		return category_main_name;
 	}

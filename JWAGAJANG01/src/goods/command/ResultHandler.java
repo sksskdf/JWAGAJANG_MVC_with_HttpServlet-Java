@@ -1,10 +1,8 @@
 package goods.command;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,9 +25,9 @@ public class ResultHandler implements CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse res) throws SQLException, NamingException  {
+	private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception  {
 		
-		String searchkeyword_ = req.getParameter("searchkeyword");		
+		String searchkeyword_ = req.getParameter("schText");		
 		// 사용자가 값을 전달하지 않았을 때 기본값을 넣는다.
 		String searchkeyword = "";
 		if(searchkeyword_ != null)
@@ -52,9 +50,6 @@ public class ResultHandler implements CommandHandler {
 		Paging paging = new Paging(8, 10);
 		paging.setCurrentPageNo(pageNumber);
 		
-		GoodsDAO gDao = GoodsDAO.getInstance();
-		
-		
 		int totalMdCount = gDao.selectCount(category_main, category_sub);
 		List<GoodsVO> mdList = null;
 		
@@ -71,7 +66,8 @@ public class ResultHandler implements CommandHandler {
 			endRow = totalMdCount;
 		}
 		
-		mdList = gDao.sortMd(category_main, category_sub, "1", firstRow, endRow, false);
+		mdList = gDao.search(searchkeyword, firstRow, endRow);
+		
 		MdListModel listModel = new MdListModel();
 		listModel.setMdList(mdList);
 		listModel.setPaging(paging);
