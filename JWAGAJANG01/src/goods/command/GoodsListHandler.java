@@ -11,7 +11,6 @@ import goods.dao.GoodsDAO;
 import goods.dto.GoodsVO;
 import goods.dto.MdListModel;
 import goods.dto.Paging;
-import review.dao.ReviewDAO;
 
 public class GoodsListHandler implements CommandHandler {
 
@@ -45,17 +44,7 @@ public class GoodsListHandler implements CommandHandler {
 		int firstRow = (pageNumber - 1) * paging.getRecordsPerPage() + 1;
 		int endRow = firstRow + paging.getRecordsPerPage() - 1;
 		try {
-			if (order.equals("3")) {
-				ReviewDAO rDao = ReviewDAO.getInstance();
-				List<Integer> md_codes = rDao.getMdcodes();
-				mdList = new ArrayList<GoodsVO>();
-				for (int md_code : md_codes) {
-					GoodsVO goods = gDao.getMd(md_code);
-					mdList.add(goods);
-				}
-			} else {
-				mdList = gDao.sortMd(category_main, category_sub, order, firstRow, endRow, false);
-			}
+			mdList = gDao.sortMd(category_main, category_sub, order, firstRow, endRow, false);
 			req.setAttribute("mdList", mdList);
 		} catch (Exception e) {
 			e.printStackTrace();

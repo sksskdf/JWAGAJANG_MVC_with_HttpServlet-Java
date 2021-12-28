@@ -12,7 +12,6 @@ import goods.dao.GoodsDAO;
 import goods.dto.GoodsVO;
 import goods.dto.MdListModel;
 import goods.dto.Paging;
-import review.dao.ReviewDAO;
 
 public class CateHandler implements CommandHandler {
 
