@@ -1,5 +1,8 @@
 /board/
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea2b4fb859 (재수정)
 /cart/
 /common/
 /controller/
@@ -8,6 +11,7 @@
 /index/
 /main/
 /member/
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -33,9 +37,13 @@
 >>>>>>> ea2b4fb859f870477f3f1280f67c78567ef301c6
 >>>>>>> dda
 =======
+=======
+/notice/
+/product/
+>>>>>>> ea2b4fb859 (재수정)
 /qna/
-/goods/
 /review/
+<<<<<<< HEAD
 >>>>>>> a7b06f29c9 (완성)
 =======
 /common/
@@ -45,3 +53,6 @@
 /main/
 /util/
 >>>>>>> 햐ㅣ
+=======
+/util/
+>>>>>>> ea2b4fb859 (재수정)
