@@ -168,8 +168,9 @@ function resize(obj) {
 function del(delBtn) {
 	var rStr = delBtn.name;
 	var arr = rStr.split(",");
-	
 	var query = {review_code: arr[0]};
+	var md_code = $("input[name='mdcode']").val();
+	
 	$.ajax({
 		type: "POST",
 		url: "reviewDelete.do",
@@ -179,10 +180,10 @@ function del(delBtn) {
 			var loc = data.indexOf(str1);
 			var len = str1.length;
 			var check = data.substr(loc+len,1);
-			if(check == "1") {
+			if(check != "1") {
 				alert("상품평이 삭제 되었습니다.");
-				var query = "goods.do?md_code="+arr[1];
-				window.location.href(query);
+				location.href='goods.do?md_code='+md_code;
+
 			} else {
 				alert("상품평 삭제 실패")
 			}
