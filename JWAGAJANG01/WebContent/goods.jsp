@@ -192,8 +192,8 @@
             <div class="footnav_latest">
                 <p>최근 본 상품</p>
                 <ul>
-                <c:forEach var="cookie" items="${pageScope.request.cookies}">
-                	<li><a href="goods.do?md_code=${cookie.name}"><img src="img/${cookie.value}" alt="${cookie.name}"></a></li>
+                <c:forEach var="goods" items="${visited}">
+                	<li><a href="goods.do?md_code=${goods.md_code}"><img src="img/${goods.img_main}" alt="${goods.md_name}"></a></li>
                 </c:forEach>
                     
                 </ul>
