@@ -71,8 +71,7 @@ pageEncoding="UTF-8"%>
 							<option value="330">김·미역·해조류</option>
 							<option value="410">소고기·돼지고기</option>
 							<option value="420">닭·오리고기</option>
-							<option value="430">수산·해산</option>
-							<option value="440">계란</option>
+							<option value="430">계란</option>
 						</select>
 					</th>
 				</tr>

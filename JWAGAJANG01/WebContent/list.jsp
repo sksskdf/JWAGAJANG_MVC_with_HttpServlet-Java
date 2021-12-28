@@ -99,7 +99,7 @@
                             <div class="item">
                             	<div class="thumb">
                                     <a href="/goods.do?md_code=${md.md_code}">
-                                    	<img class="thumbimg" alt="" src="img/${md.img_main}">
+                                    	<img class="thumbimg" alt="" src="img/mdimg/${md.img_main}">
                                     </a>
                                 </div>
                                 <a href="/goods.do?md_code=${md.md_code}" class="goods_info">

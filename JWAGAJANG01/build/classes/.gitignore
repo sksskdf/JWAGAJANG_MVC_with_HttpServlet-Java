@@ -1,4 +1,5 @@
 /board/
+<<<<<<< HEAD
 /cart/
 /common/
 /controller/
@@ -36,3 +37,11 @@
 /goods/
 /review/
 >>>>>>> a7b06f29c9 (완성)
+=======
+/common/
+/controller/
+/filter/
+/index/
+/main/
+/util/
+>>>>>>> 햐ㅣ
