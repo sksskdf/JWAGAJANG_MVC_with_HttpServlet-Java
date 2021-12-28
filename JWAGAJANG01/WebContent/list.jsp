@@ -78,7 +78,6 @@
         <div id="goodsList">
             <div class="sort">
                 <div class="sort_menu">
-                	
                     <ul class="select_sort" data-c1="${category_main}" data-c2="${param.category_sub}">
                         <li><a class="orderBy" data-oper="1">최신상품</a></li>
                         <div class="line"></div>

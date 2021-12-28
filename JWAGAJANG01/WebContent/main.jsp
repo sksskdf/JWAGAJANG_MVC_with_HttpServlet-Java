@@ -11,11 +11,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/list.css">
     <link rel="stylesheet" href="css/header_footer.css">
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
     <link rel="stylesheet" href="css/swiper-bundle.css">
     <link rel="stylesheet" href="css/index.css">
     <title>좌가장</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/goods.js"></script>
 </head>
 <body>
 <div id="pagewrap">
