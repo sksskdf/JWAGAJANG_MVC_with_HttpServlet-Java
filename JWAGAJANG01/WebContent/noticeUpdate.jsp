@@ -56,7 +56,7 @@
 			<c:set var="page" value="${param.p}" />
 			<div class="noticeWritebtn">
 				<input type="submit" value="수정" name="send" class="sendbtn">
-				<input type="submit" value="목록" name="list" class="noticelistbtn" onclick="location.href='noticeList.do?p=${page}'">
+				<input type="submit" value="목록" name="list" class="noticelistbtn" onclick="location.href='noticeSearch.do?p=${param.p}&searchoption=${param.searchoption}&searchkeyword=${param.searchkeyword}'">
 			</div>
 			</form>
 		</div>
