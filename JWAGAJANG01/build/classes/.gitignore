@@ -1,10 +1,24 @@
-/product/
+/board/
 /cart/
+/common/
+/controller/
+/filter/
+/goods/
+/index/
+/main/
 /member/
+<<<<<<< HEAD
 <<<<<<< HEAD
 /goods/
 =======
+=======
+/notice/
+/product/
+>>>>>>> ea2b4fb859f870477f3f1280f67c78567ef301c6
 /qna/
-/goods/
 /review/
+<<<<<<< HEAD
 >>>>>>> a7b06f29c9db840b42edd9983e844a0f7d8a7de6
+=======
+/util/
+>>>>>>> ea2b4fb859f870477f3f1280f67c78567ef301c6
