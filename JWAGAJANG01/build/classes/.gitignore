@@ -1,3 +1,7 @@
-/product/
-/cart/
-/member/
+/board/
+/common/
+/controller/
+/filter/
+/index/
+/main/
+/util/
