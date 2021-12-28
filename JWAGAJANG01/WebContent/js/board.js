@@ -1,12 +1,12 @@
 $(function() {
-	var form = $("form");
+	var form = $(".reply");
 	$("input[name='register']").on("click", function(e) {
-		form.appen("<input type='hidden' name='type' value='register'>");
+		form.append("<input type='hidden' name='type' value='register'>");
 		form.submit();
 	});
-	
+	/* 클릭을 했을 때 이벤트 : hidden input 생성 */
 	$("input[name='remove']").on("click", function(e) {
-		form.appen("<input type='hidden' name='type' value='remove'>");
+		form.append("<input type='hidden' name='type' value='remove'>");
 		form.submit();
 	});
 });
