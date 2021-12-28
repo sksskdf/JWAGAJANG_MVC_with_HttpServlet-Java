@@ -26,7 +26,8 @@
 					<span class="nowpage">1. 장바구니</span><span class="navarrow"></span>
 					2. 주문서 작성 / 결제<span class="navarrow"></span> 3. 주문완료
 				</div>
-				<form action="order.do" class="cartform" method="post">
+				<!-- <form action="order.do" class="cartform" method="post"> -->
+				 <div class="cartform">
 					<table class="cartconts">
 						<thead>
 							<tr>
@@ -48,7 +49,7 @@
 							<c:forEach items="${cartList }" var="cart">
 							<tr>
 								<fmt:parseNumber var="saleP" integerOnly="true" value="${cart.md_price-(cart.md_price*cart.md_dc/100) }"/>
-								<td><input type="checkbox" name="mdchk" value="${saleP * cart.md_count}" 
+								<td><input type="checkbox" class="mdchk" name="mdchk" value="${saleP * cart.md_count}" 
 								checked data-cartcode="${cart.md_code }"/>
 								<input type="hidden" name="md_code" value="${cart.md_code }" /></td>
 								<td class="md" style="text-align: left"><a href="goods.do?md_code=${cart.md_code }" target='_blank'>
@@ -93,11 +94,12 @@
 							<input type="button" class="normalbtn" value="선택삭제" id="delete_select"/>
 						</div>
 						<div class="btnsecR">
-							<input type="submit" class="colorbtn" id="order_select" value="선택 상품 주문하기" /> <input
-								type="button" class="normalbtn" value="계속 쇼핑하기" onclick="location.href='javascript:history.go(-2)'" />
+							<input type="button" class="colorbtn" id="order_select" value="선택 상품 주문하기" /> 
+							<input type="button" class="normalbtn" value="계속 쇼핑하기" onclick="location.href='javascript:history.go(-2)'" />
 						</div>
 					</div>
-				</form>
+				<!--</form> -->
+				 </div> 
 			</div>
 		</section>
 		<jsp:include page="H&F/footer.jsp" />

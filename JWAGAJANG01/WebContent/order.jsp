@@ -1,5 +1,6 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +24,11 @@
     	<table class="orderlist">
     	<tr>
     		<td>주문상품</td>
-    		<td>${md_name}</td>
+    		<td><c:forEach items="${md_name }" var="name">
+    		${name}, </c:forEach></td>
     	</tr>
    		</table>
-    	<form action="buynow.do" class="orderform" name="orderfrm" method="post">
+    	<form action="buy.do" class="orderform" name="orderfrm" method="post">
     	<input type="hidden" value="${param.md_code}" name="md_code">
     	<input type="hidden" value="${orderinfo.order_name}" name="ordername" />
   		<input type="hidden" value="${orderinfo.mobile}" name="mobile" />

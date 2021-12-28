@@ -2,6 +2,8 @@ package cart.command;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +17,10 @@ public class OrderHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
-			return processForm(req, res);
+			return processGet(req, res);
 		}
 		else if(req.getMethod().equalsIgnoreCase("POST")) {
-			return processSubmit(req, res);
+			return processPost(req, res);
 		}
 		else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -26,7 +28,7 @@ public class OrderHandler implements CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	private String processGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
 		System.out.println(id);
@@ -48,17 +50,39 @@ public class OrderHandler implements CommandHandler {
 		
 		req.setAttribute("md_name", mdname);
 		req.setAttribute("orderinfo", orderinfo);
-		System.out.println("handler console md_name"+mdname);
 		return "order.jsp";
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+	private String processPost(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
-		String md_id[] = req.getParameterValues("md_id");
-		String md_code[] = req.getParameterValues("md_code");
+		String id = (String)session.getAttribute("id");
+		String code = null;
 		
+		Enumeration<String> paramNames = req.getParameterNames();
+		   while(paramNames.hasMoreElements()) {
+		       String name = paramNames.nextElement().toString();
+		       String strList = req.getParameter(name);
+		       code = strList;
+		   }
+		String md_code[] = code.split(",");
 		
-			
+		int md_code_[] = new int[md_code.length];
+		ArrayList<String> nameList = new ArrayList<String>();
+		
+		for(int i=0; i<md_code.length; i++) {
+			md_code_[i] = Integer.parseInt(md_code[i]);
+		}
+		BuyService buyservice = BuyService.getInstance();
+		
+		for(int i=0; i<md_code_.length; i++) {
+			String mdname = buyservice.get_mdname(md_code_[i]);
+			nameList.add(i, mdname);
+		}
+		Order orderinfo = buyservice.get_orderInfo(id);
+		
+		req.setAttribute("md_name", nameList);
+		req.setAttribute("orderinfo", orderinfo);
+		
 		return "order.jsp";
 	}
 

@@ -70,24 +70,42 @@ $("#delete_select").click(function () {
 		    }
 	    }
 });
+//form없이 POST 방식으로 전송하기.
+/* 
+* path : 전송 URL 
+* params : 전송 데이터 {'q':'a','s':'b','c':'d'...}으로 묶어서 배열 입력 
+* method : 전송 방식(생략가능) 
+*/ 
+function post_to_url(path, params, method) {     
+method = method || "post"; 
+// Set method to post by default, if not specified.     
+// The rest of this code assumes you are not using a library.     
+// It can be made less wordy if you use one.     
+	var form = document.createElement("form");     
+	form.setAttribute("method", method);     
+	form.setAttribute("action", path);     
+	for(var key in params) {         
+		var hiddenField = document.createElement("input");        
+		hiddenField.setAttribute("type", "hidden");         
+		hiddenField.setAttribute("name", key);         
+		hiddenField.setAttribute("value", params[key]);        
+		form.appendChild(hiddenField);     
+	}     
+	document.body.appendChild(form);     
+	form.submit(); 
+}
+
 //선택한 항목 주문
-$("#order_select").click(function (e) {
-	e.preventdefault;
-	
+$("#order_select").click(function() {
 	 var checkArr = new Array();
-	 var orderUrl;
 	 
 	  $("input[name='mdchk']:checked").each(function () {
 	         checkArr.push($(this).attr("data-cartcode"));
 	     });
-	 
-	  for(i=0; i<chkarr.length; i++) {
-		  orderUrl += chkarr[i] + "&"
-	  }
 	  
 	  if(checkArr.length==0) alert("선택된 상품이 없습니다.");
 	  else {
-		  alert(orderUrl);
+		  post_to_url('order.do',{ "checkArr": checkArr });
 	  }
 });
 
@@ -122,16 +140,13 @@ $(".order_one").click(function () {
   
 	 if(ordercode!=null && ordercode!="") {
 	        $.ajax({
-	            url: "buynow.do?md_code=" + ordercode,
+	            url: "order.do?md_code=" + ordercode,
 	            type: "GET",
 	            data: { "md_code": ordercode },
 	            success: function (data) {
 	                //location.replace("cartPut.do");
-	            	location.href="buynow.do?md_code=" + ordercode;
-	            },
-	            error: function(request,status,error) {
-	        		alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-	        	}
+	            	location.href="order.do?md_code=" + ordercode;
+	            }
 	        });
 	 }
 	        
