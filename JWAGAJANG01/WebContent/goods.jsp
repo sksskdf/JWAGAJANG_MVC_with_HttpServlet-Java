@@ -140,7 +140,7 @@
                         	${sessionScope.id}
                             <input type="hidden" id="writer" value="${sessionScope.id}">
                         </td>
-                        <td class="write_rate">
+                     <!--    <td class="write_rate">
                         	<label class="starRadio">
                         		<input type="radio" name="star" id="">
                         		<span class="starRadio_img"><span class="blind">1</span></span>
@@ -161,18 +161,18 @@
                         		<input type="radio" name="star" id="">
                         		<span class="starRadio_img"><span class="blind">5</span></span>
                         	</label>
-                        </td>
-                       <!--  <td class="write_rate">
+                        </td> -->
+                        <td class="write_rate">
                             <input type="number" id="stars" placeholder="★★★★★"
                                 onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
-                        </td> -->
+                        </td>
                         <td class="write_content">
                             <textarea type="text" id="writervw" placeholder="상품평을 작성해주세요."
                                 onfocus="this.placeholder=''" onblur="this.placeholder='상품평을 작성해주세요.'"
                                 onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
                         </td>
                         <td class="write_submit">
-                            <input type="submit" id="submitbtn" value="등록"></button>
+                            <input type="submit" id="submitbtn" value="등록"></input>
                         </td>
                     </tr>
 				</c:if>
