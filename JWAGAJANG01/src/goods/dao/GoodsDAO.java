@@ -5,13 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import goods.dto.GoodsVO;
-import qna.dto.QnaVO;
 import util.DBManager;
 
 public class GoodsDAO {
@@ -49,6 +46,9 @@ public class GoodsDAO {
 			} else if(order.equals("2")) {
 				sqlAll += " order by md_ordercnt desc";
 				sqlCate += " order by md_ordercnt desc";
+			} else if(order.equals("3")) {
+				sqlAll += " order by review_count desc";
+				sqlCate += " order by review_count desc";
 			} else if(order.equals("4")) {
 				sqlAll += " order by md_price asc";
 				sqlCate += " order by md_price asc";
@@ -307,5 +307,17 @@ public class GoodsDAO {
 				DBManager.close(rs);
 			}
 		return count;
+	}
+
+	// 리뷰 카운트 
+	// 현재 리뷰 카운트를 +1
+	public void updateReviewCount(int md_code, int increment) throws SQLException {
+	    String sql = "update table_md set review_count = review_count + " + increment + " where md_code = ?";
+
+		try (Connection conn = DBManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);) {
+				pstmt.setInt(1, md_code);
+				pstmt.executeUpdate();
+		}
 	}
 }
