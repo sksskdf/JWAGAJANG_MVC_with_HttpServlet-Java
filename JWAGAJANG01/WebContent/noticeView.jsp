@@ -42,10 +42,16 @@
 			</table>
 				<c:set var="page" value="${param.p}" />
 			<div class="list">
+			<c:if test="${sessionScope.member.grade == 1}">
 				<input type="submit" value="수정" class="upbtn" onclick="location.href='noticeUpdate.do?notice_code=${param.notice_code}'">
 				<input type="submit" value="삭제" class="delbtn" onclick="location.href='noticeDelete.do?notice_code=${param.notice_code}'">
-				<%-- <input type="submit" value="목록" class="listbtn" onclick="location.href='noticeSearch.do?p=${param.p}&searchoption=${param.f}&searchkeyword=${param.q}'"> --%>
-				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeSearch.do?p=${param.p}&f=${param.f}&q=${param.q}'">
+				</c:if>
+				<c:if test="${empty param.f}">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeSearch.do?p=${param.p}'">
+				</c:if>
+				<c:if test="${!empty param.f}">
+				<input type="submit" value="목록" class="listbtn" onclick="location.href='noticeSearch.do?p=${param.p}&searchoption=${param.f}&searchkeyword=${param.q}'">
+				</c:if>
 			</div>
 		</div>
 
