@@ -23,7 +23,7 @@
                                 <c:forEach var="f" items="${productList}">
                                 <tr>
                                 	<td><a href="/goods.do?md_code=${f.md_code}">
-                                	<img class="thumbimg" src="img/${f.img_main}"></a></td>
+                                	<img class="thumbimg" src="img/mdimg/${f.img_main}"></a></td>
                                     <td><a href="/goods.do?md_code=${f.md_code}">${f.md_name}</a></td>
                                     <td>${f.md_stock }</td>
                                     <td>${f.md_regdate}</td>

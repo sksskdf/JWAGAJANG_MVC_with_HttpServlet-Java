@@ -7,8 +7,9 @@
         <div class="logo">
           <a href="/main.do"><img class="logo_img" src="../img/logo.svg" alt="로고"></a>
         </div>
-        <form class="search">
-          <input type="text" id="schText" name="schText"><input type="image" src="../img/search.svg" id="schButton" name="schButton">
+        <form class="search" action="search.do">
+        	<input type="hidden" name="category_main" value="All">
+			<input type="text" id="schText" name="schText"><input type="submit" src="../img/search.svg" id="schButton" value="">
         </form>
         <nav>
           <ul class="gnbmy">
@@ -32,7 +33,7 @@
           </ul>
         </nav>
         <nav>
-          <ul class=gnb>
+          <ul class=gnb >
             <li class="gnb_li"><a href="/list.do?category_main=All&p=1" class="ctgry"><img src="../img/allctgrybtn.svg" style="height: 12px;"> 전체상품</a>
               <table class="lnb">
                 <tr class="lnb_tr"><th class="lnb_th"><a href="/list.do?category_main=100&p=1">채소·과일</a></th></tr>
@@ -55,12 +56,11 @@
                   <tr><td class="lnb_td"><a href="/list.do?category_main=400&category_sub=420&p=1">닭·오리고기</a></td></tr>
                   <tr><td class="lnb_td"><a href="/list.do?category_main=400&category_sub=430&p=1">계란</a></td></tr>
               </table>
-            
             </li>
-            <li class="cate gnb_li"><a class="ctgry" href="#">카테고리</a></li>
-            <li class="cate gnb_li"><a class="ctgry" href="#">카테고리</a></li>
-            <li class="cate gnb_li"><a class="ctgry" href="#">카테고리</a></li>
-            <li class="cate gnb_li" ><a class="ctgry" href="#">카테고리</a></li>
+            <li class="cate gnb_li"><a class="ctgry orderBy" data-oper="1">신상품</a></li>
+            <li class="cate gnb_li"><a class="ctgry orderBy" data-oper="2">베스트</a></li>
+            <li class="cate gnb_li"><a class="ctgry orderBy" data-oper="3">인기상품</a></li>
+            <li class="cate gnb_li" ><a class="ctgry orderBy" data-oper="4">알뜰상품</a></li>
             <li class="gnb_li"><a class="ctgry" href="noticeList.do?&p=1">공지사항</a></li>
             <li class="gnb_li"><a class="ctgry" href="qnaList.do?&p=1">문의게시판</a></li>
           </ul>

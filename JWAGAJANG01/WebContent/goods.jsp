@@ -29,7 +29,7 @@
            <a href="list.do?category_main=${md.category_main}">${md.category_main_name}</a>
         </div>
         <div class="goods">
-        	<div><img class="goods_img" alt="" src="img/${md.img_main}"></div>
+        	<div><img class="goods_img" alt="" src="img/mdimg/${md.img_main}"></div>
             <div class="goods_info">
                 <p class="goods_title">${md.md_name}</p>
                 <p class="goods_price">
@@ -96,7 +96,8 @@
                     <li><a href="#goods_detail" class="tab_on detail_anchor">상품 상세 정보</a></li>
                     <li><a href="#goods_review" class="tab_off review_anchor">상품평 (${count}건)</a></li>
                 </ul>
-                <img src="img/${md.img_detail}" class="goods_img_detail">
+
+                <img src="img/mdimg/${md.img_detail}" class="goods_img_detail">
             </div>
             <div id="goods_review">
                 <ul class="goods_tab">
@@ -118,6 +119,12 @@
 	                        <td class="review_rate">${review.review_rate} / 5</td>
 	                        <td class="review_content">${review.review_content}</td>
 	                        <td class="review_date"><fmt:formatDate value="${review.review_regdate}" pattern="yyyy-MM-dd"/></td>
+	                        <c:if test="${sessionScope.id==review.user_id}">
+		                        <td class="review_del">
+		                        	<button id="delete" name="${review.review_code}"
+		                        		onclick="del(this)">x</button>
+		                        </td>
+		                    </c:if>
 	                    </tr>
 	                </c:forEach>
 				</c:if>
@@ -134,6 +141,28 @@
                         	${sessionScope.id}
                             <input type="hidden" id="writer" value="${sessionScope.id}">
                         </td>
+                     <!--    <td class="write_rate">
+                        	<label class="starRadio">
+                        		<input type="radio" name="star" id="">
+                        		<span class="starRadio_img"><span class="blind">1</span></span>
+                        	</label>
+                        	<label class="starRadio">
+                        		<input type="radio" name="star" id="">
+                        		<span class="starRadio_img"><span class="blind">2</span></span>
+                        	</label>
+                        	<label class="starRadio">
+                        		<input type="radio" name="star" id="">
+                        		<span class="starRadio_img"><span class="blind">3</span></span>
+                        	</label>
+                        	<label class="starRadio">
+                        		<input type="radio" name="star" id="">
+                        		<span class="starRadio_img"><span class="blind">4</span></span>
+                        	</label>
+                        	<label class="starRadio">
+                        		<input type="radio" name="star" id="">
+                        		<span class="starRadio_img"><span class="blind">5</span></span>
+                        	</label>
+                        </td> -->
                         <td class="write_rate">
                             <input type="number" id="stars" placeholder="★★★★★"
                                 onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
@@ -144,7 +173,7 @@
                                 onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
                         </td>
                         <td class="write_submit">
-                            <input type="submit" id="submitbtn" value="등록"></button>
+                            <input type="submit" id="submitbtn" value="등록"></input>
                         </td>
                     </tr>
 				</c:if>
@@ -164,8 +193,8 @@
             <div class="footnav_latest">
                 <p>최근 본 상품</p>
                 <ul>
-                <c:forEach var="cookie" items="${pageScope.request.cookies}">
-                	<li><a href="goods.do?md_code=${cookie.getName}"><img src="img/${cookie.getValue}" alt="${cookie.name}"></a></li>
+                <c:forEach var="goods" items="${visited}">
+                	<li><a href="goods.do?md_code=${goods.md_code}"><img src="img/${goods.img_main}" alt="${goods.md_name}"></a></li>
                 </c:forEach>
                     
                 </ul>

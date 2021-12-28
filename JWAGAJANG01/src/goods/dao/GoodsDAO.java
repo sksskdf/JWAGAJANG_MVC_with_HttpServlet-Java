@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import goods.dto.GoodsVO;
+import qna.dto.QnaVO;
 import util.DBManager;
 
 public class GoodsDAO {
@@ -224,70 +225,87 @@ public class GoodsDAO {
 		return reviewList;
 	}
 	
+	// 리뷰 삭제
+	public int deleteReview(int review_code) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = -1;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement("delete from table_review where review_code=?");
+			pstmt.setInt(1, review_code);
+			pstmt.executeUpdate();
+			x = 1; 	// 글 삭제 성공
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
+            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+		}
+		return x;
+	}
+	
 	
 	
 	// 검색
-	/*
-	 * public List<GoodsVO> searchResult(String md_name) { Connection conn = null;
-	 * PreparedStatement pstmt = null; ResultSet rs = null;
-	 * 
-	 * try { conn = DBManager.getConnection(); pstmt =
-	 * conn.prepareStatement("select * from table_md where " + md_name + " like ?");
-	 * pstmt.setString(1, "%"+md_name+"%"); rs = pstmt.executeQuery();
-	 * 
-	 * return result(rs); } }
-	 
-	
-	// 최근 본 상품
-	@SuppressWarnings("unchecked")
-	public void addGoodsInQuick(int md_code, GoodsVO goodsVO, HttpSession session) {
-		boolean already_existed = false;
-		List<GoodsVO> quickGoodsList;
-		quickGoodsList = (ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");	// 세션에 저장된 최근 본 상품 목록 가져옴
-		
-		if (quickGoodsList != null)	{	// 최근 본 상품이 있는 경우
-			if(quickGoodsList.size() < 4) {	// 상품 목록이 네 개 이하인 경우
-				for (int i=0; i<quickGoodsList.size(); i++) {
-					GoodsVO gVo = (GoodsVO)quickGoodsList.get(i);
-					if (md_code == gVo.getMd_code()) {
-						already_existed = true;
-						break;
-					}
-				}	// 상품 목록을 가져와 이미 존재하는 상품인지 비교, 이미 존재할 경우 already_existed를 true로 설정
-				if (already_existed == false) {
-					quickGoodsList.add(goodsVO);					// false면 상품 정보를 목록에 저장
-				}
-			}
-		} else {
-			quickGoodsList = new ArrayList<GoodsVO>();	// 최근 본 상품 목록이 없으면 생성하여 정보 저장
-			quickGoodsList.add(goodsVO);
-		}
-		session.setAttribute("quickGoodsList", quickGoodsList);	// 최근 본 상품 목록을 세션에 저장
-		session.setAttribute("quickGoodsListNum", quickGoodsList.size());	// 최근 본 상품 목록에 저장된 상품 개수를 세션에 저장
-	}*/
+	public List<GoodsVO> search(String searchkeyword, int firstRow, int endRow) {
+		List<GoodsVO> list = new ArrayList<GoodsVO>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from table_md where md_name like '%"+searchkeyword+"%' order by md_code desc limit ?, ? ";
+		try (Connection conn = DBManager.getConnection();){
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, firstRow -1); //물음표에 해당되는 코드, 페이지의 시작열 순서
+			pstmt.setInt(2, endRow - firstRow +1); //물음표에 해당되는 코드, 게시글의 숫자 
+			rs = pstmt.executeQuery();
 
+			while(rs.next()) {
+				int md_code = rs.getInt("md_code");
+				String md_name = rs.getString("md_name");
+				int md_price = rs.getInt("md_price");
+				int md_dc = rs.getInt("md_dc");
+				String img_main = rs.getString("img_main");
+				String category_main = rs.getString("category_main");
+				String category_sub = rs.getString("category_sub");
+				String category_main_name = rs.getString("category_main_name");
+				GoodsVO gVo = new GoodsVO(md_code, md_name, md_price, md_dc, img_main, category_main, category_sub, category_main_name);
+				list.add(gVo);
+			}
+			DBManager.close(conn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(rs);
+			DBManager.close(pstmt);			
+		}		
+		return list;
+	}
+	
+
+	// 상품 갯수 (페이징에 필요)
 	public int selectCount(String category_main, String category_sub) throws SQLException {
 		ResultSet rs = null;
 	    int count = 0;
 	      
 	    String sql = "select count(*) from table_md";
 	    if (!category_main.equals("All") && !category_main.equals("")) {
-	    	  sql += " where category_main='" + category_main + "'";
+	    	sql += " where category_main='" + category_main + "'";
 	    } 
 		if(category_sub != null && !category_sub.isEmpty()) {
 			sql += " and category_sub='" + category_sub + "'";
 		}
 
-	      try (Connection conn = DBManager.getConnection();
-	    		  Statement stmt = conn.createStatement();) {
-	         rs = stmt.executeQuery(sql);
-	         if (rs.next()) {
-	        	 count = rs.getInt(1); 
-	         }
-	      } finally {
-	         DBManager.close(rs);
-	      }
-	      return count;
+		try (Connection conn = DBManager.getConnection();
+			Statement stmt = conn.createStatement();) {
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					count = rs.getInt(1); 
+				}
+			} finally {
+				DBManager.close(rs);
+			}
+		return count;
 	}
-	
 }
