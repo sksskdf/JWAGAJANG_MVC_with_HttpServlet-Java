@@ -65,7 +65,7 @@
 			<input type="hidden" value="${param.p}" name="p">
 				<textarea class="replybox" style="resize: none;" name="qna_reply"></textarea>
 				<div class="replybtn">
-				<input type="submit" id="regist" name="register" value="등록 및 수정"></input>
+				<input type="submit" id="register" name="register" value="등록 및 수정"></input>
 				<input type="submit" id="replydle" name="remove" value="삭제"></input>
 				</div>
 			</form>
