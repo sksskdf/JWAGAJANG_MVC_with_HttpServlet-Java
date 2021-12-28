@@ -1,14 +1,20 @@
 package goods.dao;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import goods.dto.GoodsVO;
 import util.DBManager;
@@ -224,6 +230,28 @@ public class GoodsDAO {
 		return reviewList;
 	}
 	
+	// 리뷰 삭제
+	public int deleteReview(int review_code) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = -1;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement("delete from table_review where review_code=?");
+			pstmt.setInt(1, review_code);
+			pstmt.executeUpdate();
+			x = 1; 	// 글 삭제 성공
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
+            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+		}
+		return x;
+	}
+	
 	
 	
 	// 검색
@@ -236,58 +264,31 @@ public class GoodsDAO {
 	 * pstmt.setString(1, "%"+md_name+"%"); rs = pstmt.executeQuery();
 	 * 
 	 * return result(rs); } }
-	 
+	 */
 	
-	// 최근 본 상품
-	@SuppressWarnings("unchecked")
-	public void addGoodsInQuick(int md_code, GoodsVO goodsVO, HttpSession session) {
-		boolean already_existed = false;
-		List<GoodsVO> quickGoodsList;
-		quickGoodsList = (ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");	// 세션에 저장된 최근 본 상품 목록 가져옴
-		
-		if (quickGoodsList != null)	{	// 최근 본 상품이 있는 경우
-			if(quickGoodsList.size() < 4) {	// 상품 목록이 네 개 이하인 경우
-				for (int i=0; i<quickGoodsList.size(); i++) {
-					GoodsVO gVo = (GoodsVO)quickGoodsList.get(i);
-					if (md_code == gVo.getMd_code()) {
-						already_existed = true;
-						break;
-					}
-				}	// 상품 목록을 가져와 이미 존재하는 상품인지 비교, 이미 존재할 경우 already_existed를 true로 설정
-				if (already_existed == false) {
-					quickGoodsList.add(goodsVO);					// false면 상품 정보를 목록에 저장
-				}
-			}
-		} else {
-			quickGoodsList = new ArrayList<GoodsVO>();	// 최근 본 상품 목록이 없으면 생성하여 정보 저장
-			quickGoodsList.add(goodsVO);
-		}
-		session.setAttribute("quickGoodsList", quickGoodsList);	// 최근 본 상품 목록을 세션에 저장
-		session.setAttribute("quickGoodsListNum", quickGoodsList.size());	// 최근 본 상품 목록에 저장된 상품 개수를 세션에 저장
-	}*/
 
+	// 상품 갯수 (페이징에 필요)
 	public int selectCount(String category_main, String category_sub) throws SQLException {
 		ResultSet rs = null;
 	    int count = 0;
 	      
 	    String sql = "select count(*) from table_md";
 	    if (!category_main.equals("All") && !category_main.equals("")) {
-	    	  sql += " where category_main='" + category_main + "'";
+	    	sql += " where category_main='" + category_main + "'";
 	    } 
 		if(category_sub != null && !category_sub.isEmpty()) {
 			sql += " and category_sub='" + category_sub + "'";
 		}
 
-	      try (Connection conn = DBManager.getConnection();
-	    		  Statement stmt = conn.createStatement();) {
-	         rs = stmt.executeQuery(sql);
-	         if (rs.next()) {
-	        	 count = rs.getInt(1); 
-	         }
-	      } finally {
-	         DBManager.close(rs);
-	      }
-	      return count;
+		try (Connection conn = DBManager.getConnection();
+			Statement stmt = conn.createStatement();) {
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					count = rs.getInt(1); 
+				}
+			} finally {
+				DBManager.close(rs);
+			}
+		return count;
 	}
-	
 }
