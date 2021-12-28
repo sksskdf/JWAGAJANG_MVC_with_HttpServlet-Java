@@ -1,7 +1,14 @@
-/product/
+/board/
 /cart/
-/member/
+/common/
+/controller/
+/filter/
 /goods/
+/index/
+/main/
+/member/
 /notice/
+/product/
 /qna/
 /review/
+/util/
