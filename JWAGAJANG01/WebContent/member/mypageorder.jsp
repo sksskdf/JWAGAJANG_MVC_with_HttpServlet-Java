@@ -50,7 +50,7 @@
 			  <tbody>
 			  <c:forEach var="o" items="${orderlist}" begin="0" end="4">
 			    <tr class="text-center">
-			      <td><img class="orderPic"alt="" src="${o.mdpic}"> </td>
+			      <td><img class="orderPic"alt="" src="img/mdimg/${o.mdpic}"> </td>
 			      <td class="thf va">${o.mdname}</td>
 			      <td class="va">${o.mdorderdate}</td>
 			      <td class="va">${o.mdprice}</td>

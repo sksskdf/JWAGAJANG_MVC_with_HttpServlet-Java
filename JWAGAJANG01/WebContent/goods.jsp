@@ -82,7 +82,7 @@
                 	<input type="hidden" name="mdcode" value="${md.md_code}">
                 	<input type="hidden" name="user_id" value="${sessionScope.id}">
                 	<input type="hidden" name="grade" value="${sessionScope.member.grade}">
-                    <button type="button" class="buynowbtn" onclick="location.href='buynow.do?md_code=${md.md_code}'">바로구매</button>
+                    <button type="button" class="buynowbtn" onclick="location.href='order.do?md_code=${md.md_code}'">바로구매</button>
                     <c:if test="${not empty sessionScope.id}">
                     <button type="button" class="cartbtn">장바구니</button>
                     </c:if>
@@ -201,9 +201,9 @@
                 <ul>
                     <a href="/index.do"><li>홈</li></a>
                     <div class="line"></div>
-                    <a href="#"><li>장바구니</li></a>
+                    <a href="/cartPut.do"><li>장바구니</li></a>
                     <div class="line"></div>
-                    <a href="#"><li><a href="#">찜리스트</li></a>
+                    <a href="favlist.do?p=1"><li>찜리스트</li></a>
                 </ul>
             </div>
             <div class="footnav_latest">

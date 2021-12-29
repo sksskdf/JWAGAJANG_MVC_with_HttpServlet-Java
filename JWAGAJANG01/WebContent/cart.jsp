@@ -26,7 +26,8 @@
 					<span class="nowpage">1. 장바구니</span><span class="navarrow"></span>
 					2. 주문서 작성 / 결제<span class="navarrow"></span> 3. 주문완료
 				</div>
-				<form action="#" class="cartform">
+				<!-- <form action="order.do" class="cartform" method="post"> -->
+				 <div class="cartform">
 					<table class="cartconts">
 						<thead>
 							<tr>
@@ -48,8 +49,9 @@
 							<c:forEach items="${cartList }" var="cart">
 							<tr>
 								<fmt:parseNumber var="saleP" integerOnly="true" value="${cart.md_price-(cart.md_price*cart.md_dc/100) }"/>
-								<td><input type="checkbox" name="mdchk" class="mdchk" value="${saleP * cart.md_count}" 
-								checked data-cartcode="${cart.md_code }"/></td>
+								<td><input type="checkbox" class="mdchk" name="mdchk" value="${saleP * cart.md_count}" 
+								checked data-cartcode="${cart.md_code }"/>
+								<input type="hidden" name="md_code" value="${cart.md_code }" /></td>
 								<td class="md" style="text-align: left"><a href="goods.do?md_code=${cart.md_code }" target='_blank'>
 								<img src="${cart.img_main }" /></a> <span class="mddesc"><a href="goods.do?md_code=${cart.md_code }" target='_blank'>${cart.md_name }</a></span></td>
 								<td>
@@ -57,9 +59,9 @@
 								</td>
 								<td><span class="originprice"><fmt:formatNumber pattern="#,##0" value="${cart.md_price * cart.md_count}"/>원</span><br />
 								<span class="saleprice"><fmt:formatNumber pattern="#,##0" value="${saleP * cart.md_count}"/>원</span></td>
-								<td><input type="button" class="colorbtn" value="바로구매" />
-									<input type="button" class="normalbtn" id="delete" value="삭제"
-									style="margin-top: 5px" /></td>
+								<td><input type="button" class="order_one colorbtn" value="바로구매" data-cartcode="${cart.md_code }" />
+									<input type="button" class="delete_one normalbtn" value="삭제"
+									style="margin-top: 5px" data-cartcode="${cart.md_code }"/></td>
 							</tr>
 							<c:set var = "orderP" value="${orderP + (saleP * cart.md_count) }"/>
 							</c:forEach>
@@ -89,19 +91,20 @@
 					</div>
 					<div class="buttonsec">
 						<div class="btnsecL">
-							<input type="button" class="normalbtn" value="선택삭제" id="selectDelete"/> <input
-								type="button" class="normalbtn" value="찜하기" />
+							<input type="button" class="normalbtn" value="선택삭제" id="delete_select"/>
 						</div>
 						<div class="btnsecR">
-							<input type="submit" class="colorbtn" value="선택 상품 주문하기" /> <input
-								type="button" class="normalbtn" value="계속 쇼핑하기" onclick="location.href='javascript:history.go(-2)'" />
+							<input type="button" class="colorbtn" id="order_select" value="선택 상품 주문하기" /> 
+							<input type="button" class="normalbtn" value="계속 쇼핑하기" onclick="location.href='javascript:history.go(-2)'" />
 						</div>
 					</div>
-				</form>
+				<!--</form> -->
+				 </div> 
 			</div>
 		</section>
 		<jsp:include page="H&F/footer.jsp" />
 	</div>
+	<!-- 선택 상품 삭제 -->
 	<script src="js/cart.js"></script>
 </body>
 </html>
