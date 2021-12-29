@@ -116,7 +116,11 @@
 	                <c:forEach var="review" items="${reviewList}">
 	                	<tr>
 	                        <td class="review_name">${review.user_id}</td>
-	                        <td class="review_rate">${review.review_rate} / 5</td>
+	                        <td class="review_rate"><c:forEach var="i" begin="1" end="5">
+	                        <c:if test="${i <= review.review_rate}"><img src="../img/star-full.png"></c:if>
+	                        </c:forEach>
+	                        </td>
+                        
 	                        <td class="review_content">${review.review_content}</td>
 	                        <td class="review_date"><fmt:formatDate value="${review.review_regdate}" pattern="yyyy-MM-dd"/></td>
 	                        <c:if test="${sessionScope.id==review.user_id}">
@@ -162,10 +166,12 @@
                         		<input type="radio" name="star" id="">
                         		<span class="starRadio_img"><span class="blind">5</span></span>
                         	</label>
-                        </td> -->
+                        </td> --> 
                         <td class="write_rate">
-                            <input type="number" id="stars" placeholder="★★★★★"
-                                onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
+   						<input type="hidden" class="score"></input>
+						<div class="stars"></div>
+                           <!--  <input type="number" id="stars" placeholder="★★★★★"
+                                onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'"> -->
                         </td>
                         <td class="write_content">
                             <textarea type="text" id="writervw" placeholder="상품평을 작성해주세요."
@@ -207,6 +213,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="js/rating.js"></script>
+
 
 
 </body>
