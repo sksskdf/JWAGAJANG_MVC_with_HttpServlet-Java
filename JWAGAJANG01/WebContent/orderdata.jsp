@@ -14,7 +14,7 @@
    		<td>${param.mdname}</td>
   	</tr>
  		</table>
-  	<form action="buynow.do" class="orderform" name="orderfrm" method="post">
+  	<form action="buy.do" class="orderform" name="orderfrm" method="post">
   	<input type="hidden" value="${param.md_code}" name="md_code">
   	<table class="ordertable">
   	

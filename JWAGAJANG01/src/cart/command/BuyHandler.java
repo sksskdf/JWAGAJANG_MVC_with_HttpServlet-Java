@@ -28,7 +28,6 @@ public class BuyHandler implements CommandHandler {
 		HttpSession session = req.getSession();
 		String md_id = (String)session.getAttribute("id");
 		String md_code = req.getParameter("md_code");
-		
 		Order order = new Order();
 		order.setOrder_name(req.getParameter("name"));
 		order.setMobile(req.getParameter("phone"));
