@@ -57,10 +57,10 @@
                   <tr><td class="lnb_td"><a href="/list.do?category_main=400&category_sub=430&p=1">계란</a></td></tr>
               </table>
             </li>
-            <li class="cate gnb_li"><a class="ctgry orderBy" data-oper="1">신상품</a></li>
-            <li class="cate gnb_li"><a class="ctgry orderBy" data-oper="2">베스트</a></li>
-            <li class="cate gnb_li"><a class="ctgry orderBy" data-oper="3">인기상품</a></li>
-            <li class="cate gnb_li" ><a class="ctgry orderBy" data-oper="4">알뜰상품</a></li>
+            <li class="cate gnb_li"><a class="ctgry" href="/cate.do?category_main=All&order=1">신상품</a></li>
+            <li class="cate gnb_li"><a class="ctgry" href="/cate.do?category_main=All&order=2">베스트</a></li>
+            <li class="cate gnb_li"><a class="ctgry" href="/cate.do?category_main=All&order=3">인기상품</a></li>
+            <li class="cate gnb_li" ><a class="ctgry" href="/cate.do?category_main=All&order=4">알뜰상품</a></li>
             <li class="gnb_li"><a class="ctgry" href="noticeList.do?&p=1">공지사항</a></li>
             <li class="gnb_li"><a class="ctgry" href="qnaList.do?&p=1">문의게시판</a></li>
           </ul>

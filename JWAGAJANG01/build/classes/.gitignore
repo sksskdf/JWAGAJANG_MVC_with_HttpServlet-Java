@@ -1,5 +1,6 @@
-/product/
+/board/
 /cart/
+<<<<<<< HEAD
 /member/
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -10,8 +11,21 @@
 /review/
 >>>>>>> a7b06f29c9db840b42edd9983e844a0f7d8a7de6
 =======
+=======
+/common/
+/controller/
+/filter/
+>>>>>>> 4534db888c21f9dd5901df1da5e1a105419eda11
 /goods/
+/index/
+/main/
+/member/
 /notice/
+/product/
 /qna/
 /review/
+<<<<<<< HEAD
 >>>>>>> c36f655b533c06df59bf13bb95b9eae484ae4b6e
+=======
+/util/
+>>>>>>> 4534db888c21f9dd5901df1da5e1a105419eda11

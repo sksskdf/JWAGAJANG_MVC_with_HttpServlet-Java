@@ -44,7 +44,7 @@ $(function() {
 			// order는 정렬순서 1.최신순 2.판매량순 3.상품평순 4.낮은가격 5.높은가격
 		
 		$.ajax({
-			type: 'post',
+			type: 'POST',
 			url: "list.do",
 			data: query,
 			contentType:"application/x-www-form-urlencoded; charset=UTF-8",

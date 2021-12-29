@@ -132,7 +132,7 @@ public class Paging {
         if (endPage > finalPage)
             endPage = finalPage;
         
-        setFirstPageNo(startPage);					// 첫번째 페이지 번호
+   //     setFirstPageNo(startPage);					// 첫번째 페이지 번호
         
         if (isNowFirst)
             setPrevPageNo(1);               // 이전 페이지 번호
@@ -145,7 +145,7 @@ public class Paging {
         if (isNowFinal)
             setNextPageNo(finalPage);       // 다음 페이지 번호
         else
-            setNextPageNo(((currentPageNo + 1) > finalPage ? finalPage : (currentPageNo + 1)));
+            //setNextPageNo(((currentPageNo + 1) > finalPage ? finalPage : (currentPageNo + 1)));
         	setNextPageNo(((endPageNo + 1) > finalPage ? finalPage : (endPageNo + 1)));
         
         setFinalPageNo(finalPage);          // 마지막 페이지 번호
