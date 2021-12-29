@@ -1,58 +1,31 @@
 /board/
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ea2b4fb859 (재수정)
 /cart/
+<<<<<<< HEAD
+/member/
+<<<<<<< HEAD
+<<<<<<< HEAD
+/goods/
+=======
+/qna/
+/goods/
+/review/
+>>>>>>> a7b06f29c9db840b42edd9983e844a0f7d8a7de6
+=======
+=======
 /common/
 /controller/
 /filter/
+>>>>>>> 4534db888c21f9dd5901df1da5e1a105419eda11
 /goods/
 /index/
 /main/
 /member/
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-/goods/
-=======
-=======
 /notice/
 /product/
->>>>>>> ea2b4fb859f870477f3f1280f67c78567ef301c6
 /qna/
 /review/
 <<<<<<< HEAD
->>>>>>> a7b06f29c9db840b42edd9983e844a0f7d8a7de6
-=======
-<<<<<<< HEAD
-/goods/
-/notice/
-/qna/
-/review/
 >>>>>>> c36f655b533c06df59bf13bb95b9eae484ae4b6e
 =======
 /util/
->>>>>>> ea2b4fb859f870477f3f1280f67c78567ef301c6
->>>>>>> dda
-=======
-=======
-/notice/
-/product/
->>>>>>> ea2b4fb859 (재수정)
-/qna/
-/review/
-<<<<<<< HEAD
->>>>>>> a7b06f29c9 (완성)
-=======
-/common/
-/controller/
-/filter/
-/index/
-/main/
-/util/
->>>>>>> 햐ㅣ
-=======
-/util/
->>>>>>> ea2b4fb859 (재수정)
+>>>>>>> 4534db888c21f9dd5901df1da5e1a105419eda11

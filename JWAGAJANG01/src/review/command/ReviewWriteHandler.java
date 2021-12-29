@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.command.CommandHandler;
+import goods.dao.GoodsDAO;
 import review.dao.ReviewDAO;
 import review.dto.ReviewVO;
 
@@ -25,6 +26,9 @@ public class ReviewWriteHandler implements CommandHandler {
 		
 		ReviewDAO rDao = ReviewDAO.getInstance();
 		int review_code = rDao.insertReview(rVo);
+		
+		GoodsDAO gDao = GoodsDAO.getInstance();
+		gDao.updateReviewCount(md_code, 1);
 		
 		ReviewVO added = rDao.getReview(review_code);
 		req.setAttribute("review", added);
