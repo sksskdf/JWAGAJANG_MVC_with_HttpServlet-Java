@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import goods.dto.GoodsVO;
 import review.dto.ReviewVO;
 import util.DBManager;
 

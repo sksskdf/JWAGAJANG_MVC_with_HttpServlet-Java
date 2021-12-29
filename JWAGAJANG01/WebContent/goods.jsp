@@ -185,9 +185,9 @@
                 <ul>
                     <a href="/index.do"><li>홈</li></a>
                     <div class="line"></div>
-                    <a href="#"><li>장바구니</li></a>
+                    <a href="/cartPut.do"><li>장바구니</li></a>
                     <div class="line"></div>
-                    <a href="#"><li><a href="#">찜리스트</li></a>
+                    <a href="favlist.do?p=1"><li>찜리스트</li></a>
                 </ul>
             </div>
             <div class="footnav_latest">
