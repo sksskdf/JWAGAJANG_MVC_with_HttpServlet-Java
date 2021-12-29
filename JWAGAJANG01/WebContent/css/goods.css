@@ -432,3 +432,37 @@ select_sort > a {
 .topbtn {
     display: none;
 }
+
+
+
+
+
+
+
+.stars{
+    margin: auto;
+    cursor: pointer;
+    text-align : center;
+	width : 110px;
+}
+
+.stars .star{
+	line-height : 50px;
+    width: 20px;
+    height: 15px;
+    padding: 2px;
+    display: inline-block;
+}
+
+.star.empty{
+    background: url("../img/star-empty.png") no-repeat;
+}
+
+.star.half{
+    background: url("../img/star-half.png") no-repeat;
+}
+
+.star.full{
+    background: url("../img/star-full.png") no-repeat;
+}
+

@@ -61,10 +61,10 @@ $(function() {
 	$("#submitbtn").on("click", function(e) {
 		var md_code = $("input[name='md_code']").val();
 		var user_id = $("#writer").val();
-		var stars = $("#stars").val();
+		var score = $(".score").text();
 		var writervw = $("#writervw").val();
-		
-		var query = {md_code:md_code, user_id:user_id, review_rate:stars, review_content:writervw};
+		console.log("나는"+score);
+		var query = {md_code:md_code, user_id:user_id, review_rate:score, review_content:writervw};
 		
 		$.ajax({
 			type: 'post',

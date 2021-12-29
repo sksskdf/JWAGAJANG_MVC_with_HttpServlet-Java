@@ -17,8 +17,6 @@ public class ReviewDeleteHandler implements CommandHandler {
 		GoodsDAO gDao = GoodsDAO.getInstance();
 		int check = gDao.deleteReview(review_code);
 		
-		gDao.updateReviewCount(md_code, -1);
-		
 		req.setAttribute("check", new Integer(check));
 		return "/goodsReviewDel.jsp";
 	}
