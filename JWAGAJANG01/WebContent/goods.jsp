@@ -12,9 +12,12 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/goods.css">
     <link rel="stylesheet" href="css/header_footer.css">
+    <link rel="stylesheet" href="css/star-rating-svg.css">
     <link rel="shortcut icon" href="img/favicon/favicon.ico">
     <script src="js/jquery.min.js"></script>
     <script src="js/goods.js"></script>
+    <script src="js/jquery.star-rating-svg.min.js"></script>
+    <script src="js/jquery.star-rating-svg.js"></script>
     <title>좌가장</title>
 </head>
 <body>
@@ -164,8 +167,21 @@
                         	</label>
                         </td> -->
                         <td class="write_rate">
-                            <input type="number" id="stars" placeholder="★★★★★"
-                                onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'">
+                       <div class="jq-stars" data-rating="3"></div>
+                       <script type="text/javascript">
+                       $(".jq-stars").starRating({
+                    	   totalStars: 5,
+                    	   starShape: 'rounded',
+                    	   starSize: 20,
+                    	   emptyColor: 'lightgray',
+                    	   hoverColor: 'gray',
+                    	   activeColor: '#195500',
+                    	   useGradient: false
+                    	 });
+                       </script>
+                       </div>
+                           <!--  <input type="number" id="stars" placeholder="★★★★★"
+                                onfocus="this.placeholder=''" onblur="this.placeholder='★★★★★'"> -->
                         </td>
                         <td class="write_content">
                             <textarea type="text" id="writervw" placeholder="상품평을 작성해주세요."
@@ -207,6 +223,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 
 </body>
