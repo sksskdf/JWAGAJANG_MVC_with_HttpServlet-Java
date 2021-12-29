@@ -34,12 +34,15 @@ public class ResultHandler implements CommandHandler {
 
 		req.setAttribute("searchkeyword", searchkeyword);
 		GoodsDAO gDao = GoodsDAO.getInstance();
+		
+		int searchCount = gDao.getSearchCount(searchkeyword);
+		
 
 		// 페이징
 		String pageNumberString = req.getParameter("p");
 		String category_main = req.getParameter("category_main");
 		String category_sub = req.getParameter("category_sub");		// null
-		String viewPage = "/list.jsp";
+		String viewPage = "/result.jsp";
 		int pageNumber = 1;
 		if (pageNumberString != null && pageNumberString.length() > 0) {
 			pageNumber = Integer.parseInt(pageNumberString);
@@ -70,6 +73,7 @@ public class ResultHandler implements CommandHandler {
 		listModel.setMdList(mdList);
 		listModel.setPaging(paging);
 		req.setAttribute("listModel", listModel);
+		req.setAttribute("searchCount", searchCount);
 		
 		res.setHeader("Pragma", "No-cache");
 		res.setHeader("Cache-Control", "no-cache");
