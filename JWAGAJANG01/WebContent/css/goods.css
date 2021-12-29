@@ -433,12 +433,6 @@ select_sort > a {
     display: none;
 }
 
-
-
-
-
-
-
 .stars{
     margin: auto;
     cursor: pointer;
@@ -448,6 +442,11 @@ select_sort > a {
 
 .stars .star{
 	line-height : 50px;
+   width : 110px;
+}
+
+.stars .star{
+   line-height : 50px;
     width: 20px;
     height: 15px;
     padding: 2px;
@@ -465,4 +464,7 @@ select_sort > a {
 .star.full{
     background: url("../img/star-full.png") no-repeat;
 }
+
+
+
 

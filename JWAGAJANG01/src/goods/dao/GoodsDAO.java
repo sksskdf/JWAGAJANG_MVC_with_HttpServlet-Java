@@ -50,11 +50,11 @@ public class GoodsDAO {
 				sqlAll += " order by review_count desc";
 				sqlCate += " order by review_count desc";
 			} else if(order.equals("4")) {
-				sqlAll += " order by md_price asc";
-				sqlCate += " order by md_price asc";
+				sqlAll += " order by floor(md_price-(md_price*(md_dc/100))) asc";
+				sqlCate += " order by floor(md_price-(md_price*(md_dc/100))) asc";
 			} else if(order.equals("5")) {
-				sqlAll += " order by md_price desc";
-				sqlCate += " order by md_price desc";
+				sqlAll += " order by floor(md_price-(md_price*(md_dc/100))) desc";
+				sqlCate += " order by floor(md_price-(md_price*(md_dc/100))) desc";
 			}
 			
 			sqlAll += " limit ?, ?";
@@ -247,8 +247,6 @@ public class GoodsDAO {
 		return x;
 	}
 	
-	
-	
 	// 검색
 	public List<GoodsVO> search(String searchkeyword, int firstRow, int endRow) {
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
@@ -282,7 +280,25 @@ public class GoodsDAO {
 		}		
 		return list;
 	}
-	
+
+	public int getSearchCount(String searchkeyword) {
+		ResultSet rs = null;
+	    int count = 0;
+	    String sql = "select count(*) from table_md where md_name like '%"+searchkeyword+"%'";
+	    try (Connection conn = DBManager.getConnection(); 
+	    		Statement stmt = conn.createStatement();){
+			
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+			count = rs.getInt(1);
+			}
+	    } catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(rs);	
+		}		
+		return count;
+	}
 
 	// 상품 갯수 (페이징에 필요)
 	public int selectCount(String category_main, String category_sub) throws SQLException {
@@ -310,7 +326,6 @@ public class GoodsDAO {
 	}
 
 	// 리뷰 카운트 
-	// 현재 리뷰 카운트를 +1
 	public void updateReviewCount(int md_code, int increment) throws SQLException {
 	    String sql = "update table_md set review_count = review_count + " + increment + " where md_code = ?";
 
@@ -320,4 +335,5 @@ public class GoodsDAO {
 				pstmt.executeUpdate();
 		}
 	}
+
 }

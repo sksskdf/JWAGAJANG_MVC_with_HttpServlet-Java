@@ -23,7 +23,7 @@
     <jsp:include page="H&F/header.jsp"/>
     <!-- 본문  -->
     <div id="wrap">
-    	<p class="result_tit">"" 검색결과 (개)</p>
+    	<p class="result_tit">"${searchkeyword}" 검색결과 (${searchCount}개)</p>
         <div id="goodsList">
             <div class="sort">
                 <div class="sort_menu">
