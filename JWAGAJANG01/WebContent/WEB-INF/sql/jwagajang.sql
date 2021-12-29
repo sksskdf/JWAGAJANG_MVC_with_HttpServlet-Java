@@ -19,3 +19,5 @@ select * from table_md;
 select * from table_notice;
 
 select count(*) from table_notice where notice_title like '%%';
+
+select * from table_order;

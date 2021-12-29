@@ -48,60 +48,48 @@ $('#checkbox').click(function(){
 	
 	if(checked){
 		$('input:checkbox').prop('checked',true);
-		var ordername = $("input[name='ordername']").val();
-		var mobile = $("input[name='mobile']").val();
-		var address = $("input[name='address']").val();
-		var address2 = $("input[name='address2']").val();
-		var mdname = $("input[name='mdname']").val();
-		var mdcode = $("input[name='md_code']").val();
-		var query = { ordername:ordername,mobile:mobile,address:address,address2:address2,mdname:mdname,md_code:mdcode};
-		$.ajax({
-			type: "POST",
-			url: "/orderdata.jsp",
-			data: query,
-			contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-			success: function(data) {
-				$('.section').html(data);
-			},
-			error: function(request, status, error) {
-				alert(error);
-			}
-		});
+		
+		$("#name").val($("input[name='order_name']").val());
+		$("#phone").val($("input[name='order_mobile']").val());
+		$("#address").val($("input[name='order_address']").val());
+		$("#address2").val($("input[name='order_address2']").val());
 	}
 });
 
-function orderCheck() {
+function orderCheck(e) {
 	const nameReg = /^[가-힣]{2,5}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;      //한글 2~5자 혹은 영어이름.
-	const telReg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;  
+	const telReg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/; 
+	//e.priventDefault();
 	
 	if(document.orderfrm.name.value.length == 0) { 
 		alert("수령인을 입력하세요.");
 		document.orderfrm.name.focus();
-		return;
+		return false;
 	}
 	if(!nameReg.test(document.orderfrm.name.value)) { 
 		alert("이름을 올바르게 입력하세요.");
 		document.orderfrm.name.focus();
-		return;
+		return false;
 	}
 	if(document.orderfrm.phone.value.length == 0) {
 		alert("전화번호를 입력하세요.");
 		document.orderfrm.phone.focus();
-		return;
+		return false;
 	}
 	if(!telReg.test(document.orderfrm.phone.value)) { 
 		alert("전화번호를 올바르게 입력하세요.");
 		document.orderfrm.phone.focus();
-		return;
+		return false;
 	}
 	if(document.orderfrm.postnum.value.length == 0 || document.orderfrm.address.value.length == 0) {
 		alert("'우편번호 찾기'를 통해 주소를 입력하세요.");
-		return;
+		return false;
 	}
 	if(document.orderfrm.addDetail.value.length == 0) {
 		alert("상세주소를 입력하세요.");
 		document.orderfrm.addDetail.focus();
-		return;
+		return false;
 	}
-	document.orderfrm.submit()
+	document.orderfrm.submit();
+	return true;
 }

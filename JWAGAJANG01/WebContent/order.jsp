@@ -24,17 +24,18 @@
     	<table class="orderlist">
     	<tr>
     		<td>주문상품</td>
-    		<td><c:forEach items="${md_name }" var="name">
+    		<td><c:forEach items="${md_names }" var="name">
     		${name}, </c:forEach></td>
     	</tr>
    		</table>
     	<form action="buy.do" class="orderform" name="orderfrm" method="post">
-    	<input type="hidden" value="${param.md_code}" name="md_code">
-    	<input type="hidden" value="${orderinfo.order_name}" name="ordername" />
-  		<input type="hidden" value="${orderinfo.mobile}" name="mobile" />
-  		<input type="hidden" value="${orderinfo.address}" name="address" />
-  		<input type="hidden" value="${orderinfo.address2}" name="address2" />
-  		<input type="hidden" value="${md_name}" name="mdname" />
+    	<c:forEach items="${md_codes}" var="md_code">
+    	<input type="hidden" value="${md_code}" name="md_codes">
+    	</c:forEach>
+    	<input type="hidden" value="${orderinfo.order_name}" name="order_name" />
+  		<input type="hidden" value="${orderinfo.mobile}" name="order_mobile" />
+  		<input type="hidden" value="${orderinfo.address}" name="order_address" />
+  		<input type="hidden" value="${orderinfo.address2}" name="order_address2" />
     	<table class="ordertable">
     		<tr>
     			<td>배송지 정보</td>
@@ -46,7 +47,7 @@
     		</tr>
     		<tr>
     			<td>휴대폰번호</td>
-    			<td><input type="text" name="phone" placeholder="'-' 포함 입력" /></td>
+    			<td><input type="text" name="phone" id="phone" placeholder="'-' 포함 입력" /></td>
     		</tr>
     		<tr>
     			<td >주소</td>
@@ -59,7 +60,7 @@
     			<td><input type="text" name="request" /></td>
     		</tr>
     	</table>
-    	<input type="submit" value="결제하기" class="paybutton" />
+    	<input type="button" value="결제하기" class="paybutton" onclick="return orderCheck()" />
     	</form>
     </div>
 	</section>
