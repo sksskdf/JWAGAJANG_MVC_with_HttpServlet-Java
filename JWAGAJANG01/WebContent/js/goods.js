@@ -5,7 +5,19 @@ $(function() {
             scrollTop: $(this.hash).offset().top}, 400);
     });
 
+	// 검색
+	$("#schButton").on("click", function(e) {
+		var sch = $("#schText").val();
+		
+		if(sch.length == 0) {
+			alert("검색어를 입력해 주세요.");
+			document.querySelector("#schText").focus();
+			return false;
+		}
+	});
+
 	
+	// 찜하기 버튼
 	$(".favbtn").on("click",function(e){
 		e.preventDefault();
 		var mdcode = $("input[name='mdcode']").val();
@@ -25,7 +37,7 @@ $(function() {
 					location.href='goods.do?md_code='+md_code;
 				}else{
 					alert("해당상품이 찜목록에 추가되었습니다!");
-					 location.href = "goods.do?md_code="+mdcode;
+					location.href = "goods.do?md_code="+mdcode;
 				}
 			}
 		});
@@ -81,6 +93,8 @@ $(function() {
 			}
 		});
 	});
+	
+	
 
 	// 장바구니
 	$(".cartbtn").on("click",function(e){
@@ -171,6 +185,11 @@ function del(delBtn) {
 	var query = {review_code: arr[0]};
 	var md_code = $("input[name='mdcode']").val();
 	
+	var review_code = delBtn.name;
+	var md_code = $("input[name='mdcode']").val();
+	var trTag = delBtn.parentNode.parentNode;
+	
+	var query = {md_code: md_code, review_code: rStr};
 	$.ajax({
 		type: "POST",
 		url: "reviewDelete.do",
@@ -180,10 +199,11 @@ function del(delBtn) {
 			var loc = data.indexOf(str1);
 			var len = str1.length;
 			var check = data.substr(loc+len,1);
-			if(check != "1") {
+			if(check == "1") {
 				alert("상품평이 삭제 되었습니다.");
 				location.href='goods.do?md_code='+md_code; // 이건 새로고침!
 
+				trTag.remove();
 			} else {
 				alert("상품평 삭제 실패")
 			}
