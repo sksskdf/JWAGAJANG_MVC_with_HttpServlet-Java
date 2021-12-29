@@ -1,5 +1,7 @@
 package cart.command;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,8 +29,13 @@ public class BuyHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 		String md_id = (String)session.getAttribute("id");
-		String md_code = req.getParameter("md_code");
+		String[] md_codes = req.getParameterValues("md_codes");
+		int[] md_codes_ = new int[md_codes.length];
 		
+		for(int i=0; i<md_codes.length;i++) {
+			md_codes_[i] = Integer.parseInt(md_codes[i]);
+		}
+		 
 		Order order = new Order();
 		order.setOrder_name(req.getParameter("name"));
 		order.setMobile(req.getParameter("phone"));
@@ -36,10 +43,12 @@ public class BuyHandler implements CommandHandler {
 		order.setAddress2(req.getParameter("addDetail"));
 		order.setOrderrequest(req.getParameter("request"));
 		
-		int md_code_ = Integer.parseInt(md_code);
 		BuyService buyservice = BuyService.getInstance();
-		buyservice.buy(md_code_,md_id,order);
-			
+		
+		for(int i=0; i<md_codes.length;i++) {
+		buyservice.buy(md_codes_[i],md_id,order);
+		}
+		
 		return "complete.do";
 	}
 

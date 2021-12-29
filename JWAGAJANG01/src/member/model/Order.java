@@ -14,7 +14,7 @@ public class Order {
 	private String address = null;
 	private String address2 = null;
 	private String orderrequest = null;
-	
+	private String user_id = null;
 	
 	
 	public Order() {
@@ -168,13 +168,23 @@ public class Order {
 		this.mdcode = mdcode;
 	}
 
+	public String getUser_id() {
+		return user_id;
+	}
 
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 
 	@Override
 	public String toString() {
 		return "Order [mdpic=" + mdpic + ", mdname=" + mdname + ", mdorderdate=" + mdorderdate + ", mdprice=" + mdprice
 				+ ", mdreview=" + mdreview + "]";
 	}
+
+
+
+	
 	
 	
 }
