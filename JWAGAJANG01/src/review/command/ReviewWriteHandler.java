@@ -40,3 +40,4 @@ public class ReviewWriteHandler implements CommandHandler {
 		System.out.println(review_rate);
 		return "goodsReview.jsp";
 	}
+}
