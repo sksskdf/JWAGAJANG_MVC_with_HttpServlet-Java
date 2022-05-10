@@ -1,25 +1,3 @@
-
-일단 임시로 이렇게 작성해서 사용했습니다
-
-
-create user 'jwagajang'@localhost identified by '1234';
-grant all privileges on *.* to 'jwagajang'@'localhost';
-flush privileges;
-
-create table member(
-id varchar(20) primary key not null,
-pwd varchar(64) not null,
-mobile varchar(30),
-address varchar(30),
-address2 varchar(30),
-address3 varchar(30),
-email varchar(30) not null,
-createdAt datetime default current_timestamp,
-modifiedAt datetime default current_timestamp on update current_timestamp
-);
-
-commit;
-
 create database jwagajang;
 
 create table table_user (
